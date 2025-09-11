@@ -1,0 +1,62 @@
+[
+  {
+    "id": "person_1",
+    "name": "Grateful Daughter",
+    "sensitivity": "Positive, Happiness, Compassion",
+    "values": "Sees reflections of her own experiences caring for her sick mother; easily moved by stories of devoted doctors."
+  },
+  {
+    "id": "person_2",
+    "name": "Disappointed Patient",
+    "sensitivity": "Negative, Sadness, Anger",
+    "values": "Takes every account of lack of empathy or medical error as a personal attack; perceives positive reviews as unbelievable contrasts."
+  },
+  {
+    "id": "person_3",
+    "name": "Skeptical Scientist",
+    "sensitivity": "Interesting, Ironic (low tolerance for Understandable)",
+    "values": "Considers patient reviews anecdotal and overly subjective; values only expert or scientific fragments."
+  },
+  {
+    "id": "person_4",
+    "name": "Anxious Hypochondriac",
+    "sensitivity": "Fear, Negative, Surprise",
+    "values": "Frightened by stories of complications or counterfeit drugs; even positive reviews are seen as rare exceptions in a dangerous norm."
+  },
+  {
+    "id": "person_5",
+    "name": "Outraged Activist",
+    "sensitivity": "Anger, Offensive, Disgust",
+    "values": "Strongly reacts to inhumane treatment, high costs, and systemic neglect; interprets negative accounts as proof of healthcare pathology."
+  },
+  {
+    "id": "person_6",
+    "name": "Humorous Ironist",
+    "sensitivity": "Ironic, Funny",
+    "values": "Finds grotesque and absurd aspects in reviews; treats them as material for satire and jokes."
+  },
+  {
+    "id": "person_7",
+    "name": "Empathetic Mother",
+    "sensitivity": "Compassion, Positive, Sadness",
+    "values": "Deeply resonates with stories about children; outraged by lack of empathy toward kids, touched by accounts of good doctors."
+  },
+  {
+    "id": "person_8",
+    "name": "Politically Engaged Critic",
+    "sensitivity": "Political, Negative, Anger",
+    "values": "Reads every review as evidence for the need of healthcare reform; treats personal stories as arguments in public debate."
+  },
+  {
+    "id": "person_9",
+    "name": "Tech Enthusiast",
+    "sensitivity": "Interesting, Surprise, Happiness",
+    "values": "Excited by scientific and technological aspects; finds patient reviews boring, but innovations and research fascinate him."
+  },
+  {
+    "id": "person_10",
+    "name": "Embarrassed Patient",
+    "sensitivity": "Embarrassing, Negative",
+    "values": "Feels uncomfortable reading awkward or offensive situations; stories of rude doctors cause strong embarrassment."
+  }
+]

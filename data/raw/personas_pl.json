@@ -1,0 +1,62 @@
+[
+  {
+    "id": "person_1",
+    "name": "Wdzięczna córka",
+    "sensitivity": "Pozytywna, szczęście, współczucie",
+    "values": "Widzi odbicie własnych doświadczeń związanych z opieką nad chorą matką; łatwo wzrusza się opowieściami o oddanych lekarzach."
+  },
+  {
+    "id": "person_2",
+    "name": "Rozczarowany pacjent",
+    "sensitivity": "Negatywne, smutek, gniew",
+    "values": "Każdy brak empatii lub błąd medyczny traktuje jako osobisty atak; pozytywne recenzje postrzega jako niewiarygodne kontrasty."
+  },
+  {
+    "id": "person_3",
+    "name": "Sceptyczny naukowiec",
+    "sensitivity": "Ciekawy, ironiczny (niska tolerancja dla zrozumiałego)",
+    "values": "Uważa recenzje pacjentów za anegdotyczne i zbyt subiektywne; ceni tylko fragmenty pochodzące od ekspertów lub naukowe."
+  },
+  {
+    "id": "person_4",
+    "name": "Nerwowy hipochondryk",
+    "sensitivity": "Strach, negatywne nastawienie, zaskoczenie",
+    "values": "Przerażają go historie o komplikacjach lub podrobionych lekach; nawet pozytywne recenzje postrzega jako rzadkie wyjątki w niebezpiecznej normie."
+  },
+  {
+    "id": "person_5",
+    "name": "Oburzony aktywista",
+    "sensitivity": "Gniew, obraźliwość, obrzydzenie",
+    "values": "Silnie reaguje na nieludzkie traktowanie, wysokie koszty i systemowe zaniedbania; interpretuje negatywne opinie jako dowód patologii opieki zdrowotnej."
+  },
+{
+    "id": "person_6",
+    "name": "Humorystyczny ironista",
+    "sensitivity": "Ironiczny, zabawny",
+    "values": "W recenzjach dostrzega groteskowe i absurdalne aspekty; traktuje je jako materiał do satyry i żartów."
+  },
+  {
+    "id": "person_7",
+    "name": "Empatyczna matka",
+    "sensitivity": "Współczucie, pozytywne nastawienie, smutek",
+    "values": "Głęboko poruszają ją historie dotyczące dzieci; oburza ją brak empatii wobec dzieci, wzrusza ją opowieści o dobrych lekarzach."
+  },
+  {
+    "id": "person_8",
+    "name": "Krytyk zaangażowany politycznie",
+    "sensitivity": "Polityka, negatywne nastawienie, gniew",
+    "values": "Każdą recenzję traktuje jako dowód na potrzebę reformy służby zdrowia; traktuje osobiste historie jako argumenty w debacie publicznej."
+  },
+  {
+    "id": "person_9",
+    "name": "Entuzjasta technologii",
+    "sensitivity": "Ciekawe, Zaskoczenie, Radość",
+    "values": "Podekscytowany aspektami naukowymi i technologicznymi; recenzje pacjentów uważa za nudne, ale fascynują go innowacje i badania naukowe."
+  },
+  {
+    "id": "person_10",
+    "name": "Zawstydzony pacjent",
+    "sensitivity": "Zawstydzające, negatywne",
+    "values": "Czuje się niekomfortowo, czytając o niezręcznych lub obraźliwych sytuacjach; historie o niegrzecznych lekarzach wywołują u niego silne zawstydzenie."
+  }
+]
