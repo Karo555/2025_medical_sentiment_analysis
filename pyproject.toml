@@ -5,6 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "pytorch",
-    "matplotlib"
+    "torch",
+    "matplotlib",
+    "httpx",
+    "python-dotenv",
+    "orjson"
 ]
