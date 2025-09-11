@@ -59,25 +59,40 @@ def build_prompt_for_translation(batch_items: List[Dict[str, Any]]) -> str:
     Jeden prompt: tłumaczenie PL->EN + anonimizacja (bez wymyślania nazw).
     """
     instruction = (
-        "Jesteś uważnym tłumaczem w dziedzinie medycyny.  /n"
-        "ZADANIE: Przetłumacz każdą poniższą polską opinię na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje. Przeprowadź równie anonimizację.\n"
-        "\n"
-        "ZASADY ANONIMIZACJI:\n"
-        "- Jeżeli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:\n"
-        "  - „Jan Kowalski” (jeżeli mężczyzna) lub „Anna Kowalska” (jeżeli kobieta).\n"
-        " - Jeśli występuje tylko imię, zamień je na „Jan” lub „Anna” w zależności od płci.\n"
-        " - Jeśli występuje tylko nazwisko, zamień je na „Pan Kowalski” lub „Pani Kowalska” w zależności od płci.\n"
-        " - Odmień je poprawnie gramatycznie w kontekście zdania.\n"
-        "- Nie wymyślaj imion i nazwisk, jeśli w tekście ich nie ma. /n" 
-        "- Nazwy klinik, szpitali, marek zachowaj w oryginale, chyba że jednoznacznie identyfikują osobę prywatną. /n"
-        "- Nie dodawaj treści, której nie było w oryginale. /n"
-        "\n"
-        "WYJŚCIE:\n"
-        "Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy i bez code fences).  \n"
-        "Każdy element:\n"
-        "{ \"opinion_id\": str, \"lang\": \"en\", \"text\": str, \"redacted\": int }\n"
-        "- \"redacted\" = liczba zamian imion/nazwisk. /n"
-    )
+    "Jesteś uważnym tłumaczem w dziedzinie medycyny.\n"
+    "\n"
+    "ZADANIE:\n"
+    "1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.\n"
+    "2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.\n"
+    "\n"
+    "ZASADY ANONIMIZACJI:\n"
+    "- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:\n"
+    "  • 'Jan Kowalski' (mężczyzna)\n"
+    "  • 'Anna Kowalska' (kobieta)\n"
+    "- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.\n"
+    "- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.\n"
+    "- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.\n"
+    "- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.\n"
+    "- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).\n"
+    "- Nie dodawaj ani nie usuwaj treści.\n"
+    "\n"
+    "WYJŚCIE:\n"
+    "- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).\n"
+    "- Każdy element:\n"
+    "{ \"opinion_id\": str, \"lang\": \"en\", \"text\": str, \"redacted\": int }\n"
+    "- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).\n"
+    "\n"
+    "WAŻNE:\n"
+    "- Zachowaj dokładnie format JSON.\n"
+    "- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.\n"
+    "- Jeżeli nie było nazw osobowych, 'redacted' = 0.\n"
+    "\n"
+    "PRZYKŁAD:\n"
+    "INPUT:\n"
+    "[ {\"opinion_id\": \"op_test1\", \"text\": \"Byłam u dr Kowalskiego i było super.\"} ]\n"
+    "OUTPUT:\n"
+    "[ {\"opinion_id\": \"op_test1\", \"lang\": \"en\", \"text\": \"I went to Dr. Jan Kowalski and it was great.\", \"redacted\": 1} ]\n"
+)
     payload = [{"opinion_id": it["opinion_id"], "text": it["text"]} for it in batch_items]
     return instruction + "\nINPUT:\n" + json.dumps(payload, ensure_ascii=False, indent=2)
 
@@ -87,7 +102,7 @@ class OpenAICompatClient:
     """
     OpenAI SDK klient wskazujący na DeepSeek (OpenAI-compatible).
     """
-    def __init__(self, api_key: str, base_url: str = DEFAULT_BASE_URL, model: str = DEFAULT_MODEL, timeout: float = 60.0):
+    def __init__(self, api_key: str, base_url: str = DEFAULT_BASE_URL, model: str = DEFAULT_MODEL, timeout: float = 120.0):
         self.model = model
         self._client = AsyncOpenAI(api_key=api_key, base_url=base_url, timeout=timeout)
 
@@ -197,27 +212,37 @@ async def process_batch(
     Przetwarza jeden batch: zapisuje snapshoty, woła API, waliduje,
     zwraca czyste EN rekordy + porażki + statystyki.
     """
+    print(f"📦 Processing batch #{batch_idx} with {len(batch_items)} items...")
+    
     # request snapshot
     write_jsonl(batch_items, request_path_for(batches_dir, batch_idx))
+    print(f"  ↪ Saved request snapshot to {request_path_for(batches_dir, batch_idx).name}")
 
     # prompt snapshot
     prompt = build_prompt_for_translation(batch_items)
     with open(prompt_path_for(batches_dir, batch_idx), "w", encoding="utf-8") as f:
         f.write(prompt)
+    print(f"  ↪ Saved prompt to {prompt_path_for(batches_dir, batch_idx).name}")
 
     # API call
+    print(f"  ↪ Calling DeepSeek API for batch #{batch_idx}...")
     try:
         responses = await client.translate_batch(batch_items)
+        print(f"  ✅ API call successful, received {len(responses)} responses")
     except Exception as e:
         # snapshot błędu zamiast response
+        print(f"  ❌ API call failed: {str(e)}")
         write_jsonl([{"error": str(e)}], response_path_for(batches_dir, batch_idx))
         failures = [{"opinion_id": it["opinion_id"], "error": str(e), "attempts": 1} for it in batch_items]
+        print(f"  ↪ Saved error snapshot to {response_path_for(batches_dir, batch_idx).name}")
         return [], failures, {"batch": batch_idx, "ok": 0, "failed": len(batch_items)}
 
     # raw response snapshot (parsowana lista obiektów)
     write_jsonl(responses, response_path_for(batches_dir, batch_idx))
+    print(f"  ↪ Saved raw responses to {response_path_for(batches_dir, batch_idx).name}")
 
     # validate/clean (bez 'redacted' w finalnym dataset)
+    print(f"  ↪ Validating responses...")
     clean = []
     failures = []
     for resp in responses:
@@ -232,6 +257,7 @@ async def process_batch(
 
     # clean snapshot (checkpoint zakończonego batcha)
     write_jsonl(clean, clean_path_for(batches_dir, batch_idx))
+    print(f"  ↪ Saved clean translations to {clean_path_for(batches_dir, batch_idx).name}")
 
     # redaction flags (append) – tylko do audytu
     redaction_path = batches_dir.parent / "translation_redaction_flags.jsonl"
@@ -241,8 +267,14 @@ async def process_batch(
         "redacted_count": r.get("redacted", 0) or 0
     } for r in responses]
     write_jsonl(flags, redaction_path, mode="a")
+    print(f"  ↪ Updated redaction flags in {redaction_path.name}")
+    
+    redacted_count = sum(1 for f in flags if f["names_detected"])
+    if redacted_count > 0:
+        print(f"  ℹ️ Detected personal names in {redacted_count} opinions")
 
     stats = {"batch": batch_idx, "ok": len(clean), "failed": len(failures)}
+    print(f"✅ Batch #{batch_idx} complete: {len(clean)} ok, {len(failures)} failed")
     return clean, failures, stats
 
 # ---------- Consolidation ----------
@@ -258,17 +290,25 @@ def consolidate_translations(
     - EN ze wszystkich batch_XXXX_clean.jsonl (posortowanych po idx)
     Zapis atomowy (tmp -> replace).
     """
+    print(f"📊 Consolidating translations to {out_path.name}...")
+    
     # 1) wczytaj PL z raw
+    print(f"  ↪ Loading original PL opinions from {raw_opinions_path.name}")
     raw_rows = read_jsonl(raw_opinions_path)
     pl_rows = [r for r in raw_rows if r.get("lang") == "pl"]
+    print(f"  ↪ Found {len(pl_rows)} PL opinions")
 
     # 2) zbierz EN ze wszystkich clean'ów w kolejności idx
     clean_files = sorted(batches_dir.glob("batch_*_clean.jsonl"))
+    print(f"  ↪ Found {len(clean_files)} completed batch files")
     en_rows: List[Dict[str, Any]] = []
     for cf in clean_files:
-        en_rows.extend(read_jsonl(cf))
+        batch_rows = read_jsonl(cf)
+        en_rows.extend(batch_rows)
+        print(f"  ↪ Added {len(batch_rows)} translations from {cf.name}")
 
     # 3) zbuduj wynik: PL + EN
+    print(f"  ↪ Building final output with {len(pl_rows)} PL + {len(en_rows)} EN opinions...")
     tmp_path = out_path.with_suffix(out_path.suffix + ".tmp")
     # nadpisz tmp
     if tmp_path.exists():
@@ -279,6 +319,7 @@ def consolidate_translations(
     write_jsonl(en_rows, tmp_path, mode="a")
     # atomowy replace
     os.replace(tmp_path, out_path)
+    print(f"✅ Successfully created {out_path.name} with {len(pl_rows) + len(en_rows)} total opinions")
 
 # ---------- Orchestrator ----------
 
@@ -295,15 +336,30 @@ async def translate_file_async(
     to_batch: Optional[int] = None,
     rebuild_output_only: bool = False,
 ):
+    print(f"🚀 Starting translation pipeline...")
+    print(f"  • Input: {in_path}")
+    print(f"  • Output: {out_path}")
+    print(f"  • Model: {model}")
+    print(f"  • Batch size: {batch_size}")
+    print(f"  • Concurrency: {concurrency}")
+    print(f"  • Resume mode: {'enabled' if resume else 'disabled'}")
+    
     batches_dir = ensure_dirs(out_path)
+    print(f"  • Batches directory: {batches_dir}")
+    
     data = read_jsonl(in_path)
+    print(f"  • Loaded {len(data)} records from input file")
 
     # 1) bierzemy tylko PL; deterministyczne batchowanie
     pl_rows = [r for r in data if r.get("lang") == "pl"]
+    print(f"  • Found {len(pl_rows)} Polish records to translate")
+    
     batches = make_batches(pl_rows, batch_size)
+    print(f"  • Created {len(batches)} batches of size {batch_size}")
 
     # Tylko konsolidacja (bez API)
     if rebuild_output_only:
+        print("ℹ️ Running in rebuild-output-only mode (no API calls)")
         consolidate_translations(in_path, batches_dir, out_path)
         return
 
@@ -311,8 +367,10 @@ async def translate_file_async(
     total_batches = len(batches)
     start_idx = 1 if from_batch is None else max(1, from_batch)
     end_idx = total_batches if to_batch is None else min(total_batches, to_batch)
+    print(f"  • Processing batch range: {start_idx} to {end_idx} (of {total_batches} total)")
 
     # 3) klient
+    print(f"  • Initializing API client to {base_url}")
     client = OpenAICompatClient(api_key=api_key, base_url=base_url, model=model)
 
     sem = asyncio.Semaphore(concurrency)
@@ -323,6 +381,7 @@ async def translate_file_async(
         expected_len = len(items)
         # resume: pomiń ukończone batch'e
         if resume and is_batch_completed(batches_dir, idx, expected_len):
+            print(f"⏭️ Skipping batch #{idx} (already completed with {expected_len} items)")
             stats.append({"batch": idx, "ok": expected_len, "failed": 0, "skipped": True})
             return
         async with sem:
@@ -335,15 +394,24 @@ async def translate_file_async(
         tasks.append(asyncio.create_task(runner(i, batches[i-1])))
 
     t0 = time.time()
+    print(f"⏱️ Starting batch processing at {time.strftime('%H:%M:%S')}")
     try:
         await asyncio.gather(*tasks)
+        print(f"✅ All batches processed successfully")
+    except Exception as e:
+        print(f"❌ Error during batch processing: {str(e)}")
+        raise
     finally:
+        print(f"  ↪ Closing API client connection")
         await client.close()
     t1 = time.time()
+    elapsed = t1 - t0
+    print(f"⏱️ Processing completed in {elapsed:.1f} seconds ({elapsed/60:.1f} minutes)")
 
     # 4) zapis błędów (jeśli są)
     failures_path = out_path.parent / "translation_failures.jsonl"
     if all_failures:
+        print(f"⚠️ Writing {len(all_failures)} failed translations to {failures_path.name}")
         write_jsonl(all_failures, failures_path)
 
     # 5) konsolidacja do pliku wynikowego
@@ -366,12 +434,20 @@ async def translate_file_async(
         "to_batch": end_idx,
         "elapsed_sec": round(t1 - t0, 3),
     }
-    write_json_atomic(audit, out_path.parent / "translation_audit.json")
+    audit_path = out_path.parent / "translation_audit.json"
+    write_json_atomic(audit, audit_path)
+    print(f"📊 Saved audit information to {audit_path.name}")
+    print(f"🏁 Translation pipeline completed successfully!")
 
 # ---------- CLI ----------
 
 def main():
+    print("🔄 Medical Opinion Translator")
+    print("----------------------------")
+    
     load_dotenv()  # loads .env if present
+    print(f"ℹ️ Loaded environment variables from .env (if present)")
+    
     parser = argparse.ArgumentParser(description="Async translation + anonymization via OpenAI SDK (DeepSeek-compatible) with resume & consolidation")
     parser.add_argument("--in", dest="in_path", required=True, help="Path to data/interim/raw_opinions.jsonl")
     parser.add_argument("--out", dest="out_path", required=True, help="Path to data/interim/translated_opinions.jsonl")
@@ -390,10 +466,12 @@ def main():
     args = parser.parse_args()
 
     if not args.api_key and not args.rebuild_output_only:
+        print("❌ Error: Missing API key")
         raise SystemExit("Missing API key. Put DEEPSEEK_API_KEY or OPENAI_API_KEY in .env or pass --api-key.")
 
     in_path = Path(args.in_path)
     out_path = Path(args.out_path)
+    print(f"ℹ️ Parsed arguments successfully")
 
     asyncio.run(translate_file_async(
         in_path=in_path,
