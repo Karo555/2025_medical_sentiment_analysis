@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001001",
+    "text": "A ja już nie wiem - pani dr niby zdecydowana i znająca się dobrze na rzeczy , ale drażni mnie ten chaos , jaki wokół siebie wytwarza , ciężko otrzymać precyzyjną odpowiedź na pytania o np . przepisane leki czy rokowania . Jak tam jestem na wizycie to mam wrażenie , że trochę \" przeszkadzam , bo pacjenci czekają \" . Chyba pójdę też prywatnie na jakąś 1 konsultację zasięgnąć drugiej opinii co do diagnozy i sposobu leczenia . Za to wielki plus dla pań pielęgniarek w gabinecie zabiegowym - za fachowość , porządek i przyjazność pacjentom ."
+  },
+  {
+    "opinion_id": "op_001002",
+    "text": "Wyjątkową zaletą bazy opartej na pełnych genomach 126 zdrowych , długowiecznych ( 90 + ) Polaków jest połączenie danych klinicznych , biochemicznych i genomowych . To genetyczny wzorzec osoby długowiecznej , w dobrej kondycji . Ma postać bazy danych , do której można odnosić dane genetyczne każdego polskiego pacjenta , by móc zaoferować mu precyzyjną diagnostykę genomową . Długość życia i liczba osób starszych będą w najbliższej przyszłości rosły . Jak mówiła dr hab . Małgorzata Mossakowska z Instytutu Biologii Komórkowej i Molekularnej , do badania wybrano osoby w wieku powyżej 90 lat , niemające problemów z codziennymi czynnościami życiowymi ( co najmniej 4 punkty na 6 możliwych ) , bez poważnych problemów z pamięcią i funkcjami poznawczymi ( co najmniej 20 punktów na 30 możliwych ) , które przed 80 . rokiem życia nie chorowały na cukrzycę typu 2 , udar , zawał serca ani nowotwory i miały prawidłowe lub niemal nieprawidłowe wyniki badań biochemicznych ."
+  },
+  {
+    "opinion_id": "op_001003",
+    "text": "Chcąc sprawdzić jak zanieczyszczenia powietrza bezpośrednio wpływają na ludzkie zdrowie , naukowcy uwzględnili , że długotrwałe wdychanie pyłów i gazów zbierających się blisko ziemi w znacznej mierze przyczynia się do schorzeń układu oddechowego ( jak astma , alergie , choroby płuc , kaszel , katar , bóle gardła ) , układu krążenia ( miażdżyca , niewydolność serca ) oraz układu nerwowego ( choroby Alzheimera i Parkinsona ) . Dlatego do badań wybrano grupę dzieci niedotkniętych jeszcze chorobami przewlekłymi czy cywilizacyjnymi . Dzieci te mają od 8 do 12 lat , uczą się w sosnowieckiej szkole podstawowej nr 45 mieszczącej się kilkaset metrów od siedziby Wydziału Nauk o Ziemi Uniwersytetu Śląskiego ( gdzie prowadzony jest stały monitoring jakości powietrza ) . Dzieci – prócz testów alergicznych – przechodziły m . in . badania spirometryczne sprawdzające wydolność płuc ; wraz z rodzicami wypełniały też comiesięczne karty z szczegółowymi pytaniami o zaobserwowane reakcje organizmu ."
+  },
+  {
+    "opinion_id": "op_001004",
+    "text": "Kto pisze te i nformacje ? ? ? i te zle opinie ? Nie ma szansy aby wszystkie Panie byly zadowolone . Jezeli przychodzi sie do lekarza z byle sparwa lub zaniedbanym problemem to pozniej jest to wina lekarza To bardzo dobry lekarz , zastanowcie sie ile jadu tu wylewacie - delikatne kobiety . !"
+  },
+  {
+    "opinion_id": "op_001005",
+    "text": "Bardzo dobry lekarz , konkretna i rzeczowa . Wszystko wyjaśni , cierpliwa i ze świetnym podejsciem do dziecka . Nam nigdy nie przepisała antybiotyku , a zawsze tak dobrała leki ze nie był antybiotyk potrzebny . Inni lekarze odsyłali do szpitala a ona dobrała tak leki ze dziecko od 3 lat nie choruje na zapalenie oskrzeli , a od roku wogole nie ma lekow na stałe . Dzieki Pani Doktor nie musiało dziecko leżeć niepotrzebnie w szptalu , a przed spotkaniem na naszej drodze Pani dr Zywickiej przewielismy sie przez kilku czy kilkunastu lekarzy , dwa razy mało nam sie dziecko nie uduśiło przez nieudolność innych lekarzy . . . . . Dziekujemy bardzo Pani dr Żywickiej bo nie wiem jak wyglądało by dziś nasze życie i zdrowie naszego dziecka gdyby nie pomoc Pani Doktor ! ! ! Dziś mamy w pełni zdrowego 5 latka : ) : ) POLECAM Pania Doktor Żywicką z całego serca ! ! !"
+  },
+  {
+    "opinion_id": "op_001006",
+    "text": "Witam . . Nie będę się rozpisywać . Napisze krótko i na temat . . Pan \" LISIAK \" ( pożal się Boże ) - Doktor , jest Najgorszym lekarzem jakiego w swoim życiu poznała m . . Drodzy czytelnicy ( pewnie tą opinie szybko skasują , w końcu liczy się opinia ) pan Lisiak jest dla mnie fatalnym lekarzem . . Przyjął nie jedną osobę w stanie ciężkim i po kilku dniach wypisał ( choć stan zdrowia nie poprawił się w ogóle ) w stanie \" dobrym \" . . ; Zrobił em wszystko co w mojej mocy . . Jakby m oglądała amerykański film . . . . Brak mi słów Panie Lisiak . . Vice Versa ! ! ! !"
+  },
+  {
+    "opinion_id": "op_001007",
+    "text": "leczylam sie u dr . ponad 2 lata be efektu . Interesuja g tylko pieniadze nic poza tym . Mialam 7 inseminacji i nic . juz wiecej nie wybiore sie na wizyte do tego pana . myslalam o doktorze Wdowiak a wy co o nim myslicie . Stanowczo odradzam doktora Bakalczuka.prosze o pomoc"
+  },
+  {
+    "opinion_id": "op_001008",
+    "text": "Przed wizytą miałem pewne obawy , jako że była to moja pierwsza wizyta u psychologa . Te obawy zostały rozwiane już przy pierwszej minucie rozmowy . Swodoba w jakiej odbywało się spotkanie pozwoliła poczuć mi się jak na rozmowie z bardzo bliską mi osobą . Sympatia i empatia sprawiła , że od razu zaufał em Pani Małgorzacie . Najważniejsze dla mnie w spotkaniu było to , że obudzony został gdzieś głęboko zalęgnięty we mnie optymizm , którym będę mógł teraz zarażać innych . Pani Małgorzata jest wspaniałą osobą posiadającą niesamowite poczucie humoru i ludzkie podejście do życia . Jak najbardziej polecam ."
+  },
+  {
+    "opinion_id": "op_001009",
+    "text": "Poleciła by m doktora z czystym sumieniem . Dokładny , delikatny podczas badania , zwraca uwagę na pacjentkę , potrafi słuchać ze zrozumieniem i wyciągać wnioski - co niestety nie jest częstym zjawiskiem wśród lekarzy . Trafnie stawia diagnozę . Oprócz niewątpliwej wiedzy i umiejętności odznacza się kultura osobistą i niewymuszonym poczuciem humoru ."
+  },
+  {
+    "opinion_id": "op_001010",
+    "text": "Z danych , które uzyskali naukowcy z Poznania wynika m . in . , że w okresie letnim spożycie substancji odurzających w mieście generalnie spada . „ Można by tu polemizować , czy ma to związek z tym , że akurat w tym czasie nie ma w mieście studentów ” – skomentowała dr Kłos . Wyjątek od tej reguły obserwuje się jedynie wtedy , gdy organizowane są jakieś duże zawody sportowe , którym towarzyszy zazwyczaj większe spożycie narkotyków . Badacze wyliczyli też , że w uwzględnionych przez nich miesiącach najwyższe spożycie dotyczyło metamfetaminy , następnie amfetaminy , a na trzecim miejscu – ekstazy . Poziom kokainy w próbkach był niski – na granicy czułości aparatu . Kanabinoidów nie udało się oznaczyć . \" Być może dlatego , że substancje te bardzo szybko degradują się w ściekach , a Poznań ma jedną oczyszczalnię , więc zanim do niej trafią muszą przejść dłuższą drogę \" - oceniła dr Kłos ."
+  },
+  {
+    "opinion_id": "op_001011",
+    "text": "Na wizytę zdecydowała m się po przeczytaniu pozytywnych opinii . Niestety już na samym wejściu zachowanie Pani doktor było dla mnie przykre . Była bardzo oschła w rozmowie , czuła m , że traktuje mnie z góry . Przyszła m do niej z konkretnym problemem , ale pomimo to dowiedziała m się , że powinna m poprawić kilka innych rzeczy w mojej twarzy . Wystawiła by m tylko jedną gwiazdkę , ale ze względu na to , że przekazała mi kilka cennych wskazówek na rozwiązanie mojego problemu daje dwie . Niestety lekarz powinien służyć nie tylko swoją wiedzą , ale też dawać poczucie bezpieczeństwa i zrozumienia pacjentowi . Ja natomiast z gabinetu wyszła m z płaczem i pewnością siebie na poziomie podłogi ."
+  },
+  {
+    "opinion_id": "op_001012",
+    "text": "Jak powiedział podczas konferencji prasowej kierownik placówki dr Łukasz Kozera , w Biobanku , który znajduje się w jednym z budynków na Wydziale Farmacji wrocławskiego Uniwersytetu Medycznego przy ul . Borowskiej , gromadzone będą próbki biologiczne nie tylko od pacjentów cierpiących na choroby sercowo - naczyniowe czy autoimmunologiczne , lecz także od wszystkich mieszkańców Dolnego Śląska w wieku od 25 do 75 lat . „ Obecnie projekty naukowe opierają się na wykorzystaniu badań na dużej liczbie pacjentów , ponieważ gwarantuje to m . in . dobrą jakość ich wykonania . Materiały do tego typu badań udostępniane są właśnie z biobanków . Każdy z nas oddając np . krew do biobanku wspiera takie badania i automatycznie gwarantuje w przyszłości lepszą opiekę medyczną dla swoich dzieci lub wnuków ” – podkreślił Kozera ."
+  },
+  {
+    "opinion_id": "op_001013",
+    "text": "Miałem już kontakt z wieloma stomatologami . Nie zawsze pozostały najlepsze wspomnienia . Po prostu wykonane wypełnienia bardzo szybko wypadały . Natomiast Pani dr A . Marczewska jest wysokiej klasy specjalistką . Wszystkie wypełnienia wykonane przez Panią dr trzymają się przez wiele lat . Atmosfera super i zero stresu Polecam ! ! Endi"
+  },
+  {
+    "opinion_id": "op_001014",
+    "text": "Badania te wykazały , że unikatowa zdolność gojenia bezbliznowego ( regeneracji ) skóry występuje u szczególnego typu myszy , tzw . myszy nagich . Za ten biologiczny fenomen odpowiedzialna jest mutacja ( brak aktywności ) jednego genu - Foxn1 . Ciekawostką jest , że zarówno u myszy , jak i u ludzi gen Foxn1 występuje tylko w dwóch obszarach ciała : w skórze i grasicy ( organie , który zanika w trakcie rozwoju osobniczego ) - wyjaśniła prof . Gawrońska - Kozak . \" Pytanie , które postawili śmy przed sobą kilka lat temu , brzmiało : Czy możliwym jest , aby ten jeden gen był odpowiedzialny za wytworzenie blizny ? Dostępne wówczas informacje dotyczyły funkcji genu Foxn1 w grasicy , niewiele prac skupiało się na występowaniu w skórze , natomiast nie było żadnych prac dotyczących jego udziału w gojeniu ran skórnych ” - podkreśliła naukowiec ."
+  },
+  {
+    "opinion_id": "op_001015",
+    "text": "Długo nie mogła m przekonać się do wizyty u psychiatry . Psychiatra ? A w czym może mi pomóc taki lekarz ? Przecież nie jestem chora psychicznie … Dopiero po wizycie zrozumiała m , że to wcale nie jest tak jak nam się wydaje . Pani doktor to wspaniała kobieta , która poświęca swój czas pacjentom starając się pomóc im jak najlepiej . Dzięki niej zrozumiała m , z czym mam problem i jak sobie z nim poradzić – co wcale nie oznaczało , że jestem „ nienormalna ” . Pani doktor to rzetelny lekarz , który dobry kontakt z klientem stawia ponad wszystko ."
+  },
+  {
+    "opinion_id": "op_001016",
+    "text": "Powstające Centrum nie będzie pierwszym , jakie działa w ramach UMP . Pierwsze Centrum Symulacji Medycznej otwarto dla studentów w 2010 roku , natomiast prace budowlane nad nowoczesnym , powstającym właśnie budynkiem rozpoczęły się jesienią tego roku . Według projektu wykonanego przez Winsave Precise Building Sp . z o . o . nowy budynek będzie miał 1 , 132 tys . m kw . powierzchni i prawie 30 tys . m sześc . kubatury . Centrum ma się składać z części ratowniczej , symulacji manekinowej oraz części , w których będą się odbywały egzaminy kliniczne i nauka badania przedmiotowego . Zakończenie inwestycji finansowanej ze środków własnych UMP planowane jest na 2017 r . Wyposażenie natomiast , dofinansowane będzie m . in . ze środków Unii Europejskiej ."
+  },
+  {
+    "opinion_id": "op_001017",
+    "text": "Moja wizyta u Pani doktor Joanny Krygowskiej - Zielińskiej była traumatycznych przeżyciem . Po szybkim i niedokladnym zebraniu wywiadu bo najwidoczniej gdzieś się Pani doktor bardzo spieszyło - zbadał mnie I postawiła diagnozę - błędną ! Nadal coś było nie tak ! Po dwóch dniach udała m się do innego ginekologa , który odrazu w trybie pilnym skierował mnie do Poznania na zabieg ! Nikomu nie życzę tyle stresu nieprzespanych nocy czekając za wynikiem dwa tygodnie . Szczerze NIE POLECAM !"
+  },
+  {
+    "opinion_id": "op_001018",
+    "text": "Nie polecam . mimo tego że doktor sympatyczny nie polecam . Poszła m do doktora z powodu bardzo wysokich d - dimerow było podejrzenie zakrzepicy . poszlam prywatnie żeby było jak najszybciej.wizyta trwała ok 10 minut w tym 2 - 3 minuty usg zrobione byle jak . Przed rozpoczęciem usg doktor powiedział że po nogach nie widać żeby była zakrzepica że te wysokie d - dimery są wynikiem nowotworu że tylko muszę teraz znaleźć gdzie aż mi się nogi ugięły . fakt faktem zakrzepicy nie znaleziono ponieważ poszła m do innego lekarza na konsultacje który w pierwszej kolejności kazał powtórzyć ddimery które o dziwo okazały się w normie i prawdopodobnie były podwyższone od silnego urazu którego doznała m kilka dni przed zrobieniem wyniku . Także nie polecam doktora nie pomógł mi a wręcz zaszkodził bo wpadła m w niepotrzebną panikę co nie musiało mieć miejsca"
+  },
+  {
+    "opinion_id": "op_001019",
+    "text": "Diagnoza : dyskopatia na poziomie L5 / S1 . Od prawie dwóch lat jestem pod opieką neurochirurga . Po licznych konsultacjach , rehabilitacjach , masażach i innych magicznych zabiegach - ból w odcinku lędźwiowym narastał , ale jakoś dało się żyć . Jednak 10 stycznia tego roku okazał się , jak dotychczas najgorszym dniem w moim życiu . Obudziła m się i już nie wstała m . Nie mogła m chodzić , leżeć - po prostu normalnie żyć . Ból lewej nogi był nie do wytrzymania . Kolejne rehabilitacje , silne leki nie pomagały , wręcz pogarszały mój stan . Zasięgnęła m rady kilku neurochirurgów - tzw . top 5 warszawskiej medycyny - wszyscy zgodnie orzekli - OPERACJA . Jednak nikt ze wspomnianych wyżej osób nie był w stanie zagwarantować mi , że zabieg polepszy moją sytuację , wręcz niektórzy twierdzili , że może być gorzej . Szukała m pomocy u wielu specjalistów , aż dzięki portalowi i pozytywnym opiniom , trafiła m do pana Grzegorza . W końcu znalazła m specjalistę , który bez owijania w bawełnę przedstawił suche fakty , oparte na wieloletnim doświadczeniu . Na początku marca tego roku zaczęli śmy trudną i długą rehabilitację . Mamy czerwiec , a ja czuję się świetnie - ćwiczę codziennie w domu , wróciła m do aktywnego trybu życia i z każdym dniem wizja operacji znika gdzieś za horyzontem : ) Szczerze , z pełnym przekonaniem polecam współpracę z panem Grzegorzem - profesjonalista pod każdym względem , a do tego niesamowity człowiek . Jednak ostrzegam - Pan Grzegorz nie jest czarodziejem ( chociaż niektórzy pacjenci tak twierdzą : ) ) - jeśli zdecydujecie się spróbować , przed Wami ciężka praca , pot i łzy - POWODZENIA !"
+  },
+  {
+    "opinion_id": "op_001020",
+    "text": "Gdyby nie ten lekarz dopadła by mnie już chyba jakaś depresja , bo można się załamać tym , co niektórzy dentyści wyprawiają z człowiekiem . Jesteś dla nich tylko uzębieniem , albo miejscem , gdzie takowe można wszczepić i zarobić na tym ciężkie pieniądze . Oni w ogóle nie widzą człowieka ! Ten przynajmniej widzi jeszcze twój obolały kark , przechylony kręgosłup i wie , dlaczego gorzej słyszysz , choć nie jesteś starcem . Krzywy zgryz , krzywa szyja , bóle i zawroty głowy , zatkane ucho , przewracanie się o własne nogi - to mi zafundował poprzedni dentysta ! Nikt mi nie wierzył , że posypało mi się zdrowie po leczeniu protetycznym ! Doleckiemu nie trzeba było mu nic mówić , czytał jak z nut , czym mnie wprawił w osłupienie , bo wszystko się zgadzało ! Ta niekonwencjonalna wiedza momentami mnie do niego dystansuje , ale ma u mnie kredyt zaufania . Noszę ten pas i mi lepiej , czekam na otwarcie zgryzu i \" przemeblowanie \" w buzi ."
+  }
+]

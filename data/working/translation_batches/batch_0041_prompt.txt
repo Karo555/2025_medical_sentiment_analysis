@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000801",
+    "text": "Przed leczeniem pan Fidyka był częściowo sparaliżowany przez niemal dwa lata i mimo wielomiesięcznej rehabilitacji jego stan się nie poprawiał . Rehabilitacja – pięć godzin ćwiczeń po pięć razy w tygodniu – była kontynuowana po przeszczepie , w Zakładzie Neurorehabilitacji „ Akson ” we Wrocławiu . Po trzech miesiącach od operacji pacjent zauważył , że jego lewe udo staje się bardziej umięśnione . Po sześciu miesiącach - opisuje BBC - podtrzymywany przez fizjoterapeutę zrobił pierwsze kroki . Dwa lata po zabiegu może już wychodzić poza centrum rehabilitacyjne używając balkonika i ma nadzieję na samodzielne funkcjonowanie . Częściowo odzyskał panowanie nad pęcherzem i oddawaniem stolca , wróciły także funkcje seksualne . Badanie MRI potwierdziło , że luka w rdzeniu się zasklepiła"
+  },
+  {
+    "opinion_id": "op_000802",
+    "text": "My trafilismy do pani doktor z naszym 3 miesięcznym synkiem . Po krótkim wywiadzie od razu postanowiła zrobić badanie oka bez wyjaśnienia jak to wygląda . Gdyby śmy wiedzieli nigdy by śmy się na to nie zgodzili trauma dla dziecka jak i dla rodziców . Przygotowanie do badania wygląda tak ze oczy zostają zakrapiane 3 razy w odstępach 20minutowych aby rozszerzyć źrenice . Dziecko zostało unieruchomienie przez skrepowanie kocykiem jeden z rodziców leży na dziecku aby nie drgnelo przy badaniu a pielęgniarka unieruchamia mu główkę . Oczy zostają znieczulone kroplami po czym na oczy zostają założone metalowe klamry . Aby obejrzeć dokładnie oko dziecka pani doktor przesuwa gałkę oczna specjalnym ostrym narzędziem które wygląda jak dentystyczne . Badanie trwa ok 15 - 20 minut . Dziecko przerazliwie płakało przez całe badanie . Gałki oczna zostaly zrysowane co utrzymuje się do dwóch tygodni po tym czasie powinno się wszystko wygoic u nas lzawienie oczka trwa już 3 tydzień . Podsumówiąc badanie jest bardzo drastyczne . Podobno są juz mniej inwazyjne sposobu badania niż to dlatego polecał by m poszukać specjalistę wykonującego badanie w nowocześniejszy sposób ."
+  },
+  {
+    "opinion_id": "op_000803",
+    "text": "Mamy mieszane uczucia po wizycie zapłacili śmy dużo za wizytę dostali śmy receptę na maść której nie można stosować u 1 , 5 rocznego dziecka , którego dotyczyła wizyta . Nie zastosowali śmy maści po przeczytaniu ulotki o ograniczeniach wiekowych i możliwych skutkach ubocznych . Z drugiej strony niektóre porady Pani Doktor okazały się trafne i pomogły załagodzić problemy skórne naszej córeczki . Nie zmienia to faktu , że czeka nas kolejna wizyta u innego lekarza który dostosuje leczenie do wieku dziecka ."
+  },
+  {
+    "opinion_id": "op_000804",
+    "text": "Endokrynolog dostateczny . Lekarz ogólny co najwyżej mierny . Zmarnowane pół roku na leczenie hormonalne , gdy przyczyna choroby miała podłoże depresyjne . Wizyty dużo bardziej wysublimowane , gdy się za nie prywatnie płaci . Generalnie polecam osobom o niczym nieograniczonym budżecie i czasie na leczenie . Jeśli zależy pacjentowi na szybkiej i trafnej diagnozie , to zdecydowanie odradzam , choć wiem , że naiwnym i głupio mądrym taka rada i tak w niczym nie pomoże . ; )"
+  },
+  {
+    "opinion_id": "op_000805",
+    "text": "byli śmy tydzień temu na wizycie u pana profesora . Po pierwsze 2 godziny spóźnienia , siedzenie z kilkumiesięcznym dzieckiem 2 h w poczekalni skończyło się złapaniem jakiegoś wirusa , wcześniej wizyta też była odwołana ( czekali śmy w sumie na wizytę ok . 1 , 5 miesiąca ) . Nie zauważyła m specjalnego podejścia do dziecka , cała wizyta potrwała może 5 minut , zostali śmy zarzuceni informacjami o możliwych problemach dziecka i stertą badań , które trzeba zrobić prywatnie - żadnego wyjaśnienia po , co i na co , wyszli śmy przerażeni . My się drugi raz nie wybierzemy ."
+  },
+  {
+    "opinion_id": "op_000806",
+    "text": "W ramach projektu stworzony zostanie program rozwojowy uczelni , który będzie zakładał modyfikację programu kształcenia tak , aby liczba zajęć praktycznych w warunkach symulowanych zwiększyła się do 5 proc . ogólnej liczby godzin dydaktycznych na każdym kierunku objętym wsparciem , tj . : na kierunku lekarskim , lekarsko - dentystycznym , pielęgniarstwie i położnictwie . Umożliwi to studentom lepsze przedkliniczne zapoznanie się ze środowiskiem szpitalnym oraz uzupełni zajęcia kliniczne o możliwość praktycznego wykonywania przez studentów tych kierunków wysokospecjalistycznych zabiegów , w szczególności inwazyjnych . Całkowita wartość projektu wynosi 27 , 2 mln zł . Wsparcie pochodzi z unijnego Programu Operacyjnego Wiedza Edukacja Rozwój ( PO WER ) , dodatkowo , na remont i adaptację budynków przy Placu Dworcowym w Zabrzu i ul . Medyków w Katowicach , uczelnia ze środków własnych przeznaczy blisko 10 mln zł ."
+  },
+  {
+    "opinion_id": "op_000807",
+    "text": "niestety nie mam zaufania do dr Drozd , moje leczenie zaczęła od dużej dawki leku , po którym moja tarczyca bolała i miała m wrazenie że rośnie . ale dalej musiała m zdaniem pani doktor ją brać . Inny endokrynolog od razu stwierdził że przy takiej dawce moja tarczyca się rozrośnie i do tego z niewielkiej nadczynności wpadne zaraz w wielką niedoczynność . może wg pani doktor lepiej leczyć niedoczynność niż nadczynność ale rozmiar mojej tarczycy też jest dla mnie ważny . radzę podeejśc ostrożnie do zaleceń pani doktor i najlepiej je skonsultować z innym endokrynologiem ."
+  },
+  {
+    "opinion_id": "op_000808",
+    "text": "Do doktor Hadacz trafiła m dzięki temu portalowi . Już na pierwszej wizycie Pani doktor ujęła mnie swoją troską , wyrozumiałością i cierpliwością z jaką tłumaczyła wszystko co się ze mną działo . Ogólnie tego pierwszego dnia wyszła m od Pani Dr ze skierowaniem do CZMP , bo zaczęła m krwawić i poroniła m pierwszą ciąże . Mimo , że nie była m do tej pory pacjentką Pani Dr zajęła się mną zarówno na oddziale jak i potem gdy z niego wyszła m . Nic więc dziwnego , że kolejną ciążę prowadziła dr Hadacz . To dzięki niej szybko okazało się , że mam cholestazę ciążową . Na szczęście szybko wykryta a potem ciągle monitorowana choroba nie zaszkodziła naszemu dzidziusiowi . Muszę tutaj dodać , że Pani Dr była niezastąpiona podczas tych 9 miesięcy . Zawsze mogła m do niej zadzwonić i dopytać o rzeczy które wzbudzały moje wątpliwości , szczególnie gdy okazywało się , że odebrane właśnie wyniki znacznie przekraczały normy . Poza tym Pani Dr ma świetne poczucie humoru dzięki któremu z mężem zawsze wychodzili śmy z wizyty w dobrych humorach . Na koniec ciąży cholestaza dała się szczególnie we znaki i trafiła m do szpitala , oczywiście CZMP . Pani Dr monitorowała mnie w szpitalu i ostatecznie ze względu na wysokie wyniki prób wątrobowych ciąża skończyła się CC . 2 października 2017 dzięki Pani Dr , która sama wykonywała cięcie , na świat przyszła nasza śliczna i zdrowa ( a były obawy czy wszystko jest w porządku ze względu na cholestazę ) córeczka Kasia . Muszę jeszcze dodać , że mimo natłoku pracy , następnego dnia po porodzie Pani Dr odwiedziła mnie i córeczkę na oddziale i zainteresowała się co z nami , co było bardzo miłym gestem . Co do samego cięcia to muszę jeszcze dodać , że dzięki obecności Pani Dr podczas CC czuła m się bezpiecznie , bo wiedziała m , że jestem w dobrych rękach ☺ . Wszystko to sprawiło , że mogę z czystym sercem wszystkim polecić dr Hadacz , bo z jednej strony jest bardzo dobrym specjalistą , a z drugiej wspaniałym i życzliwym człowiekiem . Marlena"
+  },
+  {
+    "opinion_id": "op_000809",
+    "text": "Najgorszy lekarz ginekolog u jakiego była m , przeżyła m traume wychodząc z jej gabinetu i płakała m . Była bardzo nie miła , do tego jestem młoda osobą - studentką i jestem jeszcze dziewica . Traumatyczne bylo dla mnie to że przed badaniem ginekologicznym nie zapytała mnie sie o to tylko robiła to co powinna i to ja msuialam ja o tym poinfomowac i kazde jej slowo to byl albo wyzut albo rozkaz mam problemy ginekologicze od dluzszego czasu i bylam u nie jednego ginekologa i kazdy potrafil sie ze mną \" obejść \" w kulturalny sposob ale nie ona . Nie mam pojecia skad te dobre opinie jak dla mnei psiane tym samym stylem przez tą sama osobe ! ! ! ! ! ! ! ! ! ! bo kazda osoba wychodzaca z gabinetu strasznie narzekala na nia i sie dziwila ze mozna zachowywac sie tak nie porfesjonalnie ."
+  },
+  {
+    "opinion_id": "op_000810",
+    "text": "Gdyby nie zdrowy rozsądek najprawdopodobniej była by m juz kaleką . Zaczęło się od prywatnej wizyty ( 100PLN ) nie dłuższej niż pięc minut . Wcześniej dzwoniła m do szpitala i chciała m się umówic na konsultację , ale czas oczekiwania był zbyt długi tym bardziej , że miała m podejrzenie guza przysadki mózgowej . Dlatego zdecydowała m sie na prywatna wizytę u pani ordynator . Bardzo szybko popatrzyła na wyniki i stwierdziła że już od następnego tygodnia mogę przyjechać do szpitala na badania dwutygodniowe . W szpitalu zrobiono mi parę badań , a pani ordynator zamiast skupić się na moim realnym problemie , zaczęła mi wmawiać , że mam anoreksję , bez wcześniejszego wywiadu i badań w tym kierunku . Wychodząc pierwszy raz ze szpitala , nie miała m nadziei , że kiedykolwiek zajdę w ciąże . Pani ordynator powiedziała ze jestem bezpłodna i z dziećmi mogę się pożegnać . Oprócz tego według dr Tuchendler mam hyperprolaktynemie wtórną czynnościową . Nie zrobiono mi rezonansu , ale mimo to stwierdzono ze guza nie mam . Oprócz tego oczywiście pani ordynator uparła się na anoreksję . Pierwszy raz zakończył sie podaniem mi norprolaku i miała m sie zgłosić po pół roku . Drugi raz trafiła m do szpitala po 6 miesiącach . Przed tym jednak zgłosiła m sie do dr Bocheńskiej ( jednej z najlepszych terapeutek jesli chodzi o problemy z jedzeniem ) , która po rozmowie ze mna stwierdziła , ze nie ma sie czego obawiać i objawów anoreksji nie mam . W szptalu zrobiono mi serie badan , niestety bez rezonansu . Prolaktyna nadal była ponad normą , natomiast pani ordynator przy wypisie przepisała mi sterydy ( mówiła zeby nie czytać ulotki bo moge sie wystraszyc ) , jakiś środek na łaknienie ( w związku z moją rzekomą anoreksją ) i branie w dalszym ciągu norprolaku ( jak się później okazało nie powinno się go brać dłużej niż pół roku ) . Po dwóch tygodniach w szpitalu i taką diagnozą , skonczyła się moja cierpliwość i zrozumienie dla pani Tuchendler . Zmieniła m lekarza na dr Szymczak , która wykluczyła sterydy ( miały działać na nadnercza , które mam zdrowe ) , przepisując mi tylko progesteron . Cóż może obronić moją wypowiedź . . . może to , że po 3 miesiącach u pani Szymczak zaszła m w ciąże , a od dwóch miesięcy jestem mamą zdrowej , dużej i piękniutkiej córy . Szczerze odradzam dr Tuchendler jako specjalistki i człowieka ( zimna , niemiła ) . Może swoją posadę zawdziecza wcześniejszej karierze wojskowej swojego tatusia . . ."
+  },
+  {
+    "opinion_id": "op_000811",
+    "text": "Pomimo szczerych chęci ze strony Pani doktor w trakcie leczenia się mojej córki , niestety nie mogła znalezc przyczyny pogorszenia się stanu zdrowia . Wizyty przebiegły na spokojnie i dokładnie , wywiad został szczegółowo przeprowadzony , niestety ale kolosalne kwoty które zostały wydane na leki jak i na wizyte nie znając nawet przyczyny nie zachęcają do ponownego przyjścia , przynajmniej wiem co można wykluczyć w trakcje kolejnego leczenia . Polecam serdecznie Panią doktor ponieważ widać że jest z powołania , lecz niestety ja nie jestem zadowolona ."
+  },
+  {
+    "opinion_id": "op_000812",
+    "text": "Pan doktor miły człowiek . Nie patrzy na zegarek , że czas ucieka . Rzetelny . Na ten moment nie potrafię ocenić skuteczności bo proces wdrażania zaleceń dr Mazura będzie w moim przypadku dłuższy ale po rozmowie i wyjaśnieniach Doktora myślę , że diagnoza była trafiona . Z przyjemnością polecam wizytę u tego Lekarza ."
+  },
+  {
+    "opinion_id": "op_000813",
+    "text": "Pani doktor przeprowadziła pobieżne badanie dziecka , nie była również zbytnio zainteresowana tym co miała m do powiedzenia . Na pytania odpowiadała zdawkowo . Krytyka rodzica , poprzednich specjalistów i komentarze w stylu \" nie będę z panią dyskutować na ten temat \" to nie to , czego oczekuje się podczas wizyty lekarskiej . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_000814",
+    "text": "To była pierwsza wizyta u Pani doktor . Pani bardzo dokładnie oglądnęła syna od stóp do głów co było dużym zaskoczeniem pozytywnym , ale krócej skupiła się na samych zmianach skórnych . może dlatego , że od razu stwierdziła co synowi dolega . Pani doktor to osoba bardzo rzeczowa , otwarta na rozmowę , wyjaśniała , odpowiadała na pytania , a do tego sympatyczna . Myślę , że ten lekarz godny jest polecenia ."
+  },
+  {
+    "opinion_id": "op_000815",
+    "text": "Po raz pierwszy zawody odbywały się w województwie śląskim , stąd fabuła scenariuszy symulacji medycznych została osadzona w realiach charakterystycznych dla tego regionu . W konkurencji o śląskiej nazwie „ Hajer przodowy ” uczestnicy zawodów wcielili się w rolę personelu medycznego , który wezwano do kopalni węgla , gdzie doszło do zawalenia wyrobiska na skutek wybuchu gazu . Zawodnicy w asyście ratowników górniczych musieli udzielić pomocy medycznej trzem rannym górnikom . Stan dwóch z nich był bardzo ciężki , trzeci natomiast , o imieniu Ernest , miał bardzo dużo szczęścia i nie odniósł poważniejszych obrażeń . Nie należał jednak do pacjentów łatwych , a jego stan psychiczny był dla zawodników nie lada problemem . Jak podkreśliła rzeczniczka SUM Agata Kalafarska , to zadanie zaskoczyło zawodników . Dzięki współpracy z Centralną Stacją Ratownictwa Górniczego w Centrum Dydaktyki i Symulacji Medycznej SUM udało się stworzyć warunki zbliżone do realnych , z jakimi radzą sobie ratownicy podczas akcji w kopalniach ."
+  },
+  {
+    "opinion_id": "op_000816",
+    "text": "Dr Koptas to człowiek , który operował moją żonę w maju 2008r . Operował w czwartek w piątek rano pokazał sie na chwile i potem zniknął . Dosłownie zniknął . Stan mojej żony zaczął sie pogarszać , lekarze będący na oodziale próbowali skontaktować sie z dr . Koptasem ale bezskutecznie . Nie odbierał telefonów i nie oddzwaniał . Sytuacja stawała się naprawdę groźna . Dren utracił drożność . Szyja puchła , pod szyją uformował sie olbrzymi krwiak . W niedzielę rano , po konsultacji telefonicznej z dr . Koptasem , usunięto dren i . . żona została wypisana do domu . Stanowczo odradzam korzystanie z usług tego lekarza ."
+  },
+  {
+    "opinion_id": "op_000817",
+    "text": "Pozwolę sobie na kilka słów komentarza odnośnie Pani doktor . Pod kątem fachowości , leczenia czy przepisanych leków nie mam absolutnie nic do zarzucenia . Leki i diagnoza trafne a dziecko względnie szybko wróciło do zdrowia . Inną kwestią jest podejście do pacjenta czyli dziecka . Mianowicie podejścia nie ma żadnego brak wyczucia i delikatności . Nie trudno się domyśleć , że takie zachowanie wobec dzieci skutkuje strachem i niechęcią do wszelkich badań . Może to efekt \" zmęczenia materiału \" ale w takiej sytuacji może warto rozważyć rezygnację z leczenia małych pacjentów , którzy nie zawsze rozumieją zabiegi jakie mają miejsce . Tylko dwie gwiazdki z uwagi na brak choć minimalnej empatii wobec pacjentów , co oprócz leczenia jest również istotne ."
+  },
+  {
+    "opinion_id": "op_000818",
+    "text": "Psychologowie sportu rekomendują tzw . trening wyobrażeniowy . Można postarać się o przebiegnięcie całej trasy maratonu w myślach , uwzględniając ustaloną strategię i angażując jak najwięcej zmysłów . \" Usiądź w spokojnym miejscu , zamknij oczy i wyobraź sobie jak przebiegasz całą trasę kilometr po kilometrze . Uwzględnij przy tym jak najwięcej szczegółów , między innymi , co widzisz pokonując trasę czy na tarczy zegarka sportowego , ale także zaobserwuj różne odgłosy , jak bicie własnego serca , doping kibiców , monitoruj własne samopoczucie , poczuj smak jedzenia i picia , które przyjmujesz w punktach żywieniowych oraz przetestuj sposoby radzenia sobie w sytuacjach kryzysowych . Zanim staniesz na linii startu , będziesz przygotowany na różne ewentualności . Warto trzymać się tego planu , ponieważ euforia podczas pierwszych kilometrów może sprawić , że tempo biegu będzie znacznie szybsze od zamierzonego , co na kolejnych etapach przypłaci się spadkiem formy i motywacji \" - radzą eksperci ."
+  },
+  {
+    "opinion_id": "op_000819",
+    "text": "Warunki środowiskowe kształtowały nasze mózgi i ciała przez ostatnich kilka milionów lat . Przez większość czasu nasz gatunek funkcjonował w warunkach głodu . Jeżeli nie skrajnego głodu , to przynajmniej niedostatków pożywienia  - mówi PAP neurobiolog dr Marek Kaczmarzyk z Uniwersytetu Śląskiego . W efekcie wykształcił się układ nagrody , czyli wbudowany w mózg mechanizm nagradzania za to , co jest przystosowawczo korzystne czyli np . dostarczenie jedzenia , zwłaszcza wysokokalorycznego . \" Ten mechanizm daje nam taki efekt , że jeśli mamy do dyspozycji wysokokaloryczne jedzenie i je spożywamy , to układ nagrody - pamiętając o archaicznych warunkach głodu - nagradza nas za sięgnięcie np . po kolejnego pączka . To jest zachowanie uwarunkowane biologicznie \" - tłumaczy rozmówca PAP ."
+  },
+  {
+    "opinion_id": "op_000820",
+    "text": "Jeżeli wiedza przechodzi z Ojca na Syna to polecam serdecznie , zwłaszcza tym Paniom , które mają nieokreślone , niezdiagnozowane dolegliwości . Zarówno Stanisłwa Milewicz jak i Tomasz są doskonałymi diagnostykami dolegliwości hormonalnych . Moja historia - 3 lata złego samopoczucia , ciągłe bóle głowy , pleców , brzucha , serca , wizyty u wszelkich możliwych specjalistów i wyniki wszystkich badań książkowe . Traktowana przez wszystkich lekarzy jak zwykły hipochondryk , wprost wypraszana z gabinetów ze stertą recept na psychotropy czuła m się naprawdę podle . W końcu uwierzyła m lekarzom , że są to doległiwości psychiczne . Ale leki psychotropowe niestety nie działały więc dostawała m silniejsze , które tez nie przynosiły ulgi a wszystkie dolegliwości się nasilały . Była m już tak słaba , że praktycznie tylko leżała m w łóżku , ciągle na L - 4 . Często miewała m ataki duszności , wtedy przyjeźdzało pogotowie i pomagał zastrzyk . W końcu jeden z lekarzy postanowił mnie zabrac do szpitała . I tu trafiła m w ręce specjalisty dr Milewicza , który mi zadał tylko 3 pytania - czy wylatuja włosy ? czy jest zimno ? czy jest wysuszone w gardle ? I zlecone badania przez doktora wyjaśniły przyczynę i następnie kuracja hormonalna przywróciła mnie do życia . Było to w latach 80 - siątych , chyba zły czas do chorowania , endoktrynologia w powijakach a już po Czarnobylu , który rozpętał piekło dolegliwosci hormonalnych i to nie tylko u kobiet jak się okazuje . KOBIETY - LECZCIE SIE U SPECJALISTÓW ."
+  }
+]

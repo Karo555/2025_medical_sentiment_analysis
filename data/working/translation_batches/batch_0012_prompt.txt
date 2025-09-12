@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000221",
+    "text": "W sezonie 2011 / 2012 zaszczepiło się jedynie 4 , 5 proc . Polaków , najmniej od kilku lat . Jesteśmy pod tym względem na jednym z ostatnich miejsc w Europie . W 2005 r . zaszczepiło się 8 , 6 proc . osób , a w 2009 r . – jedynie 6 , 8 proc . Przykładowo w Hiszpanii w sezonie 2010 / 2011 zaszczepiło się 19 proc . osób dorosłych , w USA – 41 proc . , a w Korei Południowej – 24 proc . „ To zadziwiające , że Polacy nie chcą się szczepić przeciwko grypie , a jednocześnie w sezonie grypowym narzekamy na kolejki do lekarza rodzinnego . Jaka w tym logika ? Wszystko dlatego , że mamy lekceważący stosunek do szczepień przeciwko tej infekcji ” – dodała prof . Brydak ."
+  },
+  {
+    "opinion_id": "op_000222",
+    "text": "Pan Wojtek to przemiły ale też bardzo konkretny człowiek . Przyszła m do niego zupełnie pogubiona . Nie mogła m jasno przyjrzeć się swojej sytuacji i znaleźć rozwiązania . Okazało się , że było w zasięgu ręki choć w zupełnie innym miejscu niż mi się z początku zdawało . Bardzo ciepły i wyrozumiały , trafiający w sedno terapeuta . Czuła m się u niego bardzo bezpiecznie . Dzięki niemu i pytaniom jakie zadawał zrozumiała m skąd pochodzą moje lęki i niepokoje . Poukładała m sobie sprawy które jeszcze niedawno były w zupełnej rozsypce . Polecam Pana Wojtka i jednocześnie dziękuję serdecznie … . M"
+  },
+  {
+    "opinion_id": "op_000223",
+    "text": "Zaskoczyła mnie długość wizyty . Bardzo dokładna analiza sytuacji ze strony dietetyka . Dokładnie , ale przystępnie wyjaśniono mi co i jak . Dostał em zalecenia na maila . Wyjaśnienia były tak przystępne , że po pierwszej wizycie sam komponuje swój jadłospis . Korzystam tylko z wizyt kontrolnych , które sprawdzają , czy jestem \" na kursie \" . Widzę znaczną poprawę samopoczucia - większy poziom energii ( piję do tego dużo mniej kawy , bo już nie potrzebuje ) , lepsza wydolność , trawienie , lepsza pamięć , koncentracja , mniejszy brzuch , serce pracuje jak w zegarku . Niedługo mam nadzieję \" zwolnić \" z pracy kardiologa i odstawić leki jak tak dalej pójdzie . Jest świetny kontakt mailowy czy telefoniczny z dietetykiem . A sama dietetyk przystępna i na luzie kobieta ."
+  },
+  {
+    "opinion_id": "op_000224",
+    "text": "Do Łodzi w dniach 11 - 12 września przyjadą psychologowie oraz przedstawiciele nauk społecznych i medycznych z kilkunastu krajów m . in . z Wielkiej Brytanii , Holandii , Izrael , Portugalii , Turcji , Rosji , Irlandii , Chorwacji , Chin , Włoch czy Szwajcarii . Polskę reprezentować będą badacze z Uniwersytetów : Łódzkiego , Gdańskiego , Kazimierza Wielkiego i Kardynała Stefana Wyszyńskiego – poinformowała PAP prof . Eleonora Bielawska - Batorowicz z Wydziału Nauk o Wychowaniu UŁ , członek Zarządu SRIP . The Society for Reproductive and Infant Psychology z siedzibą w Wielkiej Brytanii , zrzesza przedstawicieli różnych dyscyplin naukowych , którzy zajmują się badaniami w zakresie prokreacji i zdrowia reprodukcyjnego oraz rozwoju w okresie niemowlęcym i poniemowlęcym . Stowarzyszenie ma charakter międzynarodowy ; znaczną liczbę jego członków stanowią psychologowie , ale SRIP jest otwarte dla przedstawicieli innych nauk społecznych , a także nauk medycznych ."
+  },
+  {
+    "opinion_id": "op_000225",
+    "text": "Cóż powiedziec , przystojny , zadbany , miły . Syn mój jest zdrowy i na pewno nie jest alergikiem , poprostu według niego dzieci tak mają , ale 2 lata jeszcze i wszystko będzie dobrze . Kazał zaszczepic na pneumokoki , i podac ismingen . Ismingen syn skończył brac 4 msce wcześniej i już według dr . Feleszko powinna m znów podac , grzecznie receptę wipisał i miło się pożegnał . Trafiła m z synem pod opiekę p . alergolog ( z opinią najlepszej w kraju ) i zupełnie inna diagnoza i natychmiastowe leczenie . Wyszła m od dr . Feleszki z chudszym portfelem i to wszystko . A jeszcze zapytała m co na suchy kaszel u syna podac : miód , nie pytając czy jest uczulony , a akurat syn jest . Na noc łyżeczkę miodu i będzie super !"
+  },
+  {
+    "opinion_id": "op_000226",
+    "text": "Z czystym sumieniem polecam Dr Madej , był em u wielu specjalistów którzy nie potrafili mi pomóc . Natomiast u Pani doktor znalazł em zrozumienie mojego problemu . P . Madej z dużym zaangażowaniem podjęła sie wyleczenia mojego uśmiechu a co za tym idzie mojego zdrowia . Po leczeniu o wiele lepiej mówie mam lepsza dykcje , a co najważniejsze nie zgrzytam zębami mogę cieszyć się prostymi i drowymi zębami . Pragne równierz wspomnieć o kosztach leczenia , które nie nadwyrężyły mojego portfela . Pani Madej podeszła do mojego problemu indywidualnie w przeciwnieństwie do innych lekarzy którzy chcieli przeprowadzić standardowe leczenie , które nienapawało mnie entuzjazmem . Wizyta w gabinecie na Nowym Bemowie ( Widawska ) jest przyjemnością , ponieważ pasja i zaangażowanie w pracę Pani Madej przekłąda się na zadowolenie osoby siędzącej na fotelu . Nie sądził em , że wizyty u stomatologa mogą sprawiać przyjemność a ten gabinet jest potwierdzeniem . Z pełną odpowiedzialnością polecam ."
+  },
+  {
+    "opinion_id": "op_000227",
+    "text": "W moim odczuciu , Pani Julia Otto jest najwyższej klasy specjalistką , która jako pierwsza pomogła mi odnaleźć i pokochać siebie . Jej delikatność , ciepło , jak i pełne zdecydowania podejście do problemu sprawiają , że nasze sesje terapeutyczne stają się dla mnie bezpieczną podróżą do wewnętrznego świata moich najgłębszych przeżyć , potrzeb i pragnień , o istnieniu których nie miała m do końca pojęcia . Spotkania z Panią Julią polecam szczególnie tym , którzy dotąd lękali się odsłonić przed drugim człowiekiem , ponieważ w Jej gabinecie nie czeka ich surowa ocena , ale przeciwnie - nauka miłości i szacunku do siebie , bez względu na bagaż doświadczeń i osobistej historii . Kiedy myślę o tym , co zawdzięczam Pani Julii , przypominają mi się słowa \" Listu do młodego poety \" , autorstwa R . M . Rilke : \" Nie mamy żadnego powodu po temu , by żywić nieufność wobec naszego świata , bo nie zwraca się on przeciwko nam . Jeśli są w nim strachy , to są to nasze strachy . Jeśli są w nim otchłanie , to otchłanie te należą do nas . ( … ) być może wszystkie smoki w naszym życiu są księżniczkami , które tylko na to czekają , by ujrzeć nasze piękno i śmiałość . Może wszystko , co straszne , jest w głębi bezbronne i oczekuje od nas pomocy \" ."
+  },
+  {
+    "opinion_id": "op_000228",
+    "text": "Była m raz na wizycie i wystarczy . Cierpiała m na częsty kaszel i od około dwóch lat szukała m przyczyny . P . Zatoński przepisał antybiotyk do nosa i lek przeciwgrzybiczy . Jednak niedługo później inny laryngolog podsunął myśl , że wywoływać go może być lek na nadciśnienie . Zaczęła m więc sama czytać na ten temat i sama doszła m po lekturze kilku książek , że tu może być przyczyna . Po zamianie leku na inny kaszel natychmiast ustąpił . Niestety , ale takie eksperymentalne podejście jest powszechne w przychodniach współczesnych . Każdego lekarza goni czas , gdyż z godziny właściciel przychodni musi wycisnąć jak najwięcej pieniędzy . Więc nie ma kiedy na zadawanie pytań pacjentowi w celu znalezienia przyczyny dolegliwości . Lekarze przepisują leki na zasadzie a może się trafi . A jak nie trafi to następnym razem spróbuje innego zestawu . P . Zatoński zgodnie z tą regułą po 15 minutach wstał , otworzył drzwi i czekał aż wyjdę , bo następne 120 zł czeka na krytarzu . I ."
+  },
+  {
+    "opinion_id": "op_000229",
+    "text": "Moja ocena z wrażeń po pierwszej wizycie u Pana doktora . Pan doktor przeprowadził bardzo szczegółowy wywiad na temat mojej dolegliwości . Dogłębnie zanalizował wyniki badań ( całą historię na przestrzeni 5 lat ) i szczegółowo wytłumaczył interpretację tych wyników , przedstawił również przeróżne możliwości przyczyny choroby . Ustawił przebieg leczenia ( wraz z możliwościami modyfikacji przyjmowania leków w zależności od samopoczucia w trakcie ich przyjmowania ) oraz wskazał dietę która powinna być stosowana w przypadku mojej dolegliwości . Wskazał rownież dodatkowe badania jakie powinna m wykonać oraz regularne przed kolejną wizytą . Na przestrzeni 5 lat odwiedziła m wielu hematologów i wszyscy postępowali bardzo szablonowo do mojej dolegliwości , a mój stan nie poprawiał się tak szablonowo jak powinien . Pan doktor natomiast rozważył jej różne przyczyny wcale nie takie oczywiste na które inni lekarze wcale nie zwrócili uwagi . Co do samej wizyty Pan doktor bardzo uważnie mnie wysłuchał i w ogóle nie spieszył się , szczegółowo tłumaczył i upewniał się , czy wszystko co mówi jest dobrze zrozumiane , czuła m się bardzo dobrze zaopiekowana . Po pierwszej wizycie uważam ze Pan doktor jest godny polecenia ."
+  },
+  {
+    "opinion_id": "op_000230",
+    "text": "Współczesne przyrządy analityczne nie dostarczają pełnych informacji o lekowrażliwości bakterii ani nie badają skuteczności kombinacji leków . Na ogół są to urządzenia testujące działanie zaledwie od kilku do kilkunastu antybiotyków . Na dodatek analiza polega na prostym sklasyfikowaniu bakterii jako lekoopornych lub nie , bądź należących do grupy pośredniej . Tak ogólne dane nierzadko w ogóle nie pozwalają lekarzom na podjęcie racjonalnych decyzji ( np . na antybiogramie wszystkie antybiotyki mogą być oznaczone jako nieskuteczne ) . Tymczasem badacze z Warszawy zaprojektowali aparat , w którym próbka z bakteriami , pobrana od pacjenta , po rozcieńczeniu jest rozdzielona na setki mikroobjętości . Każda porcja trafia do jednej z mikrokomór znajdujących się na niewielkim , wymiennym panelu jednorazowego użytku . „ Na wykonanym z tworzywa sztucznego panelu znajduje się kilkaset mikrokomór zawierających różne leki w różnych stężeniach . Po dodaniu roztworu z analizowaną próbką , hodowla bakterii jest prowadzona we wszystkich mikrokomorach jednocześnie . Po upływie kilku - kilkunastu godzin nasz przyrząd ocenia rozwój kolonii i przekazuje lekarzowi nie wyrywkową , lecz pełną informację o lekowrażliwości bakterii atakujących konkretnego pacjenta ” - tłumaczy kierownik projektu po stronie IChF PAN dr inż . Tomasz Kamiński ."
+  },
+  {
+    "opinion_id": "op_000231",
+    "text": "PRACUJE NA BANACHA , RZADKO WIDZIANY PRZY \" ZWYKłYM \" PACJENCIE - CZASEM PRZY \" SWOICH \" . W PRYWATNYM GABINECIE CAłA śCIANA OPRAWIONYCH W RAMKI DYPLOMóW , PO PIERWSZYM BADANIU ZAPOWIEDź KONIECZNYCH KILKU OPERACJI W PRYWATNEJ OCZYWIśCIE KLINICE . POMIMO POSIADANYCH \" śWIEżYCH \" WYMIKóW BADAń OTRZYMAł EM SZEREG SKIEROWAń NA TE SAME - JESZCZE śWIEżSZE - WRAZ Z POLECENIEM ZAPRZYJAźNIONYCH PRZYCHODNI , W KTóRYCH POWINNY BYć WYKONANE . GDY WKRóTCE PO JEDYNEJ WIZYCIE W GABINECIE PRYWATNYM PANA DOKTORA DOSTAł EM SIę NA ODDZIAł NA BANACHA , NIE POZNAł . . . NIEDOSTęPNY , TRUDNO \" WYCIąGNąć \" INFORMACJE O SWOIM ZDROWIU , WYNIKACH BADAń , PLANOWANYCH DZIAłANIACH . POZA TYM WSZYSTKIM - CENIONY W śRODOWISKU AUTORYTET . DLA BOGATYCH PACJENTóW , NIE DLA \" ZWYKłYCH \" LUDZI ."
+  },
+  {
+    "opinion_id": "op_000232",
+    "text": "Badaczka analizuje interakcje pomiędzy endokanabinoidami i endowaniloidami . Kanabinoidy powstające wewnątrz naszego organizmu , nazywamy endogennymi ( endokanabinoidami ) . Jednym z nich jest analog THC ( tetrahydrokanabidiolu ) - anandamid . Układ endokanabinoidowy to właśnie wewnętrzny układ naszego organizmu . Wyniki pracy dr hab . Starowicz - Bubak wskażą nowe kierunki w terapii bólu neuropatycznego . Uczona sprawdza , na jakie układy , receptory czy cząsteczki można działać , aby leczyć i uśmierzać ból przewlekły . \" W wyniku naszego projektu nie powstanie nowy zastrzyk czy tabletka , którą po zakończeniu realizacji projektu będzie można kupić w aptece . Natomiast wytypujemy cząsteczki , które najlepiej potwierdzą postawioną przez nas hipotezę i zbadamy ich właściwości farmakologiczne ” – tłumaczy dr Starowicz - Bubak . Praca jej zespołu może dać wskazówki firmom farmaceutycznym co do sposobów projektowania leków . Na etapie badań podstawowych nie chodzi jeszcze o licencje czy patenty ."
+  },
+  {
+    "opinion_id": "op_000233",
+    "text": "Pani Doktor była miła , uważnie słuchała . Wizyta faktycznie nie trwała 30 minut tylko krócej . Krótki wywiad , badanie pulsu , języka , osłuchanie . Przepisane leki ziołowe i akupunktura . Moim zdaniem jest za wcześnie na ocenę , czekam aż to wszystko zadziała , ale jestem pozytywnie nastawiona ."
+  },
+  {
+    "opinion_id": "op_000234",
+    "text": "Nie mam najlepszych doświadczeń z tą Panią doktor . Dziecko miało niski przyrost masy ciała - nie kazała mi dokarmiać syna żadnym mlekiem . Cały czas powtarzała mi , że dziecko nie przybiera na wadze bo stosuję złą dietę . W końcu jadła m chleb tylko z masłem roślinnym a syn dalej nie przybierał na wadze . Cały czas płakał i wisiał przy mojej piersi a Pani doktor twierdziła , że dziecko ma kolkę . Skończyło się na tym , że syn wylądował w szpitalu z zapaleniem wątroby ( z głodu ) i z infekcją układu moczowego . Natychmiast kazano mi go dokarmiać nutramigenem . Zmieniła m lekarkę . Teraz dziecko jest zdrowe , ma 1 , 5 roku . Moja Pani doktor jest na urlopie i dzisiaj była m zmuszona iść znowu do szczepienia do Pani dr król . . . . O zgrozo . . . . nie chciała mi wypisać recepty dla dziecka na mleko , twierdząc , że nie ma podstaw , bo wypis ze szpitala , gdzie jest wyraźnie napisane we wskazaniach - NUTRAMIGEN ! ! ! jest już nie ważny . . . . brak mi słów . . . . . Zdecydowanie odradzam . . . u mnie ma poniżej jedynki . . . . ."
+  },
+  {
+    "opinion_id": "op_000235",
+    "text": "Zanim przejdę do opinii n . t . Pana Doktora to kilka słów o obsłudze w Plejadach . Jestem bardzo zadowolony z podejścia do klienta . Personel bardzo miły i stara się pomóc we wszelki możliwy sposób , tak aby ułatwić życie pacjentowi . W tym miejscu duża piątka ! ! ! Co do Pana Doktora , robił USG stawu biodrowego mojej miesięcznej córce . Ma niesamowitą cierpliwość do dzieci . Pomimo , że dziecko podczas zabiegu kilkakrotnie załatwiało się na stół Pan doktor traktował ten fakt z dużą wyrozumiałością . Na koniec , jako że jestem początkującym tatusiem , pomógł mi zawinąć córkę w pampersa i ubrać . Oczywiście nie wspominam tutaj o profesjonalizmie Pana Doktora bo jest to sprawa oczywista . Wytłumaczył mi wszystko co i jak , tak że nawet laik taki jak ja wszystko zrozumiał . Polecam Plejady wszystkim - są w porządku i będę tam wracał ."
+  },
+  {
+    "opinion_id": "op_000236",
+    "text": "Była m u Pani doktor na wizycie z moim czteromiesięcznym dzieckiem . Synek miał suchą skórę na dekoldzie i łuszczącą skórę na szyji , po jednorazowym posmarowaniu krostek na szyji maścią z małą ilością z tlenkiem cynku ( krostki zniknęły ale skóra się wysuszyła ) . Liczyła m na dobrą maść robioną na receptę , niestety dostali śmy steryd + syrop aby mały się nie drapał . Jestem z tych osób co czytają ulotki od A do Z , i stwierdziła m że nie podam dziecku tych leków , syrop miał w ulotce \" dla dzieci od lat 2 \" , a steryd wydaje mi się , że to ostateczność , a tymczasem synek miał problem ze skórą dopiero 2 dni . Skonsultowała m leki z moim pediatrą , na syrop zareagowała : \" Broń Boże , jest on za mały na takie leki \" , a szyję kazała smarować zwykłym kremem emolientem , po 3 dniach skóra się zregenerowała i problem zniknął ."
+  },
+  {
+    "opinion_id": "op_000237",
+    "text": "To jest lekarz z powołania , który wysłucha i poradzi . Oprócz dużej wiedzy , posiada niezwykłà wrażliwość na drugiego człowieka . Najlepszy lekarz , z którym miała m do czynienia w moim życiu , to jest poprostu bardzo dobry człowiek , który kieruje się sercem , być Jego pacjentem to zaszczyt ! Mogę polecić Doktora z czystym sumieniem ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000238",
+    "text": "Odbyła m u tego lekarza jedną wizytę proktologiczną kilka lat temu i było to przeżycie traumatyczne . Na wstępie została m w bardzo niemiły sposób zbesztana za złe przygotowanie do badania ( które odbyło się zgodnie z otrzymaną w przychodni instrukcją ) . Podczas , dość trudnego dla pacjenta badania , lekarz zamiast pomóc cały czas na mnie krzyczał , że z mojej winy nie może przeprowadzić badania . Niedawno w tej samej przychodni , czekając w kolejce do innego lekarza , miała m okazję słyszeć jak w podobny , oburzający sposób traktuje innego pacjenta . Cała poczekalnia zatem wiedziała , jakiemu badaniu nieumiejętnie poddaje się biedny pacjent . Żenujące ."
+  },
+  {
+    "opinion_id": "op_000239",
+    "text": "Na razie najważniejsze zastosowanie odkrycia prof . Guzika w praktyce to świadomość , jak ważne jest leczenie wieloletnich stanów zapalnych . Wspólnie ze stomatologiem prof . Martą Cześnikiewicz - Guzik badacz wykazał ścisły związek paradontozy z nadciśnieniem tętniczym . Małżeństwo naukowców prowadziło w Krakowie badanie kliniczne , którego wszyscy uczestnicy chorowali na paradontozę . Część z nich była leczona łagodnie , cześć natomiast – intensywnie . U tych osób , które przeszły leczenie intensywne , nastąpiła znaczna poprawa kontroli nadciśnienia tętniczego - i to bez dodatkowego leczenia . Zdaniem badaczy , dentyści mogą wspomagać leczenie nadciśnienia poprzez redukcję ogólnego stanu zapalnego . Prof . Tomasz Guzik od stycznia jest redaktorem naczelnym jednego z czasopism europejskiej kardiologii - Cardiovascular Research , które wyznacza trendy w kardiologii . Jest zdobywcą grantu ERC oraz laureatem m . in . Nagrody Fundacji na rzecz Nauki Polskiej – najwyższego wyróżnienia przyznawanego przez tę organizację . Zaczynał jako stypendysta programu START FNP ."
+  },
+  {
+    "opinion_id": "op_000240",
+    "text": "Niestety ja nie jestem zadowolona z wizyty u dra Barga . Na pierwszą wizytę przyszła m juz z wykonanymi wcześniej teastami alergicznymi , których wynik miała m dodatni . Mimo tych wyników dr powiedział , ze nie jestem uczulona . Dr był roztargniony , wywiad był bardzo chaotyczny . To , ze nie jestem na nic uczulona stwierdził tylko na podstwie rozmowy jaką ze mną przeprowadził , nie spogladając nawet na wyniki testów . A kaszel u mnie utrzymuje się juz od ok 3 lat , bardzo często choruje , ciągle boli mnie gardło , często boli mnie brzuch i głowa i ogólnie czuje sie osłabiona . I to nie jest astma bo pod tym względem też się badała m . Z resztą fakt , ze nie mam astmy jeszcze bardziej utwierdził dra w przekonaniu , że nie mam alergii . A z tego co wiem to własnie nieleczona alergia może doprowadzić do astmy . Myśle , że lekarz powinien dokładnie wysłuchać pacjenta , co ten ma do powiedzenia na temat swoich dolegliwości a na wizycie u dra Barga niestety nie miała m takiej możliwości ."
+  }
+]

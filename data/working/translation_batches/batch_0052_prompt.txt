@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001021",
+    "text": "Jak podkreślali uczestnicy uroczystości jubileuszu , przez 70 lat istnienia placówki w onkologii dokonał się ogromny postęp – chorzy są leczeni o wiele skuteczniej . „ Kiedy 32 lata temu podjął em decyzję o pracy w instytucie , koledzy pukali się w czoło , mówili , że nie wytrzymam tego psychicznie , bo to zbyt obciążające - nie ma sukcesów , chorzy umierają . Ja już wtedy wiedział em , że to nie jest prawda ” – wspominał prof . Składowski . „ Zdecydowanie w ciągu tych 50 lat wstecz nastąpił rozwój . Marzeniem ludzkości jest uniknąć raka , ale to marzenie prawdopodobnie nigdy się nie ziści , dlatego , że natura biologii jest taka , że nowotworzenie musi się odbywać , jest to jeden z procesów natury . Naszym celem jest wykrywać ten proces tak wcześnie , by raka dało się zniszczyć na jak najwcześniejszym etapie , również na tym , kiedy chory w ogóle nie zdaje sobie sprawy , że może być chory . Jestem optymistą – odkrycia naukowe przyczynią się do tego , że będziemy mówili o długim przeżyciu i życiu dobrej jakości ” – dodał ."
+  },
+  {
+    "opinion_id": "op_001022",
+    "text": "Bardzo miły , rzeczowy lekarz , przynajmniej ja nie miałem wstydu opowiadać o najintymniejszych sprawach . Prawie przez cała wizytę rozmawia z pacjentem także podczas badania . Cena pierwszej wizyty na luty 2010 to 200 zł lub 500 zł w zależności czy jest robiona rektoskopia . Lepiej iść do specjalisty niż się zadręczać i męczyć z rożnymi dolegliwościami . Ma bardzo dużo pacjentów ."
+  },
+  {
+    "opinion_id": "op_001023",
+    "text": "Jak wyjaśnia w rozmowie z PAP kierownik projektu , dr hab . inż . Kinga Pielichowska z AGH , obecnie stosowane w implantologii materiały metaliczne odbiegają właściwościami od naszych kości . Dlatego naukowcy pracują nad zastąpieniem ich polimerami i nanokompozytami polimerowymi , jako że ludzka kość jest właśnie nanokompozytem zbudowanym z polimeru i hydroksyapatytu . Implanty trwałe , np . endoprotezy stawów biodrowych , nie ulegają w ludzkim organizmie bioresorpcji , czyli nie wchłaniają się . Są również takie materiały , które mogą po pewnym czasie znikać w naszym ciele . Dr Pielichowska poszukuje głównie materiałów polimerowych na implanty stałe i stara się je jak najbardziej upodobnić do ludzkiej tkanki kostnej - zarówno pod względem właściwości mechanicznych , jak i chemicznych . W grancie finansowanym przez Narodowe Centrum Nauki badaczka pracuje nad kompozytami opartymi na polimerze o nazwie polioksymetylen ."
+  },
+  {
+    "opinion_id": "op_001024",
+    "text": "Świetny lekarz , a do tego fenomenalna babka . Mega ludzkie podejście do pacjenta , wysłuchała wszystkiego , co miała m do powiedzenia , a do tego sama zadała jeszcze mnóstwo pytań . Profesjonalizm na 5 , a do tego ogromny plus za nastawienie i charakter ! Widać , że zależy jej na pacjencie , nie policzyła mi za usg , które wykonała , by upewnić się , czy postawiła poprawną diagnozę , bo stwierdziła , że źle by się z tym czuła ! Totalna kosmitka , ale w bardzo pozytywnym znaczeniu . Polecam wszystkim , zwłaszcza tym , dla których wizyta u lekarza to duży stres ."
+  },
+  {
+    "opinion_id": "op_001025",
+    "text": "Witam drogie panie ! Otóż do dr Bednarskiego trafiła m w listopadzie ubiegłego roku z niepokojaca zmiana w piersi . W moim miescie lekarz widział dla mnie tylko jedno wyjscie - operacja i ciecie piersi . Była m przerazona . Córka zaczeła szukac w internecie specjalistów od piersi i własnie znalazła dr . Bednarskiego . Na drugi dzien postanowiła m umowic sie na wizyte . Po przyjechaniu na śląsk pan doktor zrobił USG stwierdził ze jest to zmiana która trzeba usunac . Zaproponował mi biopsje mammotomiczna ktora jest bardzo malo inwazyjna i nie kaleczy piersi a po zabiegu pozostaje małe draśniecie . Po tym zabiegu mozna od razu wrocic do domu prosze mi wierzyc trwa on niecałe 10 min i nic nie boli . Serdecznie polecam dr Bednarskiego jest nie tylko niesamowitym fachowcem ale i tez wspaniałym czlowiekiem . Jestem mu bardzo wdzieczna za wszystko co dla mnie zrobił . Wierze z całego serca ze zesłał mi go Pan Bóg . Pozdrawiam pacjentka z Kutna ."
+  },
+  {
+    "opinion_id": "op_001026",
+    "text": "Na wizytę umówiła m się przez portal znanylekarz.pl . Wszystko odbyło się zgodnie z planem , zero opóźnienia . Pani Doktor poświęciła mi 40 minut ( ! ) - nigdy nie zdarzyło mi się to z żadnym innym dermatologiem . Przebadała moją skórę , dokładnie ją obejrzała . Przeprowadziła dokładny wywiad , wszystko wyjaśniła . Pani Doktor wzięła pod uwagę to , że na razie wolała by m uniknąć stosowania retinoidów doustnych i zaproponowała inne leczenie , które mam nadzieję , skończy się sukcesem . Wiem , że może być różnie , ale bez względu na wynik kuracji na pewno nie zrezygnuję z usług dr Dyszyńskiej , bo , choć odwiedziła m już wielu lekarzy , nie spotkała m się jeszcze z takim profesjonalnym podejściem . Wszystkim niezdecydowanym serdecznie polecam tego lekarza !"
+  },
+  {
+    "opinion_id": "op_001027",
+    "text": "Przy pierwszym kontakcie sprawia wrażenie osoby kompetentnej , niestety tak nie jest . ja mu zaufała m i niestety był to błąd : ( Na szczęście moja córeczka na tym nie ucierpiała . . . . Co do poszostałych komentarzy się zgadzam - bardzo sympatyczny , budzący zaufanie człowiek ."
+  },
+  {
+    "opinion_id": "op_001028",
+    "text": "Naświetlamy diodami określoną część naskórka . Fala elektromagnetyczna - którą jest światło - przechodzi przez tkanki , a my badamy jej sygnał odbity . Na podstawie tej analizy jesteśmy w stanie estymować niektóre parametry życiowe ludzkiego organizmu - nie tylko tętno , ciśnienie , ale i poziom glukozy we krwi ” - wyjaśnił Szczepaniak . Dodał również , że metodologia pomiaru oparta jest o prawo Lamberta - Beera , które zakłada , że zarówno ilość energii pochłoniętej , jak i rozproszonej przez dany rodzaj cząsteczki zależy bezpośrednio od jej stężenia w danym otoczeniu .  Tak więc właściwości światła , które przeszło przez tkankę , są zależne od poziomu cukru we krwi \" - tłumaczył . Zapewnił , że jego zespół precyzyjnie dobrał długość fali do właściwości cząsteczek glukozy , które krążą w ludzkim organizmie , dzięki czemu system iSULIN jest w stanie z odpowiednią precyzją określić jej poziom . Urządzenie pomiarowe jest niewielkie - ma rozmiary zegarka na rękę , który za pośrednictwem modułu Bluetooth połączony jest ze smartfonem . W smartfonie natomiast użytkownik powinien zainstalować zaprojektowaną przez studentów aplikację . Aplikacja ta ma pomagać choremu dbać o jego zbilansowaną dietę i umożliwi kontakt z personelem medycznym . Studenci przygotowali już działający prototyp urządzenia , ale zanim system będzie mógł trafić na rynek , potrzebnych jest wiele testów prowadzących do jego finalnej certyfikacji . Jednak na razie - jak uprzedzają - w sprzedaży jeszcze nie ma gotowych urządzeń tego typu ."
+  },
+  {
+    "opinion_id": "op_001029",
+    "text": "Witam wszystkich Państwa bardzo serdecznie ! , pragnę dołaczyć się do Waszych ocen dot . pracy p . Prof . Ząbka . W 1994 i 1996 roku ( a więc dość dawno ) miała m wtedy 31 lat zdjagnozowano u mnie naczyniaka jamistego na pniu mózgu na lewym moście . Po wielu konsultacjach w różnych osirodkach w kraju i odmową w tem . usunięcia ogniska chorobowego Pan profesor podjął się przeprowadzenia zabiegu . Podejście tak jak wcześciej zaznaczyła m było dwukrotne - udało się . Myśle P . Agnieszko , że może umiejscowienie było zbyt niebezpieczne i najzwyklejsza pokora Pana prof . przed problemem wzieła górę ."
+  },
+  {
+    "opinion_id": "op_001030",
+    "text": "Na Pana doktora natknęła m się przez przypadek - pierwsza i druga wizyta w zastępstwie za innego lekarza przebiegła bez zastrzeżeń . W związku z tym , że lekarz , którego wybrała m był często w rozjazdach , przepisała m się do doktora Michalaka . Jestem osobą , która niechętnie dzieli się opiniami w sieci , ale szczerze powiedziawszy do dnia dzisiejszego jestem zdezorientowana i zmieszana podejściem doktora . Na początku myślała m , że się przejęzyczył - w końcu niedoczynność i nadczynność to słowa bliskobrzmiące . Na trzeciej wizycie ( już jako pacjentka ) otrzymała m sugestię , że powinna m zwiększyć dawkę leków , bo moje TSH spada . Zignorowała m zalecenie i skonsultowała m się z moją Panią endokrynolog , która zaleciła utrzymanie dotychczasowej dawki , chyba , że TSH wzrośnie do 1 , 2 - 1 , 5 . Ponadto nie skomentował \" wątpliwego \" wyniku przeciwciał różyczki , na które sam mnie skierował . Czwarta wizyta była całkiem OK . Pomyślała m więc , że Pan doktor to przecież też człowiek , może poprzednim razem miał gorszy dzień . Niestety na kolejnej wizycie ( już piątej ) Pan doktor znowu sugeruje zwiększenie dawki hormonu tarczycy z 75 na 100 pomimo braku zmiany w wyniku TSH . Mówię , że moja Pani endokrynolog sugerowała zmianę dawki przy wartościach TSH powyżej 1 , a on na to , że przecież Pani ma już 0 , 45 . Szok i niedowierzanie ! Zwiększenie dawki hormonu tarczycy przy wynikach TSH utrzymujących się w dolnej granicy normy bezpiecznej dla kobiet w ciąży ? Nie rozumiem tego . . . A może to doktor Michalak nie rozumie mechanizmu sprzężenia zwrotnego ? Czarę goryczy przelała przygoda z wagą w gabinecie , która wskazała kosmiczną wartość - Pan doktor i tak wpisał wynik do karty sugerując , że to nie jest znowu duży przyrost . W życiu tyle nie ważyła m ! 11kg to ja przybrała m jednakowo przez całą pierwszą i drugą ciążę , a teraz to dopiero 22 tydzień i już 11 kilo na plusie ! Wagę w domu mam i regularnie się ważę tym bardziej , że nadal jestem aktywna fizycznie i ćwiczę na siłowni . Zresztą przyrost 8 kg w raptem cztery tygodnie sugerował by , że coś chyba jest nie tak i kwalifikował by mnie na jakieś dokładniejsze badania . . . Prawda , Panie doktorze ?"
+  },
+  {
+    "opinion_id": "op_001031",
+    "text": "Katarzyna Zgadzam się z opinią Pana Jurka . Leczę się u P . doktor od paru miesięcy . mam problem z przetłuszczającą się skórą , wrażliwą , atopową i tradzikową ( mam 37 lat ) . leczenie zaczełam od serii kwasów - trochę pomogły ale na krótki czas . następnie leczenie zostało zmienione na inne , bardziej farmakologiczne . w tej chwili raz w miesiącu poddaje się zabiegowi \" regeneris \" . moja skóra zmieniła się diametrialnie na lepszą . uwazam że pomoc lekarska , dermatologiczna jaką orzymałam od Pani doktor była i jest dostosowana do każdego etapu leczenia i tylko taka trafna , szybka i precyzyjna pomoc kończy sie sukcesem . systematycznośc , konsekwentnośc oraz cierpliwość zarówno pacjenta jak i Pani doktor daje pozytywne wyniki . nie oczekujmy że po jednej wizicie nasza zniszczona skóra , problemy natury dermatologicznej i estetycznej zmienią się jak za dotknięciem czarodziejskiej rózdzki . bardzo polecam Panią doktor ."
+  },
+  {
+    "opinion_id": "op_001032",
+    "text": "mialam ( nie ) - przyjemnosc z pania doktor na izbie przyjec na Jozefowie , na oko stwierdzila ze nic mi nie jest , a ja od 3 dni nic nie jadlam i nie pilam i wymiotowalam okolo 10 - 15razy na dobe i w dzien i w nocy zolcia i slina : ( a bylam wtedy w 10 tyg ciazy . co sie okazalo jak jednak zostalam przyjeta na oddzial bo polozna byla normalna i kazala mi sie upierac zeby zostawila mnie na obserwacji.co sie okazalo bylam juz odwodniona - dostalam 8 kroplowek w ciagu 2 dni i tabletki p / wymiotne po ktorych moglam cokolwiek zjesc.nie wiem co by sie stalo gdyby nie te kroplowki . . . . . . wole o tym nie myslec.bylam 5dni w szpitalu i jak wychodzilam mialam \" podziekowac \" p.doktor Limanin ale niestety nie bylo jej na oddziale . nie polecam wizyt u tej doktor"
+  },
+  {
+    "opinion_id": "op_001033",
+    "text": "Chodziła m do tego lekarza na początku pierwszej ciąży i szybko zrezygnowała m . Mało cierpliwy i nie ma moim zdaniem dobrego podejścia do pacjentek . Na moje pytania odpowiadał zdawkowo i często odnosiła m takie wrażenie że mam najlepiej o nic go nie pytać bo on nie ma ochoty mi odpowiadać . Zmieniła m lekarza na dr Dariusza Zaryjewskiego i w końcu z chęcią zaczęła m chodzić na wizyty i nie bała m się zadawać pytań ."
+  },
+  {
+    "opinion_id": "op_001034",
+    "text": "Pani dr w trakcie wizyty odebrała 2 prywatne telefony nie zwracając uwagi na pacjenta któremu przerwano tym zdanie . Bardziej koncentrowała się na rodzicu pacjenta niż na dolegliwościach samego pacjenta . Po kilku zdaniach dot . dolegliwości Pani dr miała już własną opinie ale \" o matce \" . Moje wypowiedzi były wielokrotnie przerywane przez rozmowy telefoniczne , jej komentarze i badanie ( żeby było szybciej ) przez co Pani dr nie słuchała uważnie a następnie oceniła moje podejście i podważyła moja wiarygodność jak się okazuje błędnie interpretując moje słowa . Brak racjonalnego podejścia do sprawy stwierdziła , że albo natychmiast musimy jechać z dzieckiem do szpitala albo dziecku nic nie dolega a objawy jakie zaobserwowała m to wymysł i brak dystansu jako rodzica ."
+  },
+  {
+    "opinion_id": "op_001035",
+    "text": "Z całego serca polecam Doktora . Bardzo wiele mu zawdzięczam . Starali śmy się z mężem o dziecko , jednak po odstawieniu tabletek antykoncepcyjnych zatrzymała się miesiączka . Wszyscy lekarze ( było ich 4 ) , z którymi się konsultowała m mieli na to jeden sposób leczenia - Luteina i czekanie . W końcu trafiła m do Doktora Kardasińskiego , który pokierował co dokładnie należy zrobić w takiej sytuacji i zastosował leczenie dzięki któremu obecnie jestem w 22 tygodniu ciąży : ) ) ) ) Doktor prowadzi moją ciążę . Zawsze bardzo cierpliwie i dokładnie odpowiada na wszystkie pytania i rozwiewa moje wątpliwości . To co również jest dla mnie ważne to to , że doktor ZAWSZE odpowiada na sms-y . Uważam Doktora za super człowieka pełnego ciepła i wyrozumiałości . Ze szczerym sercem polecam wszystkim ."
+  },
+  {
+    "opinion_id": "op_001036",
+    "text": "Dlaczego takimi zachowaniami interesują się psychologowie ? \" Każda obsesja jest nieprawidłowością - tłumaczy dr Brytek - Matera . - Owszem , żyjemy w czasach kultu zdrowia i ładnej sylwetki . A jednak większość z nas pozwala sobie od czasu do czasu na pizzę z przyjaciółmi . Ale jeśli kogoś absorbuje tylko jedna kwestia , jest to nieprawidłowość . Osoba , która zauważa u siebie takie zachowania , powinna podjąć pewne kroki . Najlepiej udać się do psychoterapeuty \" . Według ekspertów częstotliwość występowania ortoreksji psychicznej jest różna w różnych regionach . We Włoszech odsetek ludzi , których dotyka ten problem dotyczy głównie kobiet , i według ostatnich badań wynosi ok . 58 proc . W Hiszpanii występuje rzadziej , od 0 , 5 do 1 proc ."
+  },
+  {
+    "opinion_id": "op_001037",
+    "text": "Moja choroba to zapalenie kłębuszkowe nerek w zespole nerczycowym . Wybrał em się do Pana Doktora wprost po 3 tygodniowym pobycie w szpitalu . Chciał em skonsultować zarówno zalecony sposób leczenia jak się dowiedzieć w jaki sposób kształtować codzienną dietę . Pan Doktor pomógł mi zrozumieć mechanizmy działające w tej chorobie ; dogłębnie omówił uwarunkowania ( dobre i złe strony ) leków które mam zaordynowane ; jak również wskazał w jaki sposób mam kształtować dietę w tej chorobie . Wizyta poszerzyła moje horyzonty i wzmocniła moje przekonanie , że mogę i dam radę wygrać z tą chorobą . Z całą odpowiedzialnością polecam Pana Doktora . Z poważaniem Grzegorz Rutkowski ."
+  },
+  {
+    "opinion_id": "op_001038",
+    "text": "Leczyła m moich chłopców u Dr Zawadzkiej przez jakiś czas . Zalecenia diety i higieny są bardzo trafne , choć rygorystyczne . Nie stosowała m się do tych przepisów w 100 % ( ustępstwa jednak nie polegały na karmieniu dzieci w McD , batonami czy parówkami : - ) Wiele z Jej diagnoz się potwierdziło . Lubiła m zapisywanie przez nią wytycznych i diagnozy : po wyjsciu z gabinetu nie zapominało się połowy . . . Przestali śmy do niej chodzić , bo irytował mnie system zapisów , czekanie godzinami o póznych porach pod gabinetem , i w końcu lekceważący , graniczący z pogardą stounek do mojego męża , który jest obcokrajowcem : regularnie go wypraszała za drzwi . Ma bardzo dziwną osobowość . . . . Zaczęło mi to przeszkadzać . Jest tylu doskonałych lekarzy , dlaczego mam leczyć dzieci u kogoś , kto ma lekkie problemy z kulturą ? Szacunek jest tak samo ważny jak wiedza merytoryczna w tym zawodzie , bo chodzi o poczucie bezpieczeństwa ."
+  },
+  {
+    "opinion_id": "op_001039",
+    "text": "Na celiakię , zwaną chorobą trzewną , zapada jedno na sto dzieci . Jak wyjaśniła PAP doktorantka Natalia Drabińska z Instytutu Rozrodu Zwierząt i Badań Żywności Polskiej Akademii Nauk w Olsztynie , jest to choroba autoimmunologiczna , którą wywołuje obecność glutenu w żywności . W organizmie chorego gluten powoduje stan zapalny jelita , dochodzi do zanikania kosmków jelitowych , przez co powierzchnia wchłaniania z jelit się zmniejsza . Choroba trzewna jest niewyleczalna , towarzyszy pacjentowi przez całe życie , nie ma na nią leków , nie wykonuje się operacji , jedynym sposobem jej leczenia jest zastosowanie restrykcyjnej , bezglutenowej diety do końca życia , która złagodzi skutki choroby , jakimi są chroniczny stan zapalny , zaburzenia wchłaniania czy niedobory witaminowe i mineralne . „ Poprzez zastosowanie prebiotyków chcemy poprawić ogólny stan zdrowia dzieci z chorobą trzewną ” - podkreśliła Natalia Drabińska ."
+  },
+  {
+    "opinion_id": "op_001040",
+    "text": "Witam . Ja była m pierwszy raz u Niego i od razu mnie wziol do szpitala na badania bo powiedział ze nie będzie mnie leczył jakimiś tabletkami musi najpierw wiedzie co mi jest i dopiero po badaniach będzie mnie leczyć . Jak na razie jestem zadowolona . Koleżanka mi Go poleciła . Leczyła m się u lekarza który tylko mi dawał tabletki i nic mi nie pomagało na dużej . Idę do niego w przyszył tygodni z winiakami . BARDZO GO POLECAM ! ! ! !"
+  }
+]

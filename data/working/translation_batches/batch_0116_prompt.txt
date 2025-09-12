@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002301",
+    "text": "No proszę następny głos o wspaniałej Pani doktor , niestety nie wierzę myślę nawet że Pani doktor może sama wpisuje tutaj tak dobre komentarze , no może jeszcze tak być że po skargach Pani doktor boi się o swoją posadę i zaczęła traktować pacjentów jak ludzi . Tak jak ludzi bo ja nie była m potraktowana jak człowiek . To dziwne że jak tylko pojawiły się komentarze negatywne i skargi Pani dr okazała się chodzącym ideałem . Dziwne są wypowiedzi Grażyny np.pisze w osobie męskiej : P Dalej nie polecam , ostrzegam przed wizytą u tej Pani . Każdy może się tu wypowiedzieć , dlaczego takie zdziwienie ? że pani dr ma złe opinie ? widać że na nie zasłużyła ."
+  },
+  {
+    "opinion_id": "op_002302",
+    "text": "Była m u pani doktor pierwszy raz i niewiele mogę powiedzieć o skuteczności leczenia . Rozmowa z doktor była krótka i zasadnicza , zresztą wyniki mówiły same za siebie . Pani doktor wytłumaczyła mi skąd sie wziął mój problem i jak go szybko usunąć . Napiszę więcej po kolejnej wizycie . Okazało się , że przez trzy lata brała m nieodpowiednią dawkę leku ( zaleconą przez innego lekarza i mimo złego samopoczucia i niekorzystnych wyników wciąż przez niego utrzymywaną ) . Jestem bardzo zadowolona że zdecydowała m się na tę wizytę i czekam na dobre wyniki . Kontrola za 3 miesiące ."
+  },
+  {
+    "opinion_id": "op_002303",
+    "text": "IChM cechuje się wysoką śmiertelnością - umiera jedna na pięć osób , która na nią zapada . U jednej trzeciej pacjentów , którzy ją przeszli , obserwuje się trwałe następstwa , takie jak : znaczne upośledzenie słuchu czy głuchota , amputacje placów lub całej kończyny w wyniku martwicy tkanek , w przyszłości mogą to być zaburzenia intelektualne , zaburzenia koncentracji uwagi czy problemy z nauką , a także napady drgawek , wodogłowie czy uszkodzenie różnych narządów . Eksperci zwrócili uwagę , że w przypadku sepsy bardzo ważne jest szybkie rozpoznanie i podanie antybiotyku – najlepiej w pierwszej godzinie po postawieniu diagnozy . „ Każda kolejna godzina opóźnienia w podaniu antybiotyku w przypadku sepsy zwiększa śmiertelność o 8 proc . ” - podkreślił prof . Kuebler ."
+  },
+  {
+    "opinion_id": "op_002304",
+    "text": "Tuż po awarii , której druga rocznica mija w poniedziałek , z terenów wokół elektrowni ewakuowano mieszkańców . Jak mówił ekspert z Narodowego Centrum Badań Jądrowych , strefa , którą można nazwać terenem ograniczonego przebywania , została ostatnio zmniejszona i zaczyna się obecnie w odległości ok . 10 km od siłowni . „ Był em ok . 5 km od elektrowni i w tym miejscu moc dawki była ok . 6 - krotnie większa niż moc dawki promieniowania naturalnego w Japonii , która jest porównywalna do polskiej ” – podkreślił Ośko . Powiedział , że strefa nie jest zamieszkana , ale nie jest też całkowicie zamknięta . Mogą w niej m . in . przebywać pracownicy elektrowni Fukushima Daini ( Fukushima II ) , leżącej ok . 10 km od elektrowni Fukushima Daiichi ( Fukushima I ) , w której doszło do awarii . „ Z tego , co nam mówiono , mieszkańcy też mają możliwość , żeby na chwilę dostać się do swoich domów ” – dodał ."
+  },
+  {
+    "opinion_id": "op_002305",
+    "text": "Udary mózgu zajmują trzecie miejsce wśród przyczyn zgonów i są głównym powodem niesprawności osób po 40 . roku życia . Rocznie rejestruje się w Polsce 60 - 70 tys . udarów - 30 proc . z nich prowadzi do zgonu w ciągu pierwszego roku . Po pół roku od wystąpienia udaru niedowład połowiczy występuje u połowy pacjentów . Wśród osób , które przeżyły udar około 70 proc . pozostaje niepełnosprawnymi , przy czym 50 proc . wymaga pomocy i opieki innych osób z powodu upośledzonej sprawności fizycznej i psychicznej . 29 października obchodzony jest Światowy Dzień Udaru Mózgu . 4 proste kroki , które mogą uratować życie promuje stowarzysznie \" Udarowcy - liczy się wsparcie \" ( www.udarowcy.com.pl . ) Jeśli podejrzewamy u kogoś udar , wystarczy poprosić , aby się uśmiechnął , powiedział proste zdanie i uniósł ramiona . Udar nie pozwala się uśmiechnąć - po stronie porażonej opada kącik ust . Mówienie najprostszych zdań i rozumienie mowy są utrudnione , a unoszenie ramion jest niemożliwe lub możliwe w ograniczonym zakresie . Jeśli wystąpi którykolwiek z tych objawów , trzeba niezwłocznie zadzwonić pod numer pogotowia ratunkowego ."
+  },
+  {
+    "opinion_id": "op_002306",
+    "text": "Wizyty u pana dr są jak dla mnie zawsze za krótkie . Niby pan dr zapyta , ale to wszystko jest w takiej formie pośpiechu , lekkiej nerwowości . Zawsze jest zrobione usg . Cena wizyty jest okropnie wysoka , 180 zł za góra 10 minut wizyty . . . . . . Brakuje mi takiego podejścia całościowego , zlecenia badań - w przypadku poronień to niezwykle ważne . Niestety takiej pomocnej ręki nie mam - wg Pana dr wszystko jest ok . Cała reszta w porządku , do tego stopnia , że polecam dr moim koleżankom , co czynię rzadko . Ja nie mam tarczycy , być może dlatego te moje wizyty nie trwają tak długo . Wystawiam ocenę dobrą . Pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_002307",
+    "text": "Bakterie mogą pobierać DNA ze środowiska oraz wymieniać materiał genetyczny między sobą . W wyniku tego procesu , zwanego rekombinacją , mogą zyskiwać oporność na antybiotyki lub skutecznie opierać się działaniu szczepionek . Mimo iż proces rekombinacji został odkryty prawie sto lat temu , to dopiero dzięki sekwencjonowaniu DNA - metodzie pozwalającej odczytać kod genetyczny - zaczęli śmy zdobywać wiedzę na temat tego , jak często ten proces zachodzi i jak duże zmiany wywołuje . Wykorzystując fragmenty DNA szczepów bakteryjnych naukowcy mogą stworzyć ewolucyjne drzewo genealogiczne , pokazujące , w którym momencie bakterie zdobyły nowe geny i jak wpłynęło to na ich ewolucję . Wiedza ta jest szczególnie przydatna w analizie bakterii chorobotwórczych , z którymi walczymy wykorzystując szczepienia . Dzięki sekwencjonowaniu możemy analizować ewolucję bakterii i w oparciu o te informacje próbować przewidywać , kiedy i gdzie pojawią się szczepy oporne na antybiotyki lub niewrażliwe na działanie szczepionek ."
+  },
+  {
+    "opinion_id": "op_002308",
+    "text": "Pani doktor bardzo miła i rzeczowa . Zleciła szereg badań , odpowiedziała na wszystkie pytania , sama również przeprowadziła wnikliwy wywiad . Bardzo duży plus za fantastyczną łazienkę , wyposażoną we wszystko co powinno być do dyspozycji pacjentki w gabinecie ginekologicznym . Niestety przy każdej z moich wizyt opóznienie wynosiło ok . godziny , ostatnio nawet jedna pani była umówiona na tę samą godzinę co ja ."
+  },
+  {
+    "opinion_id": "op_002309",
+    "text": "Zupełnie nie rozumiem zachwytów nad panem doktorem . Po pierwsze tradycyjnie ponad godzinne opóźnienie . Po drugie przedmiotowe potraktowanie dziecka a cena za wizytę wysoka . Po trzecie załatwianie swoich prywatnych telefonów podczas wizyty . Na koniec jeszcze do gabinetu wpakował się chyba syn doktora i ten był tak zajęty rozmową z nim , że nawet nie odpowiedział do widzenia . Za 150 zl wypadało by to zrobić . . . ."
+  },
+  {
+    "opinion_id": "op_002310",
+    "text": "Wpierw pytanie : Gdzie odbywaja sie operacje w dr Jarlinskiego ? Teraz moje spostrzezenie . Powiem tak : chcialam pomniejszyc biust , a ze nie mam typowej gigantomastrii i rozmiar nie zagraza mojemu kregoslupowi , poczulam sie potraktowana troche . . . nie zeby powiedziec , ze niepowaznie , bo to za duze slowo , tylko bardzo \" lekko \" . Mialam wrazenie , ze dr mnie troche nawet probowal zniechecic , co mi sie nie spodobalo . Bo przeciez dla odmiany jak ktos chce sobie wstawic silikony , to tez nie robi tego ze wzgledow zdrowotnych , tylko dlatego , ze ma taka potrzebe , a jeszcze nie slyszalam , zeby kogos zniechcecano do powiekszenia biustu , a pomniejszenie to juz jejjj jaka zbrodnia na ludzkosci . No niewazne : - ) nie bede sie rozwodzic nad tym . Poza tym co napsialam , to na zauwazylam , ze na pewno jest do dobry czlowiek , serdeczny i . . . na pewno nie ciagnie od ludzi kasy za wszelka cene , co uwazam za duza zalete w dzisiejszych czasach . Pozdrawiam i prosze bardzo o odpowiedz ."
+  },
+  {
+    "opinion_id": "op_002311",
+    "text": "była m u pana doktora w lutym na usg , stwierdził ciążę obumarłą , z kpiną w głosie i uśmieszkiem na twarzy powiedział ' tak to jest jak jest się po trzydziestce \" skierował do szpitala.po łyżeczkowaniu i 1 okresie poszła m na wizytę kontrolną , a on mi na to , że mnie nie przyjmie , bo im się pieniądze z funduszu skończyły i mam przyjść za 3tyg . obecnie jestem w 16tc . była m w poradni , bo od paru dni nie czuła m ruchów synka ( a czuła m je od 2 tyg regularnie ) panie pielęgniarki pół godz skakały nade mną z detektorem i sprawdzały tętno , niestety nic nie wyczuły . pan doktor nie zbadał mnie na usg , nawet nie obejrzał mojego brzucha . . . bo miał wywiad do jakiejś gazety ! ! ! ! nie miał czasu ! kazał tylko iść do szpitala na ostry dyżur . mój mąż jest wściekły , ja zrozpaczona całą tą sytuacją ."
+  },
+  {
+    "opinion_id": "op_002312",
+    "text": "Początek wizyty zaczął się dla mnie niefortunnie , lekarz potraktował mnie jak histeryczkę , jednak po dokładnym przeglądnięciu dokumentacji i wywiadzie lekarz wykazał się dużą kompetencją , odpowiadającą moim oczekiwaniom , tj . stwierdził , że powinna m leczyć się u lekarza neurologa , ( poprosił o konsultacje z neurologiem w sprawie . . . ) po uzyskaniu ewentualnego rozpoznania prosił o poinformowanie o wyniku konsultacji . Wykluczył konieczność leczenia ortopedycznego . Polecam wizytę u Pana Profesora ."
+  },
+  {
+    "opinion_id": "op_002313",
+    "text": "Dr J . Mijas to najlepszy pediatra jakiego znam , konkretny , kompetentny w swojej dziedzinie , posiadający bardzo wysokie kwalifikacje . Jego podejście zarówno do małych pacjentów , jak i rodziców jest pełne życzliwości , cierpliwości i wyrozumiałości . Pan doktor dokładnie wyjaśnia istotę choroby , zawsze ma konkretny i skuteczny plan leczenia , daje cenne wskazówki i rady , jak należy postępować . Żadne pytania i wątpliwości nie pozostają bez odpowiedzi . Z doktorem Mijasem zawsze można skontaktować się także mailowo lub telefonicznie w przypadku , gdy coś nagłego się dzieje lub gdy rodzic ma jakieś pytania . Dr Mijas leczy mojego syna od 7 lat , zawsze fachowo , konkretnie i co najważniejsze - skutecznie . Jest doskonałym lekarzem i wspaniałym człowiekiem o wielkim sercu . Gorąco polecam ! ! !"
+  },
+  {
+    "opinion_id": "op_002314",
+    "text": "znakomity specjalista , potrafi słuchać pacjenta a jeśli mówi to w sposób prosty i zrozumiały dla każdego . po wielu partaczach trafił em do Pani profesor i od kilku lat jestem Jej pacjentem . niestety moje dolegliwości nie są uleczalne ( Łuszczycowe zapalenie stawów ) ale dzięki Pani profesor nauczył em się funkcjonować z tą chorobą . mój przypadek był trudny do zdiagnozowania bo choroba nie dawała jasnego obrazu w badaniach krwi i przez kilka lat nie było zmian wizualnych stawów , przez to walczył em z wieloma lekarzami bo traktowali mnie jako symulanta głównie ze względu na młody wiek . takich lekarzy jak Pani Profesor jest bardzo niewielu , nigdy nie patrzy na zegarek i zawsze ma tyle czasu ile pacjent wymaga . pomimo ogromnej wiedzy i możliwości jakie dają nam dzisiejsze czasy Pani Profesor nie jest zepsuta ideą pieniądza ! ! ! ! ! ! ogromny szacunek do lekarza i do człowieka ."
+  },
+  {
+    "opinion_id": "op_002315",
+    "text": "Wizyta u Pani Doktor nie należała do najprzyjemniejszych . Bywała m na prawdę u wielu lekarzy jednak NIGDY nie spotkała m się z taką osobą . Potwierdzam opinię innej osoby iż Pani Doktor jest myślami gdzie indziej , gubi się , nie ma podzielnej uwagi . Nie wnikając w szczegóły wizyta skończyła się nieprzyjemnie . Myślę , że jednym z powodów była zbyt duża liczba pytań z którą najwidoczniej Pani Doktor sobie nie poradziła , dlatego wizyta zakończyła się niepomyślnie - zmarnowała m tylko jakieś półtorej godziny . Pytań zadawała m wiele ze względu na to że wskazówki Pani Doktor kłóciły się nieco z uwagami innych lekarzy specjalistów , dlatego miała m wiele wątpliwości i oczekiwała m wyjaśnienia pewnych kwestii . Pani Doktor mówiła dość chaotycznie i udzielała odpowiedzi nie na temat . Szybko się zdenerwowała i oburzyła . Przychodząc do lekarza przychodzimy przede wszystkim do człowieka o konkretnej specjalizacji lekarskiej z prośbą o pomoc w zdiagnozowaniu konkretnego problemu , który nie zawsze jest prosty i nie wystarczyć może tylko opinia jednego lekarza - specjalisty , czasem potrzebna jest np . konsultacji z innymi specjalistami . Jednak Pani Doktor nie poradziła sobie z problemem , a nerwy czy obrażanie się na pacjenta nie jest chyba najwłaściwszym rozwiązaniem . Dla mnie ta wizyta była ogromnym zawodem , ponieważ liczyła m na rzetelne podejście do problemu z którym zmagam się już ponad 7 lat . Podejście Pani Doktor do mnie jako do pacjenta jak i do człowieka było co najmniej nie odpowiednie . Zależało mi na otrzymaniu konkretnych wskazówek i diagnozy , jednak pomimo niektórych dobrych opinii nie mogę polecić tego lekarza ."
+  },
+  {
+    "opinion_id": "op_002316",
+    "text": "Poszedlem do pana doktora z powodu długotrwałego , duszącego kaszlu . Doktor mnie osłuchał zajrzał do gardła i stwierdził lekkie szmery na krtani i delikatnie zaczerwienione gardło . Przepisał mi lek przeciwzapalny i zalecił inhalacje solą fizjologiczna . Na drugi dzień po wizycie kaszel nie ustępował wiec wybrał em się do laryngologa który stwierdził ze mam ropne zapalenie krtani i ropnie na migdałach które prawdopodobnie będę musiał usunąć operacyjnie , przepisał mi silny antybiotyk , syrop i płyn do płukania gardła . Zabronił również inhalacji gdyż mogły by spowodować zapalenie płuc . Moje doświadczenie z doktorem Mrozkiem nie jest najlepsze , mimo ze miły to wyrzucił em w błoto 150 zł ."
+  },
+  {
+    "opinion_id": "op_002317",
+    "text": "Na początku . . . była m zdezorientowana po wizytach pani doktor Stopińskiej , nie zadowolona nawet . Drażniły mnie opóźnione wizyty . Z czasem się przekonała m , bo DZIĘKI tej doktor wszystko jest w końcu na prostej drodze . Dostała m konkretny lek , który nie niesie skutków ubocznych w postaci złego samopoczucia : huśtawek emocjonalnych . Cóż , każda wizyta u każdego lekarza niesie może jakieś \\ \\ \\ ' ale \\ \\ \\ ' . Pogodziła m się z tym , że szykując się na wizytę u pani doktor w poradni Szp . Bielańskiego , dobrze jest wziąć dzień wolny w pracy . Cudem jest dla mnie , ze mój organizm w końcu funkcjonuje jak organizm kobiety i tego Pani Doktor - nigdy Pani nie zapomnę . Dziękuję : )"
+  },
+  {
+    "opinion_id": "op_002318",
+    "text": "Lekarz z prawdziwego powołania , wyrozumiały i cierpliwy , przyjaźnie nastawiony do pacjenta , bardzo kompetentny , nie straszy tylko spokojnie wszystko tłumaczy . Wnikliwie i z uwagą przeprowadził wywiad z Mamą na temat jej choroby i dotychczasowego leczenia , zapoznał się z wynikami i przedstawił swoją diagnozę i plan dalszego leczenia . Moja Mama od wielu lat leczy się na cukrzycę , choroba nasiliła się w ostatnim czasie i trzeba było włączyć insulinę . Lekarz , który dotychczas leczył Mamę , nie był w stanie przekonać jej do insuliny , co bardzo negatywnie wpływało na jej zdrowie , cukry szalały , do tego pojawiła się neuropatia czuciowa a co za tym idzie zaczęły się problemy ze stopą cukrzycową . W konsekwencji Mama zażywała bardzo duże ilości leków i regularnie musiała chodzić do poradni chirurgicznej na zmianę opatrunku . Koszty leczenia wzrastały , stan zdrowia się pogarszał , a rana się nie goiła . . I kiedy już była m załamana i traciła m nadzieję , znajoma w poradni cukrzycowej poleciła mi doktora Chęcińskiego . Po wizycie u Pana doktora moja Mama przekonała się do insuliny ! Po tak długim czasie , po setkach rozmów , nikt nie był w stanie przekonać Mamy do insuliny , a wystarczyła jedna wizyta u doktora Chęcińskiego . Cukry się unormowały , Mama o wiele lepiej się czuje , stopa cukrzycowa wygląda coraz lepiej i bardzo szybko się goi dzięki Doktora zaleceniom . Jesteśmy z Mamą bardzo wdzięczne doktorowi za pomoc i zaangażowanie w nasz przypadek ."
+  },
+  {
+    "opinion_id": "op_002319",
+    "text": "Pionierskie operacje wszczepienia stymulatorów osobom w śpiączkach w maju przeprowadził w olsztyńskim szpitalu klinicznym zespół prof . Wojciecha Maksymowicza pod kierunkiem japońskiego neurochirurga prof . Isao Morita ( przeprowadził on w Japonii ok . 300 tego rodzaju operacji ) . Prof . Moritę sprowadziła do Polski Fundacja Ewy Błaszczyk \" Akogo ? \" , stymulatory dla chorych nieodpłatnie przekazał ich producent - Boston Scientific Polska . Operacje polegają na otwarciu kanału kręgowego , a następnie wprowadzeniu elektrody nad oponę twardą rdzenia kręgowego . Do tej elektrody przepływa prąd ze stymulatora , który jest umieszczany na tułowiu pacjentów . Prąd ze stymulatora poprzez elektrodę ma efektywnie drażnić struktury pnia mózgu . Stymulator z elektrodą połączony jest przebiegającym pod skórą przewodem ."
+  },
+  {
+    "opinion_id": "op_002320",
+    "text": "Gdy wygasną prawa patentowe , inni producenci mogą zacząć wytwarzać ten sam preparat - wówczas nosi on nazwę leku generycznego . Gdy generyk pojawi się na rynku , jego cena gwałtownie spada ( niekiedy nawet o 90 proc . ) . Producent generyku nie ponosi już wydatków związanych z kosztownymi badaniami klinicznymi . Wystarczy , że odtworzy zamiennik . Koszty jego produkcji to drobny ułamek ceny żądanej przez producenta leku oryginalnego – tłumaczył Grieb . \" Dzięki generykom maleją koszty leczenia jednych chorób , a zaoszczędzone pieniądze można przeznaczyć na leczenie innych chorób drogimi lekami innowacyjnymi . W skali Unii Europejskiej oszczędności związane z generykami oceniane są na 35 mld dolarów \" - mówił prof . Grieb . - Szczególnym przypadkiem są leki biologiczne , skomplikowane związki wytwarzane przez żywe komórki . W ich przypadku generyki to leki + biopodobne + o takim samym działaniu ” ."
+  }
+]

@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000961",
+    "text": "Według specjalisty najbardziej jest to widoczne na przykładzie raka żołądka , jednego z najbardziej złośliwych nowotworów . Spadek zachorowalności na ten nowotwór wyraźnie przypada okres , w którym część Polaków zmieniła dietę na bardziej korzystną dla zdrowia . Przykładowo w latach 1960 - 2005 spożycie owoców zwiększyło się w naszym kraju aż 2 , 5 - krotnie , a warzyw - o 41 proc . Z kolei spożycie soli - która jest jednym z głównych czynników ryzyka raka żołądka - w latach 1999 - 2011 spadło o 26 proc . Jak przypomnieli specjaliści , sól zmniejsza grubość pełniącej rolę ochronną śluzówki żołądka - a gdy jest ona cieńsza , łatwiej zagnieżdża się w niej bakteria Helicobacter pylori zwiększająca ryzyko raka tego narządu ."
+  },
+  {
+    "opinion_id": "op_000962",
+    "text": "Uważam , że Pan Artur Gralec jest świetnym lekarzem . Konkretny , rzeczowy , stanowczy , sumienny i dokładny . Spokojny i opanowany . Ma wiele szacunku i cierpliwości dla pacjentów . Wysłucha , wyjaśni co trzeba , odpowie na każde pytanie . Miły i uprzejmy , z poczuciem humoru . Znakomity chirurg . Dzięki Niemu mam nadal obie piersi . Na izbie przyjęć inny lekarz poinformował mnie , że będę miała amputację piersi . Na szczęście do tego nie doszło . Pan Doktor Gralec przeprowadził operację oszczędzającą . Jestem Mu za to bardzo wdzięczna . Od operacji minęły trzy miesiące . Nie było żadnych komplikacji . Rana ładnie się zagoiła . Jestem pełna podziwu i uznania dla Pana Doktora Gralca . Mam do Niego duże zaufanie . To naprawdę wspaniały lekarz . Grażyna"
+  },
+  {
+    "opinion_id": "op_000963",
+    "text": "To była nasza piewizyta wizyta u okulisty . Badanie wykonane bardzo dokładnie . Pani okulistyka odpowiedziała na wszystkie pytania . Minusik za to , że pani okulistka nie uprzedziła , że po kroplach na rozszerzenie źrenic , dziecko może mieć problemy z widzeniem przez kilka godzin . . poza tym rzeczowo i fachowo . ."
+  },
+  {
+    "opinion_id": "op_000964",
+    "text": "Pozytywne zdania po wizycie u kardiologia , Pani dr . Aneta Stachurska Przychodnia Specjalistyczna - Wrocław , ul . Legnicka 61 . Trafiła m do Pani doktor z problemami kardiologicznymi , dużym nadciśnieniem i cukrzycą . Została mi postawiona trafna diagnoza oraz zmienione prawidłowo leki na nadciśnienie . Miała m pewność , że nic istotnego odnośnie stanu mego serca nie umknęło . W czasie wykonywania adekwatnej diagnostyki ' odbierała m ' wyjątkową fachowość i rzetelność Pani doktor . Z pełnym przekonaniem polecam Panią doktor ! Oby wszyscy specjaliści mieli takie podejście do ' przejętego ' pacjenta . Wyszła m z gabinetu z ogromną wdzięcznością , dzięki serdeczne ."
+  },
+  {
+    "opinion_id": "op_000965",
+    "text": "Ja chciała by m przestrzec przed tym lekarzem ! Mam problem z prawym okiem . Widzę niewyraźnie i nie wiem czy rozwiąże ten problem silniejsza soczewka . Lekarka długo badała oko , to fakt . Nawet uznała że jedno z urządzeń sie zepsuło i badała ponownie na innym . Podejrzewała mnie o astygmatyzm , ale ostatecznie to wykluczyła . Wypisała receptę na okulary z silną soczewką dla prawego oka ( + 2 . 25 ) . Receptę zrealizowała m i okazało się , że przez te okulary nie da się patrzć ! ! ! Są straszne , aż \" boli \" gdy się próbuje poczekać \" aż się wzrok przyzwyczai \" . Wrócilam do przychodni ale w rejestracji dowiedziała m się , że ta pani już tu nie pracuje . . . Wyrzuciła m przez nią w błoto 450 + 90zł . ( okulary z porządnymi szkłami + wymiana prawego szkła do okularów które miała m ) i nadal nie mam pojęcia co się dzieje z moim jednym okiem . Ta pani tego nie umiała ocenić , nie znalazła przyczyny . I nawet nie zaproponowała innych badań czy wizyty u kogoś , kto ma więsze doświadczenie ( normalna praktyka u szanujących się lekarzy gdy trafią na trudny przypadek ) . Ostrzegam przed tym lakarzem . Nie jest profesjonalistką ."
+  },
+  {
+    "opinion_id": "op_000966",
+    "text": "Cudowny lekarz jestem bardzo wdzięczna za to co zrobił . Najpierw trafiła m do Sokołowa Podlaskiego gdzie lekarze zrobili mi rezonans tam się okazało ze mam bardzo dużą przepuklinę która naciska na rdzeń kręgowy moja prawa ręka robiła się niewładna . Tam stwierdzono ze nie da się już tego zoperować i muszę się z tym pogodzić ze w najbliższym czasie będę jeździ na wózku inwalidzkim ( mam 23lata ) . Dzięki mojemu wielkiemu szczęściu trafiła m w ręce Pana dr Pawła Wichrowskiego który bardzo szybko mnie zoperował 4h po zaczęła m chodzić nic mnie nie boli blizna jest prawie nie widoczna . Mogę tylko powiedzieć ze nie mogła m trafić w lepsze ręce . Jest to lekarz który pracuje rękoma Boga ."
+  },
+  {
+    "opinion_id": "op_000967",
+    "text": "polecam , chodzę do Niej już 10 lat - jestem bardzo zadowolona , prowadziła mi kilka lat temu ciążę - zlecała wszystkie potrzebne badania , USG - idealnie \" wymierzyła \" termin porodu . Po porodzie miała m problemy i pani doktor bardzo mi pomogła . Ostatniej zimy ponownie mi pomogła za co jej dziękuję . Nadmieniam , że wcześniej chodziła m do doktora Baja i niestety do Flis - brrrr ."
+  },
+  {
+    "opinion_id": "op_000968",
+    "text": "Uważam , że Pani Doktor jest świetnie przygotowana marketingowo , potrafi zabawić małego pacjenta i oczarować rodziców , więc nic dziwnego , że w poczekalni tłum rodziców . Ale . . . po pierwsze , nie uważam , że przypisywanie winy rodzicowi za to , że choruje jego dziecko jest właściwe , po drugie , przypisywanie tony leków , w tym na stałe sterydów do nosa nie oceniam jako korzystne dla zdrowia rozwiązanie bez zrozumienia przyczyn , dla których maluch choruje , po trzecie , choroby typu zap oskrzeli czy zap uszu to jednak choroby wieku dziecięcego a ocena Pani Doktor , że synek jest za mały na takie chorowanie jest zupełnie niezgodna z ocenami pediatrów . Ogólnie miło miło , ale nie przekonywująco i nie za takie pieniądze ."
+  },
+  {
+    "opinion_id": "op_000969",
+    "text": "Pani doktor bardzo sympatyczna i kompetentna . Moja pierwsza wizyta przebiegła bez zastrzeżeń . Badanie było bezbolesne . Jedyne co mi się nie spodobało to sposób tłumaczenia stosowania leku . Nie została m poinformowana o skutkach ubocznych przepisanego mi leku . Doczytała m wszystko w ulotce . Jednak na pewno odwiedzę panią doktor ponownie . Polecam tego lekarza ."
+  },
+  {
+    "opinion_id": "op_000970",
+    "text": "Trafiła m do Pani doktor na badanie w kierunku bólów głowy . Została m zbadana i nie wykryto żadnej wady . Mimo tego Pani doktor przepisała mi krople \" rozluźniające gałki oczne \" . Bóle głowy chwilowo mijały i wydawało mi się , że to dzięki kroplom , był to jednak zbieg okoliczności , krople na dłuższą metę nie działały . Wróciła m w między czasie do Pani doktor po następna receptę , zbadała mnie ponownie ( nie wiem po co , ponieważ w ciągu miesiąca czy dwóch raczej nic się nie zmieniło ) , tłumaczyła to tym , że nie może wziąć ode mnie pieniędzy za wypisane samej recepty , pytanie więc brzmi , dlaczego w ogóle je wzięła , dla mnie ponownie zbadane było tak samo niepotrzebnym wydawaniem pieniędzy jak płacenie za samą receptę . Wcześniej myślała m , że została m rzetelnie zbadana , jednak kiedy trafiła m na badanie do innego okulisty , tam zostały mi zakroplone oczy w celu lepszego zbadania , pani doktor tego nie zrobiła za żadnym razem . Po za tym , z opinie drugiego okulisty dowiedziała m się , że nie powinna m używać kropli które mi przypisano jeśli nie stwierdzono żadnej wady oka . Tak więc z mojego doświadczenia raczej wizyt odradzam ."
+  },
+  {
+    "opinion_id": "op_000971",
+    "text": "Specjalista znający się na rzeczy , od razu wiedział co się ze mną dzieje i mam nadzieję , że przy pomocy P . Doktora powrócę do pełni życia jak najszybciej ! ; ) Wizyta trwała tyle ile tego potrzebowała m , mówiła m wszystko co mi dolega , a Pan Doktor słuchał uważnie i zadawał trafne pytania . . . Następnie otrzymała m leki , których działanie zostało mi precyzyjnie wyjaśnione . Polecam wizytę u tego psychiatry ."
+  },
+  {
+    "opinion_id": "op_000972",
+    "text": "Kiedyś przez kilka lat to była Pani dr pediatra mojego syna . Życzliwa , ujmująca , staranna , sympatyczna . Jednakże sposób leczenia alergii naszego syna nie powodował poprawy jego zdrowia , lecz alergia była bez zmian , wciąz taka sama , ani lepsza , ani gorsza . Natomiast ilośc leków które syn zażywał była zatrważająca . Pani Doktor na pewno ma ogromne doświadzcenie , lecz jestesmy przeciwnikami kupowania pełnych toreb leków w aptece co kilka dni . Później syn zaczał byc leczony homeopatycznie , mineły wszystkie objawy wszelakich chorów jakie miał . Znikneła alergia , rzekoma astma , i inne zakłócenia zdrowia . Nie spozywa od wielu lat żadnych leków oprócz homeopatii . Jest zdrów jak rybka . Pan Doktor to przesympatyczna Osoba , mająca wielką wiedzę medyczną , lecz niechętna na leczenie niekonwencjonalne , a szkoda . W naszym przypadku spraawdziło sie w 100 % , polecam innym : )"
+  },
+  {
+    "opinion_id": "op_000973",
+    "text": "Bardzo dobry reumatolog . Prowadziła mnie przez 2 lata . Bardzo szanuję ją przede wszystkim za to , że potrafiła powiedzieć \" ja w tej sytuacji nie wiem , co zrobić - wysyłam cię do mądrzejszych , do Instytutu Reumatologicznego w Warszawie \" . Bardzo jestem jej wdzięczna za opiekę . Może gdyby to ona była moim pierwszym reumatologiem , historia mojej choroby potoczyła by się inaczej . Bardzo miłe było to , że po 10 latach od \" przejścia \" pod opiekę reumatologa dla dorosłych , Pani Doktor poznała mnie na ulicy . Pamiętała nie tylko imię , ale też i historię mojej choroby ! Polecam ją z całego serca !"
+  },
+  {
+    "opinion_id": "op_000974",
+    "text": "Szukając odpowiedniego lekarza chirurga trafiła m na ten portal i dzięki niemu dokonała m wyboru . To był strzał w dziesiątkę . Przed zabiegiem bała m się , ale strach dzięki osobie Pana Doktora gdzieś się rozpłynął . Zabieg był bezbolesny , a rana wygoiła się z prędkością światła . Pan Dr Niziołek jest miły , serdeczny i ma złote ręce . To wspaniały chirurg , odpowiednia osoba na właściwym stanowisku . To człowiek bardzo wysokiej klasy . Polecam go wszystkim . Moja córka kończy medycynę i zamierza zostać chirurgiem , chciała by m żeby Pan doktor był dla niej wzorem . Panie Doktorze życzę sukcesów zawodowych , dużo zdrowia i bardzo dziękuję ."
+  },
+  {
+    "opinion_id": "op_000975",
+    "text": "Była m 1 raz u Dr na konsultacji i badaniach . Po tej jednej wizycie stwierdzilam , ze Dr jest bardzo zdystansowana i zimna osoba . Miała m wrazenie ze sie spieszy i chce jak najszybciej mnie \" załatwic \" . Stwierdzono u mnie niedosłuch , mam termin u protetyka - a co dalej , nie wiem . Obsługa bardzo miła i bardzo dobrze znająca ofertę placówki , została m dobrze poinformowana ."
+  },
+  {
+    "opinion_id": "op_000976",
+    "text": "Niestety rozczarowała m się wizytą na którą czekała m 4 miesiące . Zapłacilam 150 zl ( jak się rejestrowalam na Wyszynskiego to nie można bylo przyspieszyc wizyty ) natomiast jak przyszlam ktos mi sie doslownie \" wepchal \" w kolejkę . Rozpacz . Jesli chodzi o samą wizytę : Pani doktor obejrzala mnie dokladnie oraz moje wyniki , zlecila dodatkowo platną morfologię i antykolakugant toczniowy i cpr bodajze za ktore dodatkowo zaplacilam ( ok 80 zl ) Na wizycie nic sie nie dowiedzialam , zadnej sciezki i kierunku w rozwiazaniu problemu - powiedziala , ze naradzi sie i da mi znać - ale nigdy wiecej o niej nie slyszalam . Dla mnie czekanie na lekarza 4 mce przy zmieniajacych sie ciagle i dochodzących objawach i placenie za kazda najdrobniejsza rzecz jest nie do przelkniecia i swiadczy , ze nie o czlowieka a pieniadze tu chodzi ."
+  },
+  {
+    "opinion_id": "op_000977",
+    "text": "Specjalista zwrócił uwagę , że głównym elektrolitem traconym wraz z potem jest sód , jednak jego stężenie może być bardzo zróżnicowane wśród sportowców i wahać się od 200 do ponad 2000 mg / l . \" W związku z tym niektóre osoby powinny sięgać po napoje o zwiększonej zawartości sodu , niestety większość wód mineralnych dostarcza go w znikomych ilościach , dlatego niejednokrotnie z pomocą przychodzą napoje dla sportowców \" - wyjaśniał . Prof . Edward Franek z Kliniki Chorób Wewnętrznych , Endokrynologii i Diabetologii Szpitala MSWiA w Warszawie przekonywał , że jeśli chodzi o codzienne uzupełnianie płynów - najlepiej pić wodę . \" Napoje słodzone ( również wody słodzone ) nie są wskazane zarówno u chorych na cukrzycę ze względu na dużą zawartość cukru , jak i u osób bez cukrzycy , ponieważ zwiększają ryzyko wystąpienia tej choroby \" - dodał ."
+  },
+  {
+    "opinion_id": "op_000978",
+    "text": "Przez cały czas trwania wizyty czuła m się bardzo dziwnie . Pan Bartkowiak nie umiał określić co mi się dzieje , odesłał na badanie , które według dwóch następnych laryngologów było zupełnie niepotrzebne . Mam bardzo mieszane uczucia co do tej wizyty . Zaletą jest to , że bez problemu wypisał mi L4 oraz receptę na przyjmowany lek ."
+  },
+  {
+    "opinion_id": "op_000979",
+    "text": "Witam , do pani dr trafiła m 4 lata temu , kiedy mój syn kończył zerówkę . Wcześniej była m sceptycznie nastawiona do homeopatii i przez 2 lata nosiła m nr telefonu w kieszeni . Syn był wcześniakiem i od małego chorował na zapalenie oskrzeli przechodzące w zapalenia płuc . Chodziła m z nim do pediatry , która aplikowała mu 2 antybiotyki w miesiącu , do przedszkola poszedł od 5 lat - tydzień w przedszkolu - 2 tygodnie chory i tak w kółko . Do zerówki nie chodził prawie wcale z powodu nieustannych infekcji , obawiała m się , że nie poradzi sobie w 1 - ej klasie . Pediatra powiedziała mi , że ona mu nie umie pomóc , zaproponowała szpital . Lekarz alergolog ciągle tylko leki wziewne , zyrtec i zero poprawy . Powiedziała m dość - i umówiła m się na pierwszą wizytę w Instytucie Homeopatii , gdzie trafiła m do pani Ani . Był to maj 2005 roku . Od tego czasu syn nie brał antybiotyku , co nie oznacza , że nie chorował wcale . Odstawili śmy wszystkie tradycyjne leki , bierze tylko homeopatyczne i wreszcie normalnie żyjemy . Jaka była nasza radość kiedy zimą mogła m pójść ze zdrowym synkiem na sanki . Jestem ogromnie wdzięczna pani doktor za to , że jest i tak ofiarnie pomaga małym pacjentom . Dzięki niej mój dziś już 11 letni Marek normalnie funkcjonuje , chodzi do szkoły i osiąga b.dobre wyniki w nauce ( na koniec 4 klasy świadectwo z paskiem ) . Polecam tą metodę leczenia wszystkim , naprawdę warto . To naprawdę działa !"
+  },
+  {
+    "opinion_id": "op_000980",
+    "text": "Odnosnie poprzedniej opinii zgadzam sie zupełnie sa pacjenci którym wystarcza lekarz taki jak dr Rudnicka sa równiez tacy którzy mają większe wymagania w stosunku do swojego lekarza . Stopień doktora uzyskuje się przez fakt pisania pracy doktorskiej na którą kazdy lekarz po ukończeniu studiów medycznych ma klika lat nie jest to w żadnym wypadku związane z umiejętnościami lekarza . Ja mam bardzo złe doświadczenia z p . Rudnicką właśnie z Karowej gdzie pracuje pod okiem prof . Radowickiego . Fakt ilości wpisów pod opiniami , , odradzam , , mówi sam za siebie . Jest to młody lekarz wiec jest szansa ze popracuje nad swoja postawa ."
+  }
+]

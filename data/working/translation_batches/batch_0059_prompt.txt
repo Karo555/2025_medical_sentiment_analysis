@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001161",
+    "text": "Do pani doktor trafiła m pod nieobecność mojego lekarza prowadzącego , w połowie ciąży . Ciąża przebiegała prawidłowo , mój lekarz nie miał zastrzeżeń do wyników badań , a u dr Babik usłyszała m , że zaraz trafię do szpitala z takimi wynikami moczu ( niewielkie odchylenia , okazało się , że źle przechowywała m próbkę ) dodatkowo nastraszyła mnie , że mogę poronić , bo mam skurcze ( które , jak się okazało od 20tc . mogą się zdarzać , pani dr gdy spytała m o niczym takim nie słyszała ) . Także tylko się najadła m strachu i te parę wizyt kosztowało mnie wiele nerwów , a uważam , że ciężarnym powinno się tego oszczędzić ."
+  },
+  {
+    "opinion_id": "op_001162",
+    "text": "Brak nawiazania relacji z pacjentem , niedopytanie o kluczowe kwestie dotyczace wywiadu psychiatrycznego , niewystawienie paragonu ; pytanie typu \" czego pani ode mnie chce \" uważam za bardzo niestosowne . Brak empatii Pani Doktor , niesłuszne przypuszczenia . Leki przepisane może i dobre , cała reszte oceniam bardzo słabo ."
+  },
+  {
+    "opinion_id": "op_001163",
+    "text": "Spotkania z Panem Piotrem to jedna z najciekawszych , najpiękniejszych a zarazem najtrudniejszych przygód jakie miały miejsce w moim życiu , nie jestem najlepszym pisarzem ale też nie potrafię nie opisać tego co mnie spotkało . Moja terapia trwała rok czasu . Długo odwlekała m decyzję o spotkaniu , ale przychodzi taka chwila w życiu każdego człowieka , że już ma wszystkiego dosyć , jest zmęczony . Moje życie prywatne , problemy w rodzinie z którymi nie potrafiła m się pogodzić , stagnacja , związek w którym nie była m szczęśliwa , brak odwagi do podjęcia jakiejkolwiek decyzji , brak akceptacji własnej osoby - w końcu zrozumiała m , że trzeba poprosić kogoś o pomoc . Przebieg terapii nie był dla mnie łatwy , ciągle tylko płakała m , była cisza , której nie potrafiła m znieść , pojawiła się wątpliwość z mojej strony ale pomimo tego wszystkiego Pan Piotr był obok mnie , czekał na mnie , aż sama będę gotowa na krok dalej . Nie wiem jak , nie wiem jaką metodą , ale udało się mnie „ złamać ” za co bardzo , bardzo dziękuje - to się nazywa skuteczność . Wreszcie przestała m się oszukiwać , a zaczęła m wsłuchiwać się w swoją osobę , w swoje myśli , ciało . Dzięki terapii poprawiła m stosunki z moim ukochanym tatą , zrozumiała m jaką była m egoistką , nie doceniła m tego co mam tego , że dzięki tym cudownym osobom jakimi są moi rodzice jestem na tym świecie . Pozbyła m się nadmiernego perfekcjonizmu , stała m się bardziej asertywną osobą , zaczęła m odkrywać w sobie kobiecość , a co najważniejsze pomimo problemów nauczyła m się stawać im naprzeciw a nie użalać się nad sobą . Wiem czego chcę , co jest dla mnie najważniejsze , co sprawia , że jestem szczęśliwa : ) Przestała m ścigać się z życiem , ze sobą , odzyskała m spokój - jest to dla mnie niesamowite ! Panie Piotrze bardzo dziękuje za możliwość przeżycia tej przygody z Panem . Dziękuje za dobrą energię , którą podzielił się Pan z moją osobą , za okazaną cierpliwość , dobroć , za uśmiech ! Dla tych którzy mają jakiekolwiek wątpliwości , szczerze warto zrobić krok do przodu i poprosić kogoś o pomoc - choć wiem , że czasami nie jest to łatwe . Pozdrawiam : )"
+  },
+  {
+    "opinion_id": "op_001164",
+    "text": "Nie ukrywam , że Pani Ptaszyńska wyciągnęła mnie z bardzo trudnej sytuacji życiowej ale kiedy na ostatniej umówionej wizycie kontrolnej , która miała ostatecznie ocenić moj stan psychiczny , który wcześniej Pani doktor określiła jako dobry i stabilny zabrał em ze sobą bliską mi osobę , żeby spojrzała na to swoim okiem . Gdy tylko Pani doktor dostrzegła , że towarzyszy mi \" kontroler \" zdawała się poczuć zmieszana . Jeszcze niedawno sądząc , że jestem wyleczony chciała umówić się ze mną na ostatnią , kontrolną wizytę . Na owej wyzycie całkowicie zmieniła swoje zdanie , mowiąc , że : \" Przedemną jeszcze długa terapia u psychologa i długoterminowe zarzywanie leków antydepresyjnych \" . Nasze spotkanie skończyło się po połowie godziny ponieważ Pani doktor skończyły się pomysły na wmawianie mi depresjii . Dodam , że 90 % wizyt było niepuktualnych . Teraz zamiast odwiecznie kroczącego za mną smutku czuje niedający mi spokoju gniew na to , że w dzisiejszych czasach nawet lekarzy od tak poważnych chorób jaką jest głęboka depresja dopadła przebrzydła chciwość i egoizm . . . Sytuacja z psychologiem była \" po koleżeńsku \" identyczna . Zostawiam tę przygnębiającą opinie ku przestrodze chorych by strzegli się interesownych lekarzy , którzy niegdyś składali przysięgę Hipokratesa obecująć nieść pomoc potrzebującym i obiecywali : \" Będę stosował zabiegi lecznicze wedle mych możności i zdolności ku pożytkowi chorych , broniąc ich od uszczerbku i krzywdy . \" Uprzedzam Zażenowany"
+  },
+  {
+    "opinion_id": "op_001165",
+    "text": "Kiedy czytam opinie na temat tej lekarki , mam wrażenie , że była m na wizycie u innej osoby . Mi nie poświęciła czasu ( wizyta trwała jakieś 5 minut ) , nic nie wytłumaczyła , tylko wypisała receptę i rzuciła jak często brać leki , o wszystko musiała m dopytywać a i tak odpowiadała bardzo lakonicznie . Miała m wrażenie , jakby pacjenci byli dla niej złem koniecznym . Poza jej umiejętnościami rozmawiania z pacjentem , których wcale nie cenię najwyżej u lekarzy musze zwrócić uwagę również na sam przebieg wizyty - kompletnie nie interesuje jej nic poza tym , z czym się przyszło . Brak wywiadu ginekologiczno - położniczego , nie mówiąc już o ogólnym czy rodzinnym . Nie zadaje pytań o przebyte wcześniej choroby , ciąże , obecnie przyjmowane na stałe leki , choroby przewlekłe czy cokolwiek innego . Jeżeli nie wie nic o pacjentce to w jaki sposób ma przeprowadzić jakiekolwiek leczenie ? Muszę przyznać , że nigdy wcześniej nie spotkała m ginekologa , który tak powierzchownie traktował by pacjenta . - u każdego wizyta zaczynała się od pytań o zdrowie ogólne , przebyte ciąże , operacje itp , a badanie piersi podczas wizyty było standardową procedurą . Zawiodła m się ."
+  },
+  {
+    "opinion_id": "op_001166",
+    "text": "Zdecydowanie nie polecam i mam wrażenie , że pan doktor eksperymentuje sobie na pacjentach : pomimo wyników nasienia i hormonów , które nie kwalifikowały się do leczenia farmakologicznego przepisał silne leki ( agapurin , undestor , tamoxifen ) po których , po 3 miesiącach \" leczenia \" , wyniki nasienia i hormonów znacznie pogorszyły się . Dodam , że po nieudanym leczeniu zdecydował em się na wizytę u drugiego androloga w przychodni Novum ( dr Wolski ) i ten stwierdził , że to leczenie nie miało sensu ! ! ! również ginekolog z przychodni był zdziwiony leczeniem bo i tak skończyło się procedurą IVF a niepotrzebnie stracili śmy pieniądze i przede wszystkim czas ( po zaprzestaniu leczenia trzeba było odczekać kolejne 3 miesiące do IVF ) ."
+  },
+  {
+    "opinion_id": "op_001167",
+    "text": "Nie jestem zadowolona z żadnej wizyt u Pana doktora , a były 4 . Informacje jakie otrzymała m były bardzo okrojone . Gdy zapytała m o dietę przy chorobie hashimoto - Pan doktor mnie wyśmiał i stwierdził , że nie ma żadnych zaleceń odnośnie diety . Jak zapytała m jakie mogą być przyczyny dowiedziała m się , że może być ich sporo . Wywiad środowiskowy był również bardzo okrojony . Na żadnym ze spotkań nie uzyskała m odpowiedzi , która choć trochę przybliżyła by mi samą chorobę oraz stan zdrowia , w którym się na daną chwilę znajdowała m . USG tarczycy trwało chwilę , po zrobionym badaniu wydruku na oczy nie widziała m . Brak zadowolenia ze spotkania tłumaczyła m sobie swoimi wysokimi wymaganiami , dopóki nie trafiła m na innego specjalistę , który od \" a \" do \" z \" wytłumaczył z czym się to wszystko je i dlaczego może być tak , a nie inaczej . Nie polecam"
+  },
+  {
+    "opinion_id": "op_001168",
+    "text": "Była m wczoraj na pierwszej wizycie u doktora Ufnalewskiego . Sympatyczny , pomocny , wprowadza atmosferę spokoju . Zapomniała m jednak zapytać w jakim szpitalu pracuje , czy wogóle pracuje w szpitalu czy tylko prowadzi swój prywatny gabinet ? Gdyby któraś z Was wiedziała bardzo proszę o odpowiedź , z góry dziękuję ."
+  },
+  {
+    "opinion_id": "op_001169",
+    "text": "Podkreśliła , że dzięki tego typu terapii pacjenci mogą poprawić swą motorykę . Dzieje się to – dodała Bukowska - poprzez niejako dostarczaną z zewnątrz przez terapeutę muzykę np . w postaci rytmu , która może stymulować układ nerwowy chorych . \" Dzięki temu bardzo często osoby , które słabo chodzą w momencie , kiedy słyszą muzykę zaczynają poruszać się zupełnie inaczej – wydłuża się ich krok , chodzą szybciej , rytmiczniej . To działanie było wielokrotnie badane \" – zaznaczyła Bukowska . Ważnym – zdaniem terapeutki – elementem muzykoterapii jest też gra na prostych instrumentach , dzięki którym pacjenci imitują ruchy wykonywane w codziennym życiu np . podczas ubierania i tym samym mogą poprawić swoją sprawność . \" Dzięki temu , że możemy podobne ruchy , które oni tracą , ćwiczyć za pomocą różnych ustawień instrumentów perkusyjnych , te same ruchy przekładają się potem na funkcje ruchowe , które są potrzebne w codziennym funkcjonowaniu \" – powiedziała ."
+  },
+  {
+    "opinion_id": "op_001170",
+    "text": "O niezwykłym charakterze tych cząsteczek świadczą niedawne badania . Pokazały one , że dzięki odpowiednim cząsteczkom mikroRNA można dorosłą komórkę przeprogramować w . . . komórkę macierzystą . Już wcześniej wiadomo było , że komórki macierzyste można otrzymać po wprowadzeniu do dorosłej komórki zestawu trzech genów . \" Teraz okazało się , że wystarczy podwyższyć ekspresję odpowiednich mikroRNA , a komórka „ wycofa się ” do fazy komórki macierzystej . Nie trzeba już ingerować w jej genom , wystarczy „ dołożyć ” odpowiednie mikroRNA i gotowe ! Za głowę się złapali śmy , kiedy dowiedzieli śmy się o tych badaniach ! \" - opowiada naukowiec . Dr Bielawska - Pohl zaznacza , że intensywne badania nad mikroRNA trwają w laboratoriach na całym świecie , bo istnieje jeszcze wiele znaków zapytania . „ Cały czas poszukujemy możliwości zastosowania tych cząsteczek mikroRNA do leczenia wielu różnych chorób poznając mechanizmy ich regulacji i działania ” - zaznacza badaczka ."
+  },
+  {
+    "opinion_id": "op_001171",
+    "text": "Podziwiam Panią Doktor , że w takich warunkach tego prymitywnie zorganizowanego \\ \" instytutu \\ \" stara się mimo wszystko ludziom pomagać , biorąc na siebie cale odium siermięgi tego miejsca . Wiem , że stara się pomagać ludziom tak jak może pomimo przeciążenia nadmierną ilością ciężko chorych przecież pacjentów . 10 minut na pacjenta nie wynika z jej widzimi się , ale kardynalnych błędów organizacyjnych . Ten instytut oszczędza jak może na badaniach , lekach i lekarzach . Pacjenci mają dostęp jedynie do najtańszych i jeszcze do niedawna najbardziej prymitywnych form leczenia . Współczuje i dziwię się Dr Maszkowska , że chce jeszcze narażać się na afront tylu niepochlebnych opinii . W tak frontowej placówce przy tak poważnej chorobie trudno zadowolić kogokolwiek choćby dobrym słowem , gdy nie ma innych mozliwości ani czasu na choćby proste zbadanie i leczenie . Życzę Pani Doktor cierpliwości do czasem może i słusznie spretensjonowanych rodzin . Nie sądzę jednak by tą lekarkę należało winić za zaniedbaania systemu i cynicznie oszczędzającej na pacjentach placówki ."
+  },
+  {
+    "opinion_id": "op_001172",
+    "text": "Profesor po obejrzeniu płytki i cierpliwym wysłuchaniu moich opowieści o dolegliwościach oraz po zbadaniu , wyjaśnił , że na tym etapie choroby nie pozostaje mi nic innego jak ćwiczenia , dieta , masaże i ewentualnie leki przeciwbólowe . zalecił jak najszybszy rezonans i ponowna konsultację . Wizyta o tyle przyjemna , że polegała m na wiedzy , czuła m się bezpiecznie i nie odczuła m parcia ze strony lekarza do operacji , która wcześniej mi sugerowano ."
+  },
+  {
+    "opinion_id": "op_001173",
+    "text": "była m u Pani doktor na wizycie i była m zadowolona , jednakże nie została m wyleczona więc nie mogę wystawić oceny ani pozytywnej ani negatywnej . Pani doktor wytłumaczyła mi jakie mogę robić błędy i co mi może dolegać i dlaczego . po leczeniu objawy mojego zapalenia - infekcji zmalały , ale nie ustąpiły całkowicie dlatego robię sobie teraz bardziej dokładne badania i szukam lekarza który mnie wyleczy , Myślę jednak że Pani doktor jest stosunkowo dobrym lekarzem i może mieć wiele zadowolonych pacjentek"
+  },
+  {
+    "opinion_id": "op_001174",
+    "text": "Był delikatny , pokazywał mi na usg jajniki , śmiał się . Mówił mi dokładnie co robi , czego szuka i ile to będzie jeszcze trwało . Nagle weszła pielęgniarka informując , że mają dziewczynę z tak ostrymi bólami , że mdleje i wychodząc nie zamknęła drzwi . Widział moje przerażenie . Przeprosił , zamknął drzwi wcześniej zwracając uwagę pielęgniarce . Powiedział , że tamta musi poczekać , bo aktualnie bada pacjentkę . Widziała m , że nie spieszy się , potraktował mnie na prawdę jak kobietę , nie przedmiotowo i z pośpiechem . Bardzo była m zadowolona , muszę poszukać gdzie przyjmuje gdy będę wybierała się następnym razem ."
+  },
+  {
+    "opinion_id": "op_001175",
+    "text": "nie polecam , leczyła m dziecko u Pani doktor 2 , 5 roku , straciła m multum kasy na nie potrzebne leki o mało nie doprowadziła mojego dziecka do astmy bo przez ten cały czas leczyła bez jakichkolwiek badań jak zmieniła m lekarza to był zszokowany stane dziecka regularnie leczonego stanowczo nie polecam"
+  },
+  {
+    "opinion_id": "op_001176",
+    "text": "Do doktora trafiła m z polecenia koleżanki . Ponad 2 lata już jestem jego pacjentką i nie zamieniła by m go na żadnego innego lekarza mimo że ceny wizyt nie należą do najtańszych . To jedyny lekarz który dokładnie wyjaśnił mi co i jak przy robieniu usg . Dzieki jego pomocy jestem dziś mamą ślicznej córeczki , na każdej wizycie podtrzymywał na duchu i mówił że wszystko będzie ok , mimo moich licznych wątpliwości . Gorąco polecam ."
+  },
+  {
+    "opinion_id": "op_001177",
+    "text": "Wyniki uzyskane przez FSA w 2009 roku rzeczywiście nie pokazały istotnych statystycznie różnic , ale należy podkreślić , że tamci autorzy w ogóle nie uwzględniali związków bioaktywnych z grupy polifenoli , a dobór prac do analizy był dość szczególny . Praca amerykańska z 2012 roku objęła trochę szerszy materiał , choć wciąż stosunkowo niewielki . Ponadto pojawił się tam jeszcze jeden element . W tekście pracy można znaleźć informacje świadczące o tym , że w surowcach ekologicznych występuje istotnie więcej polifenoli niż w surowcach konwencjonalnych . Natomiast we wnioskach końcowych autorzy twierdzą , że takich różnic nie ma . Moim zdaniem jest to manipulacja danymi naukowymi . Niestety jest to bardzo często stosowany chwyt , z którym zetknęła m się wielokrotnie . P"
+  },
+  {
+    "opinion_id": "op_001178",
+    "text": "Ostrzegam wszystkich przed wizytą u tego ' lekarza ' ! ! ! Byli śmy u tego pana na USG bioderek córeczki . Na podstawie badania pan stwierdził dysplazję jednego z bioder i zalecił założenie aparatu . Ani słowa wyjaśnienia jaki aparat , co robić dalej , jak postępować . Na pytanie o jakim aparacie mowa , pan stwierdził , że sobie przeczytam na opisie badania . Wyszli śmy z gabinetu bez niezbędnych informacji co do dalszego postępowania , z opisu badania wynikało , że zalecił założenie rozwórki Koszli , czyli , jak się później dowiedzieliśmty , praktycznie unieruchomienie niemowlecia na przynajmniej 6 tygodni - koszmar . Na całe szczęście zdecydowali śmy się na weryfikację diagnozy u 2 innych , renomowanych ortopedów . Okazało się , że z bioderkami wszystko w porządku , nic nie trzeba leczyć ! ! ! Stracone nerwy i pieniądze na dodatkowe wizyty niestety już nie do odzyskania . Podsumowując : ODRADZAM jakiekolwiek wizyty u tego pana - szkoda nerwów i cierpień dziecka niepotrzebnie męczącego się w rozwórce !"
+  },
+  {
+    "opinion_id": "op_001179",
+    "text": "Lekarz bardzo uprzejmy i miły , co przy moich dotychczasowych doświadczeniach z lekarzami należy wyraźnie zaznaczyć , bo nie jest to tak oczywiste . Bardzo rzeczowo i dokładnie odpowiadał na pytania . Przedstawiał dokładnie możliwe opcje leczenia i szczerze określał ich skuteczność biorąc pod uwagę dokumentację medyczną . W porównaniu do wizyty w Szpitalu Onkologicznym , gdzie przyjmowała nas Pani doktor po prostu niebo a ziemia ."
+  },
+  {
+    "opinion_id": "op_001180",
+    "text": "Poczucie sprawstwa to odczucie , że to my jesteśmy przyczyną własnego działania . Wydawało by się , że każdy z nas powinien wiedzieć , że to my wykonujemy ruch ręką , myślimy o czymś lub mówimy . Okazuje się , że nie zawsze jest to oczywiste i niektórzy nie odczuwają przyczynowości działania . Są przekonani , że natrętne myśli mógł sprowadzić do ich głowy ktoś z rodziny , Bóg , diabeł albo kosmici  - tłumaczy Leon Ciechanowski , prowadzący badania na SWPS Uniwersytecie Humanistycznospołecznym , pod kierunkiem Anety Brzezickiej . Dotyczy to nie tylko schizofreników , ale również osób z zaburzeniami obsesyjno - kompulsywnymi . Objawiają się one wówczas , kiedy wykonujemy jakieś działanie wbrew sobie , np . nie możemy przestać myć rąk albo nie możemy się zdecydować na to , czy zapiąć czy rozpiąć koszulę ."
+  }
+]

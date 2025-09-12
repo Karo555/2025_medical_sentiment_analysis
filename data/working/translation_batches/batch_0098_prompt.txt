@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001941",
+    "text": "Zgadzam się ze wszystkimi negatywnymi opiniami . Wizyta była bardzo nieprzyjemna , fatalne podejście do zdenerwowanego rodzica niemowlaka , badanie dziecka bez żadnego wyczucia , na zadane pytanie odpowiada nerwowo , chaotycznie i tak , że nic z tego nie wynika . Od samego wejścia bardzo niemiła , mam wrażenie że dopiero w połowie wizyty po otwarciu karty w komputerze i zobaczeniu , że pacjent ma pakiet \" vip \" zmieniła nastawienie i spuściła z tonu ( ! ) jakby to miało jakiekolwiek znaczenie z jakim pacjentem ma doczynienia . Nie polecam wizyt jeśli nie są konieczne . W LUX MEDzie jest mnóstwo cudownych pediatrów ."
+  },
+  {
+    "opinion_id": "op_001942",
+    "text": "Pierwszy lekarz ortopeda , który w ogóle mnie zbadał i zdiagnozował . Wcześniejsi , a \" leczę się \" od kilku lat , nawet na mnie nie spojrzeli . Ale były to wizyty w ramach NFZ , co wiele wyjaśnia . Pana doktora wybrała m na podstawie opisów na tym portalu , i po pierwszej wizycie uważam , że to bardzo dobry wybór ."
+  },
+  {
+    "opinion_id": "op_001943",
+    "text": "Witam serdecznie , mam 22 lata u Doktora leczę się 2 rok . . . Jako jedyny lekarz podszedł do mnie poważnie . Zlecił masę badań , zanim zaczął mnie leczyć minęło pół roku . Po drugiej bodajże wizycie stwierdził , że podejrzewa guza mózgu . . . Wystraszyła m się . Zrobiła m jednak rezonans i mam SM . . . którego nie wykryła by m bez Doktora . Teraz znalazł mi nowotwór jajników . W sumie nieciekawie . Powiedział , że mam 2 lata na zajście w ciąże . Właściwie wiele mu zawdzięczam . Ode mnie przyjmował badania zrobione nie u niego / nawet sam mi powiedział , że tak będzie taniej . W stosunku do mnie jest niezwykle życzliwy , ale wiem , że martwi na zapas ."
+  },
+  {
+    "opinion_id": "op_001944",
+    "text": "Uprzejmie i kulturalnie , możliwy kontakt telefoniczny lub mailowy . Jestem pacjentka z epizodyczna astma oskrzelową . Niestety , wizyty bardzo krótkie , szybkie , jakby realizowane w pośpiechu i przede wszystkim bardzo drogie ( szczegolnie jesli wizyta trwa 5 minut i skupia sie na wydaniu 1 recepty ) . Na wszelkie pytania i wątpliwości jedynie krotkie wyjasnienia ( jak dla mnie wrecz \" zbywające \" pacjenta ) , brak zlecenia dodatkowych badań czy porad oprócz informacji w jaki sposob przyjmować lek . Niestety , minusy determinuja moja ocene i musze zrezygnowac z opieki tego lekarza ."
+  },
+  {
+    "opinion_id": "op_001945",
+    "text": "Pani Doktor na pierwszej wizycie sprawiała dobre wrażenie . Kolejne niestety odbywały się na zasadzie zaliczenie , nie dawała żadnych skierowań na badania tylko po rozmowie z pacjentem powiedziała , że wszystko będzie dobrze . I wyznaczała kolejny termin . Pacjent zgłaszał silne dolegliwości bólowe i ogólne osłabienie organizmu . Jednak Pani doktor nie zleciła żadnych badań poza rtg . Jak się okazało te badania były bardzo potrzebne gdyż nastąpiły przerzuty i potrzebna była szybka reakcja i podjęcie dalszego leczenia . Pani doktor zrzucając z siebie odpowiedzialność zasugerowała , aby wezwać pogotowie . Kilku godzinne oczekiwanie pod gabinetem na zaświadczenie o zakończeniu leczenia też nie było miłe Brak zrozumienia dla rodziny ciężko chorego pacjenta , brak jakiegokolwiek wsparcia . Niestety my nie polecamy ."
+  },
+  {
+    "opinion_id": "op_001946",
+    "text": "W zwykłych warunkach szpitalnych - jak tłumaczy - wygląda to tak , że pacjent przez co najmniej dwa tygodnie przyjmuje co najmniej dwa antybiotyki . \" Kontrolowane systemy uwalniania leków są obecne w produktach takich jak insulina nowej generacji i implantach hormonalnych . Jeśli chodzi o choroby nowotworowe , to są już dostępne mieszaniny leków w zastrzykach , ale to dalej są to mieszaniny leków . Nie są to formy zaawansowane w strukturze \" - mówi PAP dr Piegat . Główną zaletą przygotowanych w projekcie materiałów będzie to , że będą nadawały się do terapii wielolekowej , w której podawane są minimum dwa - trzy leki . \" Będziemy mogli w nich + zamykać + kilka leków na raz , co znacznie poprawi komfort pacjentów przy terapiach , w których wymagane jest stosowanie więcej niż jednego leku jednocześnie \" - mówi PAP dr Piegat . \" Roboczo założyła m , że leki będą podawanie doustnie w formie zawiesiny . Aplikowane w ten sposób - bardzo niewielkich rozmiarów cząstki – będą nie tylko lepiej przyjmowane , łatwiejsze w aplikacji , ale też lepiej wchłaniane przez organizm chorego \" - wyjaśnia autorka badań ."
+  },
+  {
+    "opinion_id": "op_001947",
+    "text": "Leczenie małych guzów nie tylko lepiej rokuje , ale nie zawsze wymaga natychmiastowego leczenia . Wystarczy wtedy jedynie obserwować czy guz się nie powiększa . „ Niektóre z nich rozwijają się wolno , w takich sytuacjach można odczekać do momentu , gdy nastąpi progresja choroby ” – zapewnił specjalista . Taką strategie stosuje się w przypadku raka prostaty u mężczyzn . Można ją zastosować również u chorych na raka nerki , gdy guz nie przekracza 3 cm i się nie powiększa . Leczenie polega głównie na operacyjnym usunięciu guza lub całej nerki . Gdy nowotwór nie jest duży , wystarczy wyciąć część nerki . Do wyboru jest wtedy operacja mało inwazyjna polegająca na usunięciu guza tzw . krioablacją ( przez zamrożenie ) , falami o częstotliwości radiowej , laserem lub ultradźwiękami ."
+  },
+  {
+    "opinion_id": "op_001948",
+    "text": "Witam , jestem w trakcie leczenia od końca października . Bardzo szybko zareagowała m na niepokojące mnie zachowania mojej osoby szukając pomocy . Potrzebowała m nie tylko wsparcia farmakololigcznego , ale zrozumienia drugiej osoby , rozmowy i wyjaśnienia , co w rezultacie pozwoli zaakceptować siebie , nie lękać się , uspokoić swój wewnętrzny niepokój . Cenne okazało sie również wspólne spotkanie z małżonkiem , Pani Ania sama wyszła z tą propozycją , co dużo pomogło . Co istotne , nie chce jedynie przez leki pomóc , ale również rozwiązać problem u źródła . W efekcie tamto , to już przeszłość . Patrzę pozytywnie w przyszłość . Pani Ania jest nie tylko lekarzem , ale powiernikiem naszych trosk i problemów , potrafi słuchać i wczuć się w problem pacjenta , daje poczucie bezpieczeństwa , myślę że jest to jej sukces zawodowy , bo ta praca jest jej spełnieniem , a my jako pacjenci czerpiemy z tego korzyści . Bardzo szanuję to co Pani robi , serdecznie pozdrawiam : )"
+  },
+  {
+    "opinion_id": "op_001949",
+    "text": "Lekarka pomimo umówionych godzin przyjmuje pacjentów bez rezerwacji wciskając ich pomiędzy osoby umówione . Jest niezbyt miła przy tym . Przeprowadziła wszystkie badania co jest dużym plusem ( ale w sumie za to się jej płaci ciężkie pieniądze ) . Tak jak ktoś wcześniej pisał próbuje na siłę sprzedać okulary ze swojego salonu ."
+  },
+  {
+    "opinion_id": "op_001950",
+    "text": "Sugerując się opiniami na portalu znany lekarz postanowiła m skorzystać z porady Pani Doktor ( wskazania do wizyty od lekarza POZ ) , niestety jestem bardzo , ale to bardzo rozczarowana po odbytej wizycie . Nie została m zbadana , wizyta trwała bardzo krótko i nic nie wniosla do procesu dalszego leczenia ( na szczęście znalazła m drugiego specjalistę reumatologa , który potraktował mój problem poważnie ) . Trudno oceniać mi fachowość czy wiedzę lekarza , z wymienionych wyżej powodów , jednak muszę podkreślić , brak profesjonalizmu i empatii . Reasumując : drugi raz nie skorzystała by m z porady i nikomu by m nie poleciła Pani Doktor ."
+  },
+  {
+    "opinion_id": "op_001951",
+    "text": "Przyczyn tego jest kilka . Po pierwsze , dane dotyczące metabolizmu narkotyków , np . kokainy , pochodzą z lat 50 . XX wieku . Z przyczyn etycznych nikt dziś nie bada na ochotnikach farmakokinetyki substancji odurzających , dlatego brak nowych danych . Ponadto metabolizm tych związków jest zawsze nieco inny u osób zdrowych i u osób uzależnionych , a tego nie uwzględnia się w tych badaniach . Bardzo duży błąd jest spowodowany systemem kanalizacyjnym - tym , jak bardzo jest wiekowy i w jakim stopniu przecieka . Z badań prowadzonych w Niemczech i w Szwajcarii wynika , że podczas przecieków i przelewów po deszczach około 50 proc . ścieków może nie docierać do oczyszczalni . Ponadto wartość przepływów podawana przez oczyszczalnię jest obarczona błędem około 20 proc . , a dodatkowo część substancji degraduje się po drodze ."
+  },
+  {
+    "opinion_id": "op_001952",
+    "text": "Praca Pani ginekolog polega na pouczaniu jak i czym się podmywać , jak żyć bez stresu i jak odżywiać się zdrowo . To i nic więcej . Nawet na fotel nie posadziła mnie ani razu , uważała , że zmiana odżywiania się załatwi wszystkie problemy . Nie leczy . Robi wykłady o diecie i stresie w życiu . Mi nie pomogła . Odradzam ."
+  },
+  {
+    "opinion_id": "op_001953",
+    "text": "Uważam , ze to bardzo dobry lekarz , stawia dobre diagnozy według najnowszych standardów . Można spokojnie z nim porozmawiać wszystko wytłumaczy i poświęca dużo czasu każdej pacjentce . Leczę się u Pana Wincewicza już rok . Wcześniej leczyła m się w jednym z warszawskich centrum medycznych , gdzie ginelolodzy byli tragiczni , potrafili tylko leczyć lekami , które nie pomagały , a jak zrobili kolposkopie i nie była prawidłowa , to najlepiej , aby wszystko wyciąć , nie próbując innych metod i nie pytając , czy pacjentka rodziła czy nie . Jestem bardzo zadowolona z Pana Doktora , bo zna sie na rzeczy . Wiadomo , że za wszystkie badania trzeba płacić , ale chodze do niego z przyjemnością i płacę , pomimo , ze mam karnet wykupony przez firmę w jedym z warszawskich centrum medycznych . Tu przynajmniej ma ktoś dla mnie czas , a nie tak jak w centrum 5 min i następna pacjentka ."
+  },
+  {
+    "opinion_id": "op_001954",
+    "text": "Jestem pacjentką prof . Buczyłko od jakiegoś miesiąca . Cieszę się niezmiernie , że trafiła m akurat do Niego . Do alergologa wybierała m się dwa lata . . . powodem był katar , ciągły kaszel i wysypka . Przyjmowała m leki p / histaminowe , które niestety przestawałly działać tak jak oczekiwała m . Pierwsze wrażenie na wizycie ? - Nareszcie trafiła m na lekarza , który zadaje pytania i słucha odpowiedzi ! ! Testów zrobiła m sporo , co mnie nie dziwi , gdyż alergologia jest raczej dziedziną w której opieramy się na wynikach ale też na tym co mówi pacjent . Z testów wynikało że jestem uczulona na jabłka i banany co mnie strasznie zdziwiło . Nie sądziła m , że alergia pokarmowa nie daje reakcji takiej o jakiej wszyscy mówią - ból brzucha , wymioty . Postanowiła m przestać jeść jabłka i ku mojemu zaskoczeniu bo kilku dniach katar ustał ! pozostała wysypka , którą za radą Profesora obserwuję . Zapisuję sobie co danego dnia jadła m i jakich kosmetyków używała m . . . zobaczymy czy uda mi się w ten sposób odkryć co powoduje wysypkę = ) Ogólnie serdecznie polecam wizytę u Profesora . Każdy lekarz może przepisać leki antyhistaminowe tylko że nie każdy zapyta Nas czy np . kojarzymy jakieś warzywo albo owoc z dzieciństwa którego nie lubili śmy = )"
+  },
+  {
+    "opinion_id": "op_001955",
+    "text": "Opuściła m gabinet z poczuciem , że moje dziecko nie zostało starannie przebadane , a informacje , które przedstawiła m ( wypis ze szpitala ) też zostały tylko pobieżnie przeanalizowane . U córki istniało podejrzenie astmy oskrzelowej . Doktor nie skierowała nas na żadne badania , wypisała antybiotyk ( kolejny dla dziecka w ciągu 3 tygodni ) i poleciła skonsultować się ze swoim kolegą po fachu , tłumacząc , że jest dużo lepszym diagnostą . Nie tego oczekiwała m po wizycie u uznanej , sądząc po opiniach na tym portalu , pani doktor ."
+  },
+  {
+    "opinion_id": "op_001956",
+    "text": "Jako 16 letnia dziewczynka trafiła m do tego lekarza . Kazał mi zrobić badania TSH , FT3 i FT4 . Wszystko kosztowało , bo to prywatnie . Gdy przyszła m z wynikami , a widać było na pierwszy rzut oka , że w normie nie były była m przerażona . Lekarz zerknął i gdy moja mama zapytała pseudo doktora co ze mną . On odpowiedział . No jak to co - ma Pani zwykły niedorozwój . Dzięki Panu doktorowi człowiek czuje się jak szmata , wpada w depresję i odechciewa mu się żyć , bo czuje się traktowany jako coś gorszego . NIE POLECAM . KRZYWDZI LUDZI ! ! !"
+  },
+  {
+    "opinion_id": "op_001957",
+    "text": "niestety z przykrością stwierdzam swe niezadowolenie z wizyty u Pani doktor . zapisała m się na prywatną wizytę , kierując się tutejszymi opiniami po zrobieniu dwóch testów ciążowych z wynikami wskazującymi na ciążę . Nigdy wcześniej nie była m w ciąży o czym poinformowała m Panią doktor . Pani doktor zrobiła mi usg i stwierdziła , że ciąży nie widać i nie może jej stwierdzić , po czym kazała przyjść za dwa tygodnie . Poinformowała m , że nie wytrzymam tak długiego czasu w niewiedzy i zapytała m czy są inne sposoby na szybsze jej potwierdzenie , po czym Pani doktor zapytała mnie : \" a po co Pani to chce wiedzieć ? chce Pani o tym komuś powiedzieć ? \" zdziwiła m się , bo przecież to jest raczej istotna informacja . Odpowiedziała m , że chcę wiedzieć czy muszę już dbać o siebie podwójnie ( to chyba oczywiste ) . Pani doktor stwierdziła , że testy często się mylą ( zrobiła m dwa testy różnych firm , więc dziwne żeby oba się pomyliły ) . Dostała m skierowanie na badanie beta hcg z krwi . Pani doktor poinformowała mnie , że jeśli będzie podwyższone to wskazuje na ciążę , ale że nie należy się jeszcze cieszyć , bo to może być ciąża pozamaciczna . Nie wiadomo gdzie ta ciąża jest i jaka jest . Wystraszona i zszokowana wyszła m z gabinetu . Pani doktor bardzo mnie zestresowała i nastraszyła . Zaniepokojona ciążą pozamaciczną , nie mogła m spać w nocy , płakała m . Na drugi dzień poszła m do innego lekarza i dopiero tam usłyszała m , że nie powinna m się martwić , ponieważ w tak wczesnej ciąży ( około 4 tydzień ) , jest to normalne , że nie widać nic na usg i że nie ma niczego , co mogło by już tak wcześnie wskazywać na ciążę pozamaciczną ! i że nie ma podstaw do takiego myślenia ! Uważam , że Pani doktor niesłusznie i bezpodstawnie mnie nastraszyła , zamiast uświadomić w którym tygodniu ciąża powinna być już widoczna i ewentualnie wtedy gdyby jej nie było widać można było by w ogóle wspominać o ciąży pozamacicznej . Dodatkowo , nie dostała m żadnych zaleceń co do odżywiania , trybu życia , suplementacji . Brak badania ginekologicznego w ramach wizyty , brak zapytania o aktualną cytologię . Pani doktor najwyraźniej chyba stwierdziła , że nie jestem w ciąży , co się nie sprawdziło . Po wizycie czuła m się strasznie i czuła m o wiele większą niepewność i strach niż przed wizytą . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_001958",
+    "text": "Wspaniały lekarz , godny polecenia . Miła , z dobrym podejściem do pacjenta , o dużej empatii . Ujęło mnie w Pani Doktor indywidualne podejście do problemu pacjenta . Widać , że Pani Doktor dokładnie analizuje każdy przypadek i wybiera najlepsze rozwiązania . Nie należy do tzw . \" naciągaczy \" , ceny za leczenie ortodontyczne są przystępne a plan leczenia sporządzony tak , aby nie generować zbędnych kosztów . Ja trafiła m do Pani Doktor z nastoletnią córką , która nosi obecnie aparat ruchomy ale widząc zaangażowanie dr Kilen ( a miała m już wcześniej do czynienia z wieloma ortodontami ) zdecydowała m się sama na aparat stały . Polecam Panią Doktor i cały personel Partydentu ."
+  },
+  {
+    "opinion_id": "op_001959",
+    "text": "Niestety ogromne rozczarowanie . Szczególnie od neurologa oczekiwać można większej empatii i zaangażowania . Lekarz , który generalnie nie miał żadnych pomysłów z czego wynika ogromny ból , na pytania zwykle odpowiadał nie wiem , nie pasuje mi to do neurologicznych przypadłości . Po wielu wizytach u internisty , angiologa , 3 zakaznikow , 4 neurochirurgów każdy mówił , że bóle mają podłoże neurologiczne i po wykluczeniu innych objawów nalezy szukać pomocy u neurologa . Niestety po wizycie człowiek wychodzi jeszcze bardziej obolaly podejściem lekarza do pacjenta . I na pewno nie chce tam wracać , pomimo bólu uniemozliwiajacego normalne funkcjonowanie"
+  },
+  {
+    "opinion_id": "op_001960",
+    "text": "Po pierwszej wizycie trudno mi ocenić , ale jestem zadowolona z uprzejmości lekarza , zainteresowaniem moją osobą , oraz podjęciem decyzji co do sposobu leczenia . Nie wiem czy leczenie przyniesie oczekiwane przeze mnie rezultaty , ale mam nadzieję , że lekarz doprowadzi do zakończenia moich dolegliwości bólowych ."
+  }
+]

@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002101",
+    "text": "Wizyta przebiegła dość sprawnie , lekarz sprawdził wyniki badań , przeprowadził rzeczowy wywiad i ustalił sposób leczenia . Do tego zalecił wykonanie badań , na które nie wystawił skierowania ( na wykonanie badania jest wymagane skierowanie od lekarza ) choć w trakcie wizyty to sugerował em . Obecnie kontakt jest z lekarzem jest dość ograniczony i nie wiem czy bez umówienia płatnej wizyty wystawi mi skierowanie na badania jakie mi zalecił zrobić . Od tej strony słabo to wygląda . Pozdrawiam Mateusz"
+  },
+  {
+    "opinion_id": "op_002102",
+    "text": "Wizyta szybka , liczyła m na coś więcej niż przepisanie standardowego leczenia , które zasugerowała m . Myślała m że dostane robione leki , które są również skuteczne , lub chociaż wskazówki o pielęgnacji . Podsumowując , niczego nowego nie dowiedziała m się a każdy lekarz może przepisać leki podane przez pacjenta ."
+  },
+  {
+    "opinion_id": "op_002103",
+    "text": "Optyczne metody do monitorowania mózgu wykorzystują fakt , że światło w pewnym stopniu może przenikać przez kości czaszki . Chodzi tu zwłaszcza o światło z zakresu bliskiej podczerwieni , o długościach fal między 650 a 850 nanometrów ( nanometr to milionowa część milimetra ) . Istotne znaczenie mają tu właściwości krwi - a konkretnie hemoglobiny , której utlenowana forma w inny sposób oddziałuje ze światłem niż forma zredukowana . Zjawisko to pozwala oceniać stopień natlenienia obserwowanej części ciała poprzez analizę intensywności światła penetrującego tkankę . Podstawowymi elementami optycznych urządzeń diagnostycznych są niewielkie źródła światła ( diody laserowe ) oraz czułe fotodetektory . Źródła i detektory , zwykle oddalone od siebie o 2 - 5 cm , są zestawiane w pary . Do głowy pacjenta można przyłożyć jednocześnie od kilku do kilkunastu takich par , co potencjalnie pozwala badać znaczną część mózgu ."
+  },
+  {
+    "opinion_id": "op_002104",
+    "text": "Dziś była m na pierwszej wizycie . Zachowanie Pana profesora jest specyficzne . Po dzisiejszej poczuła m się nieco , jak intruz . Spróbuję pójść na następną i się okaże czy nadal będę mieć takie samo przeświadczenie . Nie twierdze , że nie jest świetnym fachowcem . Na razie jeszcze trudno mi stwierdzić . Nie jestem osobą z gatunku rozczulających się nad sobą ale jestem tylko pacjentem . Mam prawo pytać . Gdyby m była lekarzem tej specjalności to nie było by problemu . Wizyta trwała krótko i efekt jest taki , że \" wiem , że nic nie wiem \" . . ."
+  },
+  {
+    "opinion_id": "op_002105",
+    "text": "Najchętniej warzywa i owoce jemy surowe lub gotowane , jednak preferencje są dość zróżnicowane . Kobiety częściej niż mężczyźni wybierają stosunkowo „ egzotyczne ” formy przyrządzania warzyw i owoców : duszenie ( 31 proc . kobiet i 26 proc . mężczyzn ) , parowanie ( 28 proc . kobiet i 19 proc . mężczyzn ) , pieczenie ( 24 proc . kobiet i 15 proc . mężczyzn ) i grillowanie ( 24 proc . kobiet i 12 proc . mężczyzn ) . Również kobiety ( 77 proc . ) częściej niż mężczyźni ( 69 proc . ) jedzą warzywa i owoce jako samodzielne potrawy , np . w postaci przekąsek . Jeszcze większą dysproporcję można zaobserwować w przypadku spożywania warzyw i owoców jako dodatku do innych potraw , np . w formie surówki lub sałatki . Spożywa je w ten w sposób aż 88 proc . kobiet i 75 proc . mężczyzn ."
+  },
+  {
+    "opinion_id": "op_002106",
+    "text": "Innowacyjne prace nad wdrożeniem hybrydowego tomografu ultradźwiękowego do badania piersi kobiet zostały dofinansowane przez Narodowe Centrum Badań i Rozwoju , które wsparło je dotacją w wysokości 6 , 9 mln zł . Jak podało PAP biuro NCBR , było to wsparcie skierowane dla przedsiębiorców z konkursu \" Badania przemysłowe i prace rozwojowe realizowane przez przedsiębiorstwa \" Program Operacyjny Inteligentny Rozwój . To jeden z głównych programów NCBR skierowany do przedsiębiorców . Jego nowatorska formuła - ograniczenie formalności do niezbędnego minimum , prowadzony etapami nabór wniosków oraz krótki czas wydania decyzji ( 60 dni ) o dofinansowaniu - jest bardzo atrakcyjna dla firm . Dofinansowanie na realizację projektów Badania i Rozwój przez przedsiębiorców NCBR przyznaje na zasadach konkursowych , na podstawie oceny ekspertów - wyjaśniło biuro prasowe NCBR ."
+  },
+  {
+    "opinion_id": "op_002107",
+    "text": "Byli śmy u Pana doktora z nawracającym zapaleniem ucha z perforacją . Zapisał ten sam antybiotyk , który już miało dziecko podane z tydzień wcześniej . Niestety po tym leczeniu nastąpił kolejny nawrót ( inna Pani dr powiedziała , że ten antybiotyk jest za słaby ) . Jako człowiek Pan doktor bardzo sympatyczny ."
+  },
+  {
+    "opinion_id": "op_002108",
+    "text": "Dziś po raz pierwszy bylismy na wizycie u p . Doktora z 2 letnim synem . Wizyta ekspresowa , że nie zdążyła m zadać kilku pytań , dostalismy skierowanie na badania krwi i leki na alergie . I tyle , mam nadzieję , ze nastepnym razem , z kompletem badań dowiemy się wszystkiego , a przede wszystkim , jak pomóc dziecku : - )"
+  },
+  {
+    "opinion_id": "op_002109",
+    "text": "Odradzam ! ! niestety leczylam sie u dr Buldeckiej 6 lat dokladnie od 18 roku zycia poniewaz mialam problem z okresem . Zgodze sie ze jest bardzo sympatyczna ma czas wsyztsko powie , ale . . . Przez 6 lat nie powiedziala mi co tak naprawde mi dolega . . . Przepisywala leki ( hormony ) ja brała m , raz pomoglo , raz nie . . . wyniki z ich interpretacja bywalo roznie . . . Po tych 6 latach zmieniła m lekarza i okazało sie ze mam podejrzenie wygasniecia pracy jajnikow ( przedwczesna menopalza ) mimo iz mam 24 lata ! ! ! ! ! ! Zdecydowanie nie polecam , stracilam tylko czas swoj a przede wszytskim moj , tylko ja nie wiem czy ja ten czas odzyskam w jakikolwiek sposób . . ."
+  },
+  {
+    "opinion_id": "op_002110",
+    "text": "Polecam i niezgadzam sie z poprzednią opinią . Lezałem tydzien w szpitalu we Lwowku i mogł em zauważyc , że lekarz ten wyjątkowo dobrze traktuje pacjentów bez wzgledu na wiek i majetnosc . Moim zdaniem troszczy sie o zdrowie pacjentów jak najlepiej odwiedzajac ich i to nie tylko po łebkach rano i wieczorem ale dokładnie monitoruje stan zdrowia . Moim zdaniem bardzo dobry chirurg wykonujący swoja prace z sercem , troskliwy dla pacjentów i wymagający zaangażowania w pracy dla personelu szpitalnego ."
+  },
+  {
+    "opinion_id": "op_002111",
+    "text": "Pani Małgorzata jest bardzo pozytywną i otwartą osobą , nie raz zadziwiła mnie swoimi poglądami , z którymi jednak ciężko było mi się nie raz zgodzić z moim nastawieniem do życia i charakterem . Otworzyła mi jednak furtkę do lepszego myślenia o swoim życiu , jestem na drodze do zmian , ale małymi kroczkami : ) . Chciała by m poczuć się lepiej sama ze sobą i z moimi bliskimi i zacząć doceniać to , co dla mnie robią oraz zobaczyć , że życie może jednak cieszyć . Żyć zamiast egzystować . Pora na zadbanie o siebie . Bardzo dziękuję za wsparcie : ) Czuję się już lepiej dzięki tej wizycie , nie był to stracony czas ! Mogę polecić : D"
+  },
+  {
+    "opinion_id": "op_002112",
+    "text": "W CePT prowadzone są również badania nad wykorzystaniem techniki hiperpolaryzacji do badania metabolizmu tkanek metodą rezonansu magnetycznego , sekwencjonowaniem guzów układu nerwowego ( co pozwala skuteczniej je leczyć ) , tworzeniem polimerowych implantów do odbudowy naczyń krwionośnych , kości , ścięgien czy chrząstek metodami takimi jak mikro przędzenie czy zastosowaniem spektroskopii masowej do wykrywania nowotworów . „ Liczba prowadzonych przy wykorzystaniu infrastruktury CePT projektów jest ponad trzy razy wyższa ( 514 ) niż planowano ( 150 ) , publikacji – cztery razy wyższa , zaś liczba uzyskanych patentów – nawet 8 razy , jednak w przypadku wprowadzanych w przedsiębiorstwach innowacji udało się zrealizować plan tylko w 48 proc . \" – przyznała prof . Jadwiga Turło - prorektor ds . Nauki i Transferu Technologii Warszawskiego Uniwersytetu Medycznego ."
+  },
+  {
+    "opinion_id": "op_002113",
+    "text": "Pan Dr nie zrobil na mnie dobrego wrazenia . Ewidetnie spieszyl sie i chcial tylko odwalic wizyte , mimo ze byla prywatna . Mialam problem z gardlem , to pan dr to zlekcewazyl , ze nic mi nie jest . Dziwne ze kilka dni pozniej rozchorowalam sie jeszcze bardziej . . . jedyne co to zasugerowal operacje wyciecia migdalkow . Bylam u innego lekarza i sie okazalo ze przyczyny bolu gardla sa gdzie indziej i migdalki mam jak najbardziej w porzadku . Dodatkowo zasugerowal mi jeszcze operacje przegrody nosa gdzie takowa nie jest mi potrzebna bo nie mam wiekszych problemow z oddychaniem . ."
+  },
+  {
+    "opinion_id": "op_002114",
+    "text": "ciążę zdiagnozował dopiero w 10 tygodniu , przed tym twierdził , że mam zaburzenia cyklu a nawet chciał wypisać leki wywołujące miesiączkę , na szczęście nie zdecydowała m się . jako lekarz , który pierwszy zdiagnozował ciąże wpisał mi w karcie zły ( późniejszy ) termin porodu , chociaż mu tłumaczyła m , że jest to absolutnie niemożliwe , mogła m podać datę a nawet godzinę zajścia , później mąż wyjechał . zażartował sobie , że mąż nie jest potrzebny do zajścia w ciąży . rodziła m w 43 tygodniu ( 42 tyg . i 3 dni ) , poród ponad dobę trwał , wód prawie nie było , dziecko nie oddychało samodzielnie , ledwie uratowali . koszmar ."
+  },
+  {
+    "opinion_id": "op_002115",
+    "text": "Wizyta była bardzo miła , Pani dr dokładnie przeprowadziła wywiad , rozważały śmy wspólnie przyczyny powstałego u mnie problemu , tak aby jak najskuteczniej wyeliminować przyczynę . Mam nadzieję , że zapisane leki pomogą , jeśli nie - wrócę do Pani dr na kolejną konsultację . Jedyne na co mogła by m zwrócić uwagę , to więcej pewności w stanowisku Pani dr , dawało by to może pacjentowi poczucie pewności w stawianej diagnozie lekarskiej , choć oczywiście mam świadomość , że zdrowie i medycyna to nie matematyka ; - ) . Polecam wizytę u Pani dr . Pozdrawiam"
+  },
+  {
+    "opinion_id": "op_002116",
+    "text": "To była moja 2 wizyta u p.dr Gerlacha . Pan dr zrobił na mnie dobre wrażenie swoim spokojem i profesjonalizmem . Po 1 wizycie i przepisaniu leków odczuła m wyraźną poprawę a ból kolana zelżał . Dostała m też garstkę rad , co robić aby mniej bolało . Jestem zadowolona z tej wizyty . Polecam ."
+  },
+  {
+    "opinion_id": "op_002117",
+    "text": "Jestem pół roku po zabiegu liposukcji nóg . Niestety nogi nie wyglądają dobrze . Tłuszcz nie został dokładnie pobrany , widać różnice w nogach , jedna jest szczuplejsza od drugiej , w niektórych miejscach mam wglebienia - tam gdzie zabrano za duzo tluszczu , niektore miejsca ( ktore byly bardzo wazne ) zostaly czesciowo pominiete i obok wglebienia mam worki z tluszczem , gdzie dodaje to dodatkowa dysproporcje . Dodatkowo w miejscach wglebien mam ciemne plamy na skórze , wyglądają jak brudne plamy . Nogi są do poprawki ."
+  },
+  {
+    "opinion_id": "op_002118",
+    "text": "Bardzo słaby to za mało . Ta pani nie powinna brać się za leczenie chorych ze szpiczakiem ! ! ! ! Nie ma o tym zielonego pojęcia . Jest to przykre i karygodne aby udawać specjalistę w leczeniu tej bardzo ciężkiej choroby , a metodami leczenia być 20 lat wstecz . Pani doktor powinna uświadamiać pacjenta o różnych metodach leczenia , często dających szanse na dłuższe życie a nie stosować leczenie paliatywne u osób , które mają duże szanse na przeszczep , mało tego swoimi metodami leczenia zamykać definitywnie drogę do przeszczepu . Skandal , gdzie pani sumienie pani doktor ? ? ? ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_002119",
+    "text": "Pani Ewa jest wyrozumiała i ma czas dla pacjentki . Odpowiada na wszystkie pytania , robi bardzo dokładny wywiad . Nie rozumiem skąd tyle negatywnych opinii . Ja mogę ją polecić i napewno nie zmienię lekarza na innego . Dodam jeszcze , że chodzę w ramach nfz ."
+  },
+  {
+    "opinion_id": "op_002120",
+    "text": "Totalna ignorancja dla pacjenta , brak wywiadu w kierunku objawów klinicznych ( skierowany od dermatologa , a następnie internisty z podejrzeniem boreliozy ) . Opinia wyłącznie na podstawie badań serologicznych ( ELISA pozytywna , WB negatywne ) , o których powszechne są opinie , że ich miarodajność jest jak z rzutem monetą . Na moje pytanie jak wyglądają zmiany skórne spowodowane ukąszeniem przez nosiciela boreliozy usłyszał em , że bez sensu żeby m się tym interesował , najważniejsze , że doktor jest pewien , że moje zmiany to nie to . Kolejna ciekawostka , wg . doktora : boreliozę przenoszą tylko i wyłącznie kleszcze . . . Zdecydowanie nie polecam , szkoda czasu ."
+  }
+]

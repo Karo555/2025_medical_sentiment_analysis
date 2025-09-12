@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000741",
+    "text": "Swoją ocenę leczenia skrzywionej przegrody nosowej u pana Arkadiusza musze podzielić na dwie kategorie . Skutecznośc leczenie oceniam na 5 / 5 , tutaj nie moge mieć żadnych zastrzeżeń . Jednak sam komfort leczenia to pała z wykrzyknikem . Operacja odbyła się w C . M . Sanitas w Lublinie . Muszę przyznać że samodzielne położenie się na stole operacyjnym bez wcześniejszego podania leków uspokajających nie należy do przyjemnych doznań , a już tym bardziej powracjąca świadomość w trakcie operacji pod koniec której odczuwał em wyraźny ból . Nie miałem wtedy pojęcia , że jestem właśnie operowany , a głosy które słysze to rozmowy zespołu operacyjnego . Samo wychodzenie z narkozy również było bardzo nieprzyjemne , próbował em być wybudzony poprzez bardzo dosadnie wypowiadane komendy , na które nie był em w stanie zareagować . Było to bardzo nieprzyjemne uczucie , nie miałem pojęcia co się ze mną dzieje , i dlaczego ktoś wywiera na mnie presje żeby m się w końcu obudził , kiedy nie mogł em nawet kiwnąć palcem , wypowiedzieć słowa ani nawiazać kontaktu w żaden inny sposób . Ból po wybudzeniu był bardzo wyraźny , kiedy zaczynał się nasilać po skończeniu drugiej kroplówki z ketonalem , nie dostał em kolejnych leków przeciwbólowych mimo upomninania się o nie . \" Jak boli tzn że żyje \" mówiła z uśmiechem na ustach pielęgniarka , która później też wywierala presje na szybsze opuszczenie łóżka pod koniec pobytu , mimo że nie czuł em się jeszcze na siłach aby wracać do domu kilka godzin po operacji . Jak już został em wreszcie wygnany , ból nasilił się do takiego stopnia , że całą noc chodził em po domu i stękał em , co pewnien czas wymiotując . Przez 2 tygodnie czuł em się okropnie , nie miałem na nic siły , większosć czasu przeleżał em w łóżku z wysoką temeraturą . Po operacji był em jeszcze u Pana Arkadiusza kiklukrotnie , na wyciąganiu setonów , 2x na zdejmowaniu szwów i wyciąganiu \" blaszek \" które bolało tak jakby ktoś próbował wyrwać mi jedynki u góry . Tłumaczenie w stylu \" anestezjolog nie chciał podawać już Panu więcej anestetytków , żeby wybudzenie trwało krócej \" było naprawde żałosne . Kilka dni temu był em operowany w WIM w Warszawie z powodu akromegalii i muszę przyznać że leczenie tuitaj to czysta przyjemnośc w porównaniu z Pańską operacją . Niestety ale nie polece Pana nikomu , mimo doświadczenia którego nie sposób Panu odmówić . Mimo wszystko pozdrawiam i życzę wyciągnięcia wniosków z mojej opinii ."
+  },
+  {
+    "opinion_id": "op_000742",
+    "text": "To była moja pierwsza wizyta , więc ciężko ocenić trafność diagnozy i leczenia . Jednak wizyta jak i sama pani doktor zrobiła bardzo dobre wrażenie . Pani dr jest bardzo miłą osobą , dociekliwą i rozwiewającą wszelkie wątpliwości . W porównaniu do poprzedniego gastrologa u jakiego była m to tego lekarza mogę polecić ."
+  },
+  {
+    "opinion_id": "op_000743",
+    "text": "Według łódzkiego socjologa w ciągu ostatniego półwiecza można zaobserwować trwały wzrost znaczenia nowotworów wśród przyczyn zgonu oraz spadek znaczenia chorób zakaźnych . Z danych GUS wynika , że w 1960 r . nowotwory były przyczyną 8 , 9 proc . ogółu zgonów , a w 2010 r . - 25 , 3 proc . , choroby zakaźne stanowiły zaś w 1960 r . 6 , 9 proc . zgonów , a w 2010 r . tylko 0 , 7 proc . Dominującą przyczyną zgonów od wielu lat są choroby układu krążenia , choć w ciągu ostatnich kilkunastu lat następuje powolne zmniejszanie się tej tendencji . W 1990 r . choroby układu krążenia były przyczyną 53 , 4 proc . wszystkich zgonów , a w 2010 r . - 46 proc . zgonów ."
+  },
+  {
+    "opinion_id": "op_000744",
+    "text": "Pan Tomasz Piskorz prowadzi moją obecną ciąże - jestem już w 34 tygodniu . Chodzę do niego przychodni . Wszystko z NFZ . I jestem bardzo zadowolona . Zawsze ma czas . Każdy problem rozwiązuje na bieżąco . Zleca mnóstwo badań i bardzo się cieszy z tego , że wszystko ok . Razem ze mną : ) Polecam ! ! !"
+  },
+  {
+    "opinion_id": "op_000745",
+    "text": "Była m na wizycie z moją córką i jestem bardzo niezadowolona . Kolejny lekarz nastawiony na zarabianie pieniędzy . Nie wykazał żadnego zainteresowania ze swojej strony . Obejrzał tylko jedno miejsce chorobowo zmienione na cíele dziecka , to które ja wskazała m , a gdy poprosiła m by spojrzał też na inne miejsca , to powiedział że dzisiaj zajmujemy síę tylko tym które wskazała m jako pierwsze ! Tzn . że z każdą plamką mam jechać na kolejną wizytę ? ! Przepisał lekarstwa , których jak sie okazalo po ich wykupieniu nie możemy dziecku podać ! Ogólnie lekarz tragedia ! NIE POLECAM !"
+  },
+  {
+    "opinion_id": "op_000746",
+    "text": "Pani Dr . Bystrzanowska nie interesuje sie problemem pacjenta ! Wiecznie wygląda na znudzoną i widać , że nie lubi swojej pracy . Pierwszy raz spotkał em sie z takim podejściem do pacjenta , nawet w publicznej przychodni był em lepiej traktowany ( a u niej wizyta to 100zł ) . Siedzi wiecznie wpatrzona w laptopa a ma otwarte tylko gg ! ! ! ) . Kilka wizyt to tylko kilka stów wywalonych w błoto . Pomogli mi dopiero w klinice na koszykowej a tam nic sie nie płaci ! Tak wiec stanowczo odradzam - ewentualnie jeśli ktoś chce sobie popatrzeć na śliczną panią doktor przez 10min za cenę 100zł to jak najbardziej : )"
+  },
+  {
+    "opinion_id": "op_000747",
+    "text": "Bylam w Novum u dr Wolskiego z męzem , poniewaz jego wynik był dla nas niejednoznaczny . Lekarz na nasza szczescie pogratulował wyniku mezowi , przy czym wyjasnił bardzo dokładnie co i jak . Bardzo konkretny , nie owija w bawełne , a przy tym bardzo kulturalny . Zaraza optymizmem . Polecam !"
+  },
+  {
+    "opinion_id": "op_000748",
+    "text": "nigdy nie mówi co osłuchała , nie powie jaka choroba , wypisuje antybiotyki z góry nawet na katarek z lekkim kaszlem , nigdy nie słyszała u moich dzieci zapalenia oskrzeli ani zapalenia płuc które przeoczyła , dopiero gdy konsultowała m z innym lekarzem wychodziło co dziecku jest bo niepokoiło mnie że mi pod \" gołym \" uchem furczy w oskrzelach a ona nie słyszy moje dziecko wpędziła w krzywicę twierdząc że nie potrzeba Wit . D3 , do leczenia alergii też się nie nadaje na wszystko najlepsze Emolium bo dopiero co wyszedł z gabinetu przedstawiciel handlowy , albo w ramach leczenia daje kilka wydrukowanych stron z internetu , dużo by pisać , najlepsze są witaminki które może pacjentowi ekstra sprzedać w gabinecie , no i homeopatia którą miesza ze standardowym leczeniem , czasem zaleca leki lub tez granulki kompletnie sobie zaprzeczające lub wykluczające się"
+  },
+  {
+    "opinion_id": "op_000749",
+    "text": "Niestety wyrzucone pieniądze w błoto na prywatną wizytę u pana doktora . Może i w miarę miły , ale na USG 3D nie zobaczyła m mojego dziecka , bo się odwróciło . Zamiast dać nam chwilę na spacer , to lekarz stwierdził , że się zasłoniło i po badaniu . 200 zł skasował i powiedział , że dziecko zobaczę jak się urodzi . . No tak , regulaminowe 20 minut minęło ."
+  },
+  {
+    "opinion_id": "op_000750",
+    "text": "W tej pracy pojawia się jeden poważny problem . Jest nim właśnie otrzymanie tych niezbędnych kryształów . Białka - jak tłumaczy dr Szumna - to bardzo skomplikowane struktury , o nieregularnych kształtach , rozmaitych właściwościach powierzchni i niektóre z nich wcale nie chcą tworzyć kryształów . Krystalizacja innych może trwać lata . Zespół kierowany przez dr Agnieszkę Szumną chce więc pomóc niepokornym białkom w krystalizacji . Na przeprowadzenie prac naukowcy otrzymali grant N a rodo w e"
+  },
+  {
+    "opinion_id": "op_000751",
+    "text": "Uważam , że doktor Wędrychowskiej - Szulc nie można zarzucić braku kompetencji i powiedzieć , że jest złym specjalistą , gdyż skuteczna jest . Chodziła m do pani doktor przez długi okres czasu i w efekcie mam proste zęby . Problem polega na tym , że pani doktor nie ma serca do pacjentów , jest osobą bardzo niesympatyczną , zimną , jej podejście do pacjentów jest wręcz odpychające . Szczerze mówiąc każda wizyta była dla mnie stresująca , a zamiast zmotywowana , wychodziła m z gabinetu spięta , zniechęcona , wręcz zła . Pani doktor jest osobą , której nie zależy na dobrym kontakcie z pacjentem , a moim zdaniem jest to bardzo istotnym elementem leczenia . Tak jak moi przedmówcy - nie polecam !"
+  },
+  {
+    "opinion_id": "op_000752",
+    "text": "Endoskopowe badania przesiewowe mają ogromny wpływ na zdrowie populacji , pozwalają również ograniczyć koszty leczenia , zwłaszcza w przypadku kolonoskopii . Dzięki wczesnemu wykrywaniu nowotworów nie dochodzi do powstania zawansowanych zmian nowotworowych , których przewlekłe leczenie jest niezwykle kosztowne – dlatego badania przeglądowe pozwalają na duże oszczędności finansowe . Kiedyś na przykład rola gastroskopii sprowadzała się do wprowadzenia wziernika do żołądka i wykrycia dużego guza . Teraz udaje się diagnozować małe , wczesne zmiany . Dzięki postępowi technicznemu ogromnie wzrosła jakość uzyskiwanych obrazów wnętrza ciała . Pojawiły się już nowe endoskopy „ patrzące ” jednocześnie zarówno do przodu , jak i na boki , dzięki czemu pole widzenia zwiększyło się aż do 330 stopni , a wysoka jakość obrazu pozwala wstępnie ocenić , czy zmiana wygląda na złośliwą . Znakomitym uzupełnieniem jest endoskopowa ultrasonografia , która wykrywa głębiej umiejscowione patologie ."
+  },
+  {
+    "opinion_id": "op_000753",
+    "text": "Dzisiaj nie przyjął mnie z uszkodzoną ręką po upadku . Nawet nie zerknął na zabandożowaną dłoń . Był zajęty komputerem . Mam 65 lat jestem samotna . Pan doktor kazał mi jechać na drugi koniec miasta do Pogotowia . Nie stać mnie na jeżdżenie taksówkami po lekarzach z trudem dojechała m do przychodni z chorą ręką a temperatura była na zewnątrz ok . 30 st . . Na pytanie czy w przychodni robią rentgen arogancko odpowiedział , że nie wie . Najbardziej rozczarowało mnie to , że nawet nie spojrzał na rękę , mogła by m mieć otwarte złamanie pod bandarzem jego to nie obchodziło ."
+  },
+  {
+    "opinion_id": "op_000754",
+    "text": "Wspaniały lekarz , z wyjątkowym podejściem do dzieci , którego brak u większości lekarzy . Wizyta u chirurga i u każdego lekarza jest bardzo stresująca , szczególnie dla dziecka , a dr M . Krzeszewski potrafi swoim zachowaniem sprawić , że strach minimalizuje się , a nawet mija . Jest przy tym b.dobrym specjalistą . Polecam wszystkim , którzy potrzebują pomocy ."
+  },
+  {
+    "opinion_id": "op_000755",
+    "text": "Ciągle jeszcze istnieją wśród nas Anioły . . . Pan Doktor Dariusz Rychlik jest Aniołem - świetnym specjalistą , z najwyższej półki , dobrym człowiekiem , oddanym ludziom i swojej pasji . Te wszystkie cechy składają się na bardzo dobrego lekarza . Jednakże Pan Doktor ma jeszcze wiele atutów , które wyróżniają i pozytywnie zaskakują - ujmuje skromnością , potrafi w niewymuszony sposób szybko zdobyć zaufanie pacjenta spontanicznym zachowaniem , to zaufanie z perspektywy pacjenta może być równie istotne jak umiejętności oraz wiedza . Dziękuję za poświęcony czas , wartościowe rozmowy , artystyczne wykonanie zabiegu , i pełne zaangażowanie ."
+  },
+  {
+    "opinion_id": "op_000756",
+    "text": "Biolog przyznaje , że jeszcze trudniejsze - a w przypadku ludzi zupełnie nieetycznie - jest otrzymanie potomstwa z dwóch osobników płci męskiej . W takim wypadku trzeba bowiem skłonić osobniki męskie do produkowania oocytów . Naukowiec wyjaśnia , że z zarodka płci męskiej uzyskuje się zarodkowe komórki macierzyste , które mają zdolność różnicowania się m . in . w komórki rozrodcze . Kiedy komórki te się namnaża , u 3 proc . z nich dochodzi do spontanicznej utraty chromosomu Y . Z takich komórek można potem - po dodaniu chromosomu X z komórek męskich - uzyskać żeńskie myszy - chimery , które produkują komórki jajowe pochodzące z męskich zarodkowych komórek macierzystych . Chimery te krzyżuje się z samcem dojrzałym płciowo . W ten sposób przyjść mogą na świat młode , których materiał genetyczny pochodzi od dwóch osobników płci męskiej ."
+  },
+  {
+    "opinion_id": "op_000757",
+    "text": "Wybierając lekarza dla mojej jeszcze niepełnoletniej córki , kierowała m się opiniami zawartymi na tej stronie . Cieszyła m się , że można jeszcze trafić na super lekarza . Owszem pani doktor kompetentna , przeprowadziła szczegółowy wywiad , zbadała moją córkę , powiedziała co może się wydarzyć w związku z torbielą , którą u niej wykryto . . . jednak nie czuła m się komfortowo , brakowało mi takiej szczerej życzliwości , zainteresowania , uśmiechu na twarzy pani doktor . Ponieważ to była pierwsza wizyta mojej córki , więc zapytała m jej jak ona czuła się w tym gabinecie , bo w sumie to o nią tu chodziło . . . stwierdziła , że czuła się bardzo nieswojo , skrepowana , nie czuła odpowiedniego podejścia lekarza , nie została poinformowana dokładnie co będzie robione , na czym to badanie będzie polegało i na pewno nie chce ponownej wizyty u tego lekarza . Odczucia nasze były bardzo spójne , ale mimo wszystko życzymy pani doktor dalszych sukcesów w pracy i tak pięknego uśmiechu jak na profilu . Magda"
+  },
+  {
+    "opinion_id": "op_000758",
+    "text": "Kontakt z dr . Załuskim miałem jak mój tato leżał po trudnej operacji pnia mózg ( operację robił inny lekarz ) , która zakończyła się powodzeniem . Tato doszedł do pełni sił i czekał na kolejny zabieg . Na dwudniowym dyżurze u dr . Załuskiego ( sobota , niedziela ) tato słabł z godziny na godzinę . Mimo naszych interwencji i wezwań pielęgniarek udało nam się go przyciągnąć do łóżka taty po 10 godzinach poszukiwaniach . Robiąc nam awanturę ocenił stan taty jako nie niepokojący . Następnego dnia rano tato był nieprzytomny i po porannej wizycie doktor nie miał nam nic do powiedzenia . Siostry postanowiły przeniesć tatę na salę intensywnego nadzoru , ale cztery godziny czekały na zezwolenie doktora . Okazało się że tato ma ostre zapalenie płuc i jest niedotleniony . Dalej było jeszcze tragiczniej . . . . . Mam żal za brak ludzkich odruchów ze strony pana doktora i podstawowego zajęcia się pacjentem na dyżurze . Strasznie się na nim zawiodł em ."
+  },
+  {
+    "opinion_id": "op_000759",
+    "text": "Znakomity chirurg . Opanowany i spokojny , budzi zaufanie od pierwszego kontaktu . Rozmowa z dr . Małkiem jest treściwa i rzeczowa ( może sprawiać wrażenie lekko oschłego - pozory ) . Żadnego wodolejstwa i namawiania . Sam sposób prowadzenia rozmowy miał na mnie dobry wpływ . W Art - Medicinie robił em nos . Polecam zwłaszcza w wykonaniu duetu Dr Małek - dr Budzyńska . Spokój , opanowanie , uzupełniają się i rozumieją się ma się wrażenie bez słów . Gorąco polecam . Wdzięczny pacjent ."
+  },
+  {
+    "opinion_id": "op_000760",
+    "text": "Był em u Pana Doktora Jarosława Marka , gdyż chciał em skonsultować mój problem związany ze zmętnieniem ciała szklistego . W trakcie wizyty zakropiono mi oczy Tropicamidem i przeprowadzono standardowe badanie dna oka . Wizyta była droga . Pan Doktor potwierdził obecność zmętnień w ciele szklistym . Zdaję sobie sprawę , że przypadłość ta nie jest łatwa i nie można jej wyleczyć od tak w kilka dni . Według mnie w trakcie wizyty nie uzyskał em informacji na temat możliwych metod leczenia . W trakcie wizyty u innego okulisty dowiedział em się m . in . o kilku możliwych metodach leczenia tej przypadłości ( jak również o tym , że nie wszystkie muszą być skuteczne ) . Konsultacja okulistyczna u innego lekarza wykazała również otwór w siatkówce , którego nie znalazł Pan Doktor Jarosław Marek . Pan Doktor Jarosław Marek był w trakcie wizyty miły i wysłuchał dokładnie opisu tego co mi dolega . Sądzę , że przy takim koszcie wizyty powinien em zostać przynajmniej poinformowany o tym jaki istnieją metody leczenia zmętnień , że powinien em uzyskać trochę więcej informacji oprócz standardowego stwierdzenia \" należy się przyzwyczaić \" . Odnośnie otworu w siatkówce , wg informacji uzyskanej w trakcie konsultacji okulistycznej u innego lekarza jest to bardzo groźna dla wzroku przypadłość , jeszcze tego samego dnia wykonano u mnie laseroterapię ."
+  }
+]

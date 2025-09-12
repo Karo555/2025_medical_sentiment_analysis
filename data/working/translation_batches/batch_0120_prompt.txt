@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002381",
+    "text": "Ja sie zawodłam na nim i to bardzo , jego uśmiech jak piszecie to nie wszystko ! ! ! często chodziła m do niego na kontrole , na Byłych Więźniów Politycznych ponieważ miała m bardzo bolesne miesiaczki , a on mnie uspokajał ze wszystko jest ok . i przepisywal mi silne leki przeciwbolowe . Nie zrobil mi ani razu usg , zrobił mi je dopiero jak wybadal palcem ogromnego mięśniaka ! teraz jestem po cieciu cesarskim , modliła m się zeby operacja się udała bo nie mam jeszcze dzieci . Uwazam ze dr żadko robi kobetom usg ! a sama cytolgia nie wystarcza ."
+  },
+  {
+    "opinion_id": "op_002382",
+    "text": "Jestem dość świeżo po zakończeniu psychoterapii u Pani Magdaleny i z czystym sumieniem będę tę Panią psycholog polecać innym . Problemy , uwikłania i blokady , z którymi rozpoczynała m terapię , na ostatniej sesji wydały mi się bardzo odległe , ponieważ dzięki Pani Magdalenie już mnie nie dotyczą . Myśląc o sesjach przychodzi mi do głowy przede wszystkim miła i luźna atmosfera , ogromne poczucie zaufania , niesamowicie indywidualne podejście i zaangażowanie . Oprócz tego bogata wiedza i szeroki wachlarz rad , sugestii , które nigdy nie wprawiły mnie w poczucie niższości czy zaszufladkowania . Nadal jestem pod wrażeniem empatii i wczucia się w sytuację Pani Magdy . Dziękuję Pani za ten czas i serdecznie pozdrawiam !"
+  },
+  {
+    "opinion_id": "op_002383",
+    "text": "Witam serdecznie , chciała m się podzielić swoją opinia o dr Kłoszewskim , chodzimy do p . doktora od 2 wizyty zaraz po urodzeniu dziecka , pierwsza wizyta porazka u zupełnie innego lekarza . ( gdzie sie dowiedziałż że jestem wyrodną matką i zaniedbała 6 tygodniowe dziecko ) Potem trafilismy do dr Kłoszewskiego i REWELACJA . Gdyby nie On wpakowała m by m dziecko w rozwórkę , poduszkę frejkę czy cos podobnego wg zaleceń pierwszej pani doktor . A dr kłoszewski wszytko wyjasnił , powiedział i dał zalecenia , wizya u neurologa , rehabilitacja i ćwiczenia w domku + buciki ortopedyczne . Dzieko po tych zalenenich bryka ze nie możemy za nią nadązyc . chodzimy na kontrolę systematycznie i jest poprawa . A podejście do diecie tez ok . POLECAM"
+  },
+  {
+    "opinion_id": "op_002384",
+    "text": "Do doktora Rujny poszedł em po kuracjach , które do tej pory przechodził em w innych placówkach , gdzie mam wykupiony przez firmę abonament ( więc teoretycznie nie płacę za te wizyty ) . Leczenie przebiegało zawsze tak samo i zawsze na tych samych tabletkach . Ale zawsze nawrót choroby pojawiał się po jakimś czasie . Pomyślał em więc , że zainwestuje jak dla mnie bardzo duże pieniądze ( 180 zł wizyta ) i może doktor Rujna wymyśli jakąś nową terapię bardziej skuteczną . Okazało się niestety , że nic innego w tej kwestii zrobić się nie da i leczenie znowu oparte jest o te same lekarstwa itd . Więc teoretycznie wydał em 180 zł za to co słyszał em cały czas . Niemniej wystawiam ocenę dobrą bo jest to na pewno fachowiec . Przed oceną bardzo dobrą powstrzymuje mnie tylko to , że jak się płaci takie pieniądze to 5 - 10 min w gabinecie to trochę krótko ."
+  },
+  {
+    "opinion_id": "op_002385",
+    "text": "Podczas wizyty lekarz ten bardziej interesował się swoim telefonem niż mną ! Zamiast skupić się na badaniu bez jakichkolwiek obiekcji i skrępowania czytał przychodzące smsy ! ! ! ! ! Zadając mu pytania oczekiwała m jasnych odpowiedzi , jednak wielokrotnie zwyczajnie mnie zbywał . . . Po ostatniej wizycie jestem naprawdę rozczarowana . . . Nie polecam tego lekarza ! ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_002386",
+    "text": "Był em na wizycie prywatnej w LUX - MEDzie . Pomimo tego , że za wizytę zapłacił em 140 złotych , wyglądało tak jak zwyczajna wizyta u państwowego lekarza , gdzie czuł em się źle z tym , że przeszkadzam pani doktor w wypiciu kawy . Zupełnie nie chciała słuchać historii mojej choroby , bo ' to co wcześniej jest nie ważne - ważne czy teraz boli' . Nie umiała udzielić informacji , skąd może brać się moja choroba , a - co gorsza - nie umiała powiedzieć , czy to przejdzie . Na kilka moich dodatkowych pytań odpowiadała ' nie wiem ' albo ' trudno powiedzieć' . Szkoda , że za kilka minut wątpliwej jakości porady , musiałem zapłacić aż tyle . Skończyło się na tym , że zapisane mi zostały krople do uszu , które można kupić bez recepty oraz Nurofen - najprostszy lek przeciwbólowy . Ogólnie - nie polecam ."
+  },
+  {
+    "opinion_id": "op_002387",
+    "text": "W przypadku leków biopodobnych dąży się do tego , aby lek miał możliwie jak najbardziej podobną do referencyjnego budowę – ponieważ identyczności i tak nie da się osiągnąć . „ Lek biopodobny musi mieć odpowiednią jakość , bezpieczeństwo i skuteczność – w tej właśnie kolejności ” – mówił profesor Spławiński . Według niego nie można – z przyczyn etycznych – porównywać wartości leczniczej leków biopodobnych w dużych badaniach klinicznych . Główny Inspektor Farmaceutyczny Zofia Ulz , poinformowała , że kierowana przez nią instytucja co roku przeprowadza w różnych miejscach ( producenci , magazyny , dystrybucja ) około 1000 kontroli kosztem 5 mln zł . Kontrole przeprowadzane są też na bieżąco przez producentów na każdym etapie produkcji , by zapewnić wysoką , powtarzalną jakość – aby lek zawsze miał taki sam skład i działanie , a także był wolny od niepożądanych dodatków ."
+  },
+  {
+    "opinion_id": "op_002388",
+    "text": "Pan Jakubowski mi akurat nie pomógł . Odczuwalne było małe doświadczenie i zagubienie . Na temat kontraktu terapeutycznego chciał zaznajomić mnie dopiero na 6 sesji , nie umiejąc już sobie poradzić z pacjentem innym niż wszyscy , jakich miał do tej pory . Na 7 spotkaniu uznał , że nie umie mi pomóc , szkoda że nie później . . . Jak sam stwierdził moje zachowanie było dla niego interesujące , a ja nie przypominam sobie żeby m była ' materiałem ' do nauki dla stażysty . Nie wykazywał zrozumienia dla mojej osoby , wręcz sugerował , że pewne rzeczy robie celowo , co miało ogromny wpływ na moje samopoczucie i stan psychiczny . Niestety , ale pan Jerzy nie bardzo zdawał sobie z tego sprawę . Czuje się oszukana . Psychoterapia doprowadziła mnie do tego , że nie była m w stanie wyjść z własnego domu … a Pan Jakubowski i tak do końca przekonywał , że to był mój ' proces ' … Na szczęście pomogli inni ."
+  },
+  {
+    "opinion_id": "op_002389",
+    "text": "BPN - T działa od czerwca 2014 r . Inwestycja była jedną z większych zrealizowanych przez władze Białegostoku z wykorzystaniem funduszy z UE . Powstały budynki inkubatora i centrum technologicznego , przebudowano również ulice w sąsiedztwie parku , uzbrojono 23 ha gruntów dla inwestorów . Grunty te mają być objęte podstrefą Białystok Suwalskiej Specjalnej Strefy Ekonomicznej . Dwie pierwsze firmy kupiły już działki pod inwestycje o łącznej powierzchni 2 , 6 ha . Wartość całego projektu dotyczącego powstania BPN - T to 167 , 5 mln zł , z czego 120 mln zł to dotacja z UE z programu Rozwój Polski Wschodniej . W BPN - T działa już m . in . ponad 20 młodych firm typu start - up , które korzystają z zaplecza inkubatora parku na preferencyjnych warunkach . ( PAP )"
+  },
+  {
+    "opinion_id": "op_002390",
+    "text": "Z pewnością ten Pan ma kwalifikacje , dlatego nie będę tego negować - w końcu ma p - o . Jednak podejście do pacjentki to już inna sprawa - NIEEMPATYCZNY . Pacjentka jest traktowana nie jak człowiek tylko przypadek medyczny . W szpitalu praca na akord , robi wielką łaskę żeby zbadać pacjentkę , która głosi mu dolegliwości po operacji lub w ogóle ją spławia - nieludzki . Oby w końcu sprywatyzowali nam służbę zdrowia , bo w sumie i tak płacimy . A jak zrobią kontrakty to wówczas będą Ci , , Bogowie ' ' zmuszeni traktować swoje pacjentki z szacunkiem i godnością . Z całym szacunkiem Panie Doktorze , ale proszę zastanowić się nad swoim sposobem bycia i podejściem do drugiego człowieka ."
+  },
+  {
+    "opinion_id": "op_002391",
+    "text": "Jako gość z 10 stycznia nadal podtrzymuję swoje zdanie . Pani doktor nie była troskliwa i odpowiedzialna . Każdy ma prawo do własnego zdania . Nie jestem typem panikary a moja ocena nie jest odwetem za zachowanie Pani Dr . Może inaczej traktuje pacjentki , które prywatnie prowadzą u niej ciążę . Moje dwukrotne negatywne doświadczenie daje mi pełne prawo podtrzymywać moją opinę ."
+  },
+  {
+    "opinion_id": "op_002392",
+    "text": "Muszę przyznać , że na skutek przeczytanych opinii o tej pani zrezygnowała m z umówionej wizyty . Bardzo dobrze , iż istnieje możliwość wypowiedzenia się przez pacjętki i przeczytania oceny o lekarzu przez inne pacjętki - w ten sposób kształtujemy wizerunek osoby . Bardzo pomocny w pewnych sytuacjach . . . A ginekolog , to bardzo ważny specjalista . I to on jest dla Nas a nie my dla Niego ."
+  },
+  {
+    "opinion_id": "op_002393",
+    "text": "Siedmioletnie wyzwanie pod hasłem BioMed dobiega końca . W 2015 roku projekt zostanie podsumowany . Już dziś wiadomo , że „ wychował ” całe pokolenie młodych naukowców , którzy znają specyfikę pracy w projektach badawczo - rozwojowych , wiedzą , jakie znaczenie ma ochrona własności intelektualnej , potrafią posługiwać się bazą patentową i znają podstawy prawa własności przemysłowej . „ Na początku projektu BioMed zorganizowali śmy cykl seminariów na temat własności intelektualnej . Tłumaczyli śmy , jak ją chronić , kiedy publikować , a kiedy patentować . Zatrudnili śmy młodych naukowców jako brokerów technologii , którzy dla poszczególnych zadań badawczych przeprowadzali badanie czystości i zdolności patentowej danej technologii - wylicza dr Laskowska . - Kilku brokerów technologii zostało w WCB EIT + zatrudnionych . W BioMEdzie wspierają przygotowanie do komercjalizacji i nawiązują relacje ze sferą biznesu . Łowimy zdolnych , wykształconych w projekcie ludzi , żeby razem z nami pracowali ” ."
+  },
+  {
+    "opinion_id": "op_002394",
+    "text": "Potwierdzam , że lekarka bardzo dobra z powołania jako lekarz - trafnie stawia diagnozy , konsultuje je ze swoimi kolegami lekarzami jak ma wątpliwości . Osoba inteligentna . Zgadzam się z jednym z opisów jednak , że dość niekonwencjonalna - dużo żartów w gabinecie , dużo komentarzy itd i to nie każdemu się podoba"
+  },
+  {
+    "opinion_id": "op_002395",
+    "text": "Moja wizyta była krótka i rzeczowa , a P . Doktor jest miłą osobą . Przyczyną tak krótkiej wizyty było schorzenie , które do czasu wizyty ustąpiło . W związku z tym trudno ocenić mi pełny profesjonalizm Pani doktor . Aczkolwiek na zadane pytania P . Doktor udzieliła mi wystarczające informacje ."
+  },
+  {
+    "opinion_id": "op_002396",
+    "text": "Witam wszystkich Był em u doktora Mrozickiego wiele razy . Zawsze służy fachową informacją , rzetelnie wykonuje swoją pracę . Przede wszystkim jest to lekarz z ogromnym doświadczeniem i odpowiednim podejściem do pacjenta . Bez wahania zdecydował em się na zabieg ( jednodniowy ! ) usunięcia prostaty – z pełnym sukcesem . Mam same pozytywne opinie na temat wizyt i leczenia , więc mogę wystawić ocenę najwyższą . A komentarze z pretensjami o 80zł za wizytę ? Czy to dużo ? Proszę się zastanowić ile płaci się za wizytę u fryzjera … . Zdecydowanie urolog wart polecenia !"
+  },
+  {
+    "opinion_id": "op_002397",
+    "text": "Mimo , że Pani dr jest miła przestrzegam wszystkich przed tym lekarzem ! Leczyła m się u dr Siemaszko przez 2 lata . Zdiagnozowała u mnie choroby , których jak się później okazało nigdy nie miała m . Przepisuje mnóstwo niepotrzebnych leków . Przez rok dawała mi ( bezpodstawnie ) ciężkie leki na kości , w skutek czego 2 tygodnie spędziła m w szpitalu , gdzie zalecono mi kategorycznie zmienić lekarza . Po konsultacji z innymi lekarzami nie biorę już żadnych leków , bo jak się okazuje nigdy nie miała m żadnej z chorób na którą leczyła mnie dr Siemaszko ."
+  },
+  {
+    "opinion_id": "op_002398",
+    "text": "Wlaź opowiadał , że przez wiele lat mógł dobrze funkcjonować , ale w pewnym momencie jego stan zdrowia pogarszał się z każdym miesiącem . \" Jeszcze pod koniec czerwca tego roku mogł em przejść 400 m , a przed operacją nawet 100 m było dla mnie dużym wyzwaniem \" - opowiadał . Prof . Mariusz Kusmierczyk wyjaśnił , że pacjent czekał w warszawskim Instytucie od marca 2018 r . na odpowiedniego dawcę , od którego można było pobrać serce i wątrobę . \" Był niewydolny sercowo i bali śmy się , że w domu może mu się coś stać . Chcieli śmy mieć też pewność , że jest dobrze przygotowany do tej trudnej operacji , nie ma żadnej infekcji , a nerki pracują prawidłowo \" - dodał ."
+  },
+  {
+    "opinion_id": "op_002399",
+    "text": "Pani doktor po zbadaniu mojej córki poinformowała mnie , że dziecko prawie nie widzi , bo ma bardzo dużą wadę wzroku . Dostał zalecie , aby podawać atropinę przez 5 dni i ponownie wrócić na badanie . Od razu dostała m też informacje , że wynik będzie gorszy niż ten bez kropli . Kolejnym krokiem będzie kupno okularów . Dodam , że córeczka jest niemowlakiem . Jakie są przyczyny , czy można to zweryfikować , jeszcze raz sprawdzić - za dużo się nie dowiedziała m . Dostała m tylko informację , że podczas podawania atropiny mogą wystąpić skutki uboczne i w razie poważniejszych problemów trzeba jechać do szpitala . Taka wiadomość jak i informacja o prawie ślepocie , została mi przekazana jak informacja , że dziecko ma katar . Wychodząc była m w szoku . Po paru dniach jak doszła m do siebie postanowiła m to zweryfikować . Udała m się do dwóch różnych okulistów . Oczywiście nie powiedziała , że była m już u pani doktor i że mam opinie , iż dziecko niedowidzi . Żaden z lekarzy nie znalazł wady o której została m poinformowana . Dodatkowo dostała m informację , iż podawanie atropiny przez 5 dni takiemu małemu dziecku obecnie nie stosuje się . Można oczywiście zbadać ale po uśpieniu dziecka , bądź tak jak wykonał jeden z lekarzy - w gabinecie ( dwa razy zakroplanie i ze znieczuleniem ) . Dlatego nie polecam pani doktor . Dziękuje"
+  },
+  {
+    "opinion_id": "op_002400",
+    "text": "Jej zdaniem korzystanie z takich materiałów i informacji może mieć dwojakiego rodzaju konsekwencje . Po pierwsze oczywiście może nam pomóc i może wspierać , bowiem bardzo często pacjenci korzystający z grup internetowych podkreślają , że są to grupy , które dają wsparcie , którego nie daje lekarz . \" Bo lekarz podchodzi do pacjenta instrumentalnie i nie interesują go subiektywne , indywidualne odczucia związane z daną chorobą \" - dodała . Według socjolog może się też jednak zdarzać , że pacjent korzystający z takich grup wsparcia , forów , czy po prostu z zawartości internetu , będzie to traktował jako zastąpienie wizyty lekarskiej . \" Czyli to nie będzie i / lub wizyta , ale zamiast wizyty , co może opóźnić postawienie prawidłowej diagnozy i też doprowadzić do negatywnych konsekwencji zdrowotnych \" - podkreśliła ."
+  }
+]

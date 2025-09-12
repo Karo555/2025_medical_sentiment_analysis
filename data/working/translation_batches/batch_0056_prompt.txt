@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001101",
+    "text": "Nie polecam tej Pani . W piątym tygodniu ciąży przyjęła mnie na USG , zamiast powiedzieć , że nie widać zarodka w macicy powiedziała , że na jej oko są dwa ale mam przyjść na kolejną wizytę za 3 tygodnie , wtedy wyjaśni się czy pęcherzyk jest jeden czy będą dwa . Po tygodniu pojawiło się plamienie , lekarka pomimo zapewnienia , że można do niej zadzwonić w każdej chwili i jak nie będzie miała możliwości odebrania to oddzwoni , nie odebrała telefonu ani razu , ani razu również nie oddzwoniła . Ciąża okazała się ciążą pozamaciczna , w jajowodzie . Z zagrozeniem zycia . Zostala wykonana operacja usuniecia jajowodu wraz z pecherzykiem . Lekarz sam nie mogl sie nadziwic widzac USG i opis tego USG co pani doktor tam widziala . Dodatkowo w karcie , na ktorej wypisywala o pecherzyku , ktorego nie bylo byl rozniez opis badania , min : piersi palpacyjnie bez zmian . Zadne badanie piersi nie zostalo podczas wizyty wykonane ."
+  },
+  {
+    "opinion_id": "op_001102",
+    "text": "Bardzo miła pani doktor , z dużą dozą cierpliwości dla małych pacjentów . Każdemu poświęca dużo czasu , cierpliwie słucha i odpowiada na wszystkie pytania . O trafności diagnozowania i skuteczności leczenia narazie niewiele mogę powiedzieć ( jestem po drugiej wizycie z dzieckiem u pani doktor ) ."
+  },
+  {
+    "opinion_id": "op_001103",
+    "text": "Wiem , że najłatwiej na kogoś \" napluć \" anonimowo \" a taka opinia może czasami zaszkodzić dobremu lekarzowi . Była m pacjętką dr Milewicza . Wizyta w przyzwoitej cenie , wysłał mnie do szpitala na wszystkie badania - jak na razie jedyny lekarz , który zlecił kompleks badań . [ NFZ ] W szpitalu panuje lekki harmider - mnóstwo pacjentek - gdyby m nie zauważyła , nie wykonanoby mi 2 ważnych badań - trochę taka taśmówka , ale ok . Dr . Milewicza nie sposób \" złapać \" - przemyka po oddziale - co jest zrozumiałe - mnóstwo pracy . Po zakończonych badaniach wypisał leki - najważniejszy z nich miała m brać po pół tabletki , za 6 miesięcy - 1 \\ 4 . I wszystko było by dobrze gdyby nie następna wizyta - otóż - zaproponował , żeby m nadal brała pół tabletki - bo cytuje - \" Czy chce mi się dzielić na 4'' - osłupiała m . Dodatkowo wyszły niedobre wyniki z posiewu z pochwy , zlecił leczenie - leki , które przepisał były \" bez składu i ładu'' - cytuję słowa magister farmacji . . . . . Na pewno jest - był ? dobrym fachowcem ale moim zdaniem ma za dużo pacjentek i się w tym gubi ."
+  },
+  {
+    "opinion_id": "op_001104",
+    "text": "Mam bardzo podwyzszona prolaktyne i Pani Dr . Jucnicka przepisala mi bromergon - po ktorym FATALNIE sie czulam - na wizycie stwierdzila ze to najlepszy lek oraz nie obciazy mojego portfela ( niby mile ale dziwne , bo jestem w stanie wydac kazda sume na leki ktore maja mnie wyleczyc i tu nie ma miejsca na oszczednosci . . . ) . Lek kosztowal ok 5zl ! ! ! ! ! ! ! ! ! za opakowanie wiec tym bardziej mnie to zadziwilo ! Faktycznie nie obciazyl portfela ! ale moje zdrowie owszem . Gdy zadzwonilam i powiedzialam ze mam fatalne objawy - bol serca , bol glowy , dreszcze , oslabienie , sennosc , wymioty . . . czyli wszystkie z mozliwyh . . . to zamiast dac mi drozszy zamiennik ( moze za 10zl hehehhe ) to zalecila stosowac go dopochwowo ? ? ? Co jak sie okazalo jest bardzo nieprawidlowe . . . . . Acha , telefony w trakcie wizyty tez byly , a o przebadanie ginekologiczne musialam poprosic . . . . ."
+  },
+  {
+    "opinion_id": "op_001105",
+    "text": "Ze zgrozą obserwuję jak moja partnerka od dwóch lat tuła się po lekarzach z progresywnie narastającym , niezdiagnozowanym bólem pleców . Moja frustracja narasta z każdą kolejną wizytą u specjalisty , który \" zbywa \" pacjenta bo to przecież na abonament . Jedna z ostatnich wizyt , tydzień temu , dobyła się u dr Tomasza Nowakowskiego , neurologa , który raczył przeprowadzić szczegółowe badanie - głębokie spojrzenie w oczy i uporczywe dopytywanie czy aby na pewno nie pomaga ibuprom , po czym odmowił przepisania silnych leków przeciwbólowych ( co zakończyło się płaczem dziewczyny , ponieważ nie może już spać w nocy a ilości połykanych tramali , zaldiarów i innego świństwa i tak doprowadziły do rostroju żołądka ) plus przepisał kolejne RTG i stwierdził że to sprawa dla ortopedy . Nie jestem w stanie zrozumieć , jak uwadze Pana doktora umknęła historia wizyt u co najmniej trzech różnych ortopedów z tej samej przychodni w przeciągu ostatnich dwóch lat , a także wyniki badań RTG ( przecież karta pacjenta jest dostępna z komputera ! ) . Ortopedzi w końcu stwierdzili że schorzenie jest neurologiczne , a neurolodzy że jednak orotpedyczne ( Pan Tomasz nie był pierwszym neurologiem , który próbował odbić problem na pole innej specjalizacji ) . Dzisiaj wizyta na ostrym dyżurze zakończyła się zastrzykami przeciwbólowymi , internista zalecił dalsze konsultacje neurologiczne . Na dr Tomasza zgłosili śmy reklamację i będziemy do skutku domagać się wyższej jakości \" usług \" . - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Po wstępnych zgrzytach udało nam się dojść do porozumienia i Pan Doktor okazał się niezwykle pomocny i uprzejmy . Przeprowadził kompleksową diagnozę , zalecił całą paletę badań na różne możliwe przyczyny dolegliwości i był w aktywnym kontakcie z pacjentem . W rezultacie pomimo początkowego zbagatelizowania dolegliwości pacjentki nie mamy żadnych zastrzeżeń ."
+  },
+  {
+    "opinion_id": "op_001106",
+    "text": "E . P . : Skóra dzieci jest zbudowana tak jak dorosłych , ale układ immunologiczny ich skóry nie jest na tyle rozwinięty , aby szybko i sprawnie reagować na czynniki zewnętrzne , więc są słabiej chronione również przed słońcem . Będąc nad wodą dzieci często bawią się przy brzegu , a właśnie tam najłatwiej się oparzyć . Krople wody na skórze działają bowiem jak soczewka - koncentrują promieniowanie . Na zagranicznych plażach możemy zobaczyć dzieci nad wodą w koszulkach i spodenkach . Jest to rozsądne , bo nawet jeśli się zamoczą , to w upalnym słońcu przebywanie w mokrym ubraniu im nie zaszkodzi , a wręcz chłodzi , a jednocześnie chroni przed słońcem . Na rynku jest już dostępna odzież dla dzieci z filtrami przeciwsłonecznymi . Trzeba też pamiętać o częstszym dosmarowywaniu , bo bawiąc się w piasku dzieci mogą sobie zetrzeć krem . Należy również pamiętać , że będąc w wodzie też się opalamy – do 2 , 5 m głębokości promieniowanie jest takie , jak na lądzie ."
+  },
+  {
+    "opinion_id": "op_001107",
+    "text": "Wspaniały lekarz i człowiek , zawsze można było zadzwonić , poradzić się , ciepły i serdeczny nawet nie podziękowali śmy doktorowi za jego wsparcie w chorobie Taty . Cała klinika na ul Pasteura to wspaniali ludzie mimo że tato odszedł wiedzieli śmy że tam ratują do końca i z sercem . Dziękujemy Szymańscy z Jeleniej Góry ."
+  },
+  {
+    "opinion_id": "op_001108",
+    "text": "Po ponad pol roku leczenia nie bylo zadnej poprawy . Pan Piotrowski tylko jesli ma dobry humor bedzie rzetelnie sluchac pacjenta . Niestety najczesciej wyglada to inaczej . Nie slucha , nie stara sie pomoc . Jego opinie sa szybkie i bardzo powierzchowne . Nie wyciaga wnioskow czemu ktos ma dany klopot tylko krytykuje . Brakuje mu empatii i zrozumienia . Po paru minutach potrafi dac recepte i mysli , ze to zmieni zycie pacjenta . Jestem bardzo zawiedziony i zniesmaczony . To nie jest profesjonalista , ktoremu zalezy . Fatalny kontakt z lekarzem , jesli komus zalezy na czasie lub opinii to spotkanie sie tylko z olewka z jego strony . Absolutnie ODRADZAM , trzymac sie z daleka od tego pana ."
+  },
+  {
+    "opinion_id": "op_001109",
+    "text": "Była m u pani doktor raz w przychodni i to był pierwszy i ostatni raz . Po pierwsze jest bardzo nie delikatna , zbadała mnie tak , że czuła m to badanie jeszcze przez tydzień . Po drugie chciała m aby przepisała mi tabletki antykoncepcyjne a ona na to ze musze przyjść w okres aby zobaczyć czy nie jestem w ciąży , dopiero mi przepisze . Za wszelką cene chciała mnie umówić na wycinanie nadrzerki do swojego prywatnego gabinetu . A najbardziej uniosło mnie to co powiedziała , że zrobimy zabieg a potem włożymy spirale i cytuje \" będzie pani miała spokój na 5 lat \" . A skąd ona wie czy ja chcem miec spokój na 5 lat czy może planuje dziecko za rok . Ogólnie jest bardzo nieprzyjemna i niemiła ."
+  },
+  {
+    "opinion_id": "op_001110",
+    "text": "Wybitnie odradzam ! Zgłosiła m się do pani doktor z przewlekłym zmęczeniem i bólami głowy od pół roku , które utrudniają mi życie dość mocno i wyłączaja z jakiegokolwiek życia towarzyskiego . Bardzo podupadła m przez to też na zdrowiu psychicznym . Po minucie rozmowy z panią doktor zdążyła m tylko powiedzieć , że cierpię na zespół policystycznych jajników i przyjmuję antykoncepcję hormonalną . Była m w szoku , że pani doktor od razu postawiła diagnozę \" to wina tabletek \" . Spytała m , czy może zechciała by zobaczyć moje dotychczasowe wyniki badań krwi , tomografii głowy , rezonansu . . . nic nie było ważne , ponieważ - cytuję - \" co tu diagnozować , jeśli powód jest prosty \" . Pani doktor denerwowała mnie swoim protekcjonalnym tonem obalając przy okazji wszystkie dotychczasowe metody leczenia poprzednich lekarzy ( a z uwagi na moje zdrowie odwiedziła m ich w przeciągu 7 lat sporo ) . Od dwóch miesięcy lekarze próbują ustalić , co mi dolega robiąc szczegółowe badania , wreszcie neurolog zasugerował wizytę u endokrynologa . . . a u pani doktor ledwo doprosiła m się o badanie hormonów tarczycy . Dwukrotnie powtórzyła , że nie ja tu jestem lekarzem i nawet nie chciała dać skierowania na test obciążenia glukozą ( a jak się okazuje - mam insulinooporność ) . Podczas badania ginekologicznego spytała , po co biorę antykoncepcję hormonalną , skoro mam PCO i w ciążę trudno mi będzie zajść ( ostatnia rzecz , jaką chciała m usłyszeć , bo jednak kiedyś chciała by m mieć dziecko ) . Takie podejście do zdezorientowanego pacjenta uważam za karygodne , bowiem po zleceniu badań od internisty okazało się , że mam ogromny niedobór wit . D i możliwe , że to on jest przyczyną - obecnie ją suplementuję i czuję się o wiele lepiej . Mam wrażenie , że pani doktor jest przeciwniczką stosowania antykoncepcji hormonalnej , bo na nic zdały się tłumaczenia , że pozwala mi to regulować cykl , hirsutyzm i problemy skórne , a przy okazji pełnić rolę antykoncepcyjną . Uważam , że o takich poglądach powinno się jasno informować pacjenta przed wizytą , a nie wmawiać mu , że całe życie inni lekarze się mylili i robili pacjentowi krzywdę !"
+  },
+  {
+    "opinion_id": "op_001111",
+    "text": "Pan doktor bardzo rzeczowy i kompetentny . Odpowiadał szczegółowo i konkretnie na wszystkie zadawane przeze mnie pytania . Ale . . . podczas wizyty poprosiła m o kontrolę wyników badań krwi . Pan doktor zwrócił uwagę na podwyższony poziom tsh i wystawił receptę na odpowiedni lek , jednak nie wiem czemu ale przeoczył wynik glukozy , który jak się później okazało po wizycie u innego lekarza , a następnie u diabetologa , że mam cukrzycę ciążową . . ."
+  },
+  {
+    "opinion_id": "op_001112",
+    "text": "polecam dr Drzewiecką mój roczny synek ostatnio złapał jakąś infekcje ( ropny katar kaszel gorączka ) pediatra przepisał mu antybiotyk - niestety mały cały czas gorączkował więc po dwóch dawkach zmieniono mu na drugi antybiotyk po którym dostał strasznej wysypki na buzi i główce - szok ! ! ! oczywiście nie wybrała m się już do tego pediatry bo bała m się że mu załaduje następny antybiotyk ( niestety lekarze idą na łatwizne ) zapisała m się do dr Drzewieckiej która malucha dokładnie zbadała przeprowadziła z nami wywiad a następnie pobrała mu CRP z paluszka ( było trochę podwyższone ) po czym przepisała mu chomeopatyczne leki które postawiły go na nogi - więc po co były te antybiotyki ! ! ! ! trzeba tylko je podawać zgodnie z zaleceniami super lekarz który chce uchronić dzieci przed antybiotykami i silnymi lekami i nie idzie na łatwizne"
+  },
+  {
+    "opinion_id": "op_001113",
+    "text": "Do Pana Kamila trafił em kilka lat temu powoód bolący bark i drętwienie ręki . Był em wczesniej u wielu lekarzy i jak to bywa tyle samo różnych diagnoz . A tu do tego młody i zarazem utalentowany z taką wiedzą że nie jednego lekarza by mógł nauczać . Już po 1wizycie była rewelacja i w pełni odzyskana sprawność barku i ręki . Musiałem wyjechać do pracy na kilka lat ale wskazówki i rady Pana Kamila przynosiły rezultaty . Teraz po powrocie jestem pod skrzydłami Pana Kamila i jest rewelacja . Polecam z całego serca tego młodego utalentowanego człowieka ."
+  },
+  {
+    "opinion_id": "op_001114",
+    "text": "Lekarz z gatunku tych którzy robia swoje i niewiele mówia . Trzeba od nich wyciagać informacje , ograniczaja się do badania I wypisania recepty . Skuteczność leczenia ocenię dopiero po kuracji . Ogólnie oceniam lekarza neutralnie , ponieważ problemy z komunikacja nie powinny umniejszać umiejętności lekarskich , choć było by miło gdyby ich nie było ."
+  },
+  {
+    "opinion_id": "op_001115",
+    "text": "Naukowcy z Uniwersytetu Medycznego im . Piastów Śląskich we Wrocławiu i Zakładu Antropologii Polskiej Akademii Nauk ( Wrocław ) zbadali nasilenie objawów andropauzalnych u 232 mężczyzn ze skurczową NS w wieku 40 - 80 lat i 362 zdrowych mężczyzn w tym samym wieku . Do oceny nasilenia objawów andropauzalnych badacze wykorzystali skalę Aging Males \\ ' Symptoms Scale ( AMS ) . W grupie wiekowej 40 - 59 lat , zespół andropauzalny występował znacznie częściej u mężczyzn z niewydolnością serca w porównaniu ze zdrowymi mężczyznami ( odpowiednio : 28 % i 7 % ) . Z kolei w grupie wiekowej 60 - 80 lat zespół andropauzalny występował równie często u mężczyzn z NS i zdrowych mężczyzn . Jak zauważają wrocławscy badacze , przewlekła choroba serca prawdopodobnie przyspiesza naturalny proces starzenia się mężczyzny , powodując tym samym wcześniejsze wystąpienie objawów andropauzy ."
+  },
+  {
+    "opinion_id": "op_001116",
+    "text": "Pytany o finansowanie nowej placówki Ortyl zwrócił uwagę , że w nowej formule organizacyjnej organem prowadzącym będzie uniwersytet . \" To oznacza , że dla uniwersytetu ministerstwem , które prowadzi bezpośredni nadzór jest ministerstwo nauki i szkolnictwa wyższego , ale ministerstwo zdrowia też merytorycznie na to będzie wpływało . Ale status szpitala się wyraźnie zmieni \" – mówił . Marszałek zaznaczył , że po przekształceniu szpital \" wchodzi w formułę finansowania szpitali klinicznych uniwersyteckich \" . \" Nie jest to tylko prosty kontrakt z Narodowym Funduszem Zdrowia . Są też środki przeznaczone na badania , na specjalne procedury . Środki na cały proces ulegają zwiększeniu nawet do 20 proc . w niektórych obszarach , niektórych procedurach . Szpital będzie miał także dostęp do programu operacyjnego + Infrastruktura i Środowisko + , a nie tylko jak obecnie do Regionalnego Programu Operacyjnego \" – wyjaśnił Ortyl ."
+  },
+  {
+    "opinion_id": "op_001117",
+    "text": "Według Hołówki znalezienie granicy rozdzielającej różne stany może czasem wzbudzać kontrowersje . \" Nie cenię stanowisk osób , które mówią , że problem jest nierozwiązywalny , wobec tego musimy mówić , że najwcześniejsza faza protozarodkowa to już faza istnienia ludzkiego \" - powiedział . Jego zdaniem osoby , które chcą zaproponować nowe podejście , muszą jednak dobrze je uzasadnić . Etyk uznał za nieodpowiedzialne prowadzenie na własne wyczucie badań in vitro przez czas dłuższy , niż jest to przyjęte . Według niego wyznaczone dotąd dwa tygodnie są czymś niepotrzebnie ograniczającym swobodę badań naukowych . Jego zdaniem dobrze przygotowane instytuty badawcze , które mają już osiągnięcia i wiedzą , co chcą badać , powinny mieć możliwość prowadzenia takich badań in vitro w znacznie dłuższym okresie . Jak przyznał etyk , często mówi się , że dopiero od 17 . tygodnia po zapłodnieniu można przypisać płodowi zdolność oddzielenia tego , co zewnętrzne od tego , co wewnętrzne . \" Wtedy pojawiają się symptomy tego , że płód reaguje w sposób , któremu towarzyszy stan emocjonalny - np . niepokój , lęk \" - zaznaczył etyk ."
+  },
+  {
+    "opinion_id": "op_001118",
+    "text": "Fryderyk Chopin zmarł 17 października 1849 roku , mając zaledwie 39 lat . Był wątły i chorowity od wczesnego dzieciństwa . W wieku 28 lat przy wzroście 170 centymetrów wzrostu ważył 45 kg . Za życia rozpoznano u niego gruźlicę i leczono na tę chorobę ( między innymi głodówkami i puszczaniem krwi ) . W Paryżu w 1831 roku , w wieku 21 lat miał pierwszy epizod nierzadko towarzyszącego gruźlicy krwioplucia , później często cierpiał na infekcje dróg oddechowych . Kaszel dokuczał mu całe życie , a przez dziesięć ostatnich lat zażywał z tego powodu opium na cukrze . „ Chorował em przez te ostatnie dwa tygodnie jak pies : zaziębił em się mimo 18 stopni ciepła , róż , pomarańcz , palm i fig . 3 doktorów z całej wyspy najsławniejszych : jeden wąchał , com pluł , drugi stukał , skądem pluł , trzeci macał i słuchał , jakem pluł . Jeden mówił , żem zdechł , drugi - że zdycham , 3 - ci - że zdechnę ” – pisał 3 grudnia 1838 przebywający na Majorce Chopin w liście „ Do Juliana Fontany w Paryżu ” ."
+  },
+  {
+    "opinion_id": "op_001119",
+    "text": "Centrum Badań Innowacyjnych ( CBI ) , które status KNOW otrzymało w dziedzinie nauk o zdrowiu , istnieje od 2 lat . Tworzą je polskie ośrodki : Wydział Lekarski oraz Wydział Farmaceutyczny Uniwersytetu Medycznego w Białymstoku oraz Instytut Medycyny Doświadczalnej i Klinicznej im . Mirosława Mossakowskiego PAN . Od tego roku jednostka prowadzi także współpracę z zagranicznymi ośrodkami : Centrum Statystyki Uniwersytetu Hasselt w Belgii oraz Centrum Metabolomiki i Bioanalizy na Uniwersytecie San Pablo - CEU w Hiszpanii . CBI jest jednym z sześciu ośrodków badawczych , które otrzymały w lipcu tego roku status KNOW . Status ten obowiązuje przez pięć lat . W tym okresie najlepsze jednostki mogą z budżetu państwa otrzymać dodatkowe finansowanie , wynoszące nawet 50 mln zł . Pieniądze te mogą być przeznaczone m . in . na wzmocnienie potencjału naukowego i badawczego . Przyznawanie statusu KNOW najlepszym ośrodkom naukowym jest jednym z elementów reformy szkolnictwa wyższego z 2011 roku ."
+  },
+  {
+    "opinion_id": "op_001120",
+    "text": "Mam mieszane uczucia jeżeli chodzi o tą Panią . Podczas ciąży jeździła m 100 km prywatnie do mojego lekarzą gin . - po porodzie do kontroli poszła m do Pani doktor na NFZ . Może jestem przyzwyczajona do innego standardu opieki albo się czepiam ale to była najbardziej \" milcząca \" wizyta u lekarza w moim życiu . Osoba chłodna , nieprzyjemna , miała m wrażenie , że każda informacje musze Pani doktor wyciągać na sile z gardła . Może prywatnie jest inna bo na NFZ nie polecam ."
+  }
+]

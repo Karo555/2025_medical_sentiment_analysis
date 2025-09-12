@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004201",
+    "text": "Jeśli ma ktoś jakieś wątpliwości co do fizjoterapii, to w gabinecie wszystko się rozwiewa, profesjonalizm w każdym calu, a dodatkowo bardzo przyjazna atmosfera. Podczas zabiegu można się spocić, ale mój nadgarstek teraz ma się o niebo lepiej :)"
+  },
+  {
+    "opinion_id": "op_004202",
+    "text": "Bardzo dziękujemy za udzieloną szybką pomoc. Profesjonalne podejście, skuteczność po 1 wizycie i miła atmosfera, która rozładowała cały stres u córki."
+  },
+  {
+    "opinion_id": "op_004203",
+    "text": "Bolało przed wizytą i podczas wizyty. Po wizycie już przestało boleć! Szczerze polecam."
+  },
+  {
+    "opinion_id": "op_004204",
+    "text": "Już kolejny raz zostałam postawiona na nogi jedną wizytą!"
+  },
+  {
+    "opinion_id": "op_004205",
+    "text": "Po szczegółowym wywiadzie dotyczącym dolegliwości od razu zastosowane zostały bolesne metody, które pomogły natychmiastowo."
+  },
+  {
+    "opinion_id": "op_004206",
+    "text": "Bardzo profesjonalna wizyta. Duża wiedza merytoryczna pana Jacka daje poczucie bezpieczeństwa.Świetna atmosfera, Profesjonalista z prawdziwego zdarzenia. Skuteczna terapia. Polecam każdemu, kto szuka dobrego fizjoterapeuty."
+  },
+  {
+    "opinion_id": "op_004207",
+    "text": "wizyta przebiega w luźnej, ale profesjonalnej atmosferze. a problem, z którym przyszłam, został rozwiązany podczas dwóch wizyt - więc jestem bardzo zadowolona"
+  },
+  {
+    "opinion_id": "op_004208",
+    "text": "Świetny fachowiec. Naprawił i mnie i córkę. Gorąco polecam."
+  },
+  {
+    "opinion_id": "op_004209",
+    "text": "Bardzo konkretny, sympatyczny i zaangażowany Fizjo. Polecam! :)"
+  },
+  {
+    "opinion_id": "op_004210",
+    "text": "Jestem bardzo zadowolona z wizyty. Artur jest bardzo sympatyczny, zaangażowany i merytorycznie odpowiada na zadawane mu pytania. Zdecydowanie polecam"
+  },
+  {
+    "opinion_id": "op_004211",
+    "text": "Zdecydowanie polecam! Zabiegi dobrane indywidualnie do potrzeb, wszystko wytłumaczone krok po roku, wszystko sprawnie i skutecznie."
+  },
+  {
+    "opinion_id": "op_004212",
+    "text": "Po dwóch spotkaniach ręka wróciła mi do funkcjonalności po wypadku."
+  },
+  {
+    "opinion_id": "op_004213",
+    "text": "Świetny specjalista, jestem bardzo zadowolony!"
+  },
+  {
+    "opinion_id": "op_004214",
+    "text": "Zaangażowanie i podejście do problemu na najwyższym poziomie. Już po pierwszej wizycie widać poprawę i stosowaniu się do zaleceń widać poprawę."
+  },
+  {
+    "opinion_id": "op_004215",
+    "text": "Byłem już na kilku wizytach z różnymi problemami, zawsze mam szczegółowe wyjaśnienie co się stało i od czego. Dodatkowo zawsze mam nakreślony plan działania po wizycie. Szczerze polecam!!!"
+  },
+  {
+    "opinion_id": "op_004216",
+    "text": "Narazie to pierwsza wizyta jestem zadowolony widać że Artur ma wiedzę."
+  },
+  {
+    "opinion_id": "op_004217",
+    "text": "Dobra komunikacja. Wszystko zostało mi wyjaśnione."
+  },
+  {
+    "opinion_id": "op_004218",
+    "text": "Świetny specjalista, profesjonalista w każdym obszarze."
+  },
+  {
+    "opinion_id": "op_004219",
+    "text": "Świetne podejście do pacjenta. Szczegółowe odpowiedzi na pytania. Dobra robota. Dziękuję, czuję się jak nowa."
+  },
+  {
+    "opinion_id": "op_004220",
+    "text": "Profesjonalizm i przyjazna atmosfera. Bardzo szczegółowe i konkretne zalecenia pokontrolne. Czułam się świetnie zmotywowana do zmiany nawyków żywieniowych (metody nie radykalne, ale bardzo skuteczne).  Bardzo polecam."
+  }
+]

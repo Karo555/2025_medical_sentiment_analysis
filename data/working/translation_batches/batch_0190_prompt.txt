@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003781",
+    "text": "Pani Doktor jest bardzo rzeczowa i empatyczna, wykonała badanie, zapoznała się z wynikami wcześniejszych badań, szczegółowo je omówiła, rozwiała wszelkie wątpliwości, zaleciła kolejne badanie, serdecznie polecam"
+  },
+  {
+    "opinion_id": "op_003782",
+    "text": "Bardzo miła Pani Doktor, szczegółowo opowiada o procesie dalszego leczenia :)"
+  },
+  {
+    "opinion_id": "op_003783",
+    "text": "Pani doktor z zaangażowaniem analizuje zdjęcia MRI i przedstawia szczegółową opinię. Podczas wizyty dokładnie przeprowadza badanie i kieruje na dodatkowe badania, jeśli są potrzebne. Od kilku miesięcy jestem pod opieką Pani doktor – odbyło się kilka wizyt i badań. Każda wizyta przebiegała w pozytywnej atmosferze, z dokładną analizą i określonymi kolejnymi krokami. Polecam."
+  },
+  {
+    "opinion_id": "op_003784",
+    "text": "Odczułam, że pani nie ma ewidentnie czasu na konsultację. Czułam się zbyta, nic nie zostało mi wytłumaczone. Lekarz, który zasugerował mi konsultacje z neurologiem w celu przeprowadzenia badania został wręcz przez panią neurolog \"wyśmiany\"."
+  },
+  {
+    "opinion_id": "op_003785",
+    "text": "Polecam profesjonalizm i dużo empatii. Serdecznie pozdrawiam Panią Doktor"
+  },
+  {
+    "opinion_id": "op_003786",
+    "text": "Jestem dopiero w trakcie leczenia jednak na chwile obecną jestem zadowolona z podejścia Pani dr Piotrkowskiej - Dombek do mojej osoby. Wysłuchuje pacjenta, jest cierpliwa, zaangażowana w badanie ciała, odczytywanie wyników i płytek z rezonansu magnetycznego. Polecam każdemu Panią doktor  i życzę Jej dużo zdrowia."
+  },
+  {
+    "opinion_id": "op_003787",
+    "text": "Brak minusów. Wizytacja bardzo profesjonalna. Polecam!"
+  },
+  {
+    "opinion_id": "op_003788",
+    "text": "Pani Doktor wykonała bardzo szczegółowy wywiad i badanie aby móc odpowiednio postawić diagnozę i zastosować leczenie. Do tego jest bardzo miła i rzeczowa."
+  },
+  {
+    "opinion_id": "op_003789",
+    "text": "Bardzo profesjonalne podejście, wszystko  wyjaśnione, przyjazna atmosfera. Polecam"
+  },
+  {
+    "opinion_id": "op_003790",
+    "text": "Jak zawsze, bardzo zaopiekowana. Troska i wiedza tego Pana jest niezwykła. Ciesze się,  kiedyś trafiłam właśnie do tego gabinetu."
+  },
+  {
+    "opinion_id": "op_003791",
+    "text": "Bardzo się cieszę, że trafiłam właśnie do Doktora Mikulskiego. Poczułam się zrozumiana w trakcie konsultacji, czego brakuje w wielu innych gabinetach lekarskich. Szybka decyzja o wprowadzeniu farmakologii, co mnie cieszy, ponieważ od 20 lat zmagam się z migrenami. Świetna wizyta, bardzo szczegółowa. Doktor z bardzo wysoką kulturą osobistą oraz szacunkiem do pacjenta. Polecam umawiać wizyty do doktora, bez zastanowienia!"
+  },
+  {
+    "opinion_id": "op_003792",
+    "text": "Lekarz o wysokiej kulturze osobistej, pełen szacunku dla pacjenta. Punktualny, dokładny, z dużą wiedzą i zaangażowaniem. Uważnie wysłuchał, wszystko jasno wyjaśnił. Kompetentny specjalista, godny polecenia."
+  },
+  {
+    "opinion_id": "op_003793",
+    "text": "Doktor dokładnie wszystko zdiagnozował, wytłumaczył oraz skierował do odpowiedniego leczenia. Dziękuję za wizytę, oby więcej takich lekarzy :)"
+  },
+  {
+    "opinion_id": "op_003794",
+    "text": "Konkretnie, szczegółowo , bez pospiechu i z poczuciem humoru !"
+  },
+  {
+    "opinion_id": "op_003795",
+    "text": "po roku szukania przyczyn bólu , po badaniach zleconych przez Lekarza znaleźliśmy przyczynę . Do tego wysoka kultura i przyjazne podejscie"
+  },
+  {
+    "opinion_id": "op_003796",
+    "text": "Polecam doktora Mikulskiego! Zaangażowany, przystępny, skuteczny!"
+  },
+  {
+    "opinion_id": "op_003797",
+    "text": "Lekarz z pełnym zaangażowaniem, bardzo empatyczny i rzeczowy."
+  },
+  {
+    "opinion_id": "op_003798",
+    "text": "Polecam! W gabinecie miła atmosfera. Pan doktor wszystko dobrze wytłumaczył i zlecił dodatkowe badania."
+  },
+  {
+    "opinion_id": "op_003799",
+    "text": "Wszystko wyjaśnił, przepisał leczenie"
+  },
+  {
+    "opinion_id": "op_003800",
+    "text": "witam"
+  }
+]

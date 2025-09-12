@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003021",
+    "text": "Lekarz z bogatym doświadczeniem , konkretny , cierpliwy , sumiennie wykonuje swój zawód . Szczegółowo bada po wcześniejszym przeprowadzonym wywiadzie z pacjentem . Trafnie stawia diagnozę i dobiera odpowiednie dalsze leczenie . Z pełną odpowiedzialnością polecam tym , którzy mają problemy gastrologiczne lub inne objawy z tym związane ."
+  },
+  {
+    "opinion_id": "op_003022",
+    "text": "Trafiła m do p . Bozenki w bardzo trudnym okresie . Nie wiedziała m czy mam szansę wyjść na prostą . Miała m silną depresję połączoną z próbą samobójstwa . Wiedziała m że sama sobie nie poradzę . Już po pierwszym spotkaniu wiedziała m że jest to osoba której nie boję się zaufać . Jej ciepło i uśmiech przekonały mnie do pracy nad sobą . Minął już jakiś czas , czuję się lepiej , radzę sobie z wieloma problemami a to wszystko dzięki p . Bożence . Dziękuję kochana p . Bożenko . Dzięki Pani moje życie stało się lepsze . Pozdrawiam Małgorzata"
+  },
+  {
+    "opinion_id": "op_003023",
+    "text": "Merytorycznie nie mam zastrzeżeń . Zdenerwowało mnie natomiast to , że pani doktor miała pretensje , że dziecko po wejściu do gabinetu nie powiedziało jej \" dzień dobry \" . Normalnie owszem , ale w tym momencie miała do czynienia z marudzącym trzylatkiem z dużą gorączką i bolącym gardłem . Jak przyszli śmy do kontroli , dziecko już się czuło dobrze i oczywiści samo od progu wołało \" dzień dobry \" . Ale wcześniejsza uwaga nie spodobała mi się , jako matka przychodzę do lekarza z chorym dzieckiem po poradę lekarską , a nie na naukę savoir vivru ."
+  },
+  {
+    "opinion_id": "op_003024",
+    "text": "pani Pruska odbierała poród mojego syna w 1992 roku . Była bardzo niesympatyczna , naśmiewała się z metod prowadzenia mojej ciąży przez dot . lekarza w mojej miejscowości . Dziwiła się dlaczego nie chodziła m do szkoły rodzenia , gdzie w tych latach mało kto słyszał o takowej , no może w Warszawie . . . . Położne w jej towarzystwie też pozwalały sobie na uszczypliwości . Gdy po raz kolejny poprosiła m o basen jedna z nich powiedziała , ze chyba już wysikała m cały Zalew Wiślany ! ! ! ! ! Serdecznie odradzam tą panią ! ! ! !"
+  },
+  {
+    "opinion_id": "op_003025",
+    "text": "chodziła m do niego na wizyty - dodatkowe USG w ciąży , był też pierwszym ginekologiem do którego poszła m , spodziewając się , że jestem w ciąży . Była m zadowolona , choć może czasem chciała by m więcej informacji i życzliwości . Spotkała m go niespodziewanie na sali operacyjnej , gdzie przeprowadzał cesarkę . Zobaczenie znajomej twarzy w sali pełnej obcych ludzi w dość nieprzyjemnej sytuacji ( nagła diagnoza do natychmiastowego rozwiązania ) - cesarkę zrobił przepięknie , prawie nie mam śladu po cięciu . Dziecko zdrowe ( i już nawet pyskate ) . Zdziwiła i zasmuciła mnie teraz informacja , że odmawia antykoncepcji hormonalnej . . ."
+  },
+  {
+    "opinion_id": "op_003026",
+    "text": "Profesor negował moją wypowiedź na temat mojego dziecka ( nie medyczną ) . Próbował sprowadzić mnie do parteru wielkością swojego autorytetu . A swoją \" wielką kulturę osobistą \" pokazał , rozmawiając ze mną z ustami pełnym tortu , którego zajadał podczas rozmowy . Kiedy objawy nie pasowały mu do opisu dziecka uznał , że problem na pewno leży po stronie domu . Zweryfikował swoje zdanie dopiero po przeprowadzonym wywiadzie z dzieckiem w gronie studentów , który nie potwierdził jego teorii i uzyskaniu opinii neuropsychologa , która jej również skorygowała . Szkoda , że uzyskał te opinię w dniu wypisu i jego skorygowane wnioski nie zostały ujęte w epikryzie ."
+  },
+  {
+    "opinion_id": "op_003027",
+    "text": "Byli śmy u tego lekarza z 2 , 5 letnim synkiem z objawami niekontrolowanych ruchów pojawiających się nagle i trwających kilkadziesiąt sekund . Podczas wizyty lekarz nie ruszył się zza biurka , nie zbadał małego pacjenta neurologicznie , za to zdiagnozował , że objawy są wynikiem tego , że synek nie umie radzić sobie z emocjami , że powinni śmy go bardziej chwalić . Podczas rozmowy podniósł fartuch i poluzował sobie pasek u spodni ( odruch ? ) , co nas nieco zdziwiło . Pod koniec wizyty kazał synkowi stanąć ze złączonymi stopami , wyciągnąć rączki przed siebie i poruszyć każdym palcem z osobna ( 2 , 5 - latek polecenia nie zrozumiał ) . Napisał w opinii , że badanie przedmiotowe neurologicznie w normie ( nie wiem na jakiej podstawie , skoro synka nie zbadał ) , zalecił profilaktykę / obserwację . Poszli śmy do innego neurologa dziecięcego , synek ma zdiagnozowane schorzenie wcale nie oparte na kontrolowaniu emocji i jest w trakcie leczenia . SZCZERZE ODRADZAM TEGO LEKARZA !"
+  },
+  {
+    "opinion_id": "op_003028",
+    "text": "Lekarze podkreślają , że nierozpoznane i nieleczone tętniaki aorty są bardzo niebezpieczne dla chorego - szczególnie , że w większości przypadków pozostają bezobjawowe . Z czasem powiększają się , osłabiając wytrzymałość ich ściany , a to w konsekwencji prowadzić może do ich pęknięcia , krwotoku i zagrożenia życia pacjenta . Szacuje się , że w Polsce na tętniaka zlokalizowanego w brzusznym odcinku aorty choruje ok . 200 tys . osób . Jeszcze 20 lat temu podstawowym sposobem leczenia tętniaków aorty była złożona operacja chirurgiczna , ryzykowna dla pacjentów . Od lat 90 . z powodzeniem zaczęto stosować również w Polsce nowoczesne leczenie endowaskularne z wykorzystaniem stentgraftów aortalnów produkowanych w innych krajach - dostępnych , ale stosunkowo drogich . Dziś takie leczenie w zakresie tętniaków aorty piersiowej jest standardem ."
+  },
+  {
+    "opinion_id": "op_003029",
+    "text": "ogólnie ok Pani doktor miła , badanie też ok , ale chodziło mi o antykoncepcję a Pani doktor zgodnie z klauzulą sumienia jest jej przeciwniczką - poleciał mi metody naturalne i ewentualnie tabletki . O spirali czy tabletce \" dzień po można \" zapomnieć . Taka informacja powinna być na jej profilu ."
+  },
+  {
+    "opinion_id": "op_003030",
+    "text": "Dolnośląskie Centrum Chorób Serca Medinet to niepubliczna klinika , która od dziesięciu lat prowadzi koło naukowe dla studentów medycyny . Tegoroczny sukces jest na tyle spektakularny , że dotychczas nie zdarzyło się , by z jednego ośrodka aż cztery prace trafiły do kongresowego programu . „ Nasi podopieczni napisali bardzo oryginalne materiały naukowe , a fakt , że zauważono ich prace , świadczy przede wszystkim o tym , że mają oni spore szanse na to , by stać się dobrymi kardiochirurgami . W moim pokoleniu sposobów operowania uczyli śmy się z kserokopii amerykańskich podręczników , bo na oryginalne książki nie było nas stać . Obecnie studenci mają znacznie łatwiejszą drogę ku temu , by poznać tajniki kardiochirurgii ” – podkreślił Kołtowski ."
+  },
+  {
+    "opinion_id": "op_003031",
+    "text": "Korzystali śmy z porad Pani doktor w rzekł by m \" zwykłych \" sytuacjach - \" zwykłe \" choroby dziecięce , raczej bez szczególnie trudnych przypadków . Pani doktor jest bardzo miła , ma świetne podejście do dzieci . Do tego jest konkretna , na każde pytanie odpowiada wyczerpująco i wszystko wyjaśnia . Jest przy tym skuteczna w leczeniu . W kilku diagnozach okazywała się lepsza niż laboratorium - dopiero kolejne badanie w laboratorium potwierdziło ocenę sytuacji p . doktor . Natomiast każdy powienien sam zdecydować , czego oczekuje od lekarza : a ) sięgania od razu po zdecydowane metody ( np . antybiotyki , maści sterydowe ) , czy b ) traktowania takich metod jako \" zło konieczne \" i szukanie w pierwszej kolejności łagodniejszych , ale skutecznych środków . Na podstawie doświadczeń mojej rodziny i rodziców kilkorga innych dzieci , Panią dr Myślwiec zaliczył by m do pierwszej grupy ."
+  },
+  {
+    "opinion_id": "op_003032",
+    "text": "Na razie jestem bez zdania . Bylam u doktora na konsultacji , rozmowa odbyła sie bardzo szybko gdyby nie to ze zasypała m go pytaniami nie dowiedziała by m sie niczego . podejscie do pacjenta tragiczne . za to dokładnie opisał sposób płatności . w pewnym momencie juz chyba znudzony moim pytaniami zamknał i odlozył na bok moja karte . . . . tym samym dajac do zrozumienia ze wizyta dobiegła końca . jednak nie dała m za wygrana i drążyła m temat gdyz zapłaciła m 100zł za wizyte , lecz niechetnie odpowiadał na pytania . Chciała by m aby wypowiedział sie ktoś kto mial zabieg u Pana doktora i szczerze może go polecić . pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_003033",
+    "text": "Stanowczo odradzam wizytę u tego \" lekarza \" . Moja wizyta trwała około 10 minut . Problemu z którym się zgłosił em niestety ta Pani nie rozwiązała , przez co musiałem iść do innego okulisty , który okazał się o wiele bardziej kompetentny . Badania wykonano bardzo pobieżnie z \" zegarkiem w ręku \" . Dodatkowo w gabinecie brak brak podstawowego sprzętu ( w moim przypadku brakowało aparatu USG . . . ) . Oczywiście lekarka poleciła znajomego okulistę , który posiada USG do , którego miał by m się zgłosić na badanie a następnie kolejny raz do niej na interpretację wyników ( czyli płacę 2 razy ) . Co do kosztów badania za swoją \" niezwykle \" wnoszącą wizytę zapłacił em 110zł . Nie wiem czy to dużo czy mało , ale moim zdaniem zdecydowanie nieadekwatnie do jakości usługi ."
+  },
+  {
+    "opinion_id": "op_003034",
+    "text": "Zdecydowanie odradzamy tego lekarza . Trafilismy do dr Kuli z azoospermią . Lekarz zastanawiał się nad możliwą przyczyną i postawil diagnozę : infekcja ( mimo braku jakichkolwiek objawów infekcyjnych ) i zapisał antybiotyk . Nie zapytał o to czy w rodzinie były przypadki męskiej niepłodności . Mimo naszych pytań co poza infekcją może być przyczyną azoospermii nie wspomniał słowem o przyczynach genetycznych . Nie zlecił żadnych badań poza kolejnym badaniem nasienia . Ponieważ doczytali śmy ze w przypadku azoospermi częstą przyczyną są wady genetyczne , wykonali śmy badanie pod kątem delecji w chromosomie Y ( AZF ) i potwierdziła się przyczyna genetyczna . Wizyta u tego lekarza nie zbliżyła nas w najmniejszym stopniu do właściwej diagnozy problemu ."
+  },
+  {
+    "opinion_id": "op_003035",
+    "text": "Polecam Panią Doktor Zalewską - Gajek każdej pani , prowadziła moją ciążę wprzychodni NFZ i przyznać muszę , że każde spotkanie było Wydarzeniem , była m przyjmowana godnie , z atencją , ciepłem , wielką uważnością , dostała m dużo fantastycznych porad , dzięki Pani doktor i wskazaniu przez nią położnej , która pięknie współpracowała ze mną , pozwalała wybrać pozycję w jakiej chcę rodzić , ochroniła krocze , tak , że nie mialąm ani troszkę pęknięcia , nie była m nacinana , mój poród był taki jak zaplanowała m , całkowicie naturalny . Kiedy opowiadam znajomym , to nikt nie wierzy , że lekarz z NFZ , któremu nie zostawiła m grosza w kopercie , może być taki wspaniały i że poród w polskich szpitalnych warunkach może być przeżyciem intymnym , podniosłym i godnym . I taka też była każda moja wizyta u Pani Doktor . Fakt , trzeba było zawsze poczekać godzinkę , lub i dwie nawet na swoją kolejkę , ale ilość Pań chcących , by to właśnie Pani Gajek nimi się zajmowała , świadczy o jej kompetencjach . Nie raz była m przyjmowana dodatkowo , bo coś się niepokojącego działo , a nie było miejsca , nigdy mnie nie odesłała i była m świadkeim , jak wiele pań potraktowała w podobny sposób , chociaż godziny jej pracy dawno się skończyły i powinna już iść do domu . Zawsze uśiechnięta , serdeczna , czuła , delikatna , jeszcze zanim zaszła m w ciąże i pierwszy raz do niej trafiła m , wiedziała m , że jeśli zajdę , to będę chciała , by prowadziła moją ciążę , intuicja mnie nie zawiodła , całe moje 9 miesięcy było wyjątkowe , tak jak i każda wizyta w przychodni u Pani Doktor , która jest prawdziwym lekarzem z powołania . Dziękuję ja , mój mąż i nasz synuś ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_003036",
+    "text": "Witam , Pan dr Marcin sprawia wrażenie profesjonalisty rozpoznał szybko problem ( zapalenie najądrza ) - jednak antybiotyki które zapisał nie wyleczyły mnie . Po kolejnej wizycie przepisany został jeden z preparatów z pierwszej kuracji - lecz i on nie pomógł . Mówił em doktorowi że w przewlekłym zapaleniu jelita grubego niebezpiecznie jest podawać długie serie antybiotyków . W moim przypadku skończyło się to zaostrzeniem zapalenia jelita grubego oraz towarzyszącym mu zapaleniem stawów barkowego oraz skokowego - pracuję jako fizjoterapeuta więc przeszkadza mi to w pracy . Jak dla mnie terapia nie była skuteczna , antybiotyki nietrafione , nie pomogły a pogorszyły mój stan zdrowia . Po raz kolejny przekonuję się że po pierwszym nietrafionym antybiotyku lekarz powinien od razu zlecać posiew . Pan dr tego nie zrobił ."
+  },
+  {
+    "opinion_id": "op_003037",
+    "text": "Zgadzam się z przedmówcami i jestem pozytywnie zaskoczona . Pan Piotr zrozumiał na pierwszym spotkaniu moje problemy . Jego pozytywne podejście do pacjenta , profesjonalizm o którym słyszała m od znajomych się potwierdził i pomógł i mi . W niektórych zawodach trzeba pokazywać silną osobość i nic nie mówić , później przekłada się to na związek . W moim przypadku była to zerowa ochota na seks i nie dogadywanie się z chłopakiem , stres . Jestem po 5 wizycie , seks wrócił , wszystko wróciło do normalności , obydwoje jesteśmy zadowoleni . Bez wątpienia jest to godny polecenia specjalista ."
+  },
+  {
+    "opinion_id": "op_003038",
+    "text": "Lekarza wybrała m pod wpływem przeczytanych opinii . Tymczasem . . . pod gabinetem tłum , godziny nieprzestrzegane , pacjenci proszeni wg niewiadomych zasad - pacjentka mająca godzinę wizyty wcześniejszą ciągle nie była proszona , gdy ja już opuszczała m gabinet . . . ; lekarka owszem - miła , ale spieszyła się , więc niezbyt dokładnie wysłuchała , co mnie do niej sprowadziło ; w trakcie badania była bardzo delikatna i faktycznie precyzyjnie tłumaczyła , co po kolei będzie robić , jednak z gabinetu wyszła m średnio zadowolona . . . Dodam jeszcze , że moja wizyta odbyła się w ramach NFZ a nie prywatnie ."
+  },
+  {
+    "opinion_id": "op_003039",
+    "text": "pan doktor ma dwie twarze . . po wizycie płatnej prywatnej wyszlam zachwycona . . . sam zaprosił mnie na leczenie do siebie na nfz . . . a tam już widzimy innego człowieka który traktuje pacjenta jak wroga intruza . . . nawet na wyniki badan nie chciało mu sie patrzyc . do tego pali papierosy w gabinecie co dla migrenowców jest słabe . . . . juz pomijam ze zwyczajnie łamie tym prawo . . . potem znów poszła m prywatnie i znów był miły i już nie chce więcej do niego iść bo reasumujac jest okropny ."
+  },
+  {
+    "opinion_id": "op_003040",
+    "text": "Jednoczesny przeszczep był u tego chorego konieczny z powodu genetyczne uwarunkowanej choroby spichrzeniowej , która powoduje , że brakuje niektórych enzymów w wątrobie i odkładają się substancje uszkadzające mięsień sercowy . \" Gdy w takiej sytuacji przeszczepimy jedynie serce , to wątroba nadal nie produkuje tych enzymów i nowe serce zostanie uszkodzone \" – wyjaśniał prof . Kuśmierczyk . Specjalista powiedział , że w przyszłości będzie coraz większe zapotrzebowanie na jednoczesne przeszczepy serca i wątroby , ponieważ przybywa pacjentów w młodym wieku z tzw . jednokomorowym sercem . \" Polska jest drugim krajem na świecie po Stanach Zjednoczonych , w których operacje się najwięcej noworodków z niedorozwojem lewej komory serca \" – podkreśla prof . Kuśmierczyk ."
+  }
+]

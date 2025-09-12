@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002361",
+    "text": "Zastanawiał em się długo , co napisać o Pani Marcie . To profesjonalistka . Z krwi i kości . Bał em się bardzo iść do terapeuty , ale się przemogł em . Nigdy nie był em przekonany do psychologów ani psychoterapeutów . Pani Marta odczarowała mi wszystkie moje strachy odnośnie psychologów . Nie jest to lekarz , który mówi jedno , a robi drugie . Zacznijmy od tego , że na pierwszej sesji bardzo się bał em . Pani Marta spokojnie podeszła do mnie i powoli ściągała ze mnie strach . Na następnych spotkaniach było już coraz lepiej . Więc kiedy masz coś w stylu życiowego doła , poczujesz , że może nie kontrolujesz wszystkiego w życiu , a ono kontroluje Ciebie , zaczynasz bać się wszystkiego , uważasz , że jesteś nic nie wart ( a ) , skontaktuj się z psychoterapeutą i wybierz Panią Martę Reichel . Pani Marta nie ocenia , nie wskazuje , nie narzuca swojej opinii . Pomaga odnaleźć drogę , którą powinno się iść , aby być szczęśliwym . Wiadomo , że nie ściągnie z nas kredytów , problemów domowych , stresu , ale pomoże sobie z nimi radzić . Dzięki Niej wiem , że może te gigantyczne problemy tylko zdają się gigantyczne . Powiem ze swojej strony , że dzięki niej udało mi się z powrotem odzyskać szczęście wewnętrzne i chęci do życia , które były mi tak bardzo potrzebne . Pomogła na nowo uwierzyć w siebie i swoje możliwości . Jeszcze raz , wielkie dzięki dla Pani Marty Reichel , że pomogła mi odnaleźć z powrotem to , co utracił em czyli radość życia ."
+  },
+  {
+    "opinion_id": "op_002362",
+    "text": "Mąż po zabiegach u Doktora Michalika , dodam przyelcielismy z za granicy specjalnie do Pana , ponieważ przestudiowalam iz jest to swietny specjalista . Sam pobyt w klinice , obsługa / nienaganna . Niestety w naszym przypadku sie nie udalo , Mąż jak Chrapal tak chrapie nawet i glosniej czasami . I od początku jedna dziurka w nosie zatkana i tak juz pozostało , wydaje sie ze przegroda wciąż krzywa : ( na kolejną wizyte nie przylecimy bo laczy sie to z olbrzymimi dla naszej rodziny kosztami , bardzo zalujemy ze sie nie udalo aczkolwiek nienuwazam by Doktor Michalik byl zlym specjalista , poprostu w naszym przypadku skonczylo sie na zerowej poprawie ."
+  },
+  {
+    "opinion_id": "op_002363",
+    "text": "Bardzo niezwykłej urody Pani doktor a wręcz zjawiskowej ! Przez całą wizytę nie mogł em oderwać od niej oczu ! Cierpię na przewlekłą chorobę i żaden lekarz nie postawił trafnej diagnozy ! Szczera aż do bólu od razu domyśliła się z jak poważnym przypadkiem ma do czynienia ! Po kilku minutach od razu postawiła trafną diagnozę ! Po tej wizycie nie przespał em całej nocy i odżyły wspomnienia ! Ciśnienie tak mi skoczyło po tej wizycie że musiałem wypić kilka litrów melisy na uspokojenie ! Czuję się teraz o 10 lat młodszy ! Szczególnie zwrócił em uwagę na jej piękne dłonie i naturalnie długie paznokcie przy wypisywaniu recepty ! Do tej pory jestem pod wrażeniem !"
+  },
+  {
+    "opinion_id": "op_002364",
+    "text": "Nie rozpoznał u mnie astmy . Po zapaleniu płuc w 2014 r . przez wiele tygodni męczył mnie kaszel . Na wizycie lekarz osłuchał mnie , stwierdził , że wszystko jest w porządku a taki kaszel ma prawo utrzymywać się przez jakiś czas . Pan doktor przepisał mi lek hamujący kaszel . Niestety kaszel utrzymywał się , poszła m więc do innego lekarza , który również stwierdził , że po tak poważnej chorobie taki kaszel może się utrzymywać , ale nie dłużej niż do 3 m - cy . Lekarz ten przeprowadził dokładny wywiad , m . in . spytał o alergie i poprosił , aby m wróciła po upływie tych 3 m - cy . Na kolejnej wizycie dał mi skierowanie na spirometrię , która niestety potwierdziła jego podejrzenie astmy . Podsumowując , poczuła m się potraktowana po macoszemu . Rozumiem , że dzisiaj wielu pacjentów ( zwłaszcza korzystających z abonamentów w prywatnych klinikach ) , przychodzi z przysłowiowym bolącym paluszkiem i główką , ale to nie znaczy , że każdy ."
+  },
+  {
+    "opinion_id": "op_002365",
+    "text": "Z badania , przeprowadzonego przez IŻŻ w kilku województwach wynika , że nadwaga stanowi problem aż 17 - 19 proc . polskich dziewięciolatków , a otyłość dotyczy 6 , 5 proc . chłopców i 4 proc . dziewcząt w tym wieku . Inne badania potwierdzają , że problem w Polsce narasta , a nadwaga i otyłość dotyczy w sumie 22 proc . dzieci . \" Zaczynamy gonić czołówkę Europy \" - ostrzegł na konferencji dyrektor IŻŻ , prof . Mirosław Jarosz . \" Dotychczasowe działania prowadzone w Europie , związane z przeciwdziałaniem otyłości , nie przyniosły pożądanych wyników \" - dodał . Według zaleceń dietetyków dzieci powinny spożywać pięć zbilansowanych posiłków dziennie . Praktyka jest inna - nie wszystkie dzieci jedzą w domu śniadanie , nie wszystkie mają wykupiony w szkole obiad . Spędzając w szkole 5 - 8 godzin dziennie , powinny tam zjeść dwa posiłki - mówiła prof . Jadwiga Charzewska z IŻŻ ."
+  },
+  {
+    "opinion_id": "op_002366",
+    "text": "Hiperpolaryzator to niewielka oszklona szafa , zainstalowana w pomieszczeniu sąsiadującym z aparatem do rezonansu magnetycznego ( skanerem MRI ) . Próbka przeznaczonej do wstrzyknięcia substancji jest zamrażana za pomocą ciekłego helu do temperatury zaledwie 1 , 1 Kelwina i poddawana przez kilka godzin działaniu silnego pola magnetycznego . W efekcie zostaje „ namagnesowana ” , co poprawia czułość badania MRI ( obrazowania rezonansu magnetycznego ) ponad 20 tys . razy w stosunku do tradycyjnego rezonansu magnetycznego . Taki stan jest jednak nietrwały ; badanie trzeba przeprowadzić w ciągu kilku minut . Dlatego urządzenie umieszczone jest w pomieszczeniu tuż obok skanera MRI . Maszyna podgrzewa hiperpolaryzowany pirogronian do temperatury nieco wyższej od temperatury ciała i nabiera go do strzykawki , która jest szybko podawana przez okienko pielęgniarce , wstrzykującej roztwór pacjentowi ."
+  },
+  {
+    "opinion_id": "op_002367",
+    "text": "weszła m na tę stronę z ciekawości , gdyż była m pacjentką doktora 16 lat temu jeszcze na Jelonkach ( leczenie niepłodności ) i stwierdzam , ze po latach sytuacja nie zmieniła się , sądząc po wpisach . Wtedy jeszcze myślała m , ze chodzi o szybką dużą kasę , bo doktor otwieral przychodnię przy Gorczewskiej . No ale widać styl pracy od lat niezmienny . Teoretyczne wykłady na kazdej wizycie popierane statystyką z zagranicznych czasopism endokrynologicznych , wyłączność na badania mimo zgromadzonego pokażnego archiwum badań od poprzednich lekarzy , kompletny brak pomysłu co zrobić z moim permanentnym stanem podgorączkowym po operacji , wreszcie moja kompletna anonimowość mimo codziennych wizyt ( monitorowanie pracy jajników w okresie owulacji ) Ostateczna opinia lekarza - 4 % szans na zajście w ciążę metodą naturalną , bardzo niska żywotność plemników męża . Zalecenia - 4 próby inseminacji , potem zapłodnienie in vitro . Efekt - kupa forsy w błoto i nic . Przez pół roku chodzenia - żadnych lekarstw , tylko obserwacje i kolejne badania za ciężkie pieniadze . \" Szczęśliwie \" dostała m w końcu zapalenia jajnika ( stany podgorączkowe ) i wylądowała m w szpitalu , gdzie poznała m fantastyczną panią doktor Annę Sarnowską dzieki ktorej po kilku miesiącach była m w ciąży \" po bożemu \" . Teraz mam dwójkę wspaniałych dzieciaków . W drugą ciążę zaszła m szybciej niż się spodziewała m ."
+  },
+  {
+    "opinion_id": "op_002368",
+    "text": "Nowe strategie diagnostyki , zapobiegania i leczenia chorób bakteryjnych to ogromny blok zadań , w które angażuje się aż siedem grup badawczych . Mechanizmy replikacji i segregacji chromosomów bakteryjnych odkrywa prof . dr hab . Jolanta Zakrzewska - Czerwińska . Z chorobotwórczą E . coli walczy dr Wiesław Świętnicki , nowe preparaty szczepionkowe opracowuje prof . Czesław Ługowski . Natomiast prof . dr hab . Maciej Zabel opracowuje sposób wiązania przeciwciał do nanodetektora wychwytującego rzadkie komórki we krwi . Nad zapobieganiem i leczeniem chorób przyzębia pracuje dr hab . Teresa Olczak , diagnostyką i prewencją chorób bakteryjnych zajmuje się prof . dr hab . Andrzej Gamian . Choroby nowotworowe to obszar zainteresowania grupy prof . dra hab . Piotra Dzięgiela . Grupa zajmowała się m . in . badaniami nad rakiem piersi . Uczeni szukali markerów , czyli substancji wydzielanych np . do krwi , które pozwolą rozpoznać obecność i przebieg procesu nowotworowego . Zespół odniósł duży sukces . Udało się opracować prosty test diagnostyczny z wykorzystaniem materiału z biopsji cienkoigłowej guza piersi . Test potrafi wskazać onkologom , z jakim typem nowotworu mają do czynienia , czy jest to zmiana łagodna czy złośliwa , jak mają planować zabieg operacyjny i dalsze postępowanie terapeutyczne . Uczony nawiązał również współpracę z firmą diagnostyczną , która jest zainteresowana rozwinięciem testu do wczesnego wykrywania raka gruczołu piersiowego ."
+  },
+  {
+    "opinion_id": "op_002369",
+    "text": "Postanowił em napisać , być może ktoś z przewlekłym zapaleniem zatok , objawiajacym sie czestymi przeziebieniami , zatkanym od lat nosem i bolaca glowa to przeczyta i zdecyduje sie na zabieg endoskopowej operacji zatok . Nie zaluje ze wydalem 5 . 000 zl . bo tyle kosztuje taka operacja w Medi Clinicue . W przeciwnym wypadku musiał by m w szpitalu czekac na ten zabieg 1 , 5 roku . Jesli masz przewlekle zapalenie zatok to nie zaluj , sprzedaj samochod lub co innego i zrob sobie endoskopowa operacje , nie bedziesz zalowac ( ja jestem aktualnie bezrobotnym i nie zaluje ) Gdy zaciagniesz sie powietrzem przez czsty udrozniony nos zapomnisz o wydanej kasie . Po przebytej operacji nie oczekuj odrazu na efekty , u mnie dopiero po dwuch tygodniach poprawila sie zdecydowanie wentylacja w nosie i zaczela intensywnie splywac ropa z zakrzepnieta krwia . Po przebytym zabiegu wszystkie kontrolne wizyty u Pani Dr . Paradowskiej ( u mnie byly trzy ) sa bezplatne . REASUMUJAC - POLECAM - MEDI CLINICUE I DR . PARADOWSKA SA THE BEST"
+  },
+  {
+    "opinion_id": "op_002370",
+    "text": "„ Urządzenie będzie przypominało klasyczny alkomat . Będzie to jednorazowy ustnik , przez który pacjent wdmuchuje powietrze . Potem będzie ono zagęszczane , a następnie czujniki zmierzą stężenie konkretnego związku chemicznego ” – powiedział PAP twórca urządzenia inż . Artur Rydosz z Wydziału Informatyki , Elektroniki i Telekomunikacji Akademii Górniczo - Hutniczej . Wydychane przez człowieka powietrze zawiera około 500 rożnych związków , ale naukowcy chcą sprawdzać cztery z nich . Najważniejszym będzie aceton , bo jego zwiększony poziom może wskazywać na cukrzycę pacjenta . „ Gdy wiemy , ile jest alkoholu w wydychanym powietrzu , to wiemy też ile jest go we krwi . Podobna korelacja zachodzi w przypadku wydychanego acetonu ” – powiedział rozmówca PAP . Dzięki urządzeniu będzie można więc diagnozować cukrzycę albo sprawdzać , czy pacjent nie ma podniesionego poziomu cukru we krwi ."
+  },
+  {
+    "opinion_id": "op_002371",
+    "text": "Pierwsza wizyta przebiegła dobrze . Pani Elżbieta nie rozpoznała przyczyny mojego problemu , ale zwróciła uwagę jaki wywiad należy jeszcze zebrać . Była dokładna , życzliwa i poleciła zjawienie się na drugą konsultację . Jestem zadowolona , ponieważ Pani Doktor podjęła wszelkie starania , żeby mi pomóc . Polecam !"
+  },
+  {
+    "opinion_id": "op_002372",
+    "text": "Jeśli chodzi o kompetencje , jest ok ! ! ! Pana doktora chyba jednak przestała już satysfakcjonować robota korekcji wad wzroku ? ! Ciągle to samo , jak robotnik pracujący przy taśmie ! Zmieniają się tylko aktorzy leżący na stole operacyjnym . . . Aby więc trochę się rozerwać , wypytuje pacjentów - na koniec próbuje z niektórych zakpić . Gdy to się nie uda , robi się smutny . A zemstą na drugi dzień ( wizyta kontrolna doba po zabiegu ) jest emocjonalny chłód , jaki odczuwa pacjent z jego strony . On ma najwyraźniej wyższe aspiracje niż odpowiadanie na pytania pacjentów po operacji , tym bardziej - że robi to samo od wielu lat . . . Chyba gryzie go jakiś robak od wewnątrz ?"
+  },
+  {
+    "opinion_id": "op_002373",
+    "text": "Witam , Miała m alergie i ogromne problemy z zatokami , a w ślad za tym ciągłe infekcje : przewlekły katar , zatkany nos , zapalenia oskrzeli następujące jedno po drugim . Trafiła m do Pana doktora Maciej Rylskiego , który najpierw precyzyjnie zdiagnozował problem i przy pomocy dedykowanych leków zalecił płukanie zatok . Zabiegi przyniosły wręcz nieoczekiwane rezultaty , ogromna poprawę komfortu oddychania i życia oraz jednocześnie znaczne zmniejszenie liczby infekcji , właściwie całkowicie je ograniczyły . Od dwóch lat mogę naprawdę spokojnie funkcjonować , a okres największego pylenia , już nie jest tak uciążliwy . Pan Doktor jest naprawdę doświadczonym , fantastycznym lekarzem , świetnym fachowcem , a na dodatek wspaniałym człowiekiem ! ! ! Jestem bardzo zadowolona , że udało mi się trafić pod Jego opiekę , bo jako jedyny od wielu , wielu lat , potrafił trafnie postawić diagnozę i przeprowadzić skuteczne leczenie . Gorąco polecam ! ! ! ! Panie Doktorze wielkie podziękowania za całokształt opieki medycznej , za którą jestem ogromnie wdzięczna: ) ) J"
+  },
+  {
+    "opinion_id": "op_002374",
+    "text": "Doktor Matyniak to lekarz znający swoją prace i swój fach , wie co mówi i jego zachowanie wskazuje na profesjonalne podejście do zawodu lekarza . Z drugiej strony wiadomo to lekarz a nie cudotwórca i na efekty trzeba poczekać , choć gdy boli chciało by się od razu . Jeśli chodzi o sama wizytę - miło - rzeczowo i mimo niby 15 minut na pacjenta Pan doktor tak długo bada aż osiągnie spodziewany efekt tego badania i według mnie cieszmy się z takich młodych i dobrych wykształconych lekarzy bo tak szybko odchodzą zagranice . Jedyny in minus dla samej przychodni , w ramach remontu średnio przygotowani do obsługi pacjentów - stanie w drzwiach 45 min z katarem w przeciągu - średnio to wyglądało - ponadto panie z recepcji mimo że siedziało ich tam momentami cztery \" sztuki \" średnio zainteresowane pacjentem . Siedziały cztery obsługiwała jedna i to z takimi minami jak gdyby my pacjenci mieli śmy im przeszkadzać gdyż ważniejsze było która gdzie jedzie na wakacje i która z Pań co zrobiła w swoim ogrodzie - średnio to ciekawe dla nas pacjentów , ale może prywatny właściciel woli mieć pustą przychodnie a dużo personelu . Momentami w kolejce stało 8 - 10 osób ale obsługiwała wciąż jedna Pani . , nie tak to powinno wyglądać gdyż to też ma wpływ na opinię całościową , ALE SAM PAN DOKTOR OK"
+  },
+  {
+    "opinion_id": "op_002375",
+    "text": "Była m u Pani doktor na wizycie nierefundowanej w Dolmedzie . Niestety wizyta szybka , przepisany antybiotyk - ( bez wymazu z gardła ) i inne leki , które nie przyniosły żadnego efektu . Gardło nadal chore . Jedyny efekt to 210 zł mniej w portfelu ( wizyta 90 pln i leki 120 pln ) . Była m jedyny raz i więcej nie skorzystam ."
+  },
+  {
+    "opinion_id": "op_002376",
+    "text": "Zgadzam się w 100 % z wcześniejszymi opiniami pacjentów dotyczącymi osoby i pracy Pani Urszuli . Wizyty u Pani Psycholog w pewien sposób postawiły mnie na nogi , pozwoliły spojrzeć na problem \" systemowo \" , dały nadzieję i przekonanie że każdy ma prawo do własnego szczęscia . Pani Psycholog obudziła we mnie wolę \" walki \" o własne JA jak i motywacją do działania . Cenię sobie wysokie zaangażowanie Pani Urszuli jak i indywidualne przygotowanie do danego problemu pacjenta . Współpraca z Panią Psycholog przebiega w bardzo miłej , ciepłej atmosferze . Pani Urszula jest według mnie świetnym specjalistą ( wykonującym swój zawód z powołania ) ."
+  },
+  {
+    "opinion_id": "op_002377",
+    "text": "Bardzo trudny w kontakcie , zarozumiały , niechętny , zachowuje się wyniośle a tak właściwie to nastawiony jedynie na tych pacjentów , którychleczy prywatnie , nie mam zaufania , mnie nie pomógł , nawet się nie starał , jest jedynie p . o ordynatorem a zachowuje się jaku udzielny władca , zespół , którym kieruje wyrażnie go nie lubi , Jest niesympatyczny i nie do końca kompetentny . Na jego oddziale pracuje wielu dużo lepszych chirurgów , Pacjent"
+  },
+  {
+    "opinion_id": "op_002378",
+    "text": "Trend się zmienia , bo jeszcze 10 lat temu leki na groźne choroby były w mniejszości wśród podrabianych specyfików , a teraz stanowią już ponad połowę tego rynku . Problem podrabianych leków dotyczy przede wszystkim krajów rozwijających się . Tam od 30 do 70 proc . leków na rynku jest podrobiona . W krajach rozwiniętych , gdzie kontrola nad łańcuchem dostaw jest skuteczniejsza , przenikanie + podróbek + na rynek jest ograniczone  - dodała Daśko , która zajmuje się tematem na co dzień i prowadzi badania dotyczące problemu podrabiania towarów w Polsce - na gruncie praktyki sądowej . Prawnik dodała , że w sieci można kupić podrobione leki praktyczne wszędzie - na portalach aukcyjnych , społecznościowych , w sklepach internetowych , czasami nawet udających apteki legalne ."
+  },
+  {
+    "opinion_id": "op_002379",
+    "text": "Cudowny lekarz . Jeśli chodzi o podejście do pacjenta - niesamowicie sympatyczna , uważnie słucha , skrupulatnie wypytuje o objawy , historie choroby . Była m już 3 razy u tej Pani Doktor i za każdym razem miała m wyjaśnione badania , które doktor przeprowadzała , ostrzegała przed możliwym bólem ( którego nie było : ) ) , dyskomfortem , mówi do tego spokojnym i przyjaznym głosem . Nie odczuwała m poczucia skrępowania , a należę raczej do osób nieśmiałych . Jeśli chodzi o wiedzę medyczną - od razu postawiła dobra diagnozę . Poprzedni lekarze nie za bardzo dawali sobie ze mną radę : ( . Za każdym razem zleca badania niezbędne bez naciagania , dokładnie tłumaczy jak należy przyjmować leki . Polecam z czystym sercem . Atmosfera w Gabinecie jest naprawdę super , polecam"
+  },
+  {
+    "opinion_id": "op_002380",
+    "text": "Była m pacjentką Pani Śmiertki do zeszłego tygodnia . Faktycznie może jest kompetentnym specjalistą , ale sposobów na wyciągnięcie pieniędzy od klientów też opracowanych ma parę . W ciągu ostatnich ok . 12 miesięcy była m u Pani doktor na wizycie ok 5 - ciu razy , co wychodzi raz na 3 miesiące , a nawet częściej . W trakcie zrobiła m wiele badań , więc częstość wizyt tłumaczyła m sobie koniecznością ich konsultacji i jakoś nie przeszkadzał mi fakt , że Pani Śmiertka wypisywała mi receptę na pigułki antykoncepcyjne na 3 miesiące . Kiedy nie miała m już potrzeby chodzenia do niej tak często i kończyło mi się opakowanie pigułek była m akurat u Pani doktor na badaniu cytologicznym ( za które oczywiście zapłaciła m ) , poprosiła m więc przy okazji o wypisanie recepty ( w sumie to był mój lekarz od jakiegoś roku , często bywała m , wiadomo , że pigułki są odpowiednie etc . . ) , ale usłyszała m , że nie przyszła m na wizytę , więc recepty nie dostanę . Zapytała m więc wprost czy powinna m zapłacić w takim razie 120zł za receptę na pigułki , które też tanie nie są . Odpowiedz Pani Śmiertki była jednoznaczna i stanowcza : ' TAK' . Mnie to zniechęciło totalnie i po odebraniu wyników z ostatniego badania ( i tu uwaga też muszę się umówić na odbiór wyników ! ! ) , moja noga więcej w tym gabinecie nie postanie . Po tym zdarzeniu przypomniało mi się jeszcze jedno , które wcześniej też jakoś nie wzbudziło we mnie zdziwienia . Kiedy trafiła m pierwszy raz do Pani Śmiertki stosowała m pigułki antykoncepcyjne Yaz , natomiast Pani doktor zaproponowała zmianę na Yasminelle , które rzekomo miały być tańsze , ale o tym samym składzie . Zgodziła m się na zmianę , pomimo , że bardzo odpowiadał mi system pigułek placebo w Yaz . Dopiero przy kolejnych wizytach zorientowała m się , że pigułki Yasminelle tańsze nie są , a Pani Śmiertka wszystkie zalecenia co do sposobu stosowania leków itd . zapisuje pacjentom na notesiku z logo Yasminelle . . Akurat dobrze znam system płacenia lekarzom za przepisywanie konkretnych leków . ."
+  }
+]

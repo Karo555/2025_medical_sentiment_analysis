@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001061",
+    "text": "Witam . 2 miesiące temu przeszła m całkowitą korekcję nosa u prof . Wójcickiego . Bardzo cieszę się z wyboru lekarza i drugi raz podjęła by m taką samą decyzję . Przed operacją profesor poświęcił mi wystarczająco dużo czasu i odpowiadał na wszystkie pytania . Dało się odczuć jego duże doświadczenie i ciepło w stosunku do pacjenta co przełożyło się na względny spokój przed operacją : ) Profesor informował mnie , że mój nos jest ciężkim przypadkiem ( krzywa przegroda , opadający , duże dziurki ) ale efekt przeszedł moje oczekiwania . Kształt nosa jest super ! ! Profesor ma dobry zmysł estetyczny i bardzo dobrze dopasowuje nosy do twarzy . Cała rekonwalescencja przebiegła bezboleśnie i bez komplikacji . Miłym aspektem jest duże zainteresowanie i troska o pacjenta : ) Polecam ! !"
+  },
+  {
+    "opinion_id": "op_001062",
+    "text": "Pani doktor leczy moje dziecko od 4 lat , od kiedy Marta miała 4 dni . Jest najlepszym pediatrą jakiego spotkała m . Jeździła m do niej już z dziećmi koleżanki ( żeby zapanować nad dwójką z trójki bąków ) . zawsze dokładnie bada , wypyta , oceni stan dziecka , nie faszeruje antybiotykami i - jeśli tylko jest - przyjmuje zawsze nawet b . późno . odpowie na wszystkie pytania i wątpliwości matki dziecka bo dla niej to normalne i naturalne.nigdy nie wyszła m od niej z niedosytem i zamiarem zrewidowania diagnozy u innego lekarza ."
+  },
+  {
+    "opinion_id": "op_001063",
+    "text": "Metody nowoczesne . Dla mnie jest bardzo drogo , po 2 tygodniach leczenia ok 1500tys ( wizyty , maści , czopki , USG , 1 * zabieg ) mniej w portfelu . Końca leczenia jeszcze nie widać , ale na razie się goi a to musi potrwać . Zobaczymy co będzie za kilka miesięcy , jeśli do tego czasu nie zbankrutuję i zdołam dokończyć leczenie co jest najważniejsze dla mnie ."
+  },
+  {
+    "opinion_id": "op_001064",
+    "text": "Zacznę od pozytywow : bardzo fajny kontakt z dzieckiem . I to tyle . Calkowicie bledna diagnoza w zakresie stanu uszu . Brak jakichkolwiek narzędzi endoskopowych , ktore pozwolilyby na postawienie poprawnej diagnozy - pan doktor zapytany o to powiedzial , że sprzęt został na bloku operacyjnym . W zwiazku z tym całe badanie polegało na przepytywaniu dziecka , co w wieku 4 lat i powaznych problemów z sluchem jest mało produktywne . Zostalismy też poinstruowani zeby iść sobie zrobić gdzieś tympanometrie , która normalnie powinna być zrobiona na wizycie . No jednak przy wizycie za 150 zł oczekuje wiecej . Pan doktor stwierdził , że dziecko dobrze slyszy i uszy są w dobrym stanie . A dziecko slyszy tylko jak sie mowi mocno podniesionym glosem , wiec coś jest nie tak . Wizyta u dobrego laryngologa i badania endoskopowe kilka dni pozniej wykazaly płyn w uszach , przerosniecie trzeciego migdała i mocno osłabione slyszenie . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_001065",
+    "text": "Pierwsze wrażenie podczas wizyty u Pani Doktor jak najbardziej pozytywne . Sam skutek tj . podjęte działania w kierunku ustalenia przyczyny złych wyników wątrobowych z podejrzeniem wirusowego zapalenia , były po prostu słabe . . . Telefoniczna próba umówienia mnie ze znajomym specjalistą spełzła na niczym ! ! Po 20 minutowej miłej rozmowie w gabinecie , wypisaniu recepty manualnym zbadaniu wątroby i zapłaceniu 150 złotych jestem lekko zawiedziony aby nie napisać rozczarowany Pozdrawiam Rafał . K"
+  },
+  {
+    "opinion_id": "op_001066",
+    "text": "Od wielu lat mam astygmatyzm . Moje leczenie do tej pory polegało na regularnej wymianie okularów na coraz mocniejsze . Latem tego roku trafił em za namową przyjaciela do doktora Gołębiowskiego i zaproponował coś innego - zabieg laserowy . Obawiał em się nieco , ale ostatecznie jestem bardzo zadowolony z efektu . W końcu mogł em wrócić do dawnej aktywności sportowej , w której przeszkadzały mi okulary ."
+  },
+  {
+    "opinion_id": "op_001067",
+    "text": "Była m tylko na jednej wizycie , więc może i po kilku następnych było by lepiej , tylko , że ból nie pozwolił mi czekać . Do Pana Doktora przyszła m z podejrzeniem przebytego złamania wyrostka jednego z kręgów i silnym bólem promieniującym na całą nogę . Pan doktor zastosował nakłucie i plaster , który odkleił się po 2 godzinach . Chodziło o nie - inwazyjność , więc fajnie , ale akurat w moim przypadku było to za mało . Wizyta nie dała mi nic , więc poszła m do lekarza na kasę chorych , który w pierwszej kolejności zlecił mi rezonans . Oczywiście rozumiem podejście Pana Doktora , w pierwszej kolejności chce pomóc prostymi metodami i jest to coś fajnego , niewielu lekarzy pokazuje takie zaangażowanie , sądząc po ilości pozytywnych opinii Pan Doktor zna się na rzeczy . I polecam każdemu . Mam jedną uwagę : Pan Doktor z płytą ze zdjęciem kręgosłupa wyszedł do innego pokoju , więc tak naprawdę nie wiem co tam oglądał . Polecam Panu oglądanie zdjęć z pacjentem , tak jak drugi lekarz , do którego się zgłosiła m . Pokazał mi on co jest nie tak i co dokładnie widzi na zdjęciu i takie podejście preferuję . W moim przypadku uszkodzone były tkanki miękkie . Początki dyskopatii dały objawy rwy kulszowej , stąd ból w całej nodze . Pan mi powiedział , że żadnego złamania nie było , bo to , że 2 lata dźwigała m ciężkie skrzynki w pracy ( 35kg ) nie spowodowało by takiego urazu , a drugi lekarz stwierdził inaczej . Oczywiście sądzę , że Pan Doktor pomógł by mi gdyby m poszła na kilka kolejnych wizyt , dlatego polecam , ponieważ angażuje się w leczenie każdego indywidualnie , jedyne zastrzeżenie mam do oglądania zdjęć w osobnym pokoju , ale oprócz tego wszystko na plus . Pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_001068",
+    "text": "Rok temu zaczęła m leczyć zęby metodą clear aligner u Pana Klaudiusza i muszę przyznać , że spełniło to moje oczekiwania : ) wszelkie wątpliwości zostaly rozwiane już na pierwszej wizycie , wraz z kolejnymi znikały nowe . Lekkie , sympatyczne , ale jednocześnie profesjonalne podejście do pacjenta . Bywały miesiące , że nakładki nie były wykonane na czas , ale . . . ALE , z kontaktem telefonicznym NIGDY nie było problemów . Jako dla \" stałej \" klientki nawet usunięcie kamienia zębnego miała m za darmo - więc jak tu nie polecić ? A no nie da się - więc z czystym sumieniem polecam !"
+  },
+  {
+    "opinion_id": "op_001069",
+    "text": "Badacze na razie sprawdzali środowisko fizyczne sal szpitalnych w wybranych oddziałach w polskich szpitalach państwowych . Badano np . temperaturę powietrza , jego prędkość i wilgotność oraz temperaturę promieniowania . Naukowcy z PW odbyli też wiele rozmów z pacjentami i personelem . \" Od marca , kiedy projekt ruszył , przebadali śmy ponad 20 szpitali – opowiada prof . Bogdan . – Szybko okazało się , że warunki w salach chorych w całej Polsce są bardzo podobne \" . Kluczowe problemy związane ze środowiskiem cieplnym , z którymi borykają się szpitale , zależą od pory roku . Latem kłopotem jest nadmierne nasłonecznienie . W salach dla pacjentów są zazwyczaj bardzo duże okna , więc pomieszczenia szybko się nagrzewają . Rolety i żaluzje nie pomagają . Zdarza się zresztą , że w ogóle ich nie ma . Jedynym ratunkiem jest otwieranie okien , ale takie naturalne wietrzenie oznacza kolejne problemy : wpuszczanie gorącego powietrza i dalsze nagrzewanie sal ."
+  },
+  {
+    "opinion_id": "op_001070",
+    "text": "Witam ! Wiele słyszała m dobrego o doktorze , lecz nie wiem gdzie on w Zielonej Górze przyjmuje . Bardzo proszę kogoś życzliwego o podanie mi adresu przyjęć doktora . I jeśli to możliwe to o nr telefonu do niego . Zależy mi bardzo na tym i z góry dziękuję ."
+  },
+  {
+    "opinion_id": "op_001071",
+    "text": "Niestety Pani Ania nie pomogła nam w niczym . Musiała m prosić żeby przyszła tak jak powinna po dwoch dobach od narodzin dziecka bo chciala przyjść pięć dni po narodzinach . Przyszła na 15min - szybko zwazyla dzidzie , kazała robić rozpiske karmienia i tyle . Drugi raz przyszła dosłownie na 3min - bo źle zaparkowała i musi lecieć - pytam a kąpiel ? Następnym razem usłyszała m . Po czy przyszła też dopiero po moich prośbach też na 3min i powiedziała że nie ma czasu damy sobie radę . Inne moje koleżanki opowiadały jak to położne siedzą u nich po godzinie - obserwują , pomagają , doradzają . Radzę wszystkim bierzcie inne położne ! ! ! Chyba ze wszystko wiecie . . ."
+  },
+  {
+    "opinion_id": "op_001072",
+    "text": "Szef resortu zdrowia podkreślił w swoim wystąpieniu , że jednym z priorytetów i wyzwań , jakie stoją przed stomatologią jest promowanie w społeczeństwie nawyków pro - zdrowotnych . „ Żadne środki zapobiegawcze nie będą należycie zastosowane , jeśli nie zadbamy zawczasu o efektywną promocję zdrowia . Aby to jednak przyniosło efekty , należy uświadomić to społeczeństwu , zadbać , by miało odpowiednią wiedzę na temat ochrony zdrowia \" – zaznaczył Radziwiłł . Wyraził zadowolenie , że kongres stwarza wszystkim praktykującym stomatologom możliwość wymiany doświadczeń i wiedzy , a także do podkreślenia roli , jaką odgrywa edukacja . \" Jesteśmy świadomi tego , co potwierdzają także badania , że zdrowie jamy ustnej jest niezwykle istotne dla zdrowia całego organizmu . Wiemy , że oprócz diagnostyki i samego leczenia , bardzo ważna jest również prewencja i działania zapobiegawcze ” – zaznaczył minister zdrowia ."
+  },
+  {
+    "opinion_id": "op_001073",
+    "text": "Bardzo dobry lekarz , diagnostyka trafna , szybka decyzja , precyzyjny zabieg i po bólu . Rzeczowy , merytoryczny , po prostu fachowiec . Po zabiegu 2 tygodnie / L 5 - 6 / i funkcjonuje całkiem nieźle . Wszyscy , których operował razem ze mną i wcześniej są bardzo zadowoleni z zabiegów i wracają do zdrowia . Żadnych powikłań pooperacyjnych . Szwy wykonane majestatycznie . Naprawdę polecam doktora Janusza , to świetny neurochirurg ."
+  },
+  {
+    "opinion_id": "op_001074",
+    "text": "Projekt zakłada też powstanie zaplecza diagnostycznego z zakresu patomorfologii , genetyki i biologii molekularnej . Ośrodek będzie wyposażony w bank tkanek nowotworowych , system wirtualnych laboratoriów oraz w system zarządzania oparty o metodykę procesową z wykorzystaniem narzędzi ICT , pozwalających m . in . na gromadzenie i przetwarzanie danych . Dla władz uczelni nie bez znaczenia pozostaje fakt , że po wprowadzeniu w kwietniu do 17 - kondygnacyjnego budynku CKD pierwszych klinik , w budynku wciąż pozostaje wiele miejsca do zagospodarowania . Na ośrodek onkologiczny planuje się przeznaczenie ok . 7 tys . m . kw . Obecnie jedyną placówką w woj . łódzkim specjalizującą się w kompleksowym leczeniu nowotworów jest Regionalny Ośrodek Onkologiczny w szpitalu im . Kopernika . Zdaniem Gurdały , planowana inwestycja Uniwersytetu Medycznego nie będzie stanowiła dla niego konkurencji lecz wspomoże placówkę , do której trafiają pacjenci z całego regionu łódzkiego ."
+  },
+  {
+    "opinion_id": "op_001075",
+    "text": "To moja pierwsza wizyta , dlatego za wcześnie na jednoznaczną diagnozę : ) Lekarz sympatyczny , kulturalny , wnikliwie mnie zbadał , rzeczowo odpowiadał na pytania . Dał zalecenia dotyczące ciąży i trybu życia w tym czasie . Niby to wszystko oczywiste , ale miło , że lekarz przypomina co mogę robić , czego nie powinna m , przypomina o kwasie foliowym itd ."
+  },
+  {
+    "opinion_id": "op_001076",
+    "text": "Przyszła m do p . Ciesińskiego na konsultację w sprawie korekty dolnych powiek i usunięcia przepuklin tłuszczowych . Doktor nie raczył nawet wstać z miejsca żeby mnie obejrzeć , po czym powiedział , że jak chce to mnie może zoperować , ale nie ręczy za efekt . \" Konsultacja \" trwała 5 minut . Zapłaciła m za to 150 zł . Nie dowiedziała m się ani jednej przydatnej rzeczy ."
+  },
+  {
+    "opinion_id": "op_001077",
+    "text": "Lekarz był bardzo uprzejmy , rzeczowy , szczery w swojej opinii , która choć nie pokrywała się z obiegową opinią na temat mojej dolegliwości , zdecydowanie bardziej odpowiadała moim oczekiwaniom . Moim zdaniem , ten lekarz potrafi spojrzeć kompleksowo na dany problem zdrowotny , skupiając się nie tylko na leczeniu objawów , ale również doszukując się przyczyn ich powstania . Na chwilę obecną jestem w trakcie kuracji zaleconej przez lekarza dlatego nie oceniła m lekarza najwyższą notą , ponieważ nie mogę w stwierdzić czy kuracja przyniesie oczekiwane skutki ; ) Na razie postęp jest raczej powolny , ale nie od razu Rzym zbudowano ."
+  },
+  {
+    "opinion_id": "op_001078",
+    "text": "Z gabinetu pani Ewy można wyjść bardzo zadowolonym . W moim przypadku też tak było dopóki nie przyczytałam innych opinii i nie zasięgnęła m rady innych specjalistów . Rzeczywiście pani doktor ma \" inny punkt widzenia \" i bardzo \" psychologiczne \" podejście do pacjentek . Wszystko wyjaśnia . . . . Sęk w tym , że wszystkim bez wyjątku mówi to samo ! ! ! ! ! ! usg też robi , tylko nie jest w stanie nic w nim zobaczyć ! Wymyśla własne teorie , jak taki lekarz może jeszcze mieć gabinet ? zauważcie , że pracuje dwanascie godzin a pacjentki sa umowione co 15 minut , to nie jest normalne . . ."
+  },
+  {
+    "opinion_id": "op_001079",
+    "text": "Rak jelita grubego jest drugim najczęstszym nowotworem złośliwy w Polsce . Rozwija się ze zmian łagodnych określanych jako polipy – gruczolaki . Jak przypomniał PAP prof . Jarosław Reguła , kierownik Kliniki Gastroenterologii Onkologicznej Centrum Onkologii w Warszawie , który koordynuje Program Badań Przesiewowych dla wczesnego wykrywania raka jelita grubego ( PBP ) , proces rozwoju tego nowotworu trwa długo - najczęściej kilkanaście lat . Ani polipy , ani rak we wczesnym stadium przeważnie nie powodują objawów . Poddanie się profilaktycznej kolonoskopii pozwala odpowiednio wcześnie wykryć i usunąć łagodne zmiany , a przez to zapobiec rakowi jelita grubego . Na podstawie różnych badań naukowcy szacują , że dzięki temu można zmniejszyć ryzyko zachorowania na ten nowotwór aż o 60 - 90 proc . Trzeba też pamiętać , że wykrycie raka jelita grubego we wczesnym stadium przeważnie pozwala na zupełne wyleczenie ."
+  },
+  {
+    "opinion_id": "op_001080",
+    "text": "Wizyta u pani doktor trwała może z 7 minut , łącznie z badaniem usg ! . Nie znała kompletnie ankiety , którą wypełniła m około 3 tygodnie wcześniej nim udało mi się do niej zarejestrować . Ja siedziała m , a ona przy mnie czytała tę ankietę komentując kilka z jej rubryk . Oznacza to , że nie miała zupełnie pojęcia z jaką pacjentką ma do czynienia i z czym do niej przyszła m . W takim razie pytam się po co ta cała szczegółowa ankieta , w której mnóstwo intymnych pytań , skoro i tak nie była zainteresowana udzielonymi w niej odpowiedziami na postawione pytania . Mowiła tylko o diecie i żeby się nie stresować i dlaczego nie ma ze mną mojego partnera . Potem namawiała mnie na jakieś zajęcia , które ona prowadzi ( oczywiście za ogromne pieniądze ) . W rezultacie zaleciła jakieś ziółka ( równie drogie ) i wizytę kontrolną za kilka tygodni . Nic konkretnego mi nie doradzila i wyszlam z gabinetu wiedząc tyle ile wcześniej wiedziała m . Organizacyjnie wszystko jest nastawione na zarabianie pieniędzy . Wizyty są umawiane co 15 minut ! Powoduje to , że wszystko odbywa się szybko i jedna pacjentka nie zdąży się prawie ubrać a druga już wchodzi . Pomijam , że są wielkie opóźnienia , zeby wejść do gabinetu , mimo że wizyty wyznaczane są na konkretne godziny ( może warto było by przyjąć dziennie mniej pacjentek ) . Nie podoba mi się także , że gabinet nie jest wyciszony i skoro ja słyszała m w poczekalni z jakim problemem przyszła pacjenta przede mną , to zapewne też wszyscy siedzący w poczekalni słyszeli z czym ja przyszła m do pani doktor . Generalnie nie jestem zadowolona z wizyty . Nie tylko z tego powodu , że nie poświęciła mi pani doktor wystaczającej uwagi , jej wizyty są droge i że mam wrażenie , że była m kolejnym ( z długiej listy ) przypadków , ale takze dlatego , że nie do końca jestem pewna , czy jej metody lecznicze są prawidłowe . Być może mogą one być stosowane pomocniczo w różnego typu schorzeniach , ale ja wolała by m się skonsultować z innym lekarzem ( bardziej tradycyjnym ) . Może komuś odpowiada podejście pani doktor do pacjentów , ale ja dziekuje i nie przekonały mnie pozytywne opinie wyrażone tutaj na forum ."
+  }
+]

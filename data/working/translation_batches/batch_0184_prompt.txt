@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003661",
+    "text": "Konsultacja przeprowadzona profesjonalnie. Dziękuję :)"
+  },
+  {
+    "opinion_id": "op_003662",
+    "text": "Badanie szczegółowe uwzględniające wiele zmiennych.  Wyjaśnienia konkretnie. Lekarz słucha,  wyczerpująco odpowiada na pytania. Podpowiada zalecenia. Powtarza istotne szczegóły co świadczy o zaangażowaniu."
+  },
+  {
+    "opinion_id": "op_003663",
+    "text": "Doktor jest bardzo profesjonalnym, cenię sobie nie tylko skuteczność leczenia, ale również sposób, w jaki został on przeprowadzony - z empatią, cierpliwością i pełnym zrozumieniem."
+  },
+  {
+    "opinion_id": "op_003664",
+    "text": "Brak konkretow, chyba bylo za pozno, bo po calym dniu juz ciezko bylo sie dogadac."
+  },
+  {
+    "opinion_id": "op_003665",
+    "text": "Pan doktor bardzo kompetentny, komunikatywny, pro pacjent."
+  },
+  {
+    "opinion_id": "op_003666",
+    "text": "Pierwszy lekarz, który pochylił sie nad diagnozą wielowymiarowo. Kompleksowa diagnoza, pełne wsparcie i pomoc. Wyjaśnienie wszystkich dolegliwości"
+  },
+  {
+    "opinion_id": "op_003667",
+    "text": "Pan Doktor bardzo opanowany i cierpliwy. Z zaangażowaniem zweryfikował moje wyniki badań i poinstruował odn. dalszych kroków. Poświęcił mi dużo czasu i uwagi - polecam serdecznie."
+  },
+  {
+    "opinion_id": "op_003668",
+    "text": "Pan doktor bardzo zaangażowany, szybko skierował na niezbędne badania. Postawił trafną diagnozę"
+  },
+  {
+    "opinion_id": "op_003669",
+    "text": "Pan doktor dokładnie zbadał i rzeczowo poradził dalsze postępowanie w celu lepszego zdiagnozowania mojego problemu, poradził miejsca gdzie mogę zrobić dodatkowe badania."
+  },
+  {
+    "opinion_id": "op_003670",
+    "text": "Świetny lekarz, spokojny i empatyczny,, wyjaśnił przyczyny choroby, zalecił określone badania. Polecam"
+  },
+  {
+    "opinion_id": "op_003671",
+    "text": "Szczegółowa porada w nagłym przypadku bólowym. Polecam."
+  },
+  {
+    "opinion_id": "op_003672",
+    "text": "Polecam Panią doktor. Wszystko wytłumaczyła i zaproponowała leczenie. Bardzo miła osoba."
+  },
+  {
+    "opinion_id": "op_003673",
+    "text": "Pani doktor bardzo fachowo podchodzi do pacjenta i stara się dobrać leczenie do specyfiki problemu. U mnie z urazem ręki od razu pokazała możliwości postępowania, a drogę na jaką się zdecyduje zależy w mojej gestii."
+  },
+  {
+    "opinion_id": "op_003674",
+    "text": "Bardzo miła pani doktor.przeprowadza szczegółowy wywiad co do choroby.wyjaśnia jakie leki przepisuje i od czego one służą."
+  },
+  {
+    "opinion_id": "op_003675",
+    "text": "To moja pierwsza wizyta. Można po niej ocenić , że Pani Doktór z zaangażowaniem i przyjaznym stosunkiem do pacjenta zajęła się moją chorobą i zaproponowała leczenie. Mam jak najbardziej pozytywne odczucia."
+  },
+  {
+    "opinion_id": "op_003676",
+    "text": "Pełny profesjonalizm. Nie musiałem mówić wiele żeby dostać obszerny opis i zalecenia do przypadłości z którą borykam się od miesięcy. Pani doktor zdecydowanie posiada szczegółową wiedzę i doświadczenie. Polecam."
+  },
+  {
+    "opinion_id": "op_003677",
+    "text": "Opcje dalszej diagnostyki i leczenia zostały rzeczowo przedstawione, wizyta przebiegała bez pośpiechu, wyniki badań przeanalizowane i omówione z troską o ich właściwą interpretację. Polecam i jestem zdecydowany na dalsze leczenie w tym gabinecie!"
+  },
+  {
+    "opinion_id": "op_003678",
+    "text": "Bardzo miła i pomocna pani doktor. Słucha pacjenta, dokładnie analizuje dolegliwości, szczegółowo objaśnia, po prostu stara się pomóc. Polecam panią doktor."
+  },
+  {
+    "opinion_id": "op_003679",
+    "text": "Bardzo przyjazna neurolog. Szczegółowy wywiad. Wszystko wyjaśnione z ogromną dokładnością"
+  },
+  {
+    "opinion_id": "op_003680",
+    "text": "Bardzo polecam! Pani Doktor podaje pomocne porady oraz wyjaśnia diagnozę."
+  }
+]

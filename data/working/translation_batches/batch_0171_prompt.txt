@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003401",
+    "text": "Pani doktor dobra , postawiła wstępną diagnozę , zaleciła badania aczkolwiek czas spędzony w kolejce to masakra , wizyta prywatna a czas opóźnienia 1 , 5h o którym nikt wcześniej nie informuje . Przydał by się telefon z recepcji że jest opóźnienie w wizycie i było by wszystko ok ."
+  },
+  {
+    "opinion_id": "op_003402",
+    "text": "Bardzo dokładny , cierpliwy , nie spieszył się , indywidualnie podchodzi do pacjentki , chociaz troszkę mam wrażenie że nie odpowiada wystarczająco na pytanie ( mogło to dotyczyć niejasności danej sytuacji ) sam gabinet i otoczenie trochę budziło wątpliwości ze względu na warunki , ale przeszkodziło to w fachowej obsłudze . Ogólnie polecam i wybiorę ponownie ."
+  },
+  {
+    "opinion_id": "op_003403",
+    "text": "Ja również poszła m do pani Tkaczyk przypadkowo - miała wolne terminy , a ja pilnie potrzebowała m konsultacji , ponieważ nie mogła m się dostać do swojego specjalisty . Szkoda , że w tym momencie nie zaświeciła mi się \" czerwona lampka \" . Trudno mówić o czasie , jaki poświęca swoim pacjentom , bo podczas mojej wizyty rozmawiała z koleżanką przez telefon o suplementach diety , w dodatku przeklinała i żadnego przepraszam za cokolwiek . Na moje poprzednie wyniki spojrzała bez zainteresowania , wyśmiała poprzedniego endokrynologa i postawiła diagnozę - patrz opinie wyżej - Hashimoto , \" poczyta pani sobie w internecie \" . Zaleciła dietę bez laktozy , bez glutenu , bez zielonych warzyw - bez słowa wyjaśnienia , ponadto suplementację witaminy d , której nie mogę przyjmować . Sama miała m zdecydować , jakie badania muszę wykonać , jakby rezonans dwóch narządów kosztował 5 zł . Mam porównanie z innymi specjalistami \" z powołania \" i zdecydowanie odradzam wizyty u Pani Tkaczyk ."
+  },
+  {
+    "opinion_id": "op_003404",
+    "text": "Pani doktor na wszystkie dolegliwości zapisuje od razu antybiotyk , na badania też nie lubi wysyłać . W związku z tym organizm osłabiony , choroba wciąż nawraca , a ja nie wiem co mi jest . Plusem jest to , że jest naprawdę bardzo miła i delikatna w kontaktach z pacjentem ."
+  },
+  {
+    "opinion_id": "op_003405",
+    "text": "Pani doktor jest miła i uprzejma na wizycie prywatnej tylko i wyłącznie . W szpitalu gdy się umawia na konkretną godzinę nigdy nie dotrzymuje słowa , trzeba czekać ok . 6 - 7 godzin aż sobie przypomni o umówionym badaniu . Diagnozę stawiała 3 razy , za każdym razem inną , w każdej diagnozie była pewna na 100 % , że to ta choroba , a żadna z nich do tej pory się nie sprawdziła . Zero zainteresowania pacjentem . Jesteśmy zawiedzeni i rozczarowani , że tacy ludzie jak Pani doktor mają pomagać innym , skoro się do tego nie robią . Niszczą psychikę pacjenta , nie robiąc szczegółowych badań potwierdzających chorobę . Nie polecam , a sami będziemy szerokim łukiem omijać Panią doktor . Stracony czas ."
+  },
+  {
+    "opinion_id": "op_003406",
+    "text": "chodzę do pani doktor drugi rok i jestem bardzo zadowolona . Jest profesjonalistką w kazdym calu , a do tego wyluzowana , co bardzo pomaga . Potrafi rozładowac napięcie związane z badaniem , do tego można z nią spokojnie porozmawiać : ) traktuje pacjentki bardzo powaznie , nie bagatelizuje ewentualnych wątpliwosci , do tego wszystko cierpliwie tłumaczy i wyjaśnia : ) Póki co nie zamierzam znieniac jej na nikogo innego ! ! !"
+  },
+  {
+    "opinion_id": "op_003407",
+    "text": "Przyszła m do pana dr z przewlekłym bólem barku . Miała m płytę z wynikiem rezonansu , natomiast pan dr powiedział , że bez opisu ( którego nie miała m ) nic mi nie powie . Pierwszy lekarz , który w ogóle poprosił mnie o opis , zwykle każdy patrzy na płytę . Po krótkim wywiadzie , bez badania wypisał mi szereg skierowań na różne zabiegi . W sumie wszystko fajnie , jeśli ktoś oczekuje skierowań na zabiegi to bardzo polecam ."
+  },
+  {
+    "opinion_id": "op_003408",
+    "text": "Pierwszy raz trafiła m do gabinetu Pani doktor , gdy mój stan nie pozwała m mi już na wyprostowanie się . Szybko a jednocześnie bardzo delikatnie i dbając o mój komfort Pani doktor zlokalizowała przyczynę blokady . Diagnozowanie płynnie przechodziło w terapię a rozpoznawanie przyczyn na poziomie obciążeń fizycznych zostało poszerzone o kontekst psychologiczny . Pani doktor nie poprzestała na zlikwidowaniu objawu . Uświadomiła mi jakie mogą być źródła jego pojawienia się i na czym może polegać prewencja . Poza tym , co dla mnie najważniejsze , istotne było także to , jakie Pani doktor stworzyła warunki do współpracy : punktualność , solidność , dyskrecja a także piękny gabinet ."
+  },
+  {
+    "opinion_id": "op_003409",
+    "text": "Osoby , które śpią w jasnych sypialniach lub przed snem korzystają z bardzo popularnych urządzeń elektronicznych emitujących światło ( zwłaszcza niebieskie ) , mają problemy z zasypianiem , a gorsza też jest jakość ich snu  - podkreśla profesor . Wśród związanych z tym zaburzeń pojawia się m . in . somnambulizm czyli lunatykowanie . Przypadłość ta nie jest rzadkością w przypadku dzieci , coraz częściej pojawia się jednak również wśród dorosłych , co kojarzone jest nie tyle z nadmiarem światła w nocy , co właśnie z wszechobecnymi smartfonami czy laptopami . Biolog wskazuje również na inne tzw . choroby cywilizacyjne , jak cukrzyca czy depresja . Do ich powstania również przyczynia się nadmiar sztucznego światła w naszym życiu , który „ psuje ” nasz wewnętrzny zegar biologiczny - wskazuje profesor . W mózgu kręgowców znajduje się gruczoł , szyszynka , która - gdy jest ciemno - wytwarza i wydziela do krwi melatoninę , zwaną też hormonem ciemności . Hormon ten koordynuje pracę zegara biologicznego u ssaków , regulującego rytmy dobowe , między innymi snu i czuwania . Aby hormonu tego powstało wystarczająco dużo do tego , aby zapewnić dobry sen , dający wypoczynek - niezbędne jest ograniczenie wieczorem źródeł sztucznego światła . \" Dlatego odradzam wpatrywanie się w urządzenia elektroniczne w nocy . Najlepiej odstawić je na około dwie godziny przez pójściem do łóżka \" - doradza biolog . Dzięki temu szyszynka wytworzy melatoninę . A ta odpowiada za obniżenie ciśnienia , poziomu glukozy i temperatury ciała . Wszystko po to , aby wprowadzić się łagodnie w stan sprzyjający zaśnięciu ."
+  },
+  {
+    "opinion_id": "op_003410",
+    "text": "Panią Słowińską odwiedziła m za namową mojej znajomej , była m nieufna bo trudno otworzyć się przed obcą osobą i opowiadać o problemach rodzinnych . Ale nie było tak źle , a po każdym spotkaniu rosło moje zaufanie , inaczej spojrzała m na pewne sprawy , teraz żałuję , że decyzji o terapii nie podjęła m wcześniej . Polecam Panią Gabrielę bo przywróciła mi wiarę w to że można cokolwiek zmienić ."
+  },
+  {
+    "opinion_id": "op_003411",
+    "text": "Była m prywatną pacjentką profesora . Na wizycie pan doktor uprzejmy , wyjaśnił wątpliwości i skierował natychmiast do szpitala ze względu na podwyższone markery nowotworowe i zmianę na jajniku . Powiedział , że z jajnikiem to nigdy do końca nie wiadomo więc jak najszybciej trzeba zmianę usunąć . W szpitalu jako pacjentka profesora Suzina była m traktowana bardzo dobrze , pomimo że przyjęto mnie do szpitala wieczorem to już z samego rana miała m zrobione wszystkie potrzebne konsultacje i jako pierwsza została m zabrana na blok operacyjny . Czyli wszystko cudnie . . . . do czasu . Po operacji profesor poinformował mnie że zmiany na jajniku nie było ale wykryto endometriozę która mogła spowodować podwyższenie markerów nowotworowych . Wielka ulga . Ze szpitala wyszła m po 5 dniach . Po 3 tygodniach pojawiła m się i profesora na kontroli . Doktor zapewniał że już jest wszystko dobrze , na USG nie ma zmiany na jajniku . wszystko wróciło do normy . Miała m się zgłosić na kolejną kontrolę , jednakże ze względu na kolosalne ceny w prywatnym gabinecie profesora poszła m do swojej poradni ginekologicznej do lekarza który pierwszy zauważył zmianę . Po zbadaniu mnie i wykonaniu USG lekarz stwierdził że właściwie nic się nie zmieniło i zmiana w jajniku nadal jest . Lekarz w przychodni zastawiał się jaką operację przeprowadzono w szpitalu w Łodzi skoro nie usunięto zmiany z powodu której położono mnie na stół operacyjny . Niepokój i szok . Nie wierzyła m , więc pojechała m do jeszcze innego lekarza , zabrała m wszystkie moje wyniki badań , USG , wypis ze szpitala żeby zweryfikować otrzymane informacje . Profesor Suzin mówi że wszystko ok i nie ma się czym martwić , lekarz w przychodni , że nie zoperowali mnie dobrze . Konsultacja u trzeciego lekarza potwierdziła , że rzeczywiście zmiana jajnika nie została usunięta . Okazało się że nikt nie zajrzał do środka jajnika , tylko pooglądał go na laparoskopii z zewnątrz . Jedna wielka porażka . Jak można być takim lekarzem ? Do tej pory jestem pod kontrolą lekarza , regularnie mam wykonywane badania , oswajam się z myślą o następnej operacji . Wszystko przez profesora Suzina który nie dość że nie dopilnował żeby mnie dobrze zoperowano to jeszcze kłamał w żywe oczy mówiąc że już nie ma się czym martwić . A gdyby m nie poszła do innego lekarza ? Poszła m do profesora ponieważ chciała m być pod najlepszą opieką . Okazuje się jednak że to że ktoś posiada tytuł profesora i kasuje 400 zł za wizytę nie jest miernikiem jakości . Stanowczo nie polecam ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_003412",
+    "text": "Doktor Lenecki to profesjonalista ; ) . Od jakiegos czasu bardzo bolała mnie głowa . W jednym ze szpitali zrobiono mi zdjęcie RTG i lekarz , który mnie wówczas badał stwierdził zapalenie zatok szczękowych i zapisał antybiotyk . Mimo skonczenia antybiotyku nie bylo poprawy , kolejny lekarz i kolejny antybiotyk . Sytuacja jak poprzednio . Dopiero po długiej męczarni trafiła m na doktora Leneckiego , który po zobaczeniu zdjęcia RTG i opisie choroby przez poprzednich lekarzy złapał się za głowe i wytłumaczył mi , że problemem nie są zatoki , które są czyste i nic w nich nie ma . Moim problemem był alergiczny nieżyt nosa , przy którym żadna antybiotykoterapia nie była potrzebna . Po przepisaniu mi przez doktora Leneckiego zwykłych tabletek i kropli na alergie objawy ustąpiły . Od tej pory chodzę tylko do Pana Doktora mimo , iż czasami naprawdę długo trzeba sie wyczekać w kolejce ; ) ."
+  },
+  {
+    "opinion_id": "op_003413",
+    "text": "Podczas wizyty z 3mies . maleństwem z AZS Pani doktor zrobiła test skórny na mleko i jajo - wynik negatywny , po czym stwierdziła , że w tym przypadku AZS jest efektem nadmiernej utraty wody ze skóry , a nie alergii i zaleciła emolienty . Moją informację , iż od 10 dni nie jem nabiału , a widzę poprawę , skwitowała stwierdzeniem \" Nikt jeszcze nie odkrył obecności mleka krowiego w mleku kobiecym \" i odradziła dietę . Dziś po kilku miesiącach opieki innego alergologa wiem , że dziecko jest uczulone m . in . na jabłka . Mocno reaguje też na produkty zawierające histaminę . Bardzo pomógł nam również dermatolog , ponieważ dziecko miało zmiany sączące na skórze ."
+  },
+  {
+    "opinion_id": "op_003414",
+    "text": "Miała m wątpliwą przyjemność bycia prowadzoną przez pana dr podczas pobytu w klinice . Ignoruje to co się do niego mówi , nie patrzy całościowo na pacjenta . Mam całkowity zakaz brania hormonów z uwagi na inne dolegliwości , co zostało całkowicie pominięte w historii choroby , do której wywiad był zbierany przez niego . Efekt - profesor , który stawia diagnozę ( już po 2 , 5 miesiącach od zakończenia hospitalizacji ) - był wielce zdziwiony , że mam zakaz i jedyne co wzruszył ramionami , że nie jest w stanie nic zrobić . Może gdyby informacje zawarte w historii choroby były rzetelne , inaczej potoczyła by się kwestia propozycji dalszego leczenia mojej osoby ."
+  },
+  {
+    "opinion_id": "op_003415",
+    "text": "Choroby poliglutaminowe są chorobami rzadkimi . Zanim pojawią się pierwsze objawy , osoby z mutacją genetyczną , zazwyczaj nie wiedzą , że zachorują . Dlatego badania genetyczne najczęściej wykonuje się dopiero dzieciom chorych rodziców . Test wykrywa mutację i dzieci mogą tylko wiedzieć , że za ok . 20 lat będą chore . Ale nie ma żadnego leku , który mógł by w jakiś sposób zapobiec takiemu losowi  - ubolewa Stroynowska - Czerwińska . Naukowcy muszą nie tylko poznać dokładne mechanizmy działania niekodującego RNA , ale dodatkowo odpowiedzieć na pytanie , jak dostarczać takie leki do organizmu . Jeśli na mutacje podatne są komórki nerwowe , to małe niekodujące RNA będą musiały zostać dostarczone do mózgu , co jest problematyczne choćby przez obecność bariery krew - mózg ."
+  },
+  {
+    "opinion_id": "op_003416",
+    "text": "W dziedzinie związanej z medycyną opracowano również specjalny zatrzask kulowy do protez zębowych . Jego zaletą jest minimalne zużycie . Obliczono , że przy założeniu , że posiadacz protezy wyjmuje ją - po to by umyć - i zakłada - minimum dwa razy dziennie , powierzchnie zaczepu po około czterech latach używania \" zaledwie uległy by dotarciu \" . Pracownicy uczelni chcą też m . in . opatentować zbudowany z kształtowników stelaż do wyrywania kotew ukośnych z betonowych ścian warstwowych budynków z wielkiej płyty czy śrubę szybkozłączną . \" Istotą wynalazku jest śruba szybkozłącza posiadająca co najmniej dwa ruchome elementy z gwintem , sterowane mechanizmem obrotowym umieszczonym w tulei . Śruba w tym stanie może być szybko wkładana na dowolną głębokość do otworu gwintowanego , może też być szybko usuwana z otworu \" - mówi Miniuk ."
+  },
+  {
+    "opinion_id": "op_003417",
+    "text": "Dr Fendler dodaje , że część z tych osób ma odstawioną insulinę . Poza tym prowadzony jest u nich monitoring pod kątem ewentualnych powikłań i analizowana jest fizjologia ich cukrzycy . \" Oprócz tego realizujemy szereg innych działań , które dotyczą powiązań cukrzycy z innymi chorobami \" - dodaje . Zaznacza , że badania są dla pacjentów bezpłatne - są realizowane w ramach prowadzonych przez zespół projektów badawczych . Dr Fendler tłumaczy , że choć do zespołu prof . Młynarskiego mogą zgłaszać się samodzielne osoby , które chciały by mieć wykonane badania , to badacze swoje działania chcą kierować przede wszystkim do lekarzy . \" Naszą ideą było informowanie lekarzy , jak ta nietypowa cukrzyca wygląda . Chcemy , by kierowali do nas wyselekcjonowanych pacjentów . Potrzebne jest pewne sito , by ocenić chorobę w obiektywny sposób i zlecić dalsze badania \" - mówi ."
+  },
+  {
+    "opinion_id": "op_003418",
+    "text": "Podobne do LifeGelu substancje są co prawda rozwijane w różnych miejscach na świecie , jednak to rozwiązanie opracowane przez Polaków jest pod kilkoma względami lepsze . \" To rozwiązanie dające czysty i powtarzalny produkt . Naszym celem jest umożliwienie powszechnego prowadzenia badań przy wykorzystaniu hodowli trójwymiarowych ” - dodaje biotechnolog . Start - up Real Research z Jagiellońskiego Centrum Innowacji oprócz Marcina Krzykawskiego tworzy Renata Szczelina . Oboje są absolwentami Wydziału Biotechnologii UJ w Krakowie . Marcin Krzykawski kończy obecnie doktorat w Katedrze Immunologii Collegium Medicum UJ . Ich przygoda z opracowaniem hydrożelu rozpoczęła się kilka lat temu , kiedy dołączyli do zespołu , którego zadaniem było opracowanie trójwymiarowego biodruku - technologii , dzięki której możliwe było by drukowanie struktur zawierających komórki ."
+  },
+  {
+    "opinion_id": "op_003419",
+    "text": "UWAGA ! ! ! ! Robi bardzo dobre wrażenie , ma dobre podejście do pacjentek , natomiast jest typowym lekarzem , który ponad wszystko stawia nie na dobro pacjentki , tylko na ilość pieniędzy jakie może uzyskać z wizyt . Przez jego niekompetencje i jak się okazało brak wiedzy , pewnosc siebie i złą diagnozę straciła m synka . Ciąże bliżniacze . . . . . . nigdy nie u niego dziewczyny ! zapewniał mnie przez całą ciąże że są to bliźniaki dwujajowe że wszystko jest ok . . . . okazało się w 7 mc ciąży mam zespół przetaczania między bliżniętami TTTS czyli są to bliźniaki jednojajowe i staciłam Igorka a Wiktorek miał dużo problemów zdrowotnych , ale jakoś przeżył . Ciąże bliżniacze tylko na Unii Lubelskiej u Węgrzynowkiego i Karina Engel ."
+  },
+  {
+    "opinion_id": "op_003420",
+    "text": "Niestety nie mogę polecić tego lekarza . Poświęca mało czasu pacjentowi . Po podaniu kilku leków , które mi nie pomogły stwierdził , że muszę nauczyć się żyć z tymi dolegliwościami , które mam i on mi już nie może pomóc . Akurat za to ostatnie jestem mu wdzięczny bo przynajmniej postawił jasno sprawę . Nie zmienia to jednak faktu , że mnie zbył niczym . Do tego dochodzi kiepski kontakt z pacjentem . Jednym słowem odradzam !"
+  }
+]

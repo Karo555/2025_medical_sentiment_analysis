@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000501",
+    "text": "Pracę magisterską z chemii obronił w 1965 r . na California Institute of Technology . Następnie w ramach stypendium Programu Fulbrighta spędził rok w Institut de Biologie Physico - Chimique w Paryżu . W 1970 r . w Massachusetts Institute of Technology uzyskał tytuł doktora z biofizyki . W ramach studiów po doktoracie trzy lata prowadził badania genetyczne na University of Edinburgh ( Szkocja ) . Sam ocenił , że był to wspaniały czas , zarówno z osobistego jak i zawodowego punktu widzenia . W 1974 r . dołączył do kadry Brandeis University w Waltham ( stan Massachusetts ) , z którym jest związany do dziś . Na tej uczelni Rosbash zaczął prowadzić badania genetyczne dotyczące mechanizmów działania zegara biologicznego , czyli rytmów okołodobowych , u organizmów żywych . W 1984 r . razem z drugim tegorocznym noblistą – współpracownikiem i przyjacielem Jeffem Hallem - sklonowali gen sprawujący kontrolę nad zegarem biologicznym muszki owocowej Drosophila melanogaster . Nadali mu nazwę period ( w skrócie per ) . Dobowe zmiany w poziomie białka , które koduje ten gen , regulują rytm aktywności i snu muszek w okresie ok . 24 godzin ."
+  },
+  {
+    "opinion_id": "op_000502",
+    "text": "Co do stawek w gabinecie doktora Ufnalewskiego to są one uważam z definicji bardzo dobre . Natomiast bardzo często pod koniec wizyty pacjentka dowiaduje się , że płaci 80 % lub 50 % kwoty należnej . Pacentki lubią takie niespodzianki . Dlatego między innymi , odwiedzają ten gabinet tak licznie ."
+  },
+  {
+    "opinion_id": "op_000503",
+    "text": "Nie polecam tego lekarza , moj tata leczył sie u niego , non stop jezdzilismy ponad 300 km do Warszawy na wizyte kontrole po opercji usuniecia nowotworu , jedyne do czego lekarz sie ograniczyl na wizytach kontrolnych to 2 minutowe macanie miejsca po usunięciu nowotworu i to wszytsko ! ! ! Od momentu przeprowadzenia operacji przez Pana Doktora ! tata podczas wizyt kontrolnych nigdy nie otrzymal skierowanie na TK czy rezonans , dodam tylko ze tata ma nowotwór złosiliwy . W chwili obecnej dzięki \" wspaniałemu \" leczeniu Pana doktora tata ma wznowe nowotworu ( która sam sobie wymacał ) plus przerzuty odległe . Pan Doktor oczywiscie był bardzo zaskoczony jak to moga byc przerzuty skoro jego wizyty kontrole trwaly az 2 minuty ! ! ! ! Z czystym sumieniem nie POLECAM ! ! ! ! ! ! ! ! oby jak najdalej od takich fachowców ! !"
+  },
+  {
+    "opinion_id": "op_000504",
+    "text": "ja sie nie zgadzam z twoja opinia marto137.to nie w porzadku , ze zarzucasz komus , ze sie podszywa tylko dlatego , ze ma inne zdanie niz ty.ja tez jestem w takim razie ta sama osoba , bo mam zamiar napisac pochlebna opinie o pani dr rubik i zgadzam sie z tymi trzema opiniami ? ja jestem bardzo zadowolona z pani rubik ! uwazam , ze jest bardzo dobrym lekarzem ! ma bardzo dobre podejscie do pacjentki.jest sympatyczna , podchodzi do pacjentki ze zrozumieniem i empatia . a to jest bardzo wazne w tak delikatnej dziedzinie.jest tez profesjonalna.ja chodze do niej do gabinetu prywatnego.panuje tam przyjemna atmosfera.pisze o tym , bo uwazam , ze to tez jest wazne , zeby dobrze czuc sie w samym gabinecie zwlaszcza , ze dla wielu kobiet wizyta u ginekologa jest duzym stresem.ja tez sie denerwowalam , ale dzieki pani dr to uczucie juz jest mi obce.jestem pacjentka pani rubik od dawna i ani mysle , zeby cos sie zmienilo : )"
+  },
+  {
+    "opinion_id": "op_000505",
+    "text": "W olsztyńskim Uniwersyteckim Szpitalu Klinicznym od dwóch lat neurolodzy prowadzą badania nad zastosowaniem komórek macierzystych u chorych na stwardnienie zanikowe boczne ( SLA ) . Charakterystyczną cechą tej choroby jest to , że postępuje ona w stałym tempie . Efektem SLA jest m . in . zanik siły mięśni w dłoniach osób chorych , przez co stają się oni mniej samodzielni ( nie mogą np . sami podnieść kubka ) . Lekarze z Olsztyna , którzy w ramach badań naukowych podają chorym na SLA komórki macierzyste , nie mieli dotąd narzędzi , które by obiektywnie wskazywały , czy siła mięśni w dłoniach ich pacjentów utrzymuje się na stałym poziomie , czy słabnie ( biologicznego markera , który by to wskazywał , nie ma - PAP ) . \" Same odczucia pacjentów , czy ich bliskich w tym względzie nie były miarodajne , często zależały od samopoczucia pacjenta w danym dniu \" - przyznał w rozmowie z PAP neurolog Tomasz Siwek , który jest członkiem zespołu badającego wpływ komórek macierzystych na spowolnienie SLA . Zespołem tym kieruje prof . Wojciech Maksymowicz ."
+  },
+  {
+    "opinion_id": "op_000506",
+    "text": "Stosowane dotychczas w immunoterapii przeciwciała łączą się białkami znajdującymi się na powierzchni limfocytów T , aktywując je w ten sposób do walki z komórkami nowotworowymi . Można powiedzieć , że odblokowują one działanie układu immunologicznego . Tymczasem polsko - szwajcarski zespół szuka związków peptydowych , które będą działały na układ immunologiczny podobnie jak przeciwciała . \" Dla porównania : przeciwciała składają się np . z 3 tys . cegiełek - aminokwasów , a peptydy - zaledwie z 20 - 30 cegiełek \" - wskazuje prof . Rodziewicz - Motowidło . Dodaje , że o ile peptyd naukowcy są w stanie zsyntezować w laboratorium , o tyle przeciwciała produkuje się najczęściej w organizmach zwierząt , np . myszy lub królików lub też w hodowlach tkankowych ."
+  },
+  {
+    "opinion_id": "op_000507",
+    "text": "Zainspirowana poniższymi postami piszę swoje zdanie . PROSTE , OCZYWISTE PROBLEMY z kolanami faktycznie dr Żbikowski rozwiązuje od ręki . Wówczas i diagnoza nie jest trudna i zabieg i zainkasowanie kilku tys . Z NIEOCZYWISTYMI PRZYPADKAMI JAK MÓJ NIE RADZI SOBIE . DZIĘKI \" doktorowi \" Żbikowskiemu mój problem z kolanem nie został rozpoznany w porę , a był oczywisty dla lekarzy z Bielska Białej ( szpital Św . Łukasza ) , co potwierdził rezonans . I właśnie dzięki doktorowi mój okres powrotu do sprawności zamiast trwać rok ( wg lekarzy z Bieska ) przedłużył się do 4 lat . Tak więc życzę dużo zdrowia po wizytach w doktora ."
+  },
+  {
+    "opinion_id": "op_000508",
+    "text": "Panią Annę Mosiewicz darzę dość szczególnym uczuciem , nia da się tego nawet opisać jakim . Pani Anna Mosiewicz jest tak dobra w swoim fachu że badanie czucia powierzchniowego wykonuje przez spodnie jeansowe . Jest taka teoria że jak czegoś nie można znaleźć w internecie ( ja takiego przypadku nie znalazł em ) to znaczy że nie istnieje , od dzisiaj jeśli tylko moderator zaakceptuje treść z tą metodą badania będzie mogło sie zapoznać więcej osób ."
+  },
+  {
+    "opinion_id": "op_000509",
+    "text": "W czasie pierwszej wizyty zrobiła na mnie miłe wrażenie , ma inne podejście do pacjentki niż inni lekarze . Jest zainteresowana trybem życia pacjentki ( m in.jak się odżywia , czy pali papierosy itp ) i to jest dobre , bo wiele chorób ginekologicznych bierze się ze złej kondycji całego organizmu . Jej metody leczenia są długoterminowe , nie zapisuje działających \" agresywnie \" leków . Ja mam stan zapalny pochwy , który leczę u pani Agrawal już dosyć długo i postanowiła m w końcu wybrać się do innego ginekologa . Możliwe , że jestem za mało konsekwentna w naturalnych metodach pani Agrawal i nie mogę do końca się wyleczyć . To jest jak z innymi chorobami , można je zwalczyć podnosząc odporność całego organizmu ale czasem choroba jest tak silna , że innej metody leczenia poza \" agresywną \" terapią ( np . antybiotyki ) nie ma . Polecam Panią Agrawal wszystkim kobietom , które chcą być bardziej świadome swojego ciała , ale warto równocześnie korzystać z pomocy bardziej \" tradycyjnego \" ginekologa ( ja tak robię )"
+  },
+  {
+    "opinion_id": "op_000510",
+    "text": "Po wielu nieprzyjemnych badaniach u lekarzy proktologów polecono mi dr Skoczylasa . I nareszcie trafiła m na lekarza kompetentnego który troszczy sie o pacjenta nawet podczas badania zapewniając mu intymność . ( czego wcześniej nie doświadczyła m u lekarzy proktologów ) . W tym roku w październiku zaufała m dr i poddała m sie zabiegowi operacyjnemu - czego nie żałuję . Pewnie teraz nie będę potrzebowała wsparcia i leczenia ale polecam każdemu kto ma problemy proktologicze , gastrologiczne doktora Skoczylasa . A jeżeli dr będzie proponował zabieg warto zaufać . Spokojny , opanowany człowiek a przy tym śietny specjalista ."
+  },
+  {
+    "opinion_id": "op_000511",
+    "text": "Dalszy rozwój tych wszystkich prac nie był by możliwy , gdyby nie poznanie tajemnic genomu bakterii , które produkują bionanocelulozę . „ Dla nas , z punktu widzenia inżynierskiego , istotne było poznanie , co decyduje o wydajności procesu biosyntezy i krystalizacji . Badania genomiczne , czyli odczytywanie wszystkich genów tych bakterii , wykonywali śmy wraz z firmą Genomed . Poznali śmy wiele szlaków molekularnych , czyli zespołów białek , które mają wpływ na to , jak wytwarzana jest celuloza ” – mówi rektor PŁ . Znając biologiczne mechanizmy , naukowcy mogą na poziomie molekularnym manipulować procesem produkcyjnym . Pozwoli to na uzyskanie w krótszym czasie lepszych i tańszych biozgodnych materiałów do zastosowań medycznych oraz wielu innych – jak podkreśla prof . Bielecki – nowych produktów w nieznanych dotąd obszarach zastosowania ."
+  },
+  {
+    "opinion_id": "op_000512",
+    "text": "W swoim życiu chodziła m do wielu stomatologów i niestety ta Pani nie jest jakaś wybitna w tym co robi . Wykonała mi dwie plomby z których jedna boli przy nagryzaniu do dziś , natomiast druga rozpadła się gdyż Pani dr nie wymieniła całej plomby tylko część a oczywiście kosztowało to jak za całość . Oczywiście jest dość drogim stomatologiem , nawet jak na Rzeszów . A czy plomby są ładne , raczej przeciętne ."
+  },
+  {
+    "opinion_id": "op_000513",
+    "text": "„ Są to osoby w różnym wieku , ludzie młodzi , starsi – wszystkim oczywiście życzymy długiego życia i dobrego zdrowia ” – podkreśliła . Jak dodała , osoby które zgłaszają UM taką wolę są świadomi swojej decyzji . „ Ludzie proszą również o anonimowość i zachowanie dyskrecji , co oczywiście czynimy . W większości przypadków decyzja jest też uzgodniona z rodziną , która szanuje tę wolę zmarłego , choć zdarzają się przypadki , gdzie pojawiają się jakieś zastrzeżenia ze strony bliskich ” – mówiła . Zdaniem prof . Bruskiej , podczas ćwiczeń ze studentami , przyszli lekarze potrafią zachowywać odpowiedni szacunek do ludzkiego ciała . „ Studenci wiedzą , że mając zajęcia na ciele ludzkim czy jakichkolwiek preparatach pochodzenia ludzkiego muszą się odpowiednio zachowywać i obchodzić się z ludzkim ciałem z należytym szacunkiem . Mają także świadomość , że w takich warunkach i na zwłokach mogą nauczyć się więcej niż na fantomach czy modelach ” – podkreśliła ."
+  },
+  {
+    "opinion_id": "op_000514",
+    "text": "zrobilem uszy u dr . dmytrzaka ludzie to tragedia jego nawet nie ma przy operacji . i nie widac go po operacji . ogolnie katastrofa szwy mialy sie rozejsc same a minal rok i kawalek szwu mam w jednym uchu . odradzam tweg kolesia kase tluka i nic wiecej . . . . . . . . nigdy wiecej do dmytrzaka ."
+  },
+  {
+    "opinion_id": "op_000515",
+    "text": "Witam , postanowił em napisać o tym lekarzu , żeby inni się zastanowili zanim się do niego wybiorą . Otóż lekarz ten usunął mi tarczycę w w maju 2013 ( w Wieliszewie - jest tam ordynatorem ) . Zaraz po operacji chciał mnie już wypisywać do domu , na obchodzie powiedział , żeby m się pakował i dopiero pielęgniarka mnie zapytała , czy nie mam mrowienia w palcach albo na twarzy powiedział em , że mam ( myślał em , że to normalne po operacji ) dopiero się przestraszył i natychmiast zlecił badania , uwaga - został em jeszcze tydzień w szpitalu ( brał em leki doustnie i w postaci kroplówki - 3x dziennie ! ! ! ) , bo się okazało , że mam hipokalcemię ! ! ! To po pierwsze , po drugie , po operacji miałem piskliwy ( jęczący ) głos i szybko się męczył em po wypowiedzianych kilku zdaniach , a on mówi , no śliczny głos przecież o co Panu chodzi , ale minęło 1 , 5 mies . od operacji i nadal taki miałem , więc wybrał em się do foniatry ( lek . Wakarow - bardzo polecam ) i powiedziała , czemu dopiero teraz przychodzę ( miałem paraliż jednostronny czegoś tam w gardle ) , przepisała mi zastrzyki i jonoforezę ( przez 1 , 5 mies . ) , a dlaczego ? bo jaśnie Pan hrabia doktor powiedział , żeby m nie czytał Internetu i przecież czego ja chce , jak jestem dopiero co po operacji . Suma summarum odradzam tego chirurga ! ! ! Do tego jest nieuprzejmy , on wie najlepiej i koniec . Gdyby nie to , że mam swój rozum i jednak zasięgnął em opinii z Internetu , to nie powrócił by mi głos . Piszę opinię dlatego , żeby inni się dobrze zastanowili zanim pójdą do tego lekarza . ODRADZAM ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000516",
+    "text": "Jak wyjaśnił dr Pieczykolan , praktyka kliniczna pokazuje , że cząsteczki skuteczne wobec komórek rakowych , powodują także uszkodzenia zdrowych tkanek i organów pacjenta , często prowadząc do wyniszczających powikłań . Rozwiązaniem problemu chorób nowotworowych , a także większości chorób cywilizacyjnych , była by terapia spełniająca kryteria idei Paula Ehrlich , czyli tak zwanej „ złotej kuli ” , która trafiała by idealnie w cel - komórki transformowane , uszkodzone . Taka idealna cząsteczka wykorzystując wszystkie dostępne organizmowi środki transportu , jak krew , limfa , docierała by tylko do zmienionych nowotworowo komórek i je niszczyła . Takie założenie leży u podstaw projektu ONCO - 3 CLA , a także wielu terapii celowanych opracowywanych na świecie . Polska terapia składa się z trzech poziomów aktywacji . W pierwszym etapie wykorzystywany jest naturalny w procesie nowotworowym mechanizm perforacji , czyli rozluźnienia , niszczenia połączeń pomiędzy komórkami naczyń krwionośnych . Poprzez pęknięcia nabłonka naczyń , leki mogą penetrować z krwi do nowotworu . Ponadto cząsteczka jest tak skonstruowana , że rozpoznaje pewne receptory na powierzchni komórek nowotworowych i łączy się tylko z tymi komórkami ."
+  },
+  {
+    "opinion_id": "op_000517",
+    "text": "Była m lepiej nastawiona , do czasu , gdy po \" lekach \" nastąpiło pogorszenie . Pani dr nie raczyła odebrać tel . ani odpisać na esemesa . A podobno ileś tam czasu po podaniu obowiązuje reklamacja i pomoc nieodpłatna . Dużo filozofuje , określiła mojego autystycznego syna jako rozpieszczonego . Stwierdziła , że nie jest chory tylko mną rządzi . A pomocy potrzebuję ja i mam iść do psychologa , żeby mi pomógł uporać się z dzieciakiem . Jemu nic nie jest . Mimo to dała jakieś kulki . Oczywiście wszystkie zmiany na plus to efekt działania tych kulek . Efekt działania kolejnych , na minus , już nie ."
+  },
+  {
+    "opinion_id": "op_000518",
+    "text": "Sympatyczny , spokojny i na tym jego + się kończą . Była m u niego z ostrogami w Euromedicare . Mało komunikatywny i zupełnie mu chyba bimba co się do niego mówi . W sumie nic mi nie pomógł i musiała m iść prywatnie do kogoś innego ."
+  },
+  {
+    "opinion_id": "op_000519",
+    "text": "Pierwsze wrażenie super , sympatyczny człowiek , dotrzymał słowa za co plus ale niestety nic konkretnego wspólnie nie osiągnęli śmy w moim przypadku i do dziś męczę się z przewlekłym zapaleniem dwunastnicy i refluksem . . . a leki od 9 lat z tej samej grupy nie dały oczekiwanej poprawy . . . . liczyła m na wspólne znalezienie rozwiązania by choć trochę polepszyć komfort życia , niestety nie otrzymała m dostatecznej pomocy ze strony Pana Doktora wręcz skierował mnie na złe tory przez co minął rok od poprzedniej wizyty a ja wciąż tkwię w punkcie wyjścia ."
+  },
+  {
+    "opinion_id": "op_000520",
+    "text": "Była m u pani Chwastek raz i więcej nie pójdę . Nie odpowiedziała na żadne moje pytanie , nie zaniepokoił jej bardzo wysoki poziom prolaktyny ( przyniosła m wyniki które robiła m wcześniej ) , nie zleciła żadnych badań , ani nawet nie zasugerowała ich wykonania . Badanie szybko i po łebkach ( była m u niej w ramach NFZ ) . Wywiad ginekologiczny ograniczał się do pytania o datę ostatniej miesiączki , nie pytała czy staram się o dziecko , czy w ogóle współżyję , czy korzystam z jakiejś formy antykoncepcji . . nic . Moja mama także poszła tego samego dnia do pani Chwastek - pani doktor przepisała jej HTZ , nie pytając czy ma jakiekolwiek objawy menopauzy , nie rozmawiając z nią o skutkach ubocznych itd . Odradzam ."
+  }
+]

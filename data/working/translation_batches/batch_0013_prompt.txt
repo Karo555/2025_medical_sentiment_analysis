@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000241",
+    "text": "Był em u tego lekarza i na moje nieszczęście bardzo źle się to skończyło . Złamana kość w palcu wskazującym po prześwietleniu widać było ewidentne złamanie , tak więc palec poszedł w gips . Po 3 tygodniach i trwającym bólu , lekarz bez prześwietlenia zdjął gips i gdy spytał em go czy można by go prześwietlić otrzymał em następującą odpowiedź : , , ja wiem lepiej ' ' , z bólem palca wrócił em do domu i po tygodniu prześwietlił em go na nowo , w okolicach stawu w moim palcu do dziś znajduje się odłamek kości , który może zpowodować zablokowanie stawu co może doprowadzić do operacji ów palca . Lekarz wydaje się dziwny , nic nie mówi a jak juz to on wie lepiej . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_000242",
+    "text": "Przy ogólnej pozytywnej ocenie dla mnie dużym problemem jest brak kontaktu z Doktorem poza wizytami w Centrum Medycznym \" Pomoc \" . Zapisanie na wizytę jest trudne z powodu odległych terminów , a w chorobach neurologicznych są takie sytuacje , gdzie potrzebna jest szybka konsultacja . Doktor podaje do siebie numer telefonu , prosi o przesłanie SMS-em wyników badań , obiecuje odpisać wieczorem i niestety tego nie robi . I naprawdę nie chodzi o sprawy błahe . Córka choruje na epilepsję i gdyby nie internetowy kontakt z rodzicami innych chorych dzieci ciężko było by nam bez wsparcia lekarza ."
+  },
+  {
+    "opinion_id": "op_000243",
+    "text": "Była m u Pani Doktor na kilku wizytach . Polecił mi ją inny lekarz ginekolog , gdyż obserwowała m u siebie problemy natury ginekologiczno - endokrynologicznej . Pierwsza wizyta OK , chciała mnie nawet położyć do szpitala w celu zrobienia pełnego pakietu badań . Ale zdecydowała m , że zrobię je sama na podstawie skierowania ( mam szpitalną traumę z dzieciństwa ) . Większość badań wyszła w normie . Ale ja starała m się o dziecko . Pani Doktor nie zaniepokoiło podwyższone nieznaczne LH , przegapiła opis obrazu USG jajników wskazujący na PCOS ( Zespół Policystycznych Jajników ) . Za wysokie było też TSH , które dla kobiet starających się o dziecko nie powinno być wyższe niż 2 ( a najlepiej do 1 , 8 ) . Oprócz badań , miała m szereg innych objawów . Pani Doktor zaleciła kontynuowanie starań przez pół roku a potem jeśli się nie uda powrót na konsultację . Oczywiście starania się nie powiodły bo nie miała m prawdopodobnie w ogóle owulacji , bo moje pęcherzyki nie dojrzewały do pęknięcia . Czuła m , że z tą Panią Doktor już mi nie po drodze . Ale dała m jej jeszcze jedną szansę . Najpierw wybrała m się na konsultację do innego lekarza , który zlecił mi wykonanie m . in . badania AMH - to podstawowe badanie rezerwy jajnikowej , od którego powinna m zacząć leczenie . Wyszło jasno , że mam PCOS . Ruszyła m na kolejną wizytę uzbrojona w dodatkowe wyniki , potwierdzające moje domysły , a Pani Doktor zerknęła na wyniki ( w tym na AMH ) i powiedziała , że wszystko jest w normie . Jej kolejne zalecenie to znów pół roku starań . Po tej wizycie udała m się do kolejnego poleconego mi lekarza od trudnych przypadków . Już na wstępnie powiedział , że jest problem z tarczycą z uwagi na TSH , zalecił zmianę diety ze względu na PCOS i zwrócił też uwagę na lekką hiperinsulinemię , która niestety często towarzyszy schorzeniu jajników . Wnioski : Pani Doktor nie słucha pacjentów , kiedy mówią o objawach lub je bagatelizuje Pani Doktor nie wie jakie są zalecenia poziomów TSH dla kobiet starających się Pani Doktor nie czyta dokładnie wyników badań i nie zastanawia się nad nimi Nie dała m najniższej oceny tylko dlatego , że Pani Doktor jest sympatyczna , uprzejma , miła i próbuje uspokajać kiedy starania nie wychodzą . Tylko co z tego ? Jej nakłanianie do naturalnych starań kiedy są poważne problemy hormonalne może spowodować zniechęcenie , rozżalenie i psychiczne zmęczenie , a to może prowadzić do kryzysu w związkach starających się o dziecko . U mnie się tak nie stało , ale wiem , ile takie długie starania kosztują inne pary ."
+  },
+  {
+    "opinion_id": "op_000244",
+    "text": "Drogie Panie , szkoda czasu waszego na tak marnego lekarza . Mniemanie o sobie wysokie być moze wynika z jakiegos niedowartościowania . Była m kilka razy na badaniu . Kazde bardzo bolesne . Nie polecam . Nigdy nie wyszła m z dobrym słowem i radą a zawsze z bólem . Zmieniła m na dr . Michalaka i nagle problemy i bóle ustapily . Wiele razy słyszalam że dr . Mazur kokietuje i podrywa pacjentki . Niestety potwierdziło się . . Miała m wrazenie ze zamiast do lekarza wchodze do pokoju towarzyskiego . To jednak starszy siwiejący Pan / zero atrakcyjności i męskości wiec nadrabia rozmową w ktorej tylko on uczestniczy uwazając ze jest strasznie mądry . Niestety nie od tego chyba jest . Oczekujemy lekarza i fachowca a nie podrywacza . Pan dr bardzo się zapomina . Oczywiście wiele uwag padło pod adresem mojego męza ze go nie adoruje . ! ! Ale co to obchodzi Pana dr . . . . generalnie radze sie zastanowic jesli chcecie pozostac w swoich związkach bo zamiast porady lekarskiej Pan dr . rozbije Wam małzenstwo . godny pozałowania a nie polecenia . Zdecydowanie polecam dr Michalaka . ! !"
+  },
+  {
+    "opinion_id": "op_000245",
+    "text": "Pani Doktor przyjmuje między innymi w centrum Medicover . Na wizytę musiała m czekać pół godz chociaż w gabinecie nie było innego pacjenta . Pani Doktor od początku wizyty była arogancka , potraktowała mnie jak intruza , który jej przeszkadza . Przyniosła m ze sobą wyniki badań , nawet ich nie przejrzała , nie wysłuchała z jakim problemem przyszła m . Po 5 minutach sama podziękowała m za wizytę ponieważ stwierdziła m , że nie będę się prosić żeby mnie zbadała ( chociaż to jest jej obowiązek ) i zmieniła m lekarza na innego , który potrafi wysłuchać pacjenta i wyleczyć . Odradzam , strata czasu ! ."
+  },
+  {
+    "opinion_id": "op_000246",
+    "text": "Ponadto , system wyszukuje w jakim mieście jesteśmy i jakie panują tam warunki pogodowe , jakie jest zanieczyszczenie środowiska , stężenie pyłków roślinnych , bo wszystkie te czynniki mogą powodować zaostrzenie choroby . Dla kobiet z astmą przygotowano odpowiedzi na pytania dotyczące możliwości zajścia w ciążę i urodzenia zdrowego dziecka . Jak zaznaczył prof . Kuna , wprowadzanie takich prostych narzędzi pozwalających lepiej kontrolować astmę jest bardzo ważne . Z badań wynika bowiem , że większość pacjentów nie uzyskuje celów terapeutycznych . Duże badanie europejskie przeprowadzone wśród 10 tys . chorych na astmę , które opublikowano w 2010 r . na łamach pisma „ European Respiratory Review ” , wykazało , że dotyczy to nawet 70 proc . pacjentów ."
+  },
+  {
+    "opinion_id": "op_000247",
+    "text": "Celem jest wspólne uczestnictwo w krajowych i międzynarodowych programach badawczych , a także współdziałanie w zakresie kształcenia studentów na kierunku lekarskim Uczelni Łazarskiego . Ma być to możliwe dzięki stworzeniu silnego ośrodka interdyscyplinarnego rozwijającego działalność naukową . \" Planujemy realizować wspólne projekty naukowe , które pozwolą rozwijać się kadrze obu naszych instytucji . Jesteśmy też przekonani , że współpraca ta przyczyni się do podniesienia jakości kształcenia na kierunku lekarskim , gdyż przedmiotów teoretycznych będą nauczać naukowcy , którzy na co dzień tę teorię stosują m . in . w pracy badawczej w NIL \" - mówi rektor Uczelni Łazarskiego , prof . Krystyna Iglicka - Okólska . Podkreśliła , że priorytetem dla kierowanej przez nią szkoły wyższej jest \" praktyczne kształcenie \" , a podpisana umowa będzie w tym zadaniu pomocna ."
+  },
+  {
+    "opinion_id": "op_000248",
+    "text": "Pani ginekolog bardzo nieprzyjemna , chłodna i nieprzystępna . Na początku robi wrażenie osoby bardzo profesjonalnej , zleca różne badania , które \" mają służyć dobru dziecka \" . Niestety zapomina o tym , że część z nich można realizować w ramach nfz i nie chce wystawiać skierowań . Wywiera duży nacisk na pacjentkę i próbuje wywołać poczucie winy . Nie liczy się z zawartością portfela przeciętnej pacjentki . Przy zgłaszaniu wątpliwości odnośnie samopoczucia w trakcie ciąży , zupełnie ignoruje pytania . Zapytana po raz wtóry odpowiada niecierpliwie i zdawkowo . Niewiele można się od niej dowiedzieć o przebiegu ciąży . Robi wrażenie skupionej bardziej na dokumentacji niż na żywej osobie . Ogólnie nie wykazuje zbyt dużego zainteresowania , mało informacji przekazuje i niewiele tłumaczy . Po prostu odhacza kolejne wizyty . . ."
+  },
+  {
+    "opinion_id": "op_000249",
+    "text": "Pan Dr mmie bardzo ladnie opowiadac , o chrobie , o lekach , o postepach w medycynie . Przytacza statystyki - ogolnie wiedza pewnie i spora . Opowiada to samo za kazdym razem . . . Nie interesuje go pacjent . On prowadzi wyklad : / Niestety w razie prawdziwego problemu nie potrafi skutecznie dzialac i w koncu zostawia pacjenta samemu sobie . Jego podejscie to kasujemy co miesiac jak jest dobrze , a w razie powaznego zaostrzenia radz sobie sam . Bo tu juz biznes dla niego slaby , a i ryzyko rosnie . . . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_000250",
+    "text": "Na razie znany jest tylko pewien zakres działań , którymi konsorcjum chciało by się zająć . \" Chodzi nam o wdrożenie systemu medycyny zindywidualizowanej \" - mówi dyrektor IF PAN i wyjaśnia , że kiedy stosuje się standardowe metody leczenia , pacjenci mogą różnie na nie reagować . Dla jednych dana terapia okazuje się skuteczna , a dla innych - nie . Prof . Wędzony wyjaśnia , że reakcję pacjenta na czynniki farmakologiczne determinuje background genetyczny . Naukowcom chodzi o to , żeby poznać ten background i opisać przypadki podatne na typowe terapie i przypadki nietypowe . \" Przed przepisaniem danego leku mógł by być robiony taki profil indywidualny podatności ( pacjenta - PAP ) na poszczególne leki . Wyposażeni w poszczególne profile mogli by śmy z dużą pewnością przepisać takie , a nie inne leki \" - wyjaśnia prof . Wędzony . W ten sposób można było by poprawić skuteczność leczenia . \" ( W Polsce - PAP ) istnieje już parę ośrodków , które takie próby podejmują . My chcieli by śmy zrobić to na dużą skalę i zaproponować nowy porządek w medycynie , jeśli chodzi o indywidualne leczenie \" - zaznacza dyrektor IF PAN ."
+  },
+  {
+    "opinion_id": "op_000251",
+    "text": "Niestety , ale zdecydowane odradzam tego lekarza . Pani Doktor zleciła mi serię badań jakie miałem wykonać i poleciła mi aby m to zrobił w szpitalu w jakim pracuje . Okazało się , że połowę badań nie mogł em zrobić w danym miejscu , bo szpital ich nie robi . Ale powód dla którego odradzam tego lekarza jest inny . Jednym z badań jakie zostało mi zlecone , była spirometria . Nie zostało jednak określone , czy powinno być zrobione z próbą rozkurczową czy nie . Udał em się w takim wypadku do Pani doktor , która akurat miała dyżur w szpitalu z jednym pytaniem jaką spirometrię powinien em zrobić . Pani doktor nie była łaskawa nawet wyjść z gabinetu , a jak powiedział em jej że był em u niej na wizycie , to przerwała mi zdanie i powiedziała , że nie ma dla mnie w ogóle czasu i koleżanka już zamykała mi drzwi przed nosem . Mimo wszystko dokończył em to co chciał em zapytać , to na odchodne usłyszał em , ze ma być z próbą rozkurczową . Udał em się na badania i okazało się , że jednak nie zrobią mi tego badania , bo trzeba w nim podać lek i muszę mieć skierowanie od lekarza , którego oczywiście nie dostał em . Podsumowując : 1 . umówił em się na prywatną wizytę , którą opłacił em i został em wysłany na badanie , których nie mogł em zrobić bo : - jednym badań nie można zrobić w sugerowanym miejscu - nie miałem skierowania , które umożliwiliłoby mi zrobienie kolejnych badań 2 . chciał em zadać jedno pytanie związane z wizytą jaką miałem u Pani doktor , to został em potraktowany jak intruz i odniosł em wrażenie , że jak nie płacę , to nie ma możliwości nawet na 1min Pani doktor ."
+  },
+  {
+    "opinion_id": "op_000252",
+    "text": "Jak dodał , podczas badań są zbierane informacje o wielu parametrach , które opisują funkcjonowanie mitochondriów . \" Te parametry dotyczą wyglądu mitochondriów , ich struktury , tego jak się poruszają , czy są pofragmentowane , czy nie . Również opisują ich funkcjonowanie , czyli ich zdolność od produkcji ATP . Mitochondria są jednostkami w komórce odpowiedzialnymi za produkcję ATP , cząsteczki energetycznej , która wykorzystywana jest w komórce do większości procesów , umożliwiając w ogóle przeżycie komórki \" - powiedział . \" Jeśli określimy wpływ tych substancji na mitochondria i całą komórkę , można w pewnym sensie przełożyć te wyniki na szkodliwość danej substancji dla całego organizmu palacza . Jeśli okaże się , że mitochondria funkcjonują lepiej niż w przypadku tradycyjnych papierosów , to palacz , który wykorzystuje nową technologię , czyli podgrzewanie tytoniu , może być mniej narażony na szkodliwe skutki wynikające z toksyczności substancji \" - podsumował Więckowski ."
+  },
+  {
+    "opinion_id": "op_000253",
+    "text": "Moja opinia po pierwszej wizycie : Pan Doktor był od początku otwarty i uprzejmy ; - potrafił zachować spokój i jasny umysł mimo , że nie był em w dobrej formie i trudno było mi zebrać myśli , co utrudniało porozumienie ; - profesjonalny - zrobił wywiad , zadawał pytania , słuchał i dopytywał , robił notatki ; - swoją postawą wspierał ; - wyjaśniał na bieżąco kwestie , które były poruszane także przeze mnie w czasie rozmowy np . dot . leków czy diagnozowania zaburzeń osobowości ; - szukał rozwiązania problemów związanych z moją sytuacją ; Podsumowując , Pan Doktor od początku wzbudził moje zaufanie i do teraz to zaufanie we mnie jest , a raczej nie jestem ufnym człowiekiem . Mogę polecić tego lekarza tym z Państwa , którzy chcą pomóc sobie idąc do specjalisty . Życzę wszystkim siły i wytrwałości w wybieraniu dobra . \" Nie da się pokonać tego , kto nigdy się nie poddaje \" : - )"
+  },
+  {
+    "opinion_id": "op_000254",
+    "text": "Jak oceniła , realizowany w szpitalu projekt sprzyja refleksji lekarzy nad sposobem komunikowania z pacjentem . Podkreśliła , że lekarzom może brakować wiedzy o skutecznych sposobach komunikowania , bo w procesie kształcenia to nie jest bardzo akcentowany aspekt pracy lekarza . „ Po naszym pierwszym spotkaniu z językoznawcami było trochę oporu ze strony lekarzy wobec tego , że ktoś będzie nazywał , oceniał to , co mówię do pacjenta , może bali się krytyki . To jest jednak ważne , żeby tak rozmawiać z pacjentem , żeby był zadowolony , wyniósł z wizyty to , co chciał . Mnie udział w tym projekcie skłonił do większej cierpliwości , zwłaszcza w kontaktach z pacjentami w najtrudniejszej sytuacji ” – powiedziała ."
+  },
+  {
+    "opinion_id": "op_000255",
+    "text": "Witam ! Bardzo mi przykro ale nie polecam dr . Nowosielskiego ! ! ! Bardzo mało komunikatywny ! ! ! ! Ja przez całą walke z nowotworem , mojego tatusia czytała m w internecie i konsultowała m sie z innym profesorem a takze z chorymi na ten sam nowotwor pacjentami ! To własnie odnich dowiedziała m sie najwiecej ! Potem wspominała m i pytała m Dr . Nowosielskiego ale z wielką niechecią i łaską odpowiadałi i nieraz dostosowł sie do tych wskazowek . W wiekszości przypadkow np . o dodatkowych lekach terapiach itd stwierdzała , ze to nie pomoze albo , ze niepotrzebne ! Zresztą od poczatku choroby mówiła nam same negatywne rzeczy ! A przeciez tak ważna jest psychika w leczeniu ! ! ! Mówią , ze wiara czyni cuda i my sie tego trzymalismy jednak ten lekarz za kazdym razem nas zdołował . Moj tatusia niestety juz niema i dlatego chciał by m przestrzec innych przed tym lekarzem bo moim zdaniem lekarz powiennien rozmawiac z pacjentem i z ich najblizszymi , mobilizowac do walki i dawac ndzieje ! A niestety z strony tego lekarza tego NIEMA ! ! ! Wiam , ze chorzy na raka tego co tata miał nie mają lekko ale po co jeszcze to podkreslac na kazdej wizycie ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000256",
+    "text": "Rak piersi jest najczęstszym nowotworem kobiet i każde nowe urządzenie , które poprawi wykrywalność raka piersi , przyczynia się do ratowania istnień ludzkich . Ultrasonotomograf ma szansę stać się nowym narzędziem pomagającym skuteczniej wykrywać raka piersi , a w przyszłości być może nawet nowym standardem diagnostyki tego nowotworu . W nowym aparacie połączono liczne korzyści różnych dotychczasowych metod , a usunięto ich niektóre ograniczenia . W przeciwieństwie do mammografii , podczas badania ultrasonotomografem pierś nie jest uciskana i nie jest naświetlana promieniowaniem rentgenowskim . Uzyskiwane obrazy są trójwymiarowe , podobnie jak w tomografii komputerowej , lecz bez użycia szkodliwego promieniowania  - tłumaczy prof . Jóźwik . \" Hybrydowy tomograf ultradźwiękowy skanuje całą pierś z wykorzystaniem fal ultradźwiękowych o częstotliwości około 2 MHz z wielu kierunków dookoła i na wielu poziomach , a następnie przetwarza pozyskane dane i rekonstruuje obrazy dowolnych jej przekrojów \" - powiedział PAP Andrzej Wiktorowicz z firmy Dramiński S . A ."
+  },
+  {
+    "opinion_id": "op_000257",
+    "text": "Po tych wszystkich zachwytach przyszedł czas na kubeł zimnej wody . Był em na konsultacjach u doktora Molskiego w Otwocku i to jak mnie przyjął wola o pomstę do nieba . Siedzieli sobie trzej panowie w gabinecie ( doktor Molski plus dwóch innych lekarzy ) i w sumie czuł em się tam bardziej jak intruz niż pacjent . Zupełnie nie wnikali w mój przypadek . Poobserwowali i napisali w dosłownie trzech zdaniach , jakie mogą zasugerować leczenie i odesłali do mojego dotychczasowego szpitala . Na nic zdały się moje prośby o w ikliwsze przeanalizowanie mojego przypadku ( chodzi o złamanie przewlekłe ) . Panom doktorom nie chiało sie nawet robić zdjecia RTG . Spuścił em głowę i opuścił em gabinet , bo w międzyczasie Pan doktor Molski poprosił już innego pacjenta . Nie twierdzę , że to słaby specjalista . Ale najwyraźniej preferuje prywatne wizyty a te za pieniądze NFZ to raczej jego zło konieczne . Jestem baaaaaardzo zawiedziony jego postawą . Postaram się znaleźć pomoc w innym miejscu"
+  },
+  {
+    "opinion_id": "op_000258",
+    "text": "Zawsze kiedy jestem u lekarza wymieniam antybiotyki , na które jestem uczulona . Pani doktor wydała się dosyć rozbawiona moją alergią na dwa leki , po czym wypisała mi antybiotyk , na który jestem uczulona pod inną nazwą . Dowiedziała m się o tym podczas wizyty u kolejnego lekarza , z zapalenia zatok leczę się już trzeci miesiąc , plus - biorę tabletki na odtrucie . Dla mnie to zwyczajna niekompetencja ."
+  },
+  {
+    "opinion_id": "op_000259",
+    "text": "Przez 12 lat leczyła mnie ze złym rozpoznaniem . Teraz jestem leczony na prawidłową chorobę , biorę odpowiednie leki i od razu czuję się lepiej w porównaniu z tym co było . Poza tym każda wizyta , nawet po 10 latach leczenia , wyglądała u niej jak pierwsza tzn nie pamiętała na co choruję , co mi dolega , jakie tabletki biorę . Na dodatek pani doktor nie raczyła poinformować mnie też , że leki , które kazała mi brać , powodują uszkodzenia i zniekształcenia płodu ! ( na szczęście moja dziewczyna nie zaszła w ciążę )"
+  },
+  {
+    "opinion_id": "op_000260",
+    "text": "Witam . Na początku bał em się wizyty u p . Martyny , dlatego że nigdy nie był em u tego typu specjalisty . Nie wiedział em czy będę umiał się otworzyć i powiedzieć z czym tak naprawdę mam problem . Ale po chwili rozmowy wszystkie obawy minęły . Czuł em się jak by m rozmawiał z najlepszym kumplem . Widział em że podchodzi do mojego problemu poważnie i szukała dla mnie kilku wyjść z mojego problemu za co bardzo jej dziękuję . Z czystego serca polecił by m każdemu rozmowę z p . Martyną . Bardzo dziękuję za rozmowę i zrozumienie ."
+  }
+]

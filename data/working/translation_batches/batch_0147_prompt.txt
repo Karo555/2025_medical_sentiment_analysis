@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002921",
+    "text": "Chciał by m wyrazić tu właśnie na forum mój największy podziw dla tego lekarza oraz mój szacunek dla faktu jakim jest człowiekiem . Pech chciał , że uległ em około dwóch miesięcy temu bardzo poważnemu wypadkowi z bardzo skomplikowanym złamaniem obu kości przedramienia . Groziła mi utrata pewnej sprawności ręki . Ręce są natomiast moim narzędziem pracy , są niezbędne do wykonywania mojego zawodu w jakiejkolwiek formie . Przed operacją przechodziło mi niejednokrotnie przez myśl - czy będę musiał się przekwalifikować ? Czy 15 lat ciężkiej nauki i pracy poszły na marne ? Otóż okazało się , że nie . Sam jestem lekarzem i wiem , co znaczy czuć w sercu , że dany przypadek po prostu jest trudny . Znam tą odpowiedzialność . Najwyższą odpowiedzialnością za moje zdrowie wykazał się dr Zimmer . Dziś mija siedem tygodni od operacji , chodzę na rehabilitację ale . . . . nie mam praktycznie żadnych dolegliwości , pracuję jak przed wypadkiem , pomagam w domu przy pracach domowych I TO JEST PO PROSTU SZOK ! Ten lekarz sprawił , że czarny dzień z życia okazał się po prostu jedynie jakimś koszmarnym snem a przyszłość moja oraz mojej rodziny znów nabrała kolorów ."
+  },
+  {
+    "opinion_id": "op_002922",
+    "text": "Miała m okazję być u Pani doktor z moim 7 - miesięcznym synkiem , który cierpi na AZS . Mały miał całe ciałko w zaognionych czerwonych plamach . Mając ok . 1 , 5 m - ca miał delikatną skazę białkową , która ustąpiła , natomiast czerwone plamy na ciele pojawiły się ok . 4 mż . Pani doktor stwierdziła , ze to wcale nie była skaza białkowa , tylko pyłki traw i roztocza . Recepta ? Oczywiście steryd , który trzeba stosować do około 2 roku , bo w innym wypadku może dojść do astmy . . . Dziś wiem , że to , co uczula mojego synka to nie są żadne pyłki a laktoza , bo trafiła m na prawdziwego lekarza , który leczy a nie \" gasi pożar \" sterydami ."
+  },
+  {
+    "opinion_id": "op_002923",
+    "text": "Do Lekarza Wincewicza trafiła m z polecenia i się nie rozczarowała m . Doktor przeprowadził moją pierwszą ciążę książkowo ! W okresie ciąży podczas każdej wizyty towarzyszył mi mąż . Przyjmowani byli śmy bardzo serdecznie . Uzyskali śmy odpowiedzi na każde dręczące nas pytanie . Doktor Wincewicz jest osobą bardzo otwartą na ludzkie problemy z ogromną wiedzą i doświadczeniem . Czuła m , że jesteśmy w dobrych rękach ! Syn urodził się zdrowy za co jesteśmy dozgonnie wdzięczni ! Podczas kolejnej ciąży również zapukamy do drzwi gabinetu Doktora Wincewicza ! ! ! Olga , Łukasz i Szymonek : )"
+  },
+  {
+    "opinion_id": "op_002924",
+    "text": "Jest nie prawda co napisal ten internauta . Ten lekarz jest bardzo dobrym , przesympatycznym , milym i kulturalnym czlowiekiem . Nie jest tez prawda ze oglada kobiece piersi , wcale tego nie robi , aczkolwiek w wielu przypadkach powinien to robic , moze uratowal by jakas kobiete od smierci . Lecze sie u Pana doktora juz 8 lat i nie moge powiedziec na niego zadnego zlego slowa , wrecz przeciwnie . zarowno On sam jak i personel tej przychodni to wspaniali ludzie . Goraco polecam ."
+  },
+  {
+    "opinion_id": "op_002925",
+    "text": "PIĘĆ PALCÓW MAMY W GENACH Naukowiec wyjaśnia , że geny , które regulują np . ilość i długość palców , aktywują się w okresie rozwoju embrionalnego , a potem najczęściej \" idą spać \" . Jeśli jednak obudzą się w złym czasie lub miejscu , mogą doprowadzić do powstania zjawisk chorobowych . Ta właściwość sprawia , że można studiować mechanizmy chorób poprzez badania nad rozwojem organizmu . \" Wiemy już , jak włączać i wyłączać pewne geny w różnych momentach i przez to , w kontrolowany sposób możemy np . u zwierząt doświadczalnych regulować liczbę palców \" - oznajmia prof . Tylżanowski i uzupełnia , że badacze umieją już doprowadzić do narodzin myszy z 14 palcami u jednej kończyny ."
+  },
+  {
+    "opinion_id": "op_002926",
+    "text": "Była to moja pierwsza wizyta u tego lekarza . Została m przyjęta punktualnie . Lekarz cierpliwie mnie wysłuchał , zbadał , wypisał receptę i skierowanie na dodatkowe badania . Wizyta odbyła się w miłej atmosferze . Wystawiam jedynie ocenę dobrą , dlatego że nie jestem jeszcze w stanie ocenić Jego kompetencji . Za samą wizytę , kulturę , stosunek do pacjenta wystawiam „ 6 ” . Zaletą jest również dostępność terminów wizyt ."
+  },
+  {
+    "opinion_id": "op_002927",
+    "text": "Małe info dla zawiedzionych \\ \" pacjento - turystów \\ \" : może pomylili ście specjalistów ( ? ) Karmicie się informacjami z różnych for internetowych , stawiacie sobie wzajemnie diagnozy i oczekujecie że \\ \" dobry \\ \" lekarz pownien przyklepać Wam Wasze przypuszczenia . Tak , jestem pacjentem dr Daroszewskiego od dłuższego czasu i czytając niektóre wpisy nie mogę wyjść ze zdumienia . Może to konkurencja robi czarny PR . Na wizyty chodzę zarówno prywatnie jak i na NFZ w klinice i nie poczuł em się nigdy \\ \" olany \\ \" , a muszę przyznać że jestem dość skomplikowanym przypadkiem i często zadaję głupie bądź irytujące pytania . Kilka pobytów w szpitalu i zawsze trafione leczenie , a co najważniejsze - poprzedzone drobiazgową diagnostyką . Profesjonalizm i stoicki spokój - a tego należy oczekiwać chyba od specjalisty . Jeśli szukali ście kogoś do poklepywania po plecach przy każdym napięciu przedmiesiączkowym , andropauzie lub menopauzie to poszukajcie psychologa ."
+  },
+  {
+    "opinion_id": "op_002928",
+    "text": "Przewodniczący Rady Naukowej Ogólnopolskiego Programu Zwalczania Grypy prof . Adam Antczak powiedział , że głównym powodem tak dużej liczby zachorowań był wyjątkowo groźny wirus świńskiej grypy AH1N1 oraz to , że w 2015 r . przeciwko grypie zaszczepiło się zaledwie 3 , 4 proc . Polaków , mniej niż w poprzednich sezonach grypowych . Najwięcej osób w naszym kraju zaszczepiło się przeciwko grypie w 2005 r . – 8 , 6 proc . populacji . Od tego czasu liczba tych szczepień spada . W 2007 r . zaszczepiło się 6 , 1 proc . Polaków , a latach 2012 - 2014 – jedynie 3 , 7 proc . „ To zdecydowanie za mało , pod tym względem jesteśmy na jednym z ostatnich miejsc w Europie ” - podkreślił prof . Antczak ."
+  },
+  {
+    "opinion_id": "op_002929",
+    "text": "Psychologów jest bardzo dużo , ale doświadczonych i nie bojących się rozmawiać otwarcie o seksie oraz praktycznie pomóc w \\ \\ \\ \" temacie \\ \\ \\ \" - to jest niewielu . Jestem sceptyczny co do rzetelności internetowej informacji - ale trafił em na forum medycyny seksualnej na Dr Szczerbę i trafił em dobrze . Było to dawno , powinien em dawno napisać tą pochwałę ."
+  },
+  {
+    "opinion_id": "op_002930",
+    "text": "Witam Doktor profesjonalista , podchodzący z dużym szacunkiem i wyczuciem do wykonywanego przez siebie zawodu , to generalnie młody człowiek a jednak posiadający wiedzę i doświadczenie , jestem przypadkiem , który pierwszą ciążę woziło do powiedziało by się szacownego Pana Profesora ( ciąża przenoszona ) a była to ciąża książkowa a Pan Profesor tak feralnie ją zakończył , dzięki Bogu mam super córcie . Drugą ciążę powierzyła m Panu Szewczukowi , zaczęło się od krwiaków na macicy a zakończyło na bardzo rzadkim ułożeniu płodu - położeniu poprzecznym . Pan doktor świetnie podszedł do wszystkiego , nie owijał , nie słodził , nie cukrował , zrobił to co powinien zrobić profesjonalista utrzymał ciąże , prowadził ją , rewelacyjnie rozwiązał cesarskim cięciem w odpowiednim terminie nie doprowadzając do żadnych komplikacji . Polecam z całego serca , to świetny lekarz a do tego , fajny , miły i wesoły , facet i za to ogromny plus . Pozdrawiam B . Bukowska"
+  },
+  {
+    "opinion_id": "op_002931",
+    "text": "Może zacznę od tego , że mam na imię Tomek i jestem hazardzistą . Patrycjusz był moim terapeutą indywidualnym jak też prowadził zajęcia grupowe w miejscu , gdzie zaczynał em wyjście z mojego uzależnienia … Bardzo trudno jest mi opisać , ocenić i znaleźć słowa takie , które opisały by Jego wkład w moje zdrowienie … a to dlatego , że wkład był po prostu ogromny i właściwie nie do opisania : ) Wszystko zaczęło się jesienią 2015 roku kiedy trafił em do ośrodka po kilkunastu latach grania w stanie głęboko depresyjnym , na skraju wyczerpania przede wszystkim psychicznego , z ogromnymi długami … „ Życie albo śmierć ” - to słowa Patrycjusza , które zapamiętam do końca życia , a które wypowiedział , gdy dowiedział się , że po kilku miesiącach po wcześniej przerwanej terapii znów zaczął em grać … Słowa , które wypowiedział z pełną odpowiedzialnością wiedząc w jakim jestem stanie … Przez które też wiedział em , że zawsze mogę wrócić do terapii i do niego zadzwonić … … i zadzwonił em . W momencie kiedy rzeczywiście sam sobie zdał em sprawę , że mam do wyboru tylko dwie drogi . Od momentu ponownego podjęcia terapii Patrycjusz był człowiekiem , któremu zaufał em . Zaufał em bezgranicznie - tak na 100 % . . . Był i jest moim mentorem i przewodnikiem ( tutaj pewnie , czytając , uśmiechnie się i lekko zaczerwieni ) . W kontakcie indywidualnym okazało się , że nadajemy na „ jednych falach ” i w życiu mieli śmy podobne problemy . Przez co w początkowej fazie terapii każde spotkanie wlewało w moje serce dużą nadzieję , że mogę wyjść z nałogu i mojego depresyjnego stanu i cieszyć się życiem : ) ( bo przecież Jemu to się udało ) . Każde nasze spotkanie zawsze wnosiło coś nowego , dla mnie odkrywczego . Przez co robił em stałe postępy , a naprawdę nie było łatwo … Zaufanie , którym obdarzył em Patrycjusza opłaciło się i zaowocowało tym , że dzisiaj prowadzę mega szczęśliwe i aktywne życie wolne od nałogów , pełne radości z najdrobniejszych rzeczy : ) Z Patrycjuszem , chociaż nasze spotkania terapeutyczne póki co się nie odbywają , utrzymujemy stały kontakt … który bardzo sobie cenię : ) Po drodze bowiem okazało się , że mamy podobne zainteresowania , poczucie humoru i się po prostu rozumiemy : )"
+  },
+  {
+    "opinion_id": "op_002932",
+    "text": "Razem z mężem polecamy i polecać będziemy Pana Doktora . Trafili śmy na wizytę po pierwszej ciąży , która obumarła . Pan Doktor zlecił szereg badań , następnie wdrożył leczenie , monitorował wyniki . Wszystko po to , aby w odpowiednim czasie zajść ponownie w ciążę , a przede wszystkim ją utrzymać . \" Zaskoczyli śmy \" od razu . Sama ciąża przebiegała z komplikacjami , szczęśliwie dzięki wizytom , przepisywanym lekom i opiece Doktora jesteśmy rodzicami 3 - miesięcznego synka ( zdrowego i urodzonego w terminie ) . Pan Doktor potrafi sprowadzić na ziemię i uspokoić , gdy się za dużo głupot naczyta w internecie , a potem znajduje u siebie takie same objawy . Potrafi też szybko reagować , gdy się coś dzieje ( i tu jestem wdzięczna najbardziej za prywatny nr telefonu , na który mogła m dzwonić każdego dnia o każdej porze - Pan Doktor odbiera wszystkie telefony ) . Oczywiście ja również czasem musiała m swoje odsiedzieć w poczekalni . Sama jednak 3 razy weszła m poza kolejką i nieumówiona z powodu komplikacji , dlatego wiem , że pewnych spraw się nie przewidzi . Szczególnie w medycynie . Raz jeszcze gorąco polecam !"
+  },
+  {
+    "opinion_id": "op_002933",
+    "text": "Lekarz rzeczowy , z pewnością zna się na swojej robocie , ale wyglądem i miną a la \" Terminator \" , może odstraszyć , czasami ciężko się , z panem doktorem rozmawia . Swoim pacjentom mógł by jednak poświęcać więcej czasu i raz na ruski rok się uśmiechnąć , a to potrafi , naprawdę widział em osobiście , że nawet pożartować jest w stanie , niestety czemu tak rzadko ?"
+  },
+  {
+    "opinion_id": "op_002934",
+    "text": "Była m leczona przez doktora na infekcję pochwy , która rzekomo miała powodować uczucie parzenia zlokalizowanego na przedniej ścianie pochwy . Pomimo braku upławów i zaczerwienienia , przeleczono mnie licznymi antybiotykami i dopochwowymi lekami przeciwgrzybiczymi . Objawy zamiast ustępować , zaostrzały się , a Pan doktor powoli rozkładał ręce . Zrezygnowała m z wizyt w klinice Polis i szukając pomocy udała m się do Lublina , gdzie zdiagnozowano u mnie wulwodynię . Przekonano mnie o tym , że bakteria , która starano u mnie wyleczyć stanowi moją naturalną florę bakteryjną . Antybiotykoterapia i leczenie dopochwowe tylko pogarszało mój stan . Miała m okazje powiedzieć Panu doktorowi o jednostce chorobowej jaką jest wulwodynia , jednak nierzeczowe odpowiedzi z jego strony wskazywały na to , że nigdy nie słyszał o tej chorobie . Jest to dla mnie ogromne zdziwienie biorąc pod uwagę wieloletni staż doktora . Zdecydowanie nie polecam !"
+  },
+  {
+    "opinion_id": "op_002935",
+    "text": "Korzystał em z usług Pana Klaudiusza tylko raz , ale ten jeden raz wystarczył , aby m więcej do niego nie przyszedł . Przed wizytą powiedział em owemu lekarzowi , że ma wstawić mi 2 plomby i wstawił , ale pierwszą w odpowiednim miejscu , drugą już nie . Bez mojej zgody stomatolog zaleczył zęba , jednak nie tego , co chciał em . Machnął em ręką i wyszedł em . Problem w tym , że po 5 miesiącach obie plomby wypadły . Napisał em o tym do Pana Klaudiusza , zareklamował em jakość jego usług , odczekał em 2 tygodnie , zero odpowiedzi . Zdecydowanie nie polecam tego stomatologa , przerost formy nad treścią ."
+  },
+  {
+    "opinion_id": "op_002936",
+    "text": "Nie dane było mi zbyt dobrze zapoznać się z Panem Doktorem . 10 minut czekałem pod gabinetem w którym nie było pacjenta , w końcu wszedł em z własnej inicjatywy , delikatnie zdezorientowany dlaczego P . Doktor nie prosi tylko siedzi i czeka . Wizyta trwała może 4 - 5 minut . Diagnoza : \" albo bakterie albo grzyby \" . Na moje 2 - krotne pytanie czy może zrobić jakiś wymazać albo coś w tym stylu usłyszał em , że nie trzeba . Wynik : recepta na 2 różne maści ( zapewne jedna na grzyby druga na bakterie ) i tyle . Chybił trafił ? : ) Mam nadzieję że maści będą skuteczne . Szczerze powiem , że po wizycie prywatnej spodziewał em się chociażby chwili analizy , a tu \" albo to albo to \" , no nie wiem czy to prawidłowe , żeby wychodzić z prywatnej wizyty i nie wiedzieć co człowiekowi dolega . Hmm . . . mam nadzieję że mój przypadek był na tyle prosty , że może po prostu nie wymagał wymazu i badań . . ."
+  },
+  {
+    "opinion_id": "op_002937",
+    "text": "Naukowcy z Wydziału Zdrowia Publicznego Śląskiego Uniwersytetu Medycznego w Katowicach przebadali stosowane przez tatuażystów barwniki pod kątem zawartości w nich metali ciężkich i ryzyka , które niosą dla zdrowia . Próbki badano na zawartość kadmu , ołowiu cynku , arsenu , chromu oraz rtęci . Badania wskazały na znaczącą zawartość toksycznych metali ciężkich w tuszach do tatuażu , która różniła się jednak w zależności od koloru i producenta tuszu . Tusze kolorowe zawierają kadm , ołów i arsen w większych stężeniach niż tusze czarne , częściej stosowane . Oprócz metali ciężkich pigmenty mogą zawierać nanocząsteczki , ftalany i węglowodory , które mogą oddziaływać szkodliwie na gospodarkę hormonalną , a niektóre z nich mają działanie rakotwórcze . Wykorzystywanie tuszów kolorowych w gęstych wzorach i dla pokrycia dużej powierzchni ciała może stanowić ryzyko dla zdrowia . Najbardziej zanieczyszczone okazały się tusze koloru zielonego , stwierdzono w nich wysoką zawartość bardzo toksycznego pierwiastka , jakim jest arsen ."
+  },
+  {
+    "opinion_id": "op_002938",
+    "text": "Po wakacjach we Włoszech zaobserwował em u siebie dziwne znamię . Oczywiście przeczytał em internet ( cały ) i zdiagnozował em u siebie czerniaka . Aby potwierdzić , wybrał em się do lekarza . Pani Doktor fantastyczna . Po pierwsze primo przesympatyczna ( dla mnie to ważna bo dzięki temu nie boje się pytać ) po drugie primo mega profesjonalna i merytoryczna . Wnikliwie zbadała problem , zebrała szczegółowy wywiad , uważnie słucha , drąży i dopytuje , notuje to , co mówi pacjent . Nie wzdycha , nie fuka , nie deprecjonuje . Jest bardzo empatyczna , ze zrozumieniem przyjęła moje diagnozy internetowe . Zaplanowali śmy strategie leczenia , omówili śmy różne scenariusze ( najłagodniejszy i ten HARD ) . . . . Kolejna wizyta za 12 tygodni . Wrócę na stówę . Serdecznie dziękuję Pani Doktor . Obyśmy dożyli takich lekarzy w państwowej Służbie Zdrowia . . . ."
+  },
+  {
+    "opinion_id": "op_002939",
+    "text": "Witam , Pani Doktor , przemiła osoba . Mnie jako pacjentowi brakuje , opisu tego co widzi lekarz . Bo jesli nie określi schorzenia na skórze , to albo nie wie albo . . . no właśnie co innego ? . Na szczęście leki które Pani Doktor przepisala okazały się być słusze . Jednak to alergolog wskazał mi dokładne schorzenie skóry . . . może i słusznie ."
+  },
+  {
+    "opinion_id": "op_002940",
+    "text": "Profesjonalizm to słowo dokładnie określa Pana Doktora . Miła obsługa , ale jak za taką kwote zdziwiła by m się jakby było inaczej . Często miło umówionej godziny , trzeba było czekać np . godzine na swoją kolej - za to minus , nie po to idę prywatnie do lekarza i umawiam się na konkretną godzine , żeby jeszcze czekać na przyjęcie ponad godzine . Ponad pół roku leczyła m trądzik , w tym były trzy razy zmieniane leki i twarz mam nadal taką jak na początku ."
+  }
+]

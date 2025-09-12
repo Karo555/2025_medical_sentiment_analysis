@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002661",
+    "text": "Jeszcze nie wiem , czy diagnozy Pana doktora są trafne . Natomiast wiem , że pierwszy raz w życiu mam wrażenie , że lekarzowi zależy na tym by odkryć , co pacjentowi dolega . Wizyta trwała ok . 40 minut . Pan doktor mnie zbadał , a nie tak jak niektórzy lekarze zaglądali w oczy i kazali dotknąć nosa . Poza tym Pan doktor ma zdolność wyprowadzania pacjenta z lęku . Do gabinetu weszła m spięta i zdenerwowana , wyszła m może nie zdrowa , ale spokojna i uśmiechnięta . Marzy mi się taka cała służba zdrowia !"
+  },
+  {
+    "opinion_id": "op_002662",
+    "text": "Po przeczytaniu tylu pozytywnych opinii postanowiła m zaryzykować i umówić wizytę . Pani doktor jest bardzo formalna , przeprowadza dokładny wywiad , to fakt i bardzo na plus . Jednak na każdej wizycie zadaje dokładnie te same pytania , mam wrażenie , że czyta je z komputera . Myli fakty . Czuję się u niej jak na przesłuchaniu , a nie jak na rozmowie z empatycznym człowiekiem . Wizyta trwa 10 minut . . ."
+  },
+  {
+    "opinion_id": "op_002663",
+    "text": "Uniwersytecki Szpital Kliniczny jest w dobrej kondycji finansowej . Jak poinformował dyrektor tej placówki dr Bogusław Poniatowski , szpital nie ma długów . Już teraz jednak i uczelnia i dyrekcja szpitala , zastanawiają się nad przyszłym finansowaniem placówki . Wiadomo bowiem , że po zakończeniu inwestycji znacznie wzrosną bieżące koszty jej utrzymania . Szpital liczy na to , że NFZ uwzględni to w przyszłych kontraktach , bo póki co , to Fundusz jest głównym źródłem finansowania działalności szpitala . \" Np . nowy budynek szpitala będzie potrzebował rocznie ilości energii elektrycznej równej potrzebom około 20 - tysięcznego miasta powiatowego \" - podkreśla dyrektor Poniatowski . \" Natomiast ogrzewanie lądowiska będzie kosztować około 150 zł na godzinę \" - dodał prorektor Mariak ."
+  },
+  {
+    "opinion_id": "op_002664",
+    "text": "Potencjalnym pacjentom zwróciła by m jedynie uwagę , że na stronie należy pisać opinie , a nie zadawać pytania . To drugie robi się podczas terapii . . . Trafiła m do pana Bartosza \" na ślepo \" , po tym , jak spodobało mi się jego . . . Imię i nazwisko zestawione w sposób logopedyczny , znalezione w Internecie . Wydawało mi się , że ta metoda psychologiczna mi pomoże - i tak się stało . Świetna metoda , która została niezmiernie zręcznie poprowadzona ( bardziej odpowiadające temu słowo niż \" zręcznie \" chyba nie istnieje ) bardzo mnie wzmocniła psychicznie . Jestem teraz o wiele bardziej zdystansowaną do świata osobą - równocześnie pełną nie tylko poczucia humoru , ale też zaangażowania w takie sprawy i działania , na których mi zależy . Ta terapia jest przeznaczona z pewnością dla ludzi potrafiących dużo , ale nieświadomych swoich umiejętności , wycofanych z powodu depresji . ACT uczy , jak przyglądać się samemu sobie , a psycholog pomaga w ukształtowaniu \" mocnego kręgosłupa \" . Z pewnością polecę ."
+  },
+  {
+    "opinion_id": "op_002665",
+    "text": "„ Cukrzyca , to choroba , którą już pod koniec XX wieku uważano za epidemię . Obecnie już wiemy , że to także epidemia XXI wieku . Mówiąc o chorobowości w Polsce , to na podstawie danych NFZ , które są najbardziej wiarygodne , wiemy , że wynosi ona 5 , 2 proc . naszej populacji ” – mówiła na poniedziałkowej konferencji prasowej prof . Bandurska - Stankiewicz z Uniwersytetu Warmińsko - Mazurskiego w Olsztynie . Jak dodała , liczba chorych stopniowo wzrasta . „ Jest to związane z paroma czynnikami . Przede wszystkim z urbanizacją życia , zmianą stylu życia , siedzącym trybem życia , brakiem aktywności fizycznej i złym odżywianiem . W krajach wysoko rozwiniętych , takich jak Niemcy , Wielka Brytania to z kolei jest starzenie się społeczeństw . Wiemy , że zachorowalność na cukrzycę rośnie wraz z wiekiem , zwłaszcza na cukrzycę typu II ” – powiedziała ."
+  },
+  {
+    "opinion_id": "op_002666",
+    "text": "Gdy Dominika Nowis zastanawia się , jak zniszczyć raka - zawsze sprawdza , czy jej metody walki nie zniszczą naszych zdrowych organów . To ona jako pierwsza w świecie zbadała , czy inhibitory proteasomu upośledzają funkcję serca . Prace , jakie prowadziła razem z dr . Gaetano Vattemim z Uniwersytetu w Weronie , miały pomoc lekarzom w lepszym doborze pacjentów do leczenia inhibitorami proteasomu , aby ograniczyć ryzyko pojawienia się nieoczekiwanych działań niepożądanych . Okazało się , że chociaż leki są toksyczne , to ich efekty mijają po pewnym czasie od odstawienia . Pacjenci nie muszą się więc bać , że wyleczą się z raka po to , żeby – zdrowi – umrzeć na serce . Badaczka od wielu lat szuka także sposobów na zabijanie raka światłem . Najpierw \" uczula \" komórki nowotworowe na światło , a potem stosuje zabójczą kombinację tlenu i światła laserowego . Rak jest jednak twardym przeciwnikiem . Kiedy okazało się , że niektóre nowotwory potrafią przeżyć tak morderczą terapię , badaczka zahamowała pewne enzymy , który im w tym pomagały . Publikacje na ten temat przyjęły renomowane czasopisma promujące osiągnięcia światowej biochemii i doświadczalnej onkologii ."
+  },
+  {
+    "opinion_id": "op_002667",
+    "text": "Panie Doktorze , Jestem zdumiona Pana podejściem do pacjenta . Niestety nie udało mi się dostać z moją 5 - letnią córeczką na 2 wizyty do Pana ( 12 . 07 oraz 23 . 08 . 2014 ) , które zostały odwołane : pierwsza - na 1 dzień przed , druga - na 1 godzinę i 15 minut przed wizytą . Tak naprawdę straciły śmy przez Pana lekceważenie pacjenta 2 miesiące oczekiwania na wizytę . Za pierwszym razem nie zareagowała m , ponieważ każdy rozumie nieprzewidziane sytuacje . Prośba Panie doktorze o więcej szacunku dla czasu innych . Nie oceniam kompetencji , bo nie było nam dane . Małgorzata Kucharska"
+  },
+  {
+    "opinion_id": "op_002668",
+    "text": "Świetny lekarz , moja córka miała kiedyś krwotok z ucha , kiedy udała m się do niego od razu wiedział jakie leczenie zastosować . Dziś jest nastolatką i gdyby nie on to nie wiem coby się stało , pewnie skończyło by się na jakimś zabiegu , a tak dzięki niemu moje \" słoneczko \" ma się dobrze ."
+  },
+  {
+    "opinion_id": "op_002669",
+    "text": "Mam mieszane uczucia . Nie jestem przekonana co do zaproponowanego leczenia przez Pania doktor . Dostalam bardzo silne leki a nie wydaje mi sie ze mam az tak zaawansowany stan chorobowy . Po wizycie mialam odczucie ze doktor nie dokladnie sluchala czym sie leczylam i z jakim efektem , moze dlatego nie mam pewnosci co do tego leczenia ."
+  },
+  {
+    "opinion_id": "op_002670",
+    "text": "Ja niestety przy mojej całej sympatii dla Pana Fidzińskiego nie mogę powiedzieć by mi pomógł . Trafiła m do niego po tym jak przez pół roku nie udało mi się zajść w ciążę . Nie zlecił żadnych badań hormonalnych ; bez badań kazał mi najpierw łykać Duphaston , potem Clostilbegyt w konskiej dawce ( 2 tabletki dziennie przy wadze 50 kg ) . Ani razu nie mialam zleconego USG wiec nie wiadomo czy byl w ogole jakis efekt podawania Clo . Pan doktor najpierw stwierdził , że na pewno cykle mam bezowulacyjne ( co potem okazało się nieprawdą ) , potem , że zapewne cierpie na PCO ale laparoskopia i USG to wykluczyly . Po laparoskopii usłyszała m , że do pół roku będę w ciąży ( minęło 5 miesięcy a nie jestem ) mimo , że wiedział że u nas problemem w dużej mierze jest czynnik męski . Nigdy nie zaproponowal monitoringu cyklu . Teraz , kiedy wreszcie zmienilismy lekarza i wykonalam wszystkie niezbedne badania wiem , ze u mnie raczej wszystko jest OK - szkoda tylko , że dopiero kolejny lekarz zlecil mi te badania bo moze obeszloby sie bez laparoskopii i od razu podchodzilibysmy do inseminacji . . . : ("
+  },
+  {
+    "opinion_id": "op_002671",
+    "text": "Trafiła m do dra Markuszewskiego z bardzo złym samopoczuciem z powodu ostrej infekcji dróg moczowych tylko po to , żeby sprawdzić , czy nie wdała się też infekcja dróg rodnych . Tak się złożyło , że ginekolog , u którego się stale leczę , był na urlopie , więc poszła m tam , gdzie miała m najbliżej . Dr M . słaniającej się na krześle z bólu pacjentce nie pozwolił powiedzieć z czym przychodzi twierdząc , że sam mi to powie , a ja będę tylko potwierdzać . Po tym dał mi dłuuugi wykład o higienie , o tym , że źle śpię , a podczas badania usg wynalazł mi jakiś zrost macicy z jajnikiem , przez który nie będę mogła zajść w ciążę . Gdy pokazała m mu wynik usg sprzed paru miesięcy , na którym wszystko jest ok , obejrzał go i oddał mi ze słowami , że \" on się na tym nie zna \" . Dał mi oczywiście plik recept , w tym na Biostreptazę - czopki , które miały by te zrosty rozpuścić . Zalecił 5 misięcznych kuracji , przy czym jedna kosztuje ponad 150 zł . Mój ginekolog , u którego była m zaledwie miesiąc wcześniej mówił , że wszystko jest ze mną w porządku . Przestraszona tą wiadomością o zrostach skonsultowała m się z trzecim ginekologiem . . . i ten stwierdził , że budowa moich narządów rodnych jest w pełni prawidłowa i że nie widać żadnych zrostów . Nie potrafię sobie wyobrazić , jakim człowiekiem trzeba być , żeby prawidłowo zbudowanej kobiecie wcisnąć historię o tym , że nie będzie mogła mieć dzieci , chyba , że zażyje cudowne czopki , które oczywiście najlepiej kupić na miejscu , w przychodni . Dodam , że nie były to czopki - placebo , zupełnie obojętne dla zdrowia . . . ."
+  },
+  {
+    "opinion_id": "op_002672",
+    "text": "robilam sobie usg u dr Zarudzkiej , bardzo sie balam tej wizyty bo najpierw przeczytalam tutaj te negatywne opinie , moje zdanie jest takie - moze jest profesjonalna w swojej pracy , ale brakuje jej bardzo waznej cechy - to jest komunikatywnosc , otwarcie na pacjenta , musialabym bardzo sie starac , zeby wyrobic sobie do niej odpowiednie podejscie i bezstresowo przejsc systematyczne wizyty . . . jestem w ciazy , nie chce sie denerwowac , dlatego juz do tej pani dr nie pojde , pozdrawiam i duzo zdrowka : )"
+  },
+  {
+    "opinion_id": "op_002673",
+    "text": "chodziła m do dr 2 lata przed ciąża , mialam stwierdzoną endometriozę , dr milewicz generalnie woli przygotowywać pacjentki na najgorsze niż łudzić ich szansą leczenia , mi też mówił że jeśli zdecyduje się na dziecko to zatrzymamy okres hormonalnie a potem do dzieła , a szczęście mam swój rozum więc nie łykała m ciągle tabletek jeśli nie miała m żadnych stwierdzonych torbieli endometrialnych , własy rozum mi podpowiadał , , po co \" jeśli nic się nie dzieje obcego w moim organizmie , na szczęście okazało się że ie trzeba było aż takiego , , zachodu \" żeby zajść w ciąże , 3 mies . po leczeniu profilaktycznym wg dr ( ja nic nie brała m ) okazało się że jestem w ciąży , oczywiście multum badań w czasie trwania ciąży ale akurat na to nie będę narzekać bo dla dobra dziecka robi sie wszystko , dr zawsze był dla mnie miły chociaż raz przeżyła m traumę gdy dr zasnął ale ze swiadomością że wszystko z moją ciążą jest ok nie było to tak straszne przeżycie , moja córka urodziła sie przez cc którą przyjmował dr milewicz , jest zdrową 4 letnia dziewczynką , p0owiem tak dr milewicz spełił moje oczekiwania ale dziewczyny miejcie swój rozum bo lekarze to nie wyrocznie"
+  },
+  {
+    "opinion_id": "op_002674",
+    "text": "Plaster , który miał by wymiary kilku centymetrów , + nalepiany + był by w miejscu blizny zawałowej . Po kilku tygodniach komórki macierzyste przekształcały by się w komórki docelowe , czyli w komórki naczyń i komórki serca bądź wspierały by regenerację tego obszaru  - opisuje dr Sielicka . \" Do tej pory wykazano , że komórki macierzyste bardzo chętnie przekształcają się w komórki naczyń krwionośnych , przez co zwiększa się dotlenienie serca , a miejsce niedokrwienia ulega zmniejszeniu \" - dodaje uczona . Gdyby pacjent , którzy przeszedł zawał serca , miał komórki macierzyste w banku komórek , mógł by otrzymać po kilku dniach plaster wytworzony przez naukowców . \" Komórki macierzyste pomogą zredukować bliznę . Pozwolą też pacjentowi funkcjonować normalnie , bo jego serce będzie stabilniejsze , silniejsze i bardziej wydolne . Zwiększenie wydolności serca o 10 proc . może przełożyć się na dużo większą aktywność i sprawność fizyczną \" - przekonuje badaczka ."
+  },
+  {
+    "opinion_id": "op_002675",
+    "text": "Witam Pani doktor Elżbieta Bednarczyk jest wspaniałym lekarzem . Miła , sympatyczna i dbająca o swoich pacjentów : ) Takiej Pani lekarz nie mogła by m sobie wyobrazić w najlepszych snach . Pani doktor przeprowadziła u mnie zabieg usunięcia woreczka żółciowego metodą laparoskopową . Przed zabiegiem została m dokładnie poinformowana jak taki zabieg będzie wyglądał i czego mogę się spodziewać po przeprowadzonym zabiegu . Gorąco polecam tak fachowej pani chirurg : ) Pozdrawiam wszystkich z kamieniami w woreczku żółciowym - nie martwcie się pani doktor Elżbieta Bednarczyk zajmie się wami ( tj . przeprowadzi operację ) w najlepszy możliwy , bezpieczny sposób : )"
+  },
+  {
+    "opinion_id": "op_002676",
+    "text": "Badanie metodą rezonansu magnetycznego ( MR ) daje możliwość uzyskania obrazów narządów ( badania strukturalne ) oraz ich funkcji ( badania perfuzyjne , czynnościowe ) , a także stanu biochemicznego ( H1MRS ) . Badanie MR nie obciąża pacjenta promieniowaniem jonizującym , co ma duże znaczenie zwłaszcza w przypadkach wymagających wielokrotnej kontroli , chociażby w onkologii . Zakres wskazań do obrazowania MR jest szeroki i obejmuje większość schorzeń - od zmian pourazowych , niedokrwiennych , zwyrodnieniowych do chorób nowotworowych . Metodyka badania oraz zakres wskazań zmieniają się bardzo dynamicznie , wymagając od lekarzy radiologów ustawicznej edukacji . Środki kontrastowe są elementem uzupełniającym większość badań strukturalnych ( zarówno TK jak i MR ) oraz podstawą badań czynnościowych . \" Bez środków kontrastowych niemożliwe jest wykonanie badań naczyniowych ( z wyjątkiem techniki ASL w MR ) oraz badań komórkowych i molekularnych w MR \" – zauważył prof . dr hab . med . Jerzy Walecki ."
+  },
+  {
+    "opinion_id": "op_002677",
+    "text": "Dr Swierczewski prowadził moje dwie ciąże - chodziła m prywatnie , bo poleciła mi go znajoma . I powiem szczerze że mam mieszane uczucia . Z jednej strony - zawsze dostępny , pod telefonem , odpowiada na pytania . Z drugiej - mam nieodparte wrażenie , że chodzi głownie o kasę . Moje ciąże zakończyły się pomyslnie , choć trochę paniki było po drodze . Trudno ocenić mi kompetencje doktora , bo jakimś szczególnie skomplikowanym przypadkiem nie była m . Za to poźniej okazało się , że zbagatelizował pewną moją dolegliwość , którą zainteresowało się dwóch innych lekarzy . Sprawa nie okazała sie na szczęscie poważna , ale dr Świerczewski nawet nie zajął się tym i nie skierował mnie na dalsze badania . Z przykrością stwierdzam , że nie jest jednak szczególnie troskliwy i dociekliwy , co w przypadku lekarza jest wadą . Prawdą jest też , że nie prowadzi dokumentacji pacjentek i częst traktuje \\ \" po łebkach \\ \" nawet te pacjentki które zna od lat i na których sporo zarobił . Skoro taki jest \\ \" prywatnie \\ \" , to jestem skłonna dać wiarę , że w szpitalu jest gorzej . Gdyby m była w trzeciej ciązy , to jednak wybrała by m innego lekarza ."
+  },
+  {
+    "opinion_id": "op_002678",
+    "text": "Wiele się zmieniło w moim życiu w ostatnim czasie , szczególnie mój wygląd , który zawdzięczam operacji nosa u doktora Łątkowskiego . Mega pozytyw ! Mam nadzieje , że będę miała jeszcze okazję podziękować doktorowi osobiście , ale wiem , że taka forma też będzie w porządku : )"
+  },
+  {
+    "opinion_id": "op_002679",
+    "text": "Trafiła m do Pani Agnieszki z powodów zdrowotnych . Wizyta w gabinecie upłynęła bardzo szybko w dobrej i miłej atmosferze . Pani Agnieszka ma dobry i empatyczny kontakt z pacjentem . Jest otwarta i chętnie służy pomocą i w czasie wizyty w gabinecie i w e - mailowej korespondencji dzieląc się szeroką wiedzą na temat ludzkiego organizmu . Jak najbardziej Polecam . Dziękuję . Ewa"
+  },
+  {
+    "opinion_id": "op_002680",
+    "text": "Rzetelny lekarz , bardzo konkretnie podchodzi do pacjenta i jego problemu . Jedyna uwag to to , że czasem nie za bardzo wierzy w poprzednie doświadczenia pacjenta , np . fakt , że leczenie danym preparatem przechodziło się już wielokrotnie i nigdy nie dało to żadnych efektów - mimo to Pan doktor konsekwentnie zaleca to samo leczenie ( co często kończy się wyrzuceniem pieniędzy w błoto ) . Mimo to , oceniam go bardzo dobrze , być może opisana powyżej sytuacja ma miejsce w takich konkretnych przypadkach jak mój ( leczenie trądziku ) . Polecam Pana doktora ; )"
+  }
+]

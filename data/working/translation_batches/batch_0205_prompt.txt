@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004081",
+    "text": "Bardzo polecam Panią Agnieszkę. Wielkie zaanagażowanie, ogromna empatia, no i przede wszystkim - ulga w bólu. Szeroki wachlarz terapii i bardzo bogata wiedza."
+  },
+  {
+    "opinion_id": "op_004082",
+    "text": "Bardzo przyjazny gabinet"
+  },
+  {
+    "opinion_id": "op_004083",
+    "text": "Pani Agnieszka była bardzo profesjonala, empatyczna oraz zaangażowana w moje dolegliwości."
+  },
+  {
+    "opinion_id": "op_004084",
+    "text": "Podczas jednej z rehabilitacji , Pani Agnieszka doradziła mi wodoroterapię,  która okazała się strzałem w dziesiątkę.  Obecnie leczę się na nowotwór i dzięki inhalacjom bardzo dobrze znoszę chemię,  bardzo dobrze się czuję i nie mam żadnych uciążliwych dolegliwości bólowych.  A ostatni tomograf wykazał, że wszystkie guzy zmalały.  Pani Agnieszka to cudowny,dobry człowiek z olbrzymią wiedzą i doświadczeniem.  Serdecznie dziękuję i wszystkim polecam."
+  },
+  {
+    "opinion_id": "op_004085",
+    "text": "Bardzo polecam Pania Agnieszkę :) naprawdę zna się na rzeczy. Fachową obsługa i diagnoza , do tego odpowiednie ćwiczenia. Po pierwszej wizycie czuje ogromną ulgę dzięki sprawnym dłoniom Pani Agnieszki oraz w połączeniu z masażem Pani Kasi :) w gabinecie panuje świetna i przemiła atmosfera . Człowiek się czuje zaopiekowana i zrozumiany  :)"
+  },
+  {
+    "opinion_id": "op_004086",
+    "text": "Bardzo polecam! Pani Agnieszka ma przeogromne pokłady empatii i wyrozumiałości. Wizyta przebiegła w bardzo miłej atmosferze i dzięki jej fachowej pomocy poczułam znaczną ulgę fizyczna i psychiczna. Serdecznie polecam"
+  },
+  {
+    "opinion_id": "op_004087",
+    "text": "Bardzo profesjonalne podejście do pacjenta. Duża wiedza i zaangażowanie co przynosi doskonałe efekty"
+  },
+  {
+    "opinion_id": "op_004088",
+    "text": "Zdecydowanie polecam panią fizjoterapeutkę! Wizyta przebiegła w bardzo miłej atmosferze, a pani Agnieszka okazała się nie tylko profesjonalistką, ale także osobą ciepłą i empatyczną. Dzięki jej fachowej pomocy poczułam znaczną ulgę i poprawę. Bardzo dziękuję za poświęcony czas i zaangażowanie! Z pewnością wrócę na kolejną wizytę."
+  },
+  {
+    "opinion_id": "op_004089",
+    "text": "Polecam. Wizyta przebiegła sprawnie, leczenie w toku. Ale jest poprawa."
+  },
+  {
+    "opinion_id": "op_004090",
+    "text": "Profesjonalizm w pełnym tego znaczeniu. Przemiła obsługa.personel otwarty na pacjenta. Bardzo gorąco polecam."
+  },
+  {
+    "opinion_id": "op_004091",
+    "text": "Dobrany zestaw zabiegów: laser, jonoforeza, krio oraz masaż ciepełkiem w celu przyspieszenia gojenia naderwanego mięśnia.  Szybka możliwość rozpoczęcia leczenia wspomagającego poprawi proces gojenia. Polecam serdecznie"
+  },
+  {
+    "opinion_id": "op_004092",
+    "text": "Polecam! 100% zaangażowania indywidualnego do pacjenta profesjonalizm wykonywaniu zabiegów"
+  },
+  {
+    "opinion_id": "op_004093",
+    "text": "Pełen profesjonalizm"
+  },
+  {
+    "opinion_id": "op_004094",
+    "text": "Pani Kamila jest wspaniałą fizjoterapeutką, wie co robi, zna się na tym i widać, że robi to co robi z pasją. Wszystko wytłumaczy, a i odwróci uwagę od bólu w trakcie zabiegu"
+  },
+  {
+    "opinion_id": "op_004095",
+    "text": "Profesjonalne i indywidualne podejście do pacjenta. Już po pierwszym masażu poczułem ogromną ulgę, polecam."
+  },
+  {
+    "opinion_id": "op_004096",
+    "text": "Pani Kamila to bardzo sympatyczna osoba, a przede wszystkim fachowiec w swojej dziedzinie. Jestem bardzo zadowolona z efektów terapii. Gorąco polecam."
+  },
+  {
+    "opinion_id": "op_004097",
+    "text": "Bardzo polecam  panią Paulinę która wykonuje  rzetelnie swoją pracę ."
+  },
+  {
+    "opinion_id": "op_004098",
+    "text": "Bardzo duże zaangażowanie podczas wizyty i fachowe porady"
+  },
+  {
+    "opinion_id": "op_004099",
+    "text": "Pani Kamila jest świetnym fachowcem w swej dziedzinie. Wielokrotnie pomagała mi w trudnych momentach choroby ."
+  },
+  {
+    "opinion_id": "op_004100",
+    "text": "Bóle biodra, które doprowadziły do utykania. Po 3  zabiegach znaczna poprawa. Ćwiczenia do domu. Kultura osobista."
+  }
+]

@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001781",
+    "text": "Celem projektu TCGA jest opracowanie atlasu genomu nowotworów w oparciu o tzw . analizę molekularną kilkunastu tysięcy próbek guzów pochodzących z 20 różnych typów raka . Projekt rozpoczęto w ubiegłym roku , a jego budżet wynosi 300 mln dolarów i jest w całości finansowany przez Narodowe Instytuty Zdrowia ( NIH ) i koordynowany przez Narodowy Instytut Badań nad Rakiem w USA do końca 2015 r . Po projekcie sekwencjonowania ludzkiego genomu TCGA jest jednym z największych projektów biomedycznych na świecie . W pracach uczestniczy kilkadziesiąt ośrodków badawczych i placówek medycznych na całym świecie , w tym sześć z Europy . W poznańskim szpitalu prowadzone są prace nad rakiem piersi , rakiem jelita , rakiem żołądka , nowotworami regionu głowy i szyi oraz czerniakiem ."
+  },
+  {
+    "opinion_id": "op_001782",
+    "text": "Niestety jest kilka niedociągnięć - dla mnie na tyle poważnych , że skreślają klinikę i lekarza . Uważam za niedopuszczalne straszenie pacjenta poważnym , kosztownym i długim leczeniem bez weryfikacji diagnozy , jak to miało w moim przypadku . Diagnozy , która zresztą została obalona przez dwóch innych specjalistów - ale nerwów , których się najadła m nie życzę nikomu . Poza tym stomatolog pracuje bez asysty , co dla mnie jest dużym problemem ."
+  },
+  {
+    "opinion_id": "op_001783",
+    "text": "Genetyk pracuje w Centrum Nowych Technologii Uniwersytetu Warszawskiego i na Warszawskim Uniwersytecie Medycznym . Wcześniej przez ponad 10 lat prowadził badania w instytucie badań nad rakiem Ohio State University , w jednym z najlepszych zespołów genetyków na świecie , którym kieruje prof . Albert de la Chapelle . \" Kiedy do Centrum Nowych Technologii przyjeżdżają moi przyjaciele ze Stanów Zjednoczonych czy innych ośrodków , w tym prof . de la Chapelle , to są zachwyceni . Nowoczesny , doskonale wyposażony budynek , przystosowany jest do wszelkich potrzeb badawczych i eksperymentalnych . Mówię im , że mamy tutaj tak , jak w Stanach , na co oni odpowiadają , że tak w Stanach to nigdy nie mieli \" - wspomina uczony ."
+  },
+  {
+    "opinion_id": "op_001784",
+    "text": "jeszcze nigdy nie było tak by każdy był zadowolony z tego samego lekarza . Każdy ma inne wymagania i nie zawsze lekarz który odpowiada innym odpowiada nam . Jedni chwalą danego lekarza inni są niezadowoleni z niego . Chodzi to o wszystkie specjalizacje . Tak jak w kazdym innm zawodzie tę nauczycielkę lubimy tamtej nie cierpimy ta sprzedawczyni jest miła a ta nie . Kiedys wypowiadała się w telewizji lekarz na temat tej strony . Wcale się nie przejmuje tymi opiniami ci co do niego chodzą to chodzić będą obojętnie czy ktoś inny jest zadowolony z jego pracy . Uważam , że może pani doktor wtedy miała gorszy dzien jak każdy z nas miewa . Nie można wymuszać na kimś innym pozytywnej opini jesli miała negatywne zdarzenie . Osobiście chodzę z dzieckiem do dr . Kośmickiej i jestem bardzo zadowolona z jej podejścia do pracy , być może ktoś sądzi inaczej i nie mam prawa zabronić tego . Nasze odczucia są indywidualne ."
+  },
+  {
+    "opinion_id": "op_001785",
+    "text": "Pani Dr . jest miła , chociaż początkowo stwarza inne wrażenie . Na pewno dobrze zna się na swojej profesji . Wyleczyła mi nadżerkę , z którą żaden wcześniejszy lekarz nie był w stanie sobie poradzić bez zabiegu . Wszystko było by fajnie , gdyby nie to że lubi się dość poważnie spóźniać i tworzą się masakryczne kolejki . Ale generalnie jak dla mnie jest w porządku i nie ma się czego obawiać : )"
+  },
+  {
+    "opinion_id": "op_001786",
+    "text": "Okolo 3lata temu pozwolił em Panu Doleckiemu założyć aparat , który miał poprawić stan kręgosłupa , ułożenie żuchwy itd . wszystko ok zęby się w 1 rok w miare nastawily , szczęka tez wykazała poprawę . w trakcie leczenia od samego poczatku sygnalizował em ból zęba w prawej stronie , dentysta nawet nie kazal otworzyć ust przykładał palce do niektórych punktów na twarzy , nie wiem po co czy wyczuwal jakies energie czy badal napiecie miesni stwierdzajac za kazdym razem : zęby zdrowe , ból od zatok . Ufając Jemu leczę zatoki ; antybiotyk , płukanki , inhalacje , ale efekt krótkotrwały . Ponieważ często odpadały mi zamki na 7 - kach za każdym razem prosił em o sprawdzenie czy zęby są zdrowe , ból był , doktor jak zawsze pstrykał palcami przykładał je na zewnątrz i diagnoza taka sama . Nawet przykładał mi jakieś kuleczki w jakieś miejsce nie wiem akupunktura , akupresura czy co.owszem pomagało na 2 - 3 godziny . Już się pogodził em z tym że jestem nieuleczalnie chory ponieważ szprycowanie antybiotykami i chemią nie pomagało na długo , szczęka i głowa ciągle bolała . Po roku ból był taki że postanowił em pójść do osiedlowego dentysty , niech on rzuci okiem i tak zrobił : lustereczkiem dokladnie obejrzal wszystkie zęby stwierdził dziurę w górnej 6 wypieprzył wiertłem 3 / 4 zęba a może i więcej , zaplombował i ból zęba się skonczył , ból szczęki skonczył i głowy skonczył . Wkur . . . em się do tego stopnia że przestraszony nie dokonczyłem leczenia nie zakładając jakiegoś żelowego aparatu stabilizującego zęby . Nie chcę robić antyreklamy Panu Doleckiemu , ale powinien zastanowić się czy jest odpowiedzialnym dentystą stosując w poważnych sprawach medycynę niekonwencjonalną nie potwierdzając tego w jakiś potwierdzony naukowy sposób , nie wiem może to są metody ok ale w moim przypadku okazały się okrutne . Moim zdaniem dentysta jest świetnym fachowcem , zdolnym , z pasją , ale chyba się zagubił w tej szarlatańskiej medycynie wschodu , która powinna być dodatkiem - zabawą do nauki , a nie antynauką . Dlatego proszę uważać i ślepo nie wierzyć i ufać tym metodom diagn ."
+  },
+  {
+    "opinion_id": "op_001787",
+    "text": "A ja mam bardzo dobre odczucia po wizytach u Pani doktor . Wydala mi sie przede wszystkim rzeczowa , dopytywala o wszelkie szczegoly , dokladnie informowala po co i jakie skierowania na badania wystawia . Dodatkowo podejrzewajac chorobe , ktora wymaga oceny specjalisty sama w czasie mojej wizyty zadzwonila do recepcji i poprosila o natychmiastowe umowienie mnie do lekarza na najblizszy mozliwy termin . Przyczynila sie do tego , ze po 7 latach blednego leczenia mnie w wyniku zlej diagnozy , w koncu trafilam na odpowiednie badania , ktore pozwolily postawic diagnoze poprawna i polepszyc moj stan ."
+  },
+  {
+    "opinion_id": "op_001788",
+    "text": "Kamila51 , nie rozumiem wogóle o co Pani chodzi . Ma Pani pretensje do lekarza , że robi standardowo gastroskopię , kolonoskopie , usg , ph metrię przełyku . Przepraszam , a Pani oczekuje , że gastrolog , jakie ma robić badania ? Rtg kręgosłupa , itp ? . Nie zgodzę się , że wszystkim daje te badania . Ja np . ph metrii nie miała m robionej , a mam przepukline przełyku . Widocznie wystarczyła tylko gastroskopia . Proszę nie mieszać tutaj ludziom w głowach i nie odradzać doktora , bo doktor wcale nie jest taki , jakim go Pani opisuje . Ja leczę się u niego od 3 lat , a wcześniej leczyła m się u niejednego gastrologa i po tych 3 latach wiem , że lekarza nigdy nie zmienię na innego . Nawet polecam go wszystkim moim znajomym . Uważam , ze Pan doktor stawia prawidłowe diagnozy , badania przeprowadza precyzyjnie , a że trzeba płacić . Po to się uczył tyle lat i nadal uczy , to jego chleb codzienny . Sprzęt do badań też kosztuje . No może nie spodobało mi się jedno , że został zmieniony cennik za pierwszą wizytę . Widocznie doktor miał ku temu powody , żeby to zmienić ."
+  },
+  {
+    "opinion_id": "op_001789",
+    "text": "Druga modyfikacja pozwala uzyskać cząsteczkę , która ma silne właściwości hamujące enzym degradujący kap , występujący naturalnie w komórkach . Według naukowców , to odkrycie może znaleźć zastosowanie w opracowaniu leku na rdzeniowy zanik mięśni ( SMA ) lub inne schorzenia o podłożu genetycznym . \" Jedna z opracowanych przez nas modyfikacji kapu może w przyszłości zostać wykorzystana jako lek . Odkryli śmy bowiem modyfikowaną cząsteczkę , która silnie hamuje enzym degradujący kap , obecny w żywych komórkach . Ta nowa cząsteczka jest ponad stukrotnie aktywniejsza w porównaniu z naszymi dotychczasowymi wynalazkami . Taki efekt jest pożądany w walce z poważnym schorzeniem , jakim jest rdzeniowy zanik mięśni ” – wyjaśniła , cytowana w komunikacie prasowym dr Joanna Kowalska ."
+  },
+  {
+    "opinion_id": "op_001790",
+    "text": "Zespół naukowców z Uniwersytetu Śląskiego pod kierunkiem dr . hab . Roberta Musioła z Zakładu Chemii Organicznej badał pochodne chinoliny . To ksenobiotyki , które nie występują naturalnie w ludzkim organizmie - i nie są przez niego produkowane . Dlatego konieczne było znalezienie rozwiązania , jak można je wprowadzić do organizmu człowieka , aby nie zostały odrzucone . \" Węglowodany podlegają procesom metabolicznym w organizmie człowieka , dlatego zdecydowali śmy się na połączenie otrzymanych przez nas związków właśnie z jednostkami cukrowymi . Dzięki temu poprawiona została biozgodność nowej substancji \" – mówił cytowany przez uczelnię Musioł . Dodał , że ksenobiotyk połączony z pochodną cukrową i wprowadzony do organizmu pacjenta np . w postaci tabletki , pozostaje przez ten organizm \" niezauważony \" , dzięki czemu może dotrzeć do miejsca zmienionego chorobowo ."
+  },
+  {
+    "opinion_id": "op_001791",
+    "text": "Konkretny lekarz . Wykazał należytą delikatność zarówno emocjonalną związaną z naturą badania , jak i techniczną związaną z fizycznym badaniem wrażliwych miejsc . Badanie USG przeprowadził wnikliwie , informował na bieżąco o wynikach , udzielił wyczerpujących odpowiedzi . Do oceny bardzo dobrej zabrakło tylko więcej serdeczności , ale był uprzejmy , i ogólnie polecam Pana doktora ."
+  },
+  {
+    "opinion_id": "op_001792",
+    "text": "Wbrew powszechnej opinii nowe substancje psychoaktywne - tzw . dopalacze - to wcale nie są substancje , które stanowią łagodniejszą formę narkotyku  - podkreśliła dr hab . Anna Krakowiak , kierownik Oddziału Toksykologii Instytutu Medycyny Pracy w Łodzi podczas konferencji na Uniwersytecie Kardynała Stefana Wyszyńskiego w Warszawie . Jak podkreślała ekspertka , w wielu przypadkach substancje te są znacznie bardziej niebezpiecznie niż \" tradycyjne \" narkotyki - zwłaszcza jeśli chodzi o leczenie zatrutych nimi pacjentów . \" Jeżeli trafia do mnie pacjent po zatruciu nowymi substancjami psychoaktywnymi , tak naprawdę nie wiem , jak będzie wyglądał obraz kliniczny jego zatrucia \" - podkreślała . Ponieważ dopalacze to mieszaniny różnych substancji , trudno przewidzieć , jak będzie wyglądał efekt końcowy zatrucia . \" Postępowanie jest objawowe - nie ma konkretnych standardów postępowania jeżeli chodzi o zatrucie \" - dodała dr hab . Krakowiak ."
+  },
+  {
+    "opinion_id": "op_001793",
+    "text": "Pani Doktor bardzo sympatyczna . Wizyta odbyła się jednak w tempie ekspresowym ( nie wiem czy wszystko trwało ze 3 minuty ) , na tyle , że trudno o wszystko zapytać . Może i tak powinno być przy wizycie w ramach NFZ ale raczej nie przy wizycie odpłatnej ."
+  },
+  {
+    "opinion_id": "op_001794",
+    "text": "Szczerze polecam panią doktor . Leczymy się w Ośrodku Diagnostyki Medycznej w Gdyni . Dr Alska jest bardzo dokładna , podczas wizyth poświęca dużo czasu pacjentom . Córce bardzo pomogła w leczeniu tarczycy , a poza tym bada nie tylko tarczycę ale dzięki niej wiem , że moje dziecko prawidłowo rozwija się . Polecam ! ! !"
+  },
+  {
+    "opinion_id": "op_001795",
+    "text": "Absolutnie nie . Mój problem z którym postanowiła m przyjść do tego lekarza ciągnął się od roku . Natrafiła m na jego gabinet z polecenia i już chyba nigdy nie posłucham nikogo w sprawie lekarzy . Kiedy w końcu udało mi się umówić na pierwszą wizytę , co i tak nie było łatwe ( już przez telefon musiała m sprecyzować na czym ma polegać wizyta - trochę bez sensu , wolała by m żeby lekarz sam stwierdził co mi jest a nie bazował na moich domysłach ) była m całkiem zadowolona . Lekarz wydawał się być profesjonalny , bardzo miły i uprzejmy . Z każdą kolejną wizytą moja pewność co do jego kompetencji malała . Już na pierwszej wizycie dostała m leki antydepresyjne oraz miliony maści ( w tym maść przeciwbólową ) - doktor stwierdził wulwodynię , chociaż nie była m pewna czy słuchał tego , że jej objawy nie pokrywają się z moimi . Ale dobra , uznała m że pewnie ma racje . Niestety z czasem mój stan się nie polepszał a wręcz przeciwnie - było coraz gorzej . Z każdą następną wizytą ( a nie ukrywajmy , wizyty do najtańszych nie należą ) słyszała m \" Pani jeszcze nie odczuwa poprawy ale ja już ją widze . ( . . . ) Tylko zwiększymy dawkę leków . ( . . . ) Przy następnym ataku bólu prosze smarować się maścią przeciwbólową . \" W końcu zaczęlam mieć czegoś takiego dosyć . Faszerowanie się lekami i tylko tymczasowe unikanie bólu maścią nie rozwiąże problemu . Postanowiła m wybrać się do innego lekarza . Pani doktor u której była m stwierdziła , że należy udać się do urologa , gdyż w okolicy warg sromowych przy cewce moczowej mam torbiel , którą powinien zobaczyć specjalista . Aktualnie jestem po dwóch zabiegach próby usunięcia torbieli , która nawraca w postaci ropnia . Istnieje szansa na operacje . Lekarz do którego się z tym zgłosiła m powiedział , że problem był zbyt długo nie leczony i był w ciężkim szoku , gdy usłyszał o metodzie leczenia tego otóż lekarza . Jestem bardzo rozczarowana i zła , że zmarnowała m tyle pieniędzy , czasu i oczywiście zdrowia . Zastanawiam się , czy nie wrócić tam jeszcze raz i nie wyjaśnić tego dlaczego nie zostało podjęte leczenie adekwatne do choroby . Zrażona bardzo nie polecam nikomu , nawet na zwykłe wizyty kobiet bez większych problemów ginekologicznych ."
+  },
+  {
+    "opinion_id": "op_001796",
+    "text": "Jestem prawie 3 tygodnie po zabiegu korekcji uszu . Zabieg w niesamowicie miłej atmosferze ( zaznaczam , że wszelkiego rodzaju dziabanie i dłubanie w organizmie znoszę zazwyczaj histerycznie ) , Pan Doktor i pielęgniarka zagadują , w ogóle nie myśli się o tym , co się dzieje . Znieczulenie bez większych wrażeń ( u dentysty jest gorzej ) , trzeba się tylko przyzwyczaić do dziwnych dźwięków tuż za uchem . Po samym zabiegu jakieś dwie doby to nerwowe spanie na wznak : ) Coś tam pobolewa ( każdy ma inną tolerancję na ból ) , ale wystarczają jakieś \" zwykłe \" środki przeciwbólowe . Boli trochę tak , jak po przewianiu uszu . Pan Doktor odpowiada na wszystkie pytania i wszystko cierpliwie wyjaśnia , nawet i po trzy razy , jeżeli trzeba , bo człowiek w stresie czasem nie rejestruje pierwszego komunikatu . Po ściągnięciu szwów i przewietrzeniu uszu można rozpocząć nowe życie , które serdecznie polecam . Wiem , że na efekt końcowy trzeba jeszcze trochę poczekać ( uszy nieco \" odejdą \" od głowy , bo póki co są do niej bardzo przyklejone , rana będzie się goić jeszcze kilka tygodni ) , ale już widać , że warto . W życiu nie oglądała m tylu tutoriali z upinaniem włosów , bo po 30 latach nareszcie mogę je związać i wyjść do ludzi . Z czystym sumieniem polecam dr . Węgrzyna ."
+  },
+  {
+    "opinion_id": "op_001797",
+    "text": "Mało ludzi jest świadomych , że niedokrwistość ( anemia ) , u małego dziecka istotnie wpływa negatywnie na jego intelekt w przyszłości . Przy czym niedokrwistość z niedoboru żelaza jest jedną z najczęstszych chorób przewlekłych u dzieci i jednocześnie jedną z nielicznych , które możemy skutecznie i szybko wyleczyć  – podkreślił . Poprawa wykrywalności chorób hematologicznych poprzez edukację nt . objawów i istoty wczesnej diagnostyki w powodzeniu terapii to główny cel kampanii edukacyjnej „ Odpowiedź masz we krwi ” , wspieranej m . in . przez Polskie Towarzystwo Hematologów i Transfuzjologów , Polskie Towarzystwo Onkologii i Hematologii Dziecięcej oraz Instytut Hematologii i Transfuzjologii . Patronat honorowy nad kampanią objęli konsultant krajowy w dziedzinie hematologii , prof . dr hab . n . med . Wiesław W . Jędrzejczak oraz konsultant krajowy w dziedzinie medycyny pracy , lek . Paweł Wdówik ."
+  },
+  {
+    "opinion_id": "op_001798",
+    "text": "Wizyta kosztowała 150 zł . Lekarz kazał wypełnić ankietę , na której należało wpisać swoje objawy . Wypełniał em ją 20 minut , podczas gdy doktor opowiadał jakie znane osoby odwiedzają jego gabinet . Lekarz , kiedy dowiedział się , że mieszkam w Warszawie od niedawna , rozpoczął rozważania o tym , kto jest prawdziwym warszawiakiem , a kto nie . Po wypełnieniu ankiety pan doktor schował ją do szuflady . Bez wywiadu zalecił badania w zaprzyjażnionym laboratorium za kwotę ok 900 zł ."
+  },
+  {
+    "opinion_id": "op_001799",
+    "text": "W tamtym roku Pani doktor prowadziła moją ciążę , była m zadowolona , bo Pani doktor naprawdę miła . W 12 tyg ciąży miała m badania prenatalne i okazało się , że NT powyżej normy ( 2 , 9 przy crl 68 ) nic nam nie tłumacząc Pani doktor zasugerowała amniopunkcje i zapytała czy poddam się terminacji jeśli okaże się , że dziecko ma zespół downa . Wiedziała m , że do Pani doktor juz nie wrócę . Po paru dniach była m na wizycie u specjalisty fmf i NT 2 , 3 przy crl 79 , czyli mieści się w normie . Pani doktor mogła nas poinformować ? ze nawet przy 5akim NT mamy 90 % szans na urodzenie zdrowego dziecka , zamiast straszyć nas i proponować terminacje . Nasz synek na całe szczęście jest zdrowy ? ? ? ? Agata"
+  },
+  {
+    "opinion_id": "op_001800",
+    "text": "Jestem pewny , że to najlepszy dermatolog w Warszawie . Kolędował em z moją przypadłości skóry po wielu gabinetach w Warszawie i nie tylko , dopiero opatrzność boża zaprowadziła mnie do dr Agnieszki Staniewskiej , która po 2 sekundach oglądania skóry postawiła inną diagnozę niż wszyscy poprzedni lekarze dermatolodzy ( w tym jeden profesor ) i zalecił inne , nowe leki oraz naświetlanie lampami UVB w specjalnie dobranej mocy i czasie . Znaczną poprawę miałem po dobie , a po 3 tygodniach nie miałem śladu choroby , z którą chodził em i drapał em się ponad rok . Super specjalista , polecam wszystkim , zwłaszcza w trudnych przypadkach ."
+  }
+]

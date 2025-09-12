@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003881",
+    "text": "Miła atmosfera, dokładne wyjaśnienia, przedstawione różne opcje leczenia."
+  },
+  {
+    "opinion_id": "op_003882",
+    "text": "Wizyta odbyła się punktualnie. Pani doktor ma super podejście do dzieci. Przebieg zabiegu został nam szczegółowo omówiony. Sam zabieg przeprowadzony tak szybko i bezboleśnie jak było to możliwe. Rana została zaopatrzona, a my dostaliśmy wytyczne jak pielęgnować ją w domu. Serdecznie polecam."
+  },
+  {
+    "opinion_id": "op_003883",
+    "text": "Punktualnie, konkretnie, i co najważniejsze skutecznie. Serdecznie polecam wizytę u Pani doktor."
+  },
+  {
+    "opinion_id": "op_003884",
+    "text": "Pani Doktor jest bardzo profesjonalna i jednocześnie bardzo miła, polecam!"
+  },
+  {
+    "opinion_id": "op_003885",
+    "text": "Bardzo dobry kontakt, uprzejma i fachową konsultacja."
+  },
+  {
+    "opinion_id": "op_003886",
+    "text": "Pani Doktor miła i konkretna, gabinet nowoczesny. Polecam"
+  },
+  {
+    "opinion_id": "op_003887",
+    "text": "Miło, profesjonalnie, sprawnie. I bezboleśnie . Na efekty trzeba jednak będzie trochę poczekać..."
+  },
+  {
+    "opinion_id": "op_003888",
+    "text": "Bardzo empatyczna i wyrozumiała Pani Doktor. Otrzymałam odpowiedź na wszystkie swoje pytania, a dalsze postępowanie zostało dokładnie omówione. Z czystym sumieniem polecam:)"
+  },
+  {
+    "opinion_id": "op_003889",
+    "text": "Bardzo dokładna i skrupulatna pani doktor. Zabiegi wykonywane na najwyzszym poziomie. Serdecznie polecam!"
+  },
+  {
+    "opinion_id": "op_003890",
+    "text": "Pani Doktor bardzo uprzejma, empatyczna, cierpliwie wyjaśniająca wszystkie wątpliwości.  Zdecydowanie polecam wizyte"
+  },
+  {
+    "opinion_id": "op_003891",
+    "text": "Pani Doktor przemiła, empatyczna i bardzo kompetentna. Polecamy serdecznie"
+  },
+  {
+    "opinion_id": "op_003892",
+    "text": "Doktor mnie wysłuchała i dobrała leczenia, czułam się bardzo zaopiekowana:)"
+  },
+  {
+    "opinion_id": "op_003893",
+    "text": "Odpowiednie przebadanie wskazanego miejsca zmienionego chorobowo, wyjaśnienie sytuacji i sposobu leczenia. Doradziłbym jedynie większą proaktywność w sprawdzaniu pozostałych obszarów, o których pacjent może być nieświadomy (tył lub góra głowy, plecy itp)."
+  },
+  {
+    "opinion_id": "op_003894",
+    "text": "Punktualnie, profesjonalnie, szczegółowa i jasna informacja dla pacjenta. Przyjazne podejście do pacjenta."
+  },
+  {
+    "opinion_id": "op_003895",
+    "text": "Oby więcej takich lekarzy . Pani rozwiązała zagadkę mojej przypadłości w 10 minut: polecam"
+  },
+  {
+    "opinion_id": "op_003896",
+    "text": "Bardzo przyjazna (byłam z córką która się bała) i profesjonalna pani doktor. Szczegółowe badania i wyjaśnienia. Dziękuję i polecam!"
+  },
+  {
+    "opinion_id": "op_003897",
+    "text": "Chciałbym serdecznie podziękować Pani Jagodzie za sprawne i profesjonalne usunięcie kaszaka. Zabieg został przeprowadzony szybko, bezboleśnie i w bardzo komfortowej atmosferze. Jestem bardzo zadowolony z opieki i efektu zabiegu."
+  },
+  {
+    "opinion_id": "op_003898",
+    "text": "Polecam wizytę. Konkretnie i rzeczowo. Pełen profesjonalizm."
+  },
+  {
+    "opinion_id": "op_003899",
+    "text": "Szczegółowe informacje i dużą empatia lekarki, zrozumienie potrzeb pacjenta"
+  },
+  {
+    "opinion_id": "op_003900",
+    "text": "Wszystko super, obszerne odpowiedzi na pytania oraz szybkie wyjaśnienie przyczyny problemów :)"
+  }
+]

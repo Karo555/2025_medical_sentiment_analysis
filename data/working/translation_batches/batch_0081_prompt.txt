@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001601",
+    "text": "Pan Paweł jest owszem sympatycznym , młodym człowiekiem , który ma już pewne doświadczenie . Jednak w przypadku dobrego fizjoterapeuty liczy się to czy wie na pewno co robi i czy jest skuteczny . W moim przypadku ( dyskopatia , rwa kulszowa ) niestety Pan Paweł nie pomógł , a stan po wizytach się zaostrzył - pomoc znalazł em u innego fizjoterapeuty niebawem po . Miałem już w swoim życiu doświadczenie z kilkoma dobrymi terapeutami manualnymi i żaden z nich nie rozpoczynał zabiegów bez obejrzenia diagnostyki obrazowej ( tomograf / rezonans ) , nie próbował całego wachlarza technik nie wiedząc , które pomogą a które raczej mogą zaszkodzić oraz nie wykonywał zabiegów , z których spora część była naprawdę bolesna ( u pacjenta już i tak z dużym bólem ) , pytając w czasie ich wykonywania czy nie zbliża się do poziomu bólu ok . 7 w skali 10 stopniowej . Moim zdaniem jeżeli ktoś szuka doświadczonego fizjoterapeuty od kręgosłupa , niech szuka dalej ."
+  },
+  {
+    "opinion_id": "op_001602",
+    "text": "Bardzo miła i serdeczna lekarka która dobrze wsłuchuje się w problemy pacjenta starając się je zrozumieć i odpowiednio doradzić . Po za przepisaniem leków które oczywiście mogą dać poprawę stanu samopoczucia , trzeba z problemami zmierzyć się i starać się je samemu lub przy pomocy psychologa rozwiązać ."
+  },
+  {
+    "opinion_id": "op_001603",
+    "text": "niestety , kierowała m się opiniami , poszła m do pani dr w Enel - med . jako że jestem alergikiem i astmatykiem od dzieciństwa a obecnie jestem w ciąży potrzebowała m porady . niestety pani dr była powolna , ciagle cos zaprzatało jej głowe ale nie był to pacjent . w podsumowaniu przepisała mi leki ktore okazaly się pozniej niebezpieczne dla dziecka a mój położnik złapał się za głowe jak usłyszał co mi przepisała . mam tylko nadzieje że następnym razem Pani dr przemysli i zastanowi się co mowi i przepisuje swoim pacjentom ."
+  },
+  {
+    "opinion_id": "op_001604",
+    "text": "Oprócz prelegentów z ośrodków naukowych całej Polski wykłady w Zawierciu wygłoszą też goście z zagranicy . Prof . Antonio Torres Garcia był prezesem Europejskiego Towarzystwa Chirurgów Metabolicznych i Bariatrycznych , a prof . Garcia Caballero ma ogromne doświadczenie w zakresie chirurgii bariatrycznej i metabolicznej . Obydwaj pochodzą z Hiszpanii , gdzie procedury medyczne , związanych z opieką nad pacjentami przed i po zabiegu są organizowane w sposób interdyscyplinarny . Kolejny gość z zagranicy - prof . Renato Pasquali z Włoch - jest jednym z autorytetów w dziedzinie zaburzeń endokrynologicznych związanych z otyłością , przede wszystkim zaburzeń płodności i zespołu policystycznych jajników . Udział w zjeździe zapowiedziała także endokrynolog prof . Marija Pfeifer , zajmująca się od wielu lat problemami metabolicznymi i otyłością w Lublianie w Słowenii ."
+  },
+  {
+    "opinion_id": "op_001605",
+    "text": "Ja tam jestem zadowolona . Zdiagnozowała trafnie baktrie która zaatakowała mojego synka , poradziła jak to świństwo w prosty i najtańszy sposób zlikwidować . ponadto bezpłatnie usunęła mi kilkanaście małych brodawek rozsianych po całym ciele . wizyta jest krótka ale rzeczowa , bez zbędnego gadania . Jest doktorem nauk a nie jakimś mgr-em . : )"
+  },
+  {
+    "opinion_id": "op_001606",
+    "text": "Leczę córcię u Pani doktor niemal od urodzenia . Córka od początku miała powracające zakażenia układu moczowego . Pani doktor zawsze dokładnie zbada , wypyta . Zawsze odpowie na wszelkie moje pytania , wątpliwości . Mimo tego , że leczę córkę w szpitalu w poradni nefrologicznej , czuję , jakby była to wizyta prywatna . Miło , rzetelnie , przyjemnie . Więcej takich wspaniałych lekarzy . Gorąco polecam ."
+  },
+  {
+    "opinion_id": "op_001607",
+    "text": "Polecam Pana Doktora . Cena wizyty w gabinecie prywatnym nie jest wygórowana , tylko taka jak mniej więcej kształtują się ceny wizyt u lekarzy przyjmujących prywatnie . Dodatkowo w cenie na każdej wizycie wykonywane jest USG , doktor nie pobiera też dodatkowej opłaty za cytologię . Bardzo fajne jest to , że doktor zawsze pyta o samopoczucie i zawsze ma czas na wysłuchanie pytań czy wątpliwości , na które odpowiada . Odpowiada na pytania dot . wykonywanego USG , lub sam opisuje co bada . Nie kieruje na dzisiątki niepotrzebnych badań , tylko na te , które są niezbędne i wystarczające by ocenić stan pacjentki . Jest miły a jego sposób bycia pozwala , na tyle ile jest to możliwe , rozluźnić się podczas całej wizyty i badania ."
+  },
+  {
+    "opinion_id": "op_001608",
+    "text": "Jeżeli nie stac Cię na zabieg w prywatnej klinice to nie masz po co jechac do gabinetu profesora . Wizyta trwa 5 minut , zdjęcie TK przyjmuje tylko na kliszy poniewż komputera w gabinecie nie posiada . Następnie ekspresowe badanie nosa i przepisanie kopli sterydowych ( stosowanych wcześniej nieskutecznie ) i zapewnienie , że z takim schorzenie trzeba nauczyc się życ . Na koniec zapowiedz kolejnej wizyty , zapłata 150 zł i można wracac do domu ( w moim przypadku 400km ) . Szkoda czasu i nerwów to rada dla wybierających się do profesora . Dziś jestem na kilka dni przed zabiegiem , ponieważ trafiła m na lekarza , który nie twierdzi , że \" z takim schorzeniem trzeba nauczyc się życ \" i radził jak najszybciej to zoperowac ! !"
+  },
+  {
+    "opinion_id": "op_001609",
+    "text": "Jeżeli Państwo potrzebujecie autentycznej pomocy , która wiąże się z jakimkolwiek zabiegiem wykonywanym w warunkach szpitalny to proszę nie liczyć na pomoc Pani doktor . Diagnoza rzeczywiście prawidłowa , ale na tym koniec . Pani doktor jest absolutnie niesolidną osobą , umawia się na kontakt telefoniczny niestety zapomina oddzwonić pewnie licząc na kolejną wizytę . Empatia to słowo nieznane Pani doktor . Po kilku prywatnych wizytach za całkiem niemałe pieniądze niestety ( mimo zapewnień ) nie uzyskała m dalszej pomocy , Nie interesowało widać Pani doktor , że ból , który można było zlikwidować za pomocą krótkiego zabiegu chirurgicznego uniemożliwiał mi normalne funkcjonowanie . Dzięki pomocy innego „ prawdziwego lekarza ” , który zajął się mną błyskawicznie wracam już do zdrowia . Bardzo nieładnie Pani doktor ."
+  },
+  {
+    "opinion_id": "op_001610",
+    "text": "W projekcie uczestniczyły również : dr Elżbieta Purta i mgr Katarzyna Kamińska z grupy prof . Bujnickiego w MIBMiK oraz dr Janusz Stępiński z grupy prof . Darżynkiewicza na UW . Badania zostały w części sfinansowane przez Ministerstwo Nauki i Szkolnictwa Wyższego oraz Narodowe Centrum Nauki , jak również przez Fundację na rzecz Nauki Polskiej ( FNP ) i Europejską Radę ds . Badań Naukowych . Dr Nowotny był finansowany przez grant „ International Early Career Scientist Award ” amerykańskiego Instytutu Medycznego Howarda Hughesa ( HHMI ) . FNP wspiera również prof . Bujnickiego i dr . Nowotnego poprzez stypendia w programie „ Idee dla Polski ” , a dr Werner i mgr Kamińską poprzez stypendia w programie START ."
+  },
+  {
+    "opinion_id": "op_001611",
+    "text": "Miała m pewne obawy idąc do profesora po przeczytaniu poniższych opinii . Okazał się bardzo miłym i kompetentnym lekarzem , zebrał dokładny wywiad , wszystko wytłumaczył w sposób przystępny . Przede mną była bardzo hałaśliwa , gadatliwa osoba i też cierpliwie jej słuchał ( w odróżnieniu od czekających : ) ) Nie wiem jeszcze jak zakończy się moje leczenie ale na chwilę obecną jestem bardzo zadowolona z tej wizyty . Koszt faktycznie niski nie jest ."
+  },
+  {
+    "opinion_id": "op_001612",
+    "text": "Bardzo polecam Panią Katarzynę Klimowicz . Moje niespełna 5 - letnie dziecko przychodziło na zajęcia z bajkoterapii z konkretnym problemem , który w krótkim czasie po rozpoczęciu terapii ( ok . 2 , 5 miesiąca , spotkania co tydzień ) został rozwiązany . Bajkoterapia działa ! Pani Katarzyna całkowicie skupiła się na problemie dziecka , widziała m że rzeczywiście wniknęła w ten problem , rozumiała go i wiedziała z której strony go \" podejść \" . Pani Katarzyna to z pewnością doświadczona , kompetentna , profesjonalna terapeutka , która na pewno nie \" stoi obok \" pacjenta i której na pacjencie naprawdę zależy . Córeczka uwielbiała do niej jeździć . Pani Katarzyna to także ciepła , miła osoba . Serdecznie i szczerze polecam ."
+  },
+  {
+    "opinion_id": "op_001613",
+    "text": "Ja była m tylko na konsultacji u doktora Ciesińskiego , więc nie mogę się wypowiadać na temat efektów operacji , ale co do zachowania doktora na wizycie konsultacyjnej nie mogę się zgodzić z waszymi ocenami . Konsultowała m się w sprawie plastyki powłok brzucha . Doktor wcale mnie nie \" spławił \" . Wręcz przeciwnie . Dokładnie ocenił sytuację , wszystko mi wytłumaczył , opisał cały zabieg . Wizyta wcale nie trwała 5 min tylko pół godziny , ale gdyby nawet trwała 5 min to wydaje mi się , że przecież nie chodzi o czas trwania wizyty tylko o to żeby się wszystkiego dowiedzieć i żeby lekarz dobrze ocenił sytuację . Widocznie ma na tyle duże doświadczenie , że nie potrzebuje spędzać całego dnia z pacjentem . Pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_001614",
+    "text": "Fizjoterapeuta z powołania , z zaangażowaniem do pacjenta , przed każdym zabiegiem przeprowadza wywiad odnośnie stanu funkcjonalnego i w zależności od oceny - dobiera różnorodne metody terapeutyczne oraz ćwiczenia zalecane do domu . Dzięki umiejętnościom i wiedzy a także - jak sądzę - \" terapeutycznemu zmysłowi \" do wyczuwania i rozpoznawania miejsc dysfunkcji , skutecznie pomaga mi minimalizować dolegliwości wywoływane zwyrodnieniem stawu biodrowego . Profesjonalna pomoc , pogodne usposobienie , kultura osobista i wnikliwe analizowanie wszelkich możliwości zastosowań terapeutycznych sprawiają , że mogę z uznaniem wybrać ocenę \" bardzo dobry \" i polecić innym . Dziękuję serdecznie za pomoc , która umożliwia mi samodzielne poruszanie się ."
+  },
+  {
+    "opinion_id": "op_001615",
+    "text": "Pani doktor chyba minęła się trochę z powołaniem . Upominanie dziecka , żeby to nie kaszlało na nią , bo ona musi być zdrowa , bo jedzie za 3 dni na urlop jest nie na miejscu . Czy pani wybierając kierunek studiów myslała , że bedzie leczyć tylko zdrowe dzieci ? Dla mnie taka uwaga była żenująca . . ."
+  },
+  {
+    "opinion_id": "op_001616",
+    "text": "Operowal mnie . Świetny chirurg , znakomity diagnosta ; człowiek oddany pacjentom i medycynie . Widział em - codzienny poranny obchód profesorski świtem - o 7 godzinie ! Potem jeszcze często uczestnictwo w pozostalych obchodach . W sobotę - też . Gdy był em - widział em , mniej oficjalnie , bez konduktu i fartucha . Takie \" Cześć chłopaki , wpadł em z wizytą ? Ilu profesorów tak postępuje ? Mnie telefonem odpowiedział na - emaila . Pytał em , czy jest szansa przyjęcia do powtorki zabiegu , po 8 latach . Zadzwonil Profesor , osobiście ! Pytał o opis usg , o opinię kierującego . Otrzymalem wskazówki i po pewnym czasie był em operowany . Komentować - sztukę i stosunek do chorego ? AL"
+  },
+  {
+    "opinion_id": "op_001617",
+    "text": "Młodzi krakowscy wynalazcy widzą w swoim pomyśle duży potencjał komercjalizacyjny . Wynalazkiem interesują się już różne placówki medyczne , jednak sprzedaż mogła by ruszyć dopiero po testach urządzenia , czyli najwcześniej wiosną . \" Rynek jest bardzo duży , szacuje się , że na całym świecie liczba osób , u których zdiagnozowano astmę , to ponad 250 mln . Nasz projekt stawia na rozwiązywanie codziennych problemów pacjenta . Chcemy , aby z naszym urządzeniem komfort ich życia rósł , a uciążliwość choroby malała \" - podsumował Tomasz Mikosz . Wynalazek wszedł by na rynek poprzez start - up . Krakowski start - up zdobył już wsparcie finansowe zlokalizowanego w Berlinie inkubatora innowacji medycznych - Startupbootcamp Digital Health . Wynalazek znalazł się w gronie 10 zwycięskich projektów zgłoszonych spośród 513 prac z całego świata do konkursu Startupbootcamp Digital Health ."
+  },
+  {
+    "opinion_id": "op_001618",
+    "text": "Była m u pana doktora jak do tej pory trzy razy na kasę chorych . Przy pierwszym spotkaniu zrobił na mnie wrażenie lekarza kompetentnego ale niezbyt miłego , ponieważ według mnie dosyc się spieszył i nie wdawał się w rozmowy , także był trochę niemiły więc dosyc szybko wyszła m z gabinetu . Przed drugą wizytą gdy dowiedziała m się do kogo ide troche się wystraszyła m , po wrażeniach z pierwszej nie wiedziała m czego oczekiwac . Ponieważ miała m poważny problem , z którym była m już u innego ginekologa , który niestety mi nie pomógł a wręcz pogorszył mój stan . Więc wybrała m się do przychodni i akurat trafiła m na pana doktora . Musze powiedziec że się mile zdziwiła m ponieważ tym razem nastąpiła rozmowa , została m wysłana na dodatkowe badania i wyglądało że pan doktor się przejął . Mimo to badanie było bardzo bolesne co pan doktor dskonale widział ale i tak je zrobił . Jednakże po lekach przepisanych wyzdrowiała m całkowicie . Trzecia i ostatnia to wizyta kontrolna na którą weszła m pan doktor się spytał czy już jestem zdrowa , powiedziała m że tak i już nie została m zbadana . Podsumowując pan doktor jest świetnym specjalistą , chociaż nie zawsze jest delikatny , ale za cene wyzdrowienia chwile przynajmniej w moim wypadku mogła m pocierpiec . Czasami mu się spieszy i ma humory . Ogólnie u większości pacjentek jest tendencja że albo go lubią albo zrobił na nich negatywne wrażenie i już więcej do niego nie przychodzą i z tąd według mnie negatywne komentarze . Na pierwszą wizytę u ginekologa odradzam . Jeżeli jednak istnieje coś poważnego wtedy radzę uda się do pana doktora , to zostanie się wyleczonym a diagnoza będzie trafna za pierwzsym razem ."
+  },
+  {
+    "opinion_id": "op_001619",
+    "text": "Pani Doktor jest przesympatyczną kobietą , wszystko dokladnie tlumaczy i poswięca pacjentowi tyle czasu , ile potrzebuje . Nie lekceważy pacjenta , wypytuje sie o wszystkie szczegoly . Jest bardzo delikatna przy badaniu , rozmawia się z nią beztresowo . Wielką zaletą Pani Dr jest to , że zdaje sobie sprawę , że nie każdego stać na kosztowne leczenie i odsyla na dokladne badania do poradni NFZ . Daje wskazówki , gdzie można sie udać i do jakich innych specjalistów przy bardziej zaawansowanych schorzeniach . Zdecydowanie polecam Panią Doktor , szczegolnie dla mlodych dziewcząt , które nie chcą zostać zlekceważone i nie chcą zniszczyć sobie zdrowia ."
+  },
+  {
+    "opinion_id": "op_001620",
+    "text": "Ja rózwnież polecam - lecze się 3 lata i na prawde warto bo lekarz nawet zostaje po godzinach - na NFZ . ma czas - wizyta trwa tyle ile potrzeba czasu bardzo dokłądnie robi USG badania robi , nie oszczedza Potrafi przyjać nawet wiecej pacjentów niż ma zarejstrowanych ma super podejśćie - jest miły - tłumaczy i żartuje super super polecam oby wiecej było takich lekarzy jak dr . Słąwomir Szczygieł Pozdrawiam Marzena"
+  }
+]

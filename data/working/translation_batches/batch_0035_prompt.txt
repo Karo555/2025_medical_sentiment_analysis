@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000681",
+    "text": "Ja ma doświadczenie z doktorem Hamdim w miarę pozytywne . Miałem w 1985 roku 4 przetoki w tym jedna wokól zwieracza . Po operacji , którą przeprowadzał Doktor osobiście okazało się , że tej czwartej przetoki mi nie zoperował . 3 pozostałe w porządku . Tę najtrudniejszą przetokę zoperował em w szpitalu wojskowym . Doktor Hamdi upzedził mnie , że operowanie przetoki wokół zwieracza jest niebezpieczne ponieważ w trakcie operacji można uszkodzić zwieracz i \" będę robił pod siebie \" . Moja ocena - tylko \" polecam \" wynika z faktu , że nie podjął się operacji tej przetoki o czym mnie nie poinformował . To źle . Natomiast , jeśli nie bardzo umiał zoperować tę przetokę to dobrze , że się tego nie podjął . Mógł spieprzyć operację i tłumaczyć się , że przeciez mnie uprzedzał . Najaważniejsze w tym zawodzie to nie szkodzić pacjentowi . Poza tym traktował mnie miło , a po drugiej operacji w szpitalu wojskowym pozwalał mi przychodzić do szpitala na zmiany opatrunku . Przy okazji oglądał moją drugą operację ( tego typu ran nie zaszywa się pooperacyjnie tylko mają sie oczyszaczac i same zabliźniać ) , więc chciał się czegoś nauczyć . Tak więc ogólnie , w okresie kiedy Doktor rozpoczynał praktykę w tej specjalności mój kontakt z nim zakończył się pozytywnie.jestem zdrowy , a to jest najważniejsze"
+  },
+  {
+    "opinion_id": "op_000682",
+    "text": "Jak opowiada rozmówca PAP , na razie wiadomo , że za to , że mamy pięć palców , odpowiada głównie gen o nazwie \" sonic hedgehog \" ( genetycy nadali mu nazwę nawiązującą do bohatera gier komputerowych ) - wykazano już , że różne mutacje tego genu mają związek z liczbą palców . \" Jestem jednak przekonany , że > >s o n ic h edgeh"
+  },
+  {
+    "opinion_id": "op_000683",
+    "text": "Ja niestety mam negatywne doświadczenia z wizyty . W moim odczuciu od samego początku był em dolowany a \" doktor \" zachowywała się w butny sposób . Z jednej strony twierdziła , że nic o mnie nie wie z drugiej pod wpływem emocji powtarzała , że jestem \" niedorozwiniety psychospolecznie \" . Na moją delikatną sugestię , że jeśli był by m soba z zespołem aspergera to miał by m zmniejszony wgląd w emocje a dobrze je analizuje doktor zamilkla i stwierdziła , że nic o mnie nie wie . Jeśli nie wie to dlaczego stawia takie diagnozy ? Żaden specjalista wcześniej nie postawił natomiast doktor tak nie znając przypadku . Uważam również , że doktor nie bardzo rozumie istotę nerwicy natręctw i nie potrafi jej odróżnić od innych nie związanych z nią zagadnień w diagnostyce seksuologicznej . A to należy do podstawowej diagnostyki . Nawet nie chcę opisywać całego przebiegu wizyty . Szkoda mi tylko wydanych 180 zł ."
+  },
+  {
+    "opinion_id": "op_000684",
+    "text": "Z pewnością Pani doktor ma ogromną wiedzę i potrafi pomóc niejednej osobie , jednak kiedy przyszła m na wizytę okazało się , że o niej nie pamiętała ( lub nie została poinformowana ) i wyłączyła już wszystkie sprzęty ( była m umówiona na 19 : 30 ) . Była to moja pierwsza wizyta , więc Pani doktor ( po ponownym uruchomieniu sprzętów ) zrobiła mi badanie USG i cytologię ( nie uprzedziła wcześniej , ile jakie badanie kosztuje i w efekcie zapłaciła m 80zł więcej , niż się spodziewała m - dla studentki są to niestety duże pieniądze ) . W połowie badania USG Pani doktor poszła odebrać telefon i zostawiła mnie leżącą na kozetce na pół godziny . Kiedy wróciła , szybko dokończyła badanie , wypisała receptę , a kiedy zapytała m o dokładniejsze wyjaśnienie \" co , jak i dlaczego \" - wytłumaczyła mi coś naprędce skomplikowanym medycznym językiem , którego w ogóle nie zrozumiała m . Generalnie odniosła m takie wrażenie , jakby Pani doktor bardzo spieszyło się do domu i po wykonaniu potrzebnych badań chciała jak najszybciej dostać pieniądze i opuścić gabinet . Gdyby nie rozmowa przez telefon w trakcie badania , moja wizyta zamiast 45 minut , trwała by ledwo 15 ."
+  },
+  {
+    "opinion_id": "op_000685",
+    "text": "Nic szczególnego . Nic nowego nie wniosła w moje żywienie . Uważam , że zanim się zaleci dietę , należy zlecić najpierw wszelkie badania krwi z hormonami na czele bo nie każdy zgubi kg szybko . Dużo zależy od układu hormonalnego . Sama deita i wysiłek fizyczny to nie wszystko"
+  },
+  {
+    "opinion_id": "op_000686",
+    "text": "Oczekiwanie na wizytę w poczekalni 50 min . Jak tłumaczyła Pani doktor z powodu spóźnienia poprzednich pacjentów , którzy jechali z daleka ( ponoć nie mogła im odmówić i musiała ich przyjąć pomimo spóźnienia ) . W czasie wizyty kilkukrotnie do gabinetu wchodziła inna lekarka nie zamykając za sobą drzwi . Oczekujący poczekalni mieli możliwość widzieć i słyszeć wszystko co działo się w gabinecie . Diagnoza nietrafna : ząb leczony kanałowo dr Dagmara zaleciła usunąć bo na podstawie pantomogramu stwierdziła , że ząb jest niedoleczony i toczy się tam stan zapalny a to że teraz nie boli to tylko kwestia czasu . zaproponowała jeden schemat leczenia polegający na usunięciu górnych czwórek i tego zęba po leczeniu kanałowym . Za pytanie o inne rozwiązania stwierdziła , że inne w moim przypadku są nieskuteczne . Po konsultacji z innym lekarzem okazało się że ząb po kanałówce jest dobrze wyleczony i nie ma tam stanu zapalnego ( co potwierdziło rtg punktowe ) a owy stan zapalny z pantomogramu to artefakt , zacienienie , przekłamanie zdjęcia rtg ( pantomogramu jak się okazuje nie można stosować w celu stwierdzania stanów zapalnych to nie jest odpowiednie narzędzie diagnostyczne do tego celu ) . Nie chcąc decydować się na tak radykalne leczenie znalazła m innego ortodontę , który zaproponował leczenie w oparciu o mikroimplanty bez konieczności usuwania ani jednego zęba . Dodam iż zdaję sobie sprawę z plusów i minusów takiego leczenia jak i leczenia radykalnego ale o tym dowiedziała m się od innego lekarza niestety . Owszem mikroimplanty są droższe i leczenie dłużej trwa ale nie można powiedzieć że nie są skuteczne . Z resztą decyzja o sposobie leczenia powinna być świadomą decyzją pacjenta a nie lekarza po uprzednim zapoznaniu pacjenta z wadami zaletami każdego modelu leczenia . Niestety Pani Dagmara zdecydowała za pacjenta a po dopytaniu o inne metody nie poinformowała o ich wadach i zaletach jedynie kwitując że inne ( czyt . mikroimplanty ) są nieskuteczne i już . Przy tak dużej konkurencji na rynku stomatologicznym radziła by m , jednak bardziej szanować swoich klientów"
+  },
+  {
+    "opinion_id": "op_000687",
+    "text": "Ja też chciał by m wtrącić swoją opinię na temat dr Letkiewicza czytam uważnie opinie wszystkich jego pacjentów i sam też postanowił em coś o nim napisać . Jest dobrym fachowcem bo wyleczył mnie nie tylko z zapalenia prostaty ale również wyleczył u mnie okropne owrzodzenie na nodze ! ! ! gdzie inni lekarze rozkładali ręce . Leczyli mnie różnymi lekami bez skutecznie . Owrzodzenie było potworne i ogromne ! dziś po leczeniu dr L . zmniejszyło się pięciokrotnie . Uważam również , że do sukcesu leczenia przyczynia się w 50 % dyscyplina pacjenta i przestrzeganie zaleceń lekarza . Są tacy , którzy tego nie robią a potem mają pretensję do lekarza , że go nie wyleczył . Pozdrawiam wszystkich na rozdrożu , którzy nie wiedzą czy go wybrać . Ja go wybrał em i nie żałuję ."
+  },
+  {
+    "opinion_id": "op_000688",
+    "text": "Witam , mam 24 lata ale jako 4 letnia dziewczynka była m badana przez panią \\ \" doktor \\ \" kontrolnie . W książeczce zdrowia w rubryce ( widzenie obuoczne ) napisała : prawidłowo . niestety pani doktor , chciała by m panią poinformować , że nie widzę na lewe oko od urodzenia . Niestety wykryto mi to za późno aby móc coś z tym zrobić . Gdyby już wtedy zwróciła pani na to uwagę to mogła by m wiedzieć na dwoje oczu ! ! Mam wielki żal do pani i nie rozumiem jak tak bardzo można nie szanować swojego tytułu , opinii , nie wspominając o małych istotkach ! Mam nadzieję , że doczekam się dna kiedy spojrzę pani w oczy . Kasia ."
+  },
+  {
+    "opinion_id": "op_000689",
+    "text": "Człowiek ten nawet w opinii środowiska lekarzy uważany jest za niezbyt dobrego lekarza . Zlecił pacjentowi pasaż , który w opinii lekarzy z kilku odległych od Radomia szpitali jest badaniem przestarzałym i które nie stosuje się przeszło od 20 lat , ponieważ istnieją już inne badania , które w sposób dokładniejszy i z mniejszymi nieprzyjemnościami dla pacjenta są w stanie to badanie zastąpić . Należy także zauważyć , że Pan Rojewski wykonuje badania pospiesznie tylko wówczas gdy pacjent wypisuje się na własną prośbę ze szpitala . W innym wypadku na badania czeka się dotąd , aż mu się przypomni , że ów pacjent jeszcze istnieje . W rozmowie z lekarzem z innego szpitala wydawał się zagubiony i nie był w stanie odpowiedzieć na najprostsze pytania dotyczące swoich pacjentów . Nie wiedział co jest pacjentowi , jakie badania już były wykonane , a jakie zamierza wykonać . Chociaż jeżeli Pan doktor stosuje w swojej praktyce metody z ubiegłego wieku to może i lepiej , aby nie wykonywał ich zbyt wiele ."
+  },
+  {
+    "opinion_id": "op_000690",
+    "text": "Dr Jakub Gierczyński , specjalista w dziedzinie ekonomii i ochrony zdrowia , poinformował , że w 2017 r . w Polsce bezpośrednio z powodu cukrzycy zmarło 8 tys . osób . Rok wcześniej – 6 tys . O wiele więcej osób umiera jednak z powodu powikłań cukrzycowych . W 2017 r . zmarło z tego powodu 26 tys . Przyczyną 70 proc . tych zgonów były choroby sercowo - naczyniowe , będące wynikiem powikłań cukrzycy . Diabetolog z Centralnego Szpitala Klinicznego MSWiA dr Alicja Milczarczyk zwróciła uwagę , że w Polsce nie są refundowane leki , które mają udowodnioną skuteczność leczenia w powikłaniach naczyniowo - sercowych . Obniżają one możliwość zgonu od 22 do 38 proc . Choć leki te są dostępne w aptekach , wielu chorych nie może podjąć terapii , ponieważ nie stać ich na zakup tych lekarstw . Zaproponowała , że jeżeli nie można ich refundować dla wszystkich osób z powikłaniami naczyniowo - sercowymi , to przynajmniej objąć refundacją leki dla osób po zawale ."
+  },
+  {
+    "opinion_id": "op_000691",
+    "text": "Swietny lekarz , doskonaly specjalista i cudowny czlowiek - tak w skrocie mozna opisac wg mnie Panią drRutkowską - Majewską . Do kazdego podchodzi indywidualnie , nie czulam sie tam jak kolejny przypadek . Do tego wszystkiego dobry kontakt z pacjentem . Nic dodac nic ujac , dla mnie idealny lekarz ."
+  },
+  {
+    "opinion_id": "op_000692",
+    "text": "Podczas wizyty w Lux - medzie lekarka zwróciła uwagę na powiększony migdał dziecka . Tłumaczyła m , że asymetria migdałów występuje od lat , widziało ją już kilku lekarzy , a dziecko nie narzeka na gardło . Doktor stwierdziła , że dziecko jest chore na PROMIENICĘ ( ! ) , zmianę należy wyciąć i daje nam skierowanie do szpitala . Równocześnie szpatułką próbowała \" wycisnąć \" coś z migdałaka dziecka , co powodowało ból i dyskomfort . Odmówiła m wzięcia skierowania do szpitala i szybko zapisała m dziecko na konsultację do Medicusa . Tam gardło zostało dokładnie obejrzane endoskopem . Żadnej promienicy nie ma , stwierdzono prosty przerost migdała , absolutnie nie do zabiegu ! Absolutnie nie polecam tej lekarki , sypie diagnozami \" z rękawa \" , naraża rodzica i dziecko na niepotrzebny stres , wmawiając bez żadnych badań bardzo rzadkie choroby !"
+  },
+  {
+    "opinion_id": "op_000693",
+    "text": "Kilka lat temu Pani doktor prowadziła moje leczenie . Niewątpliwie posiada bardzo dużą wiedzę ze swojej dziedziny , jednak podejście do pacjenta jest karygodne . Z początku myślała m , że może Pani doktor ma zły dzień - zdarza się . Niestety po kilku spotkaniach przekonała m się , że to lekceważące traktowanie to norma . Zero szacunku do pacjenta ( Pani doktor podczas wykonywania testów alergicznych wpadła na pomysł , że to dobry czas na poprawienie makijażu - zaczęła w mojej obecności malować się szminką przy lustrze ! ) . Na wizytach nie czuła m się wysłuchana , a raczej kompletnie ignorowana . Arogancka , za grosz wyczucia i kultury . Oprócz tego bardzo łatwo wpada w złość przy zwykłych pytaniach i odpowiada w złośliwy sposób . Styczność z tą Panią było najgorszym spotkaniem z lekarzem w moim życiu . Szczerze odradzam ! Korzystała m z usług Medicover ."
+  },
+  {
+    "opinion_id": "op_000694",
+    "text": "Nie czuła m się zbyt komfortowo na tej wizycie . Zapłaciła m 150zł , żeby dostać zalecenie do zrobienia usg ( chociaż na stronie ośrodka jest napisane , że jest u nich wykonywane ) i radę aby brać tabletki przeciwbólowe , które już i tak brała m i w niczym nie pomagały . Równie dobrze mogła m iść do lekarza rodzinnego ."
+  },
+  {
+    "opinion_id": "op_000695",
+    "text": "Witam serdecznie ! Chciała m się podzielić swoją opinią na temat dr Fudaleja . Muszę przyznać , że od samego początku dr ma podejście w pełni profesjonalne ! Od razu przedstawił mi plan leczenia , w tym ile będzie ono trwało : ) ) ) Miała m założone dwa aparaty ( góra i dół ) i obeszło się bez wyrywania zębów - gdzie inni lekarze pierwsze co chcieli robić to rwać ! Wśród osób niezadowolonych z leczenia dr Piotra , zawsze się znajdzie jakaś \" czarna owca \" - więc radze iść i samemu przekonać się jak na prawdę leczy doktor - ja jestem bardzo zadowolona ! ! ! Polecam z czystym sumieniem !"
+  },
+  {
+    "opinion_id": "op_000696",
+    "text": "Lekarz najpierw porozmawiał ze mną o dziecku , wysłuchał problemu i odpowiedział na moje wątpliwości . Tłumaczył jasno , spokojnie , nie spiesząc się . Miał chęci porozmawiać o problemie z dzieckiem , próbował , pytał go , zachęcał do badania , ale nic na siłę . Uspokoił nas . Jedyny minus daje lekarzowi za małe uwagi wychowawcze co do dziecka . Dziecko jest z zaburzeniami zachowań i zwłaszcza w gabinetach lekarskich muszę podchodzić do niego nieco inaczej ."
+  },
+  {
+    "opinion_id": "op_000697",
+    "text": "dr Markuszewski to specyficzna osoba , była m zapatrzona w niego przez 3 lata , chodziła m regularnie bardzo często , czekała m po kilka godzin na wizyte aby . . . usłyszeć kolejny raz to samo . czyli spanie na plecach , nie zakładanie nogi na noge , dieta , naturalna bielizna , zero wkładek , spódnica i najlepiej bez majtek . może i coś w tym jest ale nie oczekuje od lekarza ze bedzie mi matkować w sprawie stylu mojego życia tylko że fachowo powie co mi jest . potrafił gadac w nieskończoność o tym że mam zimne stopy , nie odczuwam przyjemności podczas stosunku a jak zadawała m konkretne pytania to słyszała m że wszystko będzie dobrze tylko mam sie go słuchać . czasem miała m wrażenie że te wizyty to podbudowa jego ego , bo nie dopuszczał do siebie żadnych uwag i faktów - no bo kto lepiej ode mnie wie czy marzna mi stopy i czy boli mnie lewa pierś bardziej od prawej . . . Wykrył u mnie kłykciny które dwukrotnie mi zamrażał . w końcu sama zaczęła m orientować sie w temacie i wiem że kłykcin nie stwierdza sie makroskopowo tylko trzeba zrobic badanie ( on nawet nie powiedział mi o takiej możliwości ) na obecność wirusa hpv . . . on leczył w ciemno to co widział i kasował za każdy zabieg 200zł no i oczywiście wizyty 80zł . dzisiaj potwierdziła m że kłykcin nie mam . Kiedy dostawała m zapaleń zawsze wychodziła m z tymi samymi globulkami ( jak każda pacjentka ) no i nigdy nie leczył partnera . krótko mówiąc - omijać z daleka !"
+  },
+  {
+    "opinion_id": "op_000698",
+    "text": "Nawet nie wiem od czego zacząć . Na prawdę , pierwszy raz zdarza mi się wystawić taką negatywną opinie i wogóle bawić się w takie rzeczy . Ten gastrolog chyba \" jedzie na dobrej opinii \" . Wydane 700 zł na badanie gastroskopi i colonoskopii i usg . Za samo przyjście i opisanie objawów 150 zł . Ok , to rozumiem , tylko gdyby ten lekarz rzeczywiście sie mną zajął , a nie czekał aż zostawie pieniądze i wejdzie następnym . Nie jest miły . Jak po każdym posiłku , jak każdej nocy , cierpiała m dalej tak samo . Nic mi ten lekarz nie pomógł . Leki , które miały pomóc ( duspaltalin przepisywany przez niego masowo każemu ) były tylko prowizorką . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_000699",
+    "text": "Kierując się wspaniałymi opiniami internautów oraz wszelkimi informacjami na temat doświadczenia , historią i miejsca pracy - umówiła m moją mamę na wizytę . Pierwsze wrażenie naprawdę bardzo pozytywne . Wysoka kultura osobista , dobrze przeprowadzony wywiad , analiza wszystkich badań , rozmowa oraz samo badanie - nic do zarzucenia . Dodatkowo pomoc przy uzyskaniu dostępu do holtera w Szpitalu na Banacha . Potem kolejna wizyta po uzyskaniu wyników z holtera . Druga wizyta również w porządku i zapewne wszystko było by jak nalezy gdyby nie fakt , że przepisane dawki leków , o mało nie doprowadziły mojej mamy do zapaści . Pan doktor zalecił , żeby pod żadnym pozorem nie zmieniać dawkowania leków ( gdyż podobno ludzie sami sobie reguluja medykamenty i często z tego powodu biorą się kłopoty zarówno z ciśnieniem , jak i sercem ) . Podczas leczenia Przy ciśnieniu 70 / 42 i pulsie 48 - zadzwoniła m do pana doktora ogromnie zaniepokojona , widząc jak czuje się moja mama . Lekarz powiedział , że to minie , żeby nie przerywać leczenia , a puls mozna sobie podwyższyć niedużą ilością koniaku ! ! ! ! Niestety - za pierwszym razem dała m się przekonać i prawie zmusiła m moją mamę ( która nie pije alkoholu ) do zażycia 20 - 30 ml . Rzeczywiście serce zaczęło bić trochę szybciej . W ten sposób mama pomna słów p . doktora o niezmienianiu kuracji - brała leki , bardzo źle się czuła , niemal mdlała i tak było ok . 2 tygodnie . Kolejny raz kiedy parametry na ciśnieniomierzu okazały się jeszcze gorsze , a samopoczucie takie , że już właściwie pogodziła się z faktem , że umrze - wezwały śmy innego doktora do domu i okazało się , że koniecznie nalezy zmienić dawkowanie , że przepisane leki mozna podawać do 60 roku zycia i to bardzo ostrożnie i w małych ilościach ( zamiast 3 x 150mg - najwyżej 1 raz doraźnie ! ! ! ) . Zmieniłysmy sposób przyjmownia leków , ten zalecany przez pana doktora - odstawiłysmy zupełnie . Od tego czasu minęły 2 lata - mama czuje się znakomicie . Nigdy nie ufajmy lekarzom do końca . Każdy organizm jest inny i po samopoczuciu nalezy stwierdzić czy kontynuować leczenie czy je zmienić . Intencje zapewne były dobre - tylko wynik móg być tragiczny ."
+  },
+  {
+    "opinion_id": "op_000700",
+    "text": "Podzielam opinię Pani Doktor Agrawal , że złe odżywianie i stres są największymi zagrożeniami dla ogranizmu , o czym przekonała m się na własnej skórze przechodząc na odpowiednią dietę i widzę , że mało jest takich lekarzy , którzy holistycznie patrzą na człowieka . Dr Agrawal zrobiła na mnie na początku bardzo dobre wrażenie , ponieważ bije od niej pozytywna energia i spokój , i z entuzjazmem podeszła m do jej zaleceń , przejęła m się moim zdrowiem , bo jej diagnoza była bardzo przekonująca . Przekonała m się jednak po raz kolejny , żeby z rozsądkiem podchodzić również do takich sposobów leczenia . Pani Doktor postawiła niestety błędną diagnozę - nadmiar estrogenów , co postanowiła m potwierdzić badaniami z krwi . Okazało się , że hormony mam w normie . Gdyby m tego nie sprawdziła , dziś smarowała by m się maścią z progesteronem zapisaną przez Panią Doktor , ale po co ? Nie jestem również przekonana do zalecanych tzw . Em - ów , są to dobroczynne bakterie ( z mieszanką ziół ) , a jak wiadomo takie bakterie potrzebne są w jelitach , więc najpierw muszą przejść przez żołądek . Pijąc taki płyn z bakteriami , czy one są w stanie przeżyć w żołądku - raczej marne szanse więc wolę brać obecne na rynku symbiotyki w specjalnych kapsułkach . Natomiast bardzo dobre efekty widzę po przepisanej przez Panią Doktor miksturze Słoneckiego ( oliwa z oliwek , alocit , cytryna ) . Naturalne metody leczenia są super - ale dziewczyny , bądźcie ostrożne , uzupełniajcie tą wiedzę zwykłymi badaniami i własną intuicją . Chyba bała by m się powierzyć prowadzenie ciąży u Pani Doktor , no chyba że równolegle u innego lekarza . Pomimo iż z wieloma rzeczami zgadzam się , jednak według mnie jest to wszystko zbyt mało odpowiedzialne , a przede wszystkim , u lekarza , który nazywa siebie holistycznym , za mało uwagi poświęca się jednosce . Za bardzo to wszystko chaotyczne , chociaż cel szlachetny ."
+  }
+]

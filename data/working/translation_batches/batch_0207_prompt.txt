@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004121",
+    "text": "Wizyta w sympatycznej atmosferze, pani fizjoterapeutka kompetentna, oprócz samego zabiegu (skutecznego) podała szereg ważnych informacji i zaleceń. Szczerze polecam :)"
+  },
+  {
+    "opinion_id": "op_004122",
+    "text": "Pani Paulina była bardzo miła, profesjonalna i szczegółowa w podejściu. Widać, że ma ogromną wiedzę i pasję do swojej pracy — wszystko dokładnie wyjaśniła i sprawiła, że czułam się zaopiekowana.  Zdecydowanie polecam!"
+  },
+  {
+    "opinion_id": "op_004123",
+    "text": "Profesjonalnie a i pogadać można co by czas szybciej minął. Polecam!"
+  },
+  {
+    "opinion_id": "op_004124",
+    "text": "Bardzo profesjonalnie i przede wszystkim skutecznie. Mogę z czystym sumieniem polecić Panią Paulinę."
+  },
+  {
+    "opinion_id": "op_004125",
+    "text": "Rewelacja jak zawsze! Godzina pracy i efekty od razu widać."
+  },
+  {
+    "opinion_id": "op_004126",
+    "text": "Masaż Kobido był dokładny i wykonany w skupieniu."
+  },
+  {
+    "opinion_id": "op_004127",
+    "text": "Profesjonalnie i miło :) Duża wiedza i zaangażowanie"
+  },
+  {
+    "opinion_id": "op_004128",
+    "text": "Paulina była naprawdę super. Udało mi się umówić na dwie wizyty podczas mojego krótkiego pobytu w Gdańsku i szkoda, że tylko dwie. Był ból, ale jestem naprawdę zadowolona. Szczególnie z tego, co Paulina zrobiła z moją twarzą. Na pewno będę wracała!"
+  },
+  {
+    "opinion_id": "op_004129",
+    "text": "Wizyta przebiegła w świetnej atmosferze. Pani Paulina to miła, kompetentna osoba, znająca się na rzeczy. Polecam"
+  },
+  {
+    "opinion_id": "op_004130",
+    "text": "Indywidualne podejście do potrzeb pacjenta i dopasowanie terapii"
+  },
+  {
+    "opinion_id": "op_004131",
+    "text": "Polecam! Profesjonalne podejście i konkretna pomoc – jestem zadowolona z wizyty."
+  },
+  {
+    "opinion_id": "op_004132",
+    "text": "Wizyta przebiegła w bardzo miłej atmosferze. Pan fizjoterapeuta widać że zna się „na rzeczy”."
+  },
+  {
+    "opinion_id": "op_004133",
+    "text": "Bardzo spoko fizjo, wszystko tłumaczy na spokojnie i prostym językiem. NIe straszy niepotrzebnie."
+  },
+  {
+    "opinion_id": "op_004134",
+    "text": "Bardzo profesjonalny, empatyczny, rzetelny i fachowy.Polecam."
+  },
+  {
+    "opinion_id": "op_004135",
+    "text": "Świetne pierwsze wrażenie od samego progu - przywitanie i ogólnie fajna luźna atmosfera. Potem tylko lepiej: szczegółowy wywiad n/t problemu, wyjaśnienie wszystkiego w obrazowy sposób, wyjaśnienie poszczególnych wykonywanych kroków i czynności. Ekstra, człowiek czuje się naprawdę zaopiekowany. Po zabiegu odczuwalna poprawa, choć z informacją, że prawdziwe wyniki przyniesie odpowiednie traktowanie siebie i swojego problemu. A i cena bardzo uczciwa."
+  },
+  {
+    "opinion_id": "op_004136",
+    "text": "Duża wiedza i doświadczenie pozwoliły postawić trafną diagnozę. Dzięki temu uzyskałem szybką pomoc w pozbyciu się bólu. Zdecydowanie polecam"
+  },
+  {
+    "opinion_id": "op_004137",
+    "text": "Polecam gorąco, super gość"
+  },
+  {
+    "opinion_id": "op_004138",
+    "text": "Co to była za wizyta! Godzina minęła w mgnieniu oka. Przemek przeprowadził dokładny wywiad, a później wyjaśniał wszystko w przystępny sposób, po ludzku, bardzo szczegółowo, bez ściemniania. Dostałam dokładne instrukcje jakie ćwiczenia wykonywać w domu, zalecenie wizyty kontrolnej. Po wizycie czułam ulgę w moich dolegliwościach. Polecam!"
+  },
+  {
+    "opinion_id": "op_004139",
+    "text": "Z całego serca polecam tego fizjoterapeutę – profesjonalny, zaangażowany i z doskonałym podejściem do pacjenta. Już po kilku wizytach odczułem wyraźną poprawę. Świetna atmosfera i skuteczna terapia!"
+  },
+  {
+    "opinion_id": "op_004140",
+    "text": "Profesjonalne podejście, szczegółowy wywiad, a do tego przyjazna atmosfera i poczucie komfortu pacjenta. Ćwiczenia do wykonywania samodzielnie w domu zostały dokładnie pokazane i wyjaśnione. Jestem zadowolona z wizyty."
+  }
+]

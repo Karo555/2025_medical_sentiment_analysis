@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000161",
+    "text": "Jeśli szukasz naprawdę dobrego lekarza , to już nie szukaj ! Zostań tu na tej stronie i odwiedź pana doktora Rafała Ptaszyńskiego . Była m u pana doktora na wizycie wczoraj , zwykła wizyta okazała się niezwykłą ! Chyba po raz pierwszy w życiu czuła m , że ktoś naprawdę chce mnie wysłuchać i pomóc . Pan doktor poświęcił mi tyle czasu ile trzeba , nic nie pospieszał , każdy szczegół był ważny . Za miesiąc idę na kontrolę . Już wiem , że to będzie mój Pan Doktor ! Z pozdrowieniami zadowolona pacjentka Hanna Komar ."
+  },
+  {
+    "opinion_id": "op_000162",
+    "text": "Lekarz bardzo zdawkowo poinformowal mnie co mi dolega . Zaproponował zabieg krioterapii nie wspominając ani słowem ze może być on bolesny . W trakcie zabiegu nawet nie zapytał czy wszystko ze mną OK . Po wyjściu z gabinetu zrobiło mi sie słabo . Udał em sie do toalety gdzie zauważył em ze zabieg spowodował krwawienie . Na to tez nie bylem przygotowany . Tak więc moja pierwsza w życiu wizyta u proktologia okazała się raczej traumatyczna ."
+  },
+  {
+    "opinion_id": "op_000163",
+    "text": "Od jakiegos czasu odwiedzam roznych lekarzy poniewaz moj dorastajacy syn , pietnastolatek , za szybko rosnie . . a jego serducho nie nadaza za nim . W zwiazku z czym zle sie czasem dzieje . Calkiem przypadkiem skierowano mnie do dr Rycaja . . . to chyba szczescie w nieszczesciu , ze spotkalam tego lekarza na naszej drodze . Niezwykle mily , uprzejmy , kompetentny . pokorny wobec tego co zycie nam juz funduje . . . . podnoszacy na duchu . . nas rodzicow . . . w nie jednym przypadku bardzo zrozpaczeni . . bojacy sie co bedzie dalej . . a jednak potrafiacy podjac odpowiednia decyzje i nas pocieszyc . Duzo zdrowia Panie Doktorze i wytrwalosci w dalszym leczeniu duzych i malych serduszek . Wdzieczna mama \" duzego Przemka \" ."
+  },
+  {
+    "opinion_id": "op_000164",
+    "text": "Była m u Pana doktora pierwszy raz i wręcz przeciwnie . . . nie spotkała m się ani z żadnymi telefonami ani złym traktowaniem . Pan doktor normalnie ze mną rozmawiał , wszystko było ok . także ja polecam . acha . . . przy tym jest delikatny a to ważne . 100 zł za wizytę to cena normalna . . . płaciła m już więcej . nie widzę więc żadneo powodu z jakiego miała by m odradzać tego pana"
+  },
+  {
+    "opinion_id": "op_000165",
+    "text": "Jako lekarz dla pacjenta niezwykle miła o wysokim poziomie wiedzy . Cierpliwa umiejąca doradzić pocieszyć i co najważniejsze leczy jak mało kto ! ! ! Odpowiednia osoba wykonująca ten fach . Szczęśliwcy co ich leczy pani doktor . Mnie leczyła ale . . . oj by się to odmieniło ."
+  },
+  {
+    "opinion_id": "op_000166",
+    "text": "Sprawia wrażenie miłego i kompetentnego - ale to tylko otoczka i pozory . Obrazy rezonansu oglądał miniaturki bo nawet nie wiedział jak je powiekszyc - do tego twierdził ze tak najlepiej widać . Gdy zadawał em szczegołowe pytania był em zbywany - oczywiście wszystko w bardzo miły sposób - gdy nalegał em na konkretniejsze odpowiedzi następowało tzw \" lanie wody \" i zmiana tematu . Według tego lekarza sa pewne protokoły leczenia które MUSZĄ pomóc w każdej sytuacji i jeżeli pacjent nadal jest chory to oznacza że udaje i nie ma innego wytłumaczenia bo to MUSIAŁO POMÓC . Mi osobiście nie pomógł nic a wrecz odwrotnie ."
+  },
+  {
+    "opinion_id": "op_000167",
+    "text": "Jednak pierwszy pacjent , który go przeszedł musiał mieć przedtem wykonaną skomplikowaną kilkugodzinną operację usunięcia trzustki z powodu przewlekłego zapalenia tego narządu . Była bardzo trudna , ponieważ mężczyzna już wcześniej przechodził operację z tej przyczyny – wykonano mu wówczas tzw . bypass żołądkowo - jelitowy , po którym w jamie otrzewnej pozostało dużo zrostów . „ Wycinając pacjentowi trzustkę wywołujemy u niego cukrzycę typu 1 , która wymaga podawania insuliny . Aby tego uniknąć z usuniętego narządu natychmiast wyizolowali śmy wyspy trzustkowe i wszczepili śmy je pod śluzówkę żołądka chorego . Było to zatem autoprzeszczepienie , co jest korzystne , bo nie grozi odrzuceniem przeszczepu i nie wymaga stosowania leków immunosupresyjnych ” - tłumaczył prof . Chmura ."
+  },
+  {
+    "opinion_id": "op_000168",
+    "text": "Opracowali śmy czujniki pozwalające na oznaczenie peptydu A - beta a także białka z rodziny S 100 B . Są dane naukowe , które wskazują , że obecność tego białka świadczy o rozwoju choroby Alzheimera . Na tym nie poprzestali śmy , będziemy poszukiwać kolejnych markerów i opracowywać czujniki pozwalające na ich oznaczanie . Te badania muszą być ściśle powiązane z instytucjami medycznymi , bo analiza krwi pacjentów dotkniętych chorobą i ciągłe poszukiwanie powodów , które do niej prowadzą , dadzą nam narzędzie w postaci nowych markerów  - podkreśliła prof . Radecka . \" Gdyby udało nam się taki test opracować a wszystko jest na dobrej drodze , to było by to narzędzie niezwykle pomocne dla bliskich pacjentów chorych na Alzheimera . Jest duże oczekiwanie z ich strony , rodziny pacjentów żyją w niepokoju czy rzeczywiście , + jeśli bliski jest dotknięty tą chorobą , to czy mnie czeka też taki wyrok ? + . To wcale nie jest takie jednoznaczne \" - podkreśliła prof . Radecka ."
+  },
+  {
+    "opinion_id": "op_000169",
+    "text": "Dawka naświetlenia oraz moment , kiedy można je zastosować , ma istotne znaczenie w walce z nowotworami . O tym , czy moment jest właściwy , czy też nie , decyduje m . in . ciśnienie parcjalne tlenu , które może być rozumiane jako stężeniu tlenu . Parametr ten zmienia się w ciągu doby i zależy od wielu czynników . Dzięki takim informacjom lekarze wiedzą , że naświetlania będą niszczyć nowotwór , a nie zdrowe komórki . Mogą regulować dawki terapii , co sprawi , że jest ona mniej bolesna , bardziej spersonalizowana i ma mniej skutków ubocznych . Diagnostyka zmierza do tego , żeby naświetlać guzy akurat wtedy , kiedy natężenie tlenu jest największe . Prace na zwierzętach potwierdzają taką możliwość . Ma to znaczenie w nowotworach mózgu , oka , czy przy małych organach u dzieci ."
+  },
+  {
+    "opinion_id": "op_000170",
+    "text": "Lekarz był sympatyczny i dowcipny , co pomogło pozbyć się krępującej sytuacji podczas badania . Poświęca czas pacjentowi , wizyta nie jest \" w biegu \" , jednak moim zdaniem mógł by trochę bardziej tłumaczyć pacjentowi jak poradzić sobie z problemem zdrowotnym , jak zapobiegać itp . , a nie tylko kierować na kolejne badanie . Była to pierwsza wizyta , więc co do efektów leczenia nie mogę się wypowiadać . W cenie wizyty jest również badanie usg ."
+  },
+  {
+    "opinion_id": "op_000171",
+    "text": "Łącznie przebadano 826 młodych ludzi w wieku 16 - 22 lata , z czego 444 mieszkało w Krakowie i 382 w Lublinie . Wszystkim mierzono ciśnienie krwi , a od 600 pobrano krew do pomiarów stężenia różnych związków , będących wskaźnikami stanu zapalnego , jak np . białko CRP , fibrynogen , homocysteina . Wiadomo , że ich podwyższony poziom we krwi jest czynnikiem świadczącym o wyższym ryzyku chorób sercowo - naczyniowych . „ Mimo że były to osoby młode i całkowicie zdrowie , u których nie bierze się jeszcze pod uwagę ryzyka chorób układu krążenia , to u chłopców mieszkających w Krakowie stwierdzili śmy podwyższone ciśnienie tętnicze krwi w porównaniu z ich rówieśnikami z Lublina ” - powiedział dr Krzysztof Bryniarski , który prezentował wyniki badania na kongresie . Ponadto u młodych mieszkańców Krakowa stwierdzono wyraźnie podwyższone stężenia związków świadczących o rozwoju stanu zapalnego ."
+  },
+  {
+    "opinion_id": "op_000172",
+    "text": "„ Nieprzywiązywanie wagi do jakości i regularności posiłków ujawnia się szczególnie w przypadku śniadań . Część osób w ogóle z nich rezygnuje , motywując to brakiem czasu lub apetytu ” – komentuje opiekun naukowy badania dr Ewa Jagiełło . „ Wydaje się , że styl życia , jaki wiodą , nie wiąże się z niewiedzą , a raczej z ignorowaniem tej wiedzy i brakiem internalizacji zasad , które sprzyjają zdrowszemu i bardziej higienicznemu życiu – mówi dr Ewa Jagiełło . Okazuje się , że potrzeba dbania o siebie uzależniona jest często od bycia w związku . Chodzi tutaj nie tylko o zdrowie , ale również o higienę . Do jej zachowywania bardziej motywuje dopiero intymna relacja ."
+  },
+  {
+    "opinion_id": "op_000173",
+    "text": "W starszym obiekcie znajdują się m . in . sala symulacji do ćwiczeń umiejętności pielęgniarskich , położniczych , a także resuscytacji , laboratoryjnego nauczania umiejętności chirurgicznych i sale do egzaminów praktycznych z przedmiotów klinicznych . W nowym budynku są sale tzw . symulacji wysokiej wierności , w tym imitująca szpitalny oddział ratunkowy , intensywną terapię , blok operacyjny i porodówkę . Będzie tam również symulator karetki wykorzystywany do ćwiczeń ratowniczych . Otwarcie centrum symulacji pozwoli na nowoczesne kształcenie studentów z wydziałów wchodzących w skład Collegium Medicum . Przed swoim pierwszym kontaktem z prawdziwym pacjentem będą mogli przećwiczyć wszystkie czynności medyczne na fantomach i symulatorach , odtwarzających sytuacje i warunki zbliżone do realnych . Jak mówił prorektor ds . Collegium Medicum prof . Wojciech Maksymowicz , centrum symulacji jest jeszcze w okresie rozruchu , ale już prowadzone są tam zajęcia ze studentami ."
+  },
+  {
+    "opinion_id": "op_000174",
+    "text": "Pierwsze lekolepki gotowe były już w 2011 roku . Piotr Merks przygotował je samodzielnie w domu . W 2013 roku za pierwszy niewielki grant przeprowadził badanie pilotażowe w podwarszawskim Radzyminie . \" Nalepił em blisko 9 tys . takich lekolepek . Efekt był fantastyczny , bo udowodnił em , że dzięki nim pacjenci popełniają znacznie mniej błędów przy przyjmowaniu lekarstw \" - tłumaczy . W końcu projektem zainteresował się gdański fundusz kapitałowy Black Pearls VC . Na bazie pomysłu stworzył spółkę Piktorex , dla której pozyskał 1 mln zł z programu BRIdge Alfa prowadzonego przez Narodowe Centrum Badań i Rozwoju . Kierownikiem projektu został Piotr Merks , który za pół roku chce przedstawić rezultat prac Ministerstwu Zdrowia ."
+  },
+  {
+    "opinion_id": "op_000175",
+    "text": "Głównym wyzwaniem projektów MAB obok przełomowej agendy badawczej jest pozyskanie do pracy w Polsce najwybitniejszych badaczy i stworzenie rozpoznawalnej na całym świecie jednostki naukowej . Pierwszy konkurs w programie MAB został rozstrzygnięty w czerwcu 2016 r . Zwyciężył w nim projekt prof . Tomasza Dietla oraz prof . Tomasza Wojtowicza z Instytutu Fizyki PAN w Warszawie , na który FNP przeznaczyła prawie 40 mln zł . Środki te służą do uruchomienia w Polsce Międzynarodowego Centrum Sprzężenia Magnetyzmu i Nadprzewodnictwa z Materią Topologiczną ( MagTop ) , w którym naukowcy z Polski i z zagranicy prowadzą interdyscyplinarne badania z zakresu materiałoznawstwa , nanotechnologii , fizyki półprzewodników oraz badań nad magnetyzmem i nadprzewodnictwem , przyczyniając się do opracowania nowych materiałów topologicznych ."
+  },
+  {
+    "opinion_id": "op_000176",
+    "text": "Witam , 1 , 5 roku temu miała m przeprowadzoną operację nosa - Rekonstrukcja nosa chrzęstno - kostnego z przesunięciem skrzydeł nosa u podstawy . Zależało mi tylko na pozbyciu się tzn . Kartofla na czubku nosa , górna połowa nosa była dla mnie Ok . Chciała m tylko mieć ładny , zgrabny nosek z przodu , jak i z profilu [ teraz z profilu nos długi i wyciągnięty w dół jak u czarownicy - przy uśmiechu makabra . Niestety , żałuję teraz że , się tej operacji poddała m . Kartofel jak był tak jest do tej pory [ miała m nadzieję , że to opuchlizna ] po lewej stronie nosa mam wieczny katar , a górna lewa warga ust też jest lekko opadnięta , czyżby pani doktor naruszyła mi jakiś nerw ? Szkoda . . . marzeń , długo oszczędzanych pieniążków i nadziei na pozbycie się kompleksu - zyskała m głupie żarty i pukanie się w głowę . Zawiodła m się bardzo ."
+  },
+  {
+    "opinion_id": "op_000177",
+    "text": "Projekt badawczo - rozwojowy „ Wprowadzenie najnowszej technologii mikrochipowej ( aCGH ) do badań etiopatogenezy i diagnostyki klinicznej wybranych chorób o poważnych skutkach medycznych i społecznych ” był realizowany od 2008 do 2012 r . w Zakładzie Genetyki Medycznej Instytutu Matki i Dziecka kierowanym przez prof . Tadeusza Mazurczaka , a następnie przez prof . Ewę Bocian . W badaniach uczestniczyło ponad 30 osób . Projekt wykonywano we współpracy z Zakładem Genetyki Molekularnej i Genetyki Człowieka w Baylor College of Medicine w Houston w Teksasie , Zakładem Genetyki Medycznej , Katedry Pediatrii oraz Kliniką Kardiologii Dziecięcej Collegium Medicum Uniwersytetu Jagiellońskiego , Odział em Pediatrii Kardiologicznej Centrum Zdrowia Dziecka w Warszawie , Wydziałem Elektroniki i Technik Informacyjnych Politechniki Warszawskiej oraz Wydziałem Matematyki , Informatyki i Mechaniki Uniwersytetu Warszawskiego ."
+  },
+  {
+    "opinion_id": "op_000178",
+    "text": "Dr Oliver Gautschi z Lucerner Kantonsspital ( Lucerna , Szwajcaria ) zaprezentował np . pracę wskazującą , że niewielka grupa pacjentów z rakiem płuca i mutacją w genie BRAF ( ok . 2 proc . chorych ) może odnieść korzyści z podawania tych samych leków ukierunkowanych molekularnie , które stosuje się w terapii chorych na czerniaka z mutacją w BRAF . Prof . Solange Peters z Centre Hospitalier Universitaire Vaudois w Lozannie zwróciła uwagę , że zastosowanie terapii celowanych molekularnie u chorych na raka płuca utrudnia fakt , iż komórki tego nowotworu , podobnie jak komórki czerniaka , mają znacznie więcej mutacji somatycznych ( tj . powstałych w komórkach ciała , a nie odziedziczonych – PAP ) – średnio ok . 200 - niż znajduje się w komórkach innych nowotworów złośliwych ."
+  },
+  {
+    "opinion_id": "op_000179",
+    "text": "Pani Prusak zrobiła na mnie bardzo dobre wrażenie . Trochę obawiała m się wizyty szczególnie że była to moja pierwsza wizyta u ginekologa . Pani doktor zebrała dokładny wywiad , opowiedziała o badaniu , była bardzo delikatna i rozluzniła mnie wprowadzając miła i sympatyczną atmosferę . Przeprowadziła dokładne badania łacznie z pobraniem próbki na cytologię , badanie nieprawidłowości nie wykazało więc usg sobie odpuściłysmy - sprzęt oczywiście był . Sugerując się moimi opiniami i stanem zdrowotnym indywidualnie dobrała antykoncepcje . Jestem bardzo zadowolona a wizyta u ginekologa nie zostawila po sobie traumy a bardzo pozytywne wspomnienia . GORĄCO POLECAM"
+  },
+  {
+    "opinion_id": "op_000180",
+    "text": "Była m u Pani dr na jednej wizycie . Rzeczywiście jej stosunek jest taki jakby nie lubiła wogóle swojej pracy . . . cóż . . . nie każdy robi to co lubi . Co do badania to nie było źle więc nie ma się czego obawiać . Leki Pani dr mi przepisała dość skuteczne więc też nie mogę narzekać . Brakowało mi troche edukacyjnej pogadanki : co mogę , czego nie , co z moim partnerem itp . itd . Trzeba się dopytywać co i jak . Wydawać się też może , że pytania nie są mile widziane bo może np . : przedłużają wizyte . . . no nie wiem . . . trochę mi tego brakowało ."
+  }
+]

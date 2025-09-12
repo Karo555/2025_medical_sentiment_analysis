@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002261",
+    "text": "Zbyt wysoka cena wizyty w porównaniu do oferowanej pomocy pacjentowi . 250zł za zwykłe badanie laryngologiczne i zlecenie wykonania dodatkowego badania diagnostycznego w innym miejscu to stanowczo za wysoka cena . Lekarz powinien umieć dostosować cenę wizyty do stopnia w jakim pomógł pacjentowi , wielu lekarzy proponuje zmniejszenie ceny wizyty , jeżeli nic nie dała , bo potrzebne są wyniki badań dodatkowych ."
+  },
+  {
+    "opinion_id": "op_002262",
+    "text": "IMI jest największym w historii programem finansowania badań w obszarze biomedycznym , działającym na zasadach partnerstwa publiczno - prywatnego zawartego pomiędzy Unią Europejską a przemysłem farmaceutycznym , który został utworzony w ramach Siódmego Programu Ramowego ( 7PR ) . W ramach IMI do tej pory zainwestowano około 1 , 5 mld euro w projekty badawcze realizowane przez partnerów publicznych i prywatnych . Na konferencji będą omawiane projekty badawcze już realizowane w ramach IMI . Uczestnicy będą też mogli otrzymać fachowe wyjaśnienia dotyczące programu i porady , jak starać się o fundusze w jego ramach . Wśród informacji będą np . priorytety badawcze realizowane w ramach IMI2 ( w latach 2014 - 2024 ) w obszarach o największym potencjale z punktu widzenia przyszłych polskich uczestników ."
+  },
+  {
+    "opinion_id": "op_002263",
+    "text": "Niesympatyczna , z łaską odpowiada na pytania . Wyraźnie niezadowolona z faktu , że mam dużo znamion i chciała by m by na nie zerknęła . Generalnie dąży do jak najszybszego pozbycia się pacjenta z gabinetu . W efekcie części moich pieprzyków nawet nie obejrzała . Ponadto miała m inny problem skórny . Zerkając na ów problem stwierdziła \" ja z tym nic nie zrobię \" . Jednym słowem pomyłka i strata czasu ."
+  },
+  {
+    "opinion_id": "op_002264",
+    "text": "Pojęcie zanieczyszczenia świetlnego dotyczy obecności światła w niewłaściwych porach lub w ilościach większych niż te , do których zaadaptowane są organizmy zamieszkujące naszą planetę . W ostatnich latach zjawisko to zwiększa się w zastraszającym tempie . Jednym z bardziej widocznych jego efektów jest niemożność obserwowania przez ludzi nocnego nieba - gwiazd czy planet . Jest to widoczne przede wszystkim w miastach , gdzie znajdują się tysiące latarni , a wiele budowli jest dodatkowo iluminowanych . \" Zanieczyszczenie światłem jest problemem globalnym i dotyka wszystkich rejonów mających dostęp do elektryczności \" - powiedziała PAP Krystyna Skwarło - Sońta , emerytowana profesor Wydziału Biologii Uniwersytetu Warszawskiego . W jej ocenie problem ten jest tym większy , im bogatszy jest dany kraj : nocne niebo jest najjaśniejsze w USA ( głównie we wschodniej części kraju ) , Japonii , dużych obszarach Europy . Jak dodała , zjawisko powoli zaczyna dotykać także Afryki ."
+  },
+  {
+    "opinion_id": "op_002265",
+    "text": "Miała m wielkie nadzieję idąc na wizytę do tego lekarza . Mam jedno dziecko , chciała by m mieć drugie ale niestety dwa razy poroniła m a teraz nie mogę zajść w ciążę . Pan prof.po pierwsze kłócił się ze mną że to nie były poronienia tylko ciążę biochemiczne bo nie było USG z oznaczeniem tętna . Co za różnica , problemem jest dlaczego te ciaze nie rozwijały się dalej . Koniecznie chciał zobaczyć dokumentację ze szpitala , gdy pojechalam po poronieniu . Miała m wrażenie że podważa w ogóle moje poronienia . Zrobił USG , ale nawet nie zapytał kiedy miała m ostatnia miesiączke ani w jakim jestem dniu cyklu ! ! ! Potem stwierdził że mam adenomioze ale to nie ma wpływu na ciążę . Bardzosie zestresowalam jak poczytalam o tym zwłaszcza że PAN dr to zbagatelizowal . Ogólnie miała m wrażenie że jest zmęczony i znudzony . Dał mi skierowanie na jakieś badania , ale w sumie nic się nie dowiedziała m . Stwierdził że powinna m wyjechać z mężem na długi urlop bo stąd mój problem z zajściem w ciążę . To była moja pierwszą wizyta u tego lekarza i nie wiem czy nie ostatnia ."
+  },
+  {
+    "opinion_id": "op_002266",
+    "text": "Korzystając z możliwości jakie daje mi comiesięczne przelewanie kilku tysięcy złotych na ZUS przebył em wcześniej konsultacje na tzw . Fundusz Zdrowia u innego laryngologa i pomimo postawionej już diagnozy przez innych lekarzy , postanowił em zainwestować dodatkowo 150 zł i skonsultować z Samym Ordynatorem lek . Piotrem Łach . Gość jest super , naprawdę wie o czym mówi , wysłuchał mnie bardzo uważnie , wnikliwie oglądał też moje zdjęcia z badania TK Zatok . W kilku zdaniach przekonał mnie co do diagnozy . Wielkie dzięki mu za to . Niestety paranoją jest , że operacja przegrody nosowej wykonana na Fundusz Zdrowia to czas oczekiwania ponad dwa lata . Pan Doktor na szczęście zaproponował też inne rozwiązanie w tym samym szpitalu Rydygiera wręcz od ręki można poddać się zabiegowi jeśli ma się dodatkowo tylko około 6000 zł . I to jest ta ciemna strona księżyca . . ."
+  },
+  {
+    "opinion_id": "op_002267",
+    "text": "Pani Julia jest wybitna ! Miałem okazję brać udział w warsztatach emisji głosu , które prowadziła i wyniosł em z nich tyle nauki , że nawet w pracy zauważono te zmiany , na lepsze oczywiście . Jestem pod wrażeniem jak sprawnie i szybko potrafiła przełamać opór , który jakoś tkwił we mnie i brał em udział w ćwiczeniach z zaangażowaniem a do tego z wielką frajdą , jaką dają te zajęcia . Uważam , że każdy powinien choć raz tego spróbować , żeby przekonać się jak wiele można zmienić w sposobie mówienia . Oceniam na pięć gwiazdek , ale dał by m i dziesięć !"
+  },
+  {
+    "opinion_id": "op_002268",
+    "text": "Jubileuszowy wykład wspomnieniowy wygłosił w czwartek nestor polskiej onkologii , powstaniec warszawski , związany z gliwickim instytutem przez 66 lat prof . Mieczysław Chorąży , odznaczony w maju tego roku Orderem Orła Białego przez prezydenta RP Andrzeja Dudę . Wspominał m . in . powojenne czasy i nieporozumienia na tle językowym z pacjentami mówiącymi wyłącznie gwarą śląską , czy też chorego , który przyszedł na badania z synem . „ Pobrał em próbkę do badania i powiedział em , że wynik i wezwanie na leczenie pacjent otrzyma za jakieś 10 dni . Syn wyjął pistolet i oświadczył , że wynik ma być za pół godziny ” – opowiadał . „ Nasze dzieła powstają ze wspólnej pracy , badań , wysiłków , idei nie tylko ludzi z tytułami , ale też laborantek , pielęgniarek , administracji . Dziękuję bardzo ” – podsumował , a zebrani nagrodzili go owacją na stojąco . Do najważniejszych osiągnięć naukowych prof . Chorążego i jego zespołu należy zbadanie niektórych elementów regulujących funkcje genów komórek eukariotycznych oraz aktywności transkrypcyjnej wątroby szczura , wykrycie dotąd nieznanych dziedzicznych mechanizmów powodujących zachorowania na nowotwory , zwłaszcza raka płuc , oraz odkrycie funkcjonowania mechanizmów DNA w komórkach zwierzęcych ."
+  },
+  {
+    "opinion_id": "op_002269",
+    "text": "Witam . Uważam , że ten człowiek nie powinien nawet nazywać się lekarzem . Była m u niego 3 razy zapłaciła m kupe kasy nie zbadał mnie jak powinien tylko obejrzał odbyt , a uważam , że za te pieniądze należne były badania . Ale to nic . Najśmieszniejsze jest to , że nie potrafił określić co mi jest . Wypisał mi jedynie leki na hemoroidy i maść na grzybicę . Później jak leki nie dały skutku bez oglądnięcia odytu wypisał mi jakąś maść lepioną w aptece za 6zł po której odbyt i rowek zrobiły się fioletowe . Poszła m do niego by wyjaśnić sprawę . . To powiedział , że on nie widzi żadnych zmian skórnych . . \" Przypominam , że miała m fioletowy prawie , że siny odbyt i rowek \" . A poźnej powiedział , że jeśli ja dostrzegam jakieś zmiany to on może przeprowadzić zabieg . . . Poszła m do innego proktologa . Pokazała m mu leki to facet powiedział , że \" lekarz \" u którego była m wcześniej leczył mnie na wszystkie możliwe choroby tylko nie na tę którą obecnie mam . Okazało się , że mam wgle co innego . Inny proktolog doświadczona facet do którego poszła m wykonał mi bardzo szczególne badania określił co mi jest i wypisał mi trafne lekki bo po 2 tygodniach wszystkie objawy zniknęły . Więc jeśli komuś naprawdę zależy na zdrowiu niech omija tego pana z daleka . Aptekarka w aptece wie więcej niż ten człowiek . Pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_002270",
+    "text": "Ja również polecam Dr Sadłeckiego . Od 2 lat z mężem staramy się o dzidziusia i odwiedzali śmy różnych lekarzy . Stwierdzono u mnie Zespół Policystycznych jajników i właściwie na tym się skończyło . Doktor Sadłecki wysłuchał bardzo uważnie mojego problemu i od razu z wielkim zaangażowaniem wziął jak to się mówi sprawy w swoje ręce . Skierował nas na szereg potrzebnych badań gdzie poprzedni lekarze nawet o nich nie wspomnieli , dokładnie wytłumaczył na czym polega moja dolegliwość i jak ją będziemy leczyć . Na początku czerwca czeka mnie zabieg HSG i później dalsze leczenie . Wierze że z pomocą Pana Doktora wkrótce z mężem doczekamy się maluszka . Badanie jest nie stresujące Polecam ! ! ! !"
+  },
+  {
+    "opinion_id": "op_002271",
+    "text": "Nie polecam absolutnie . Byli śmy u tego lekarza na badaniu bioderek u córeczki . Po badaniu USG stwierdził dysplazję obustronną i zalecił rozwórkę Koszli na co najmniej 6 tygodni . Poza wykonaniem USG , dziecko nie zostało zbadane całościowo , trudno też było cokolwiek się dowiedzieć , bo pan doktor nic nie mówi i zdawkowo odpowiada na pytania . Całe szczęście postanowili śmy skonsultować diagnozę z dwoma innymi lekarzami i okazało się , że dr Kłoszewski prawdopodobnie błędnie wykonał badanie USG . Dysplazji nie było , jedynie fizjologiczny niedorozwój bioderek , który absolutnie nie wymagał zakładania aparatu , jedynie prostego ćwiczenia nóżek podczas przewijania ."
+  },
+  {
+    "opinion_id": "op_002272",
+    "text": "Odradzam tego lekarza . Była m u niego na wizycie po której stwierdził że trzeba mi coś wyłyżeczkować . Zapytała m czy nie wystarczą maści bądź czopki stwierdził że nie i trzeba mnie położyć w szpitalu oraz znieczulić ogólnie . Przeraziła m się bo nigdy nie chciała m być usypiana . Lekarz stwierdził że nie może podać znieczulenia miejscowego bo jak mi założy wziernik to nie wytrzymam i z bólu będę chciała wyskoczyć przez ścianę . Po tej wizycie nie była m usatysfakcjonowana więc poszła m do innego proktologa . Miała m zrobioną rektroskopie na której wyszło że mam hemoroidy i polip który trzeba będzie usunąć ale można to wykonać w gabinecie u proktologa w znieczuleniu miejscowym . Nie wiem na jakiej podstawie ten lekarz stwierdził że coś trzeba mi wyłyżeczkować skoro zbadał mnie tylko palcem ."
+  },
+  {
+    "opinion_id": "op_002273",
+    "text": "Pod jednym dachem pracują tu świetni naukowcy reprezentujący w zasadzie każdą dziedzinę nauki - biologię , fizykę , chemię , eksperymentatorzy i badacze teoretyczni . Także sprzęt nie jest problemem , maszyny wchodzą niemal jednoczesnie na rynek amerykański i europejski , w tym polski . Prof . Jażdżewski przyznaje jednak , że trudniej jest później ten sprzęt utrzymać i wykorzystać w pełni , to znaczy znaleźć środki na to , żeby pracował w pełnym wymiarze godzin . Ponadto odczynniki , które zużywa się podczas doby , moga kosztować nawet 10 tys . dolarów i trudno zdobyć na to fundusze w formie grantów . Co istotne , te same odczynniki są w Polsce sprzedawane o wiele drożej niż w USA . \" Polska proponuje dobre warunki pracy dla najmłodszych badaczy . O tę grupę najbardziej zadbano w ostatnich latach . Jest dużo miejsc , w których młodzież może zdobywać ganty i wiedzę . Z ich perspektywy praca w Polsce daje im podobne możliwości , jak praca zagranicą - te same stypendia , granty , warunki pracy i najlepsze zespoły , co gwarantuje dobre publikacje w przyszłości . Współpraca z zagranicą jest bardzo partnerska , wszystkie strony podobnie korzystają z międzynarodowych projektów \" - podsumowuje uczony ."
+  },
+  {
+    "opinion_id": "op_002274",
+    "text": "Przed przeprowadzeniem pierwszego zabiegu trzeba było dopełnić wielu formalności wymaganych przez autoryzowane instytucje i wprowadzić w gdańskim szpitalu procedury związane z przeszczepami serca i płuc , bo takie zabiegi również mamy w planie wykonywać w UCK  – wyjaśnił obecny na konferencji dr Jacek Wojarski zatrudniony w Klinice Kardiochirurgii i Chirurgii Naczyniowej UCK . Dodał , że pierwszą gdańską transplantację płuc poprzedziły też bardzo intensywne szkolenia zespołów pielęgniarskich i lekarskich z wielu klinik i pracowni UCK . Dr Wojarski poinformował , że 64 - letni mieszkaniec Pruszcza Gdańskiego otrzymał organ od dawcy , który \" został zdiagnozowany w gdańskim szpitalu w UCK \" . Lekarz wyjaśnił , że pacjent , któremu przeszczepiono płuca , cierpiał na \" krańcową , nasiloną postać rozedmy płuc , która właściwie uniemożliwiała mu aktywny tryb życia \" . \" Nasilające się w ostatnim czasie dolegliwości i liczba hospitalizacji tego pacjenta pokazywały , że czas , jaki mu pozostał , kurczy się \" – zaznaczył Wojarski ."
+  },
+  {
+    "opinion_id": "op_002275",
+    "text": "Był em na wizycie w celu wyrwania ósemki . Sam zabieg przebiegł szybko i bezboleśnie i to na plus . Natomiast na minus zasługuje fakt , że Pani doktor nie przepisała mi żadnych antybiotyków , ani nawet środków przeciwbólowych , nie poinformowała także o żadnych zaleceniach pozabiegowych . Niestety miałem komplikacje i musiałem później wziąć dwa silne antybiotyki , przez co przez ponad tydzień nie mogł em jeść ani pić ."
+  },
+  {
+    "opinion_id": "op_002276",
+    "text": "Lekarz bardzo dobry , prężnie działający , na kolanach zna się jak nikt . A co do Kliniki Ruchu - nie znam bardziej profesjonalnej i lepiej nastawionej do klienta placówki . Miłe i pomocne panie na recepcji , które są w stanie zapisać cię na rehabilitację nawet do konkurencyjnej firmy rehabilitacyjnej - była m świadkiem takiej sytuacji ! A wszyscy rehabilitanci super ! Najlepszy specjalista od barku w Warszawie - Andrzej Kępczyński , jestem jego pacjentką i zawsze , jak cś mi sie stanie , dzwonię do niego ."
+  },
+  {
+    "opinion_id": "op_002277",
+    "text": "Szukała m pomocy i sama chciała m za to zapłacić . I co wtedy otrzymujemy drodzy pacjenci ? 20 min rozmowy - wykładu jak to różnie z alergią może być , ulotkę oraz standardowe leki , które od lat nic nie dają . Jakieś badania , skierowania , testy , objerzenie zmian skórnych , próby poszukiwania różnych rozwiązań ? Skąd ! NIC . Nawet testów mi nie zrobiła . Opłacona z góry wizyta szybko się kończy , bo kolejka . . Kończy się na niczym , bo inne , mniej standardowe leczenie wymaga więcej zaangażowania . Zdezorientowany i cierpiący ( szukamy przecież pomocy ) pacjent wychodzi i nie wie co dalej . Co robić jak nie leczy lekarz . Ja wyszła m z ciężką dusznością i ranami na rękach . I więcej tam nie wrócę ."
+  },
+  {
+    "opinion_id": "op_002278",
+    "text": "Odradzam . Rodziła m swoje dziecko w styczniu 2017 , od poczatku chciała m rodzić SN i być przygotowana do porodu jak najlepiej , dlatego też do pani Joanny zadzwoniła m już w listopadzie , żeby umówić się i podpisać umowę na usługi położnej podczas porodu . Termin miała m na sylwestra 2016 i pani Joanna szczerze uprzedziła , że w święta jej nie będzie , ale żeby m się nie martwiła , bo nawet jeśli zacznę rodzić pod jej nieobecność , zapewni godne zastępstwo . Oprócz świąt pani Joanna miała być dyspozycyjna w każdy inny dzień o każdej porze dnia i nocy - zostalam o tym zapewniona . 8 stycznia około 22 zaczęly się skurcze ( była m wtedy juz na patologii w szpitalu na ul . Madalińskiego ) . Niestety jedna z dyżurujących położnych powoedziała mi , że pani Joanna nie może do mnie przyjechać , bo musi się wyspać przed dyżurem i może przyjechać , ale dopiero koło 3 nad ranem . Pani Joanna mogła uprzedzić wcześniej , że takie sytuacje mogą mieć miejsce , po prostu zabezpieczyli by śmy się przed taką sytuacją - wynajęła by m inną położną , doulę , po prostu nie chciała m rodzić sama ( mąż był bardziej zestresowany niż ja ) . Pani Joanna w końcu przybyła o 3 nad ranem , po 5 godzinach , które spędzili śmy z moim mężem praktycznie sami na sali porodowej . Ocena neutralna , a nie negatywna , bo jednajk przez ostatnie 3h porodu było miło i sympatycznie . Dodam jeszcze tylko , że niestety Pani Joanna nie zapytała mnie o zgodę przy nacięciu i pomimo nieobecności przez większą część porodu wystawiła fakturę na całą kwotę za usługę . Pomimo dobrego pierwszego wrażenia jakie na nas wywarła , moim zdaniem nie wywiązała się z umowy - przyjechała mocno spóźniona i nie zadbała o zatępstwo podczas jej nieobecności ."
+  },
+  {
+    "opinion_id": "op_002279",
+    "text": "Chodzę do Pana doktora ponad 10 lat . Na pewno jest bardzo fachowy w swojej dziedzinie . Jednak cała otoczka związana z wizytami przyprawia mnie o mdłości . To się od lat nei zmienia : wielogodzinne opóźnienia , zapchana poczekalnia . . Dobra , co 2 lata można przeboleć , ważne , że soczewki są dobrze dobrane . Ale do napisania tej opinii skłoniło mnie raczej co innego . Ostatnim razem po wizycie poprosiła m panie w rejestracji , aby podały mi parametry dobranych soczewek twardych . Panie zamarły , kazały pytać pana doktora . Tak też zrobiła m . Pan doktor wpadł w wewnętrzną rzecz jasna furię , starał się nie dać tego po sobie poznać , ale widać było , że się wkurzył . Powiedział , że nie poda , że nie odpowiada za to , co mi ktoś sprzeda , że on dobrał takie i takie trzeba zamówić , itp . Niestety mój ówczesny stan ( ciąża ) sprawił , że nie weszła m w polemikę - mój błąd . Za jedną soczewkę twardą płacę 1200zł , za drugą 850zł , ( razem 1950zł , nie 2000zł - żeby nfz mógł dofinansować tylko od jednego tysiąca ) , od lat dokładnie tyle samo . To aż niemożliwe , albo coś drożeje ( po prostu ) , albo tanieje ( rozwój technologii itp . . ) , ale tu od kilkunastu lat tyle samo ! Poczytała m trochę w internecie o soczewkach i co ? W stanach soczewka twarda firmy Hecht kosztuje ok . 70 $ . Pan doktor jest jedynym przedstawicielem tej firmy na Polskę . Nie muszę chyba nic więcej dodawać . Od lat zastanawiam się , czy nie zmienić lekarza , teraz pan doktor w końcu przekonał mnie , żeby to zrobić ."
+  },
+  {
+    "opinion_id": "op_002280",
+    "text": "Oj widzę , że większość gości tego forum wylewa tu frustracje , których nie rozumiem . Ja dopiero zaczynam swoją \" przygode \" z aparatem i na razie rozpoczęła m leczenie , żeby m w ogóle ten aparat mogła nosić i dlatego zajrzała m na forum ale na razie oceniam ją jako dobrego profesjonalistę . Była m już u wielu lekarzy i ja akurat cieszę się że ktoś mi ją polecił bo w koncu znalazła m dentystę który robi swoje i robi to dobrze . Uważam że stosunek jakości do ceny jest zrównoważony . Jasne , ze mogła by być sympatyczniejsza ale mnie na tym nie zależy . Właściwie to jest pierwszy debtysta któremu jedyne co moge zarzucić to oschły sposób bycia , a naprawdę była m juz w klinikach w których było miło a przed znieczuleniem samorowano mi dziąsło truskawkowym żelem znieczulajacym żeby zastrzyk nie bolał ale co z tego , w dentical center o którym mowa leczyli mi ząb kanałowo , potem zrobili koronkę ( koszt całego leczenia 2500 oczywiście przyjmująca płatność miała wielki uśmiech na ustach i wszyscy się rozpływali w uprzejmościach ) , teraz okazało się że doszło do perforacji kanału w trakcie wkładania mocowania do koronki i teraz mam wielką torbiel i grozi mi paraliż nerwu szczekowego . . . oczywiście usłyszała m że to nie ich wina . Inna dentystka przy zakładaniu plomby ukruszyła mi pol zęba bo jej się omsknęło wiertło i usłyszała m ze to wina mojego zęba i musze zrobic koronkę . . . . Natomiast Mackiewicz jak na razie wyleczyła mi 3 zęby , przy tym nic nie zepsuła więc już jestem bardzo zadowolona a zapłaciła m mniej niż płaciła m dotychczas , więc mało przeszkadza mi to że mnie trochę bardziej bolało . Umawiała m się zawsze na wieczorne godziny i czekała m max 30 minut , jeśli czekacie jak twierdzicie zawsze dłużej niż 2 h to może wyjdzcie pozniej z domu , poza tym czekanie w kolejkach to naprawdę mały problem biorąc pod uwage że w zamian można mieć porzadnie wyleczone zęby . Fakt ze w większych gabinetach właściwie w ogóle nie czekała m ale co z tego jak muszę teraz leczyć to co mi urządzili w buzi czyli masakrę . Moim zdaniem Mackiewicz po prostu jest konkretna i stąd może to wrażenie ze nie miła . Ja chyba mimo tych negatywnych wpisów zdecyduję sie na aparat u niej ( i podzielę się później moimi doświadczeniam ) , bo argumenty że trzeba czekać albo że jest aroganca nie są zbyt merytoryczne a jak na razie zdobyła moje zaufanie , bo po prostu wyleczyła mi zęby , to wszystko czego po moich przejściach occzekuję od dentysty ."
+  }
+]

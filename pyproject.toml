@@ -9,5 +9,6 @@ dependencies = [
     "matplotlib",
     "httpx",
     "python-dotenv",
-    "orjson"
+    "orjson",
+    "openai"
 ]

@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000281",
+    "text": "Najpierw mieli śmy mieszane uczucia zasugerowane gabinetem pustym bez urządzeń medycznych . Po kilku minutach okazało się że doktor jest fachowcem w swojej dziedzinie . Ma nawet poczucie humoru . Wytłumaczył nam przebieg leczenia . Poczuli śmy się zrozumieni . Lekarstwo które zapisał doktor niestety jest w kosmicznej cenie i nie ma zamiennika ."
+  },
+  {
+    "opinion_id": "op_000282",
+    "text": "Rzeczywiście pani doktor jest bardzo zasadnicza . Ja była m umówiona i się nie spóźniła m , stąd może nie naraziła m się na nieprzyjemności . Na wizycie była m dokładnie zbadana , pani doktor wytłumaczyła co się dzieje i co mozna dalej zrobić , po rozmowie zaleciła dalsze postępowanie . Oko mi wyleczyła . Więc nie mam zastrzeżeń ."
+  },
+  {
+    "opinion_id": "op_000283",
+    "text": "Kochamy i szanujemy Pana Profesora . Złośliwe Posty są niechlujne , niekulturalne w formie , obrażające P . Moderatora , którego jesteśmy Gośćmi - i powinny być w ogóle wymazane ! Niesmak powoduje , że wielu uczciwych , gdy zetkną się z tekstem to odczuwa potrzebę sprzeciwu . I arytmetyka jest bez sensu tam , gdzie są emocje estetyczne i odpór moralny . A \" bezpłodne mędrkowanie \" na temat farmakologii jest banalnym rezonerstwem . Oczywiście , że stosuje się w medycynie preparaty o pozornie przeciwstawnym działaniu ; farmakologia , a zwłaszcza psychofarmakologia , to \" wyższa szkoła jazdy \" . Próba stosowania arytmetyki , gdzie jest \" rachunek różniczkowy \" . . . Pan Prof ma stopnie specjalizacji z neuropsychiatrii dorosłych . Mówi się o nominowaniu Profesora do bardzo ważnej Nagrody , nie chcę zapeszyć , tym bardziej , ze nieżyczliwy Panu Profesorowi online . . . zazdrosny jest Kochamy i szanujemy Pana Profesora ."
+  },
+  {
+    "opinion_id": "op_000284",
+    "text": "Kilka lat temu z ciężką postacią depresji zgłosiła m się do Pana dr z nadzieją na uzyskanie pomocy . Pan dr poświęcił mi dosłownie 2 minuty , bez słowa wypisał i podał mi receptę . Na moje nieśmiałe pytanie co właściwie ze mną jest , odpowiedział lakonicznie : depresja . Odpowiedziała m , że czytała m na stronie internetowej o możliwości podjęcia terapii , na co zirytowany Pan dr odpowiedział : \" Może jeszcze Pani L4 pani na 3 miesiące wypisać ? Dziękuje , do widzenia . \" Nie zdążyła m odpowiedzieć , że jestem studentką i nie zależy mi na okradaniu ZUSu , tylko uzyskaniu pomocy . Wzięła m receptę i rozpłakała m się po wyjściu z gabinetu . Na szczęście 2 lata później trafiła m na cudowną Panią doktor , która udzieliła mi wielu informacji i od razu skierowała na terapię , która praktycznie uratowała mi życie . Odradzam dra Dokrzewskiego tak mocno jak tylko mogę , bo z taką arogancją i brakiem szacunku nie spotkała m się nigdy wcześniej , ani nigdy później u żadnego lekarza ."
+  },
+  {
+    "opinion_id": "op_000285",
+    "text": "Publikacja , którą stworzyli specjaliści w dziedzinie pediatrii i dietetyki , jest zgodna z najnowszą wiedzą naukową i zaleceniami żywieniowymi z 2014 r . Można ją pobrać za darmo ze strony internetowej programu edukacyjnego „ 1000 pierwszych dni dla zdrowia ” ( www.1000dni.pl ) . „ Współcześnie mamy problem z zalewem – często sprzecznych – informacji i porad dotyczących żywienia niemowląt . Wielokrotnie źródła te są mało wiarygodne i nie poparte żadnymi danymi , a wiedza z zakresu żywienia zmienia się bardzo dynamicznie . Jako lekarze czujemy się odpowiedzialni za promowanie aktualnych , światowych standardów żywienia według jasnych , prostych i przyjaznych zasad . Stąd nasz poradnik ” – powiedziała PAP dr hab . Andrea Horvath z Kliniki Pediatrii Warszawskiego Uniwersytetu Medycznego ."
+  },
+  {
+    "opinion_id": "op_000286",
+    "text": "Teraz historycy medycyny planują anglojęzyczne publikacje przypominające rosyjsko - polskie dokonania w tej dziedzinie . \" Wiele jest tekstów napisanych po rosyjsku i po polsku , które nie doszły dalej do świadomości szerszego grona naukowców , a były nowatorskie . Chcemy do tego wrócić i wspólnie pokazać , że kładli śmy podwaliny pod naukę \" - powiedział Goworski . Współpracę międzynarodową nad historią medycyny Rosjanie prowadzą już z Łotwą , a np . Szwajcarzy interesują się teraz historią rosyjskiej farmaceutyki , która na przełomie XIX i XX wieku stała na wysokim poziomie - powiedział Paszkow . \" To , co teraz się rozpoczyna , może mieć poważne perspektywy naukowe \" - ocenił szef ROIM po środowym sympozjum w Instytucie Polskim w Moskwie . Jak zauważył , w dzisiejszym świecie \" działanie w nauce w pojedynkę jest bardzo trudne \" ."
+  },
+  {
+    "opinion_id": "op_000287",
+    "text": "Była m u Pani Doktor na wizycie kontrolnej i na dobór okularów . Nie mam żadnej wady ani dolegliwości więc trudno jest mi ocenić kompetencje i wiedze Pani Doktor . Niemniej jednak jest osobą miłą , życzliwą , przyjazną pacjentowi . Poświęciła mi odpowiednio dużo czasu . Jestem zadowolona i polecam Panią Doktor . Joanna"
+  },
+  {
+    "opinion_id": "op_000288",
+    "text": "Przykro , gdy o lekarzu czyta się tak bardzo ostre wypowiedzi ( np ostatnia podpisana przez \" gościa \" z 10 stycznia ) . Dla pacjenta wystarczającym stresem jest jego choroba , wizyta u lekarza nie może być dodatkowym obciążeniem psychicznym . Niemniej powtarzające się ( niestety ) opinie o niewłaściwym zachowaniu Pana Doktora świadczą o tym , że w niektórych przypadkach pacjenci czują się bardzo niekomfortowo . Można próbować usprawiedliwiać takie zachowanie - zbyt duża liczba pacjentów , przemęczenie . . . Ale chyba od lekarza możemy oczekiwać więcej . Można mieć tylko nadzieję , że Pan Doktor czyta te opinie i pomimo , że są one incydentalne , wywołają chwilę refleksji . Maga ."
+  },
+  {
+    "opinion_id": "op_000289",
+    "text": "Proszę wystrzegać się zabiegów u tego lekarza ! ! ! Miała m kiedyś wykonywany zabieg ciekłym azotem na stopie i efekt był bardzo dobry , stopa zagoiła się w tydzień i dzisiaj nie mam po nim śladu . Tylko wtedy zabieg wykonywała doktor Wesołowska , którą z całego serca polecam . Niestety , bardzo trudno się do niej dostać nawet prywatnie , a ja do cierpliwych nie należę i postanowiła m poszukać kogoś innego kto wykonuje ten zabieg . Tak trafiła m do dr Baśkiewicza , który poparzył mi stopę , nie tylko w miejscu zmiany chorobowej , ale także w promieniu 2 cm od niej . Gdy zadzwoniła m po kilku tygodniach , mówiąc że się nie goi powiedział , że on specjalnie robi zabieg mocno żeby pacjent nie musiał dwa razy przychodzić na zabieg . Ja na pewno drugi raz do niego nie pójdę . Mija już półtora miesiąca i w końcu od kilku dni , po interwencji dr Wesołowskiej , mogę prawie normalnie chodzić . W miejscu poparzenia pojawiła się martwica , na szczęście chyba uniknę ściągania jej chirurgicznie , bo widzę że zaczyna sama schodzić powolutku , ale ostrzegam nie dość że za zabieg zapłaciła m prawie trzykrotnie więcej to została m okaleczona , na szczęście ( ? ) to stopa i blizna po poparzeniu nie będzie bardzo widoczna . Co więcej pan dr nie założył mi nawet karty , nic nie zapisał , moja wizyta została , z tego co wiem , jedynie odnotowana w jego kalendarzu . O paragonie ( albo jego braku ) nawet nie wspomnę . Stąd stanowczo odradzam tego lekarza ."
+  },
+  {
+    "opinion_id": "op_000290",
+    "text": "Z całą stanowczością odradzam wizytę u tej Pani . Badanie córki ( wówczas miała nieco ponad 2 miesiące ) wspominam jako koszmar i traumę , długo nie mogła m zrozumieć , jak taka osoba może pracować z dziećmi . Naprawdę trudno wnioskować o fachowości i kompetencjach lekarza , który w taki sposób informuje rodziców o diagnozie , który w taki sposób bada malucha . . . Każdy zatroskany rodzic dziecka poddawanego konsultacjom neurologicznym wie o czym piszę , jedyne w swoim rodzaju badanie odruchów , ogromny stres , wręcz strach i wyczekiwanie na diagnozę , gdy chodzi o informację zwrotną o tym , jak funkcjonuje układ nerwowy pociechy . Zero empatii w kontakcie z małym pacjentem i jego przerażonym Rodzicem . Fachowość . . nie uzyskała m żadnej informacji , co kryje się za złożoną nazwą jednostki chorobowej . \" Rozważania \" dotyczące długości trwania rehabilitacji skwitowała lapidarnym stwierdzeniem \" tyle , ile będzie trzeba \" , poziom merytoryczny w ogóle więc trudno poddać ocenie innej , niż negatywna niestety . od tamtej pory czyli w ciągu ostatnich 6 miesięcy byli śmy na kilku konsultacjach z innymi neurologami dziecięcymi . . jakże odmienne wrażenia , dziecko spokojne podczas badania , lekarz spokojnie i rzeczowo objaśniający istotę problemu , rzetelny , wyczerpujący wywiad z Rodzicem , konkretne zalecenia i . . mimo wszystko ogromna doza życzliwości . Tak drodzy Rodzice , jednak można udać się do lekarza , który będzie świetnym specjalistą i jednocześnie wykaże się empatią i sympatią wobec osób , które odwiedziły jego gabinet . W końcu kompetencje społeczne i komunikacyjne u wysokiej klasy specjalistów także są mile widziane : ) Polecam poczekać na wizytę u dr Hnatyszyn lub dr Kochanowskiej , nie jest łatwo się dostać ale koszty naprawdę rozsądne . Przy kontakcie z wyżej wymienionymi lekarkami ukaże się ogromna wobec dr Kraśnikow rozbieżność w świadczeniu usług medycznych ."
+  },
+  {
+    "opinion_id": "op_000291",
+    "text": "Uważam , że Pan doktor Tomasz Dydymski to specjalista z najwyższej półki . Doskonale wyuczony teoretycznie oraz posiadający ogromną wiedzę praktyczną pomimo swojego młodego wieku ! W moim przypadku jego pomoc polegała na profesjonalnym ( plastycznym ) zszyciu bardzo głębokiej rany nosa , która powstała w wyniku pechowego wypadku , któremu uległ em . Zależało mi na tym aby po głębokiej ranie pozostał jak najmniejszy ślad ( blizna ) . W związku z tym już w dniu wypadku zadzwonił em do Pana doktora i poprosił em o pilną pomoc . Bardzo zależało mi na tym aby Pan doktor przyjął mnie tego samego dnia , gdyż moja rana wymagała szycia . Pan Tomasz spełnił moją prośbę i jeszcze tego samego dnia opatrzył ranę oraz założył na moim nosie 10 szwów , które zagwarantowały idealne zrośnięcie się rozerwanej skóry . Wcześniej przed zabiegiem opowiedział mi dokładnie na czym będzie polegała jego ingerencja w moją ranę oraz jakie kolejne kroki będzie wykonywał . Wszystkie informacje przekazane zostały w sposób konkretny oraz zrozumiały . Chwalę sobie jego niezwykle miłe i życzliwe podejście do pacjenta !"
+  },
+  {
+    "opinion_id": "op_000292",
+    "text": "Do dr Turowskiej mam wiele zastrzeżeń . Swoim pacjentkom nie poświęca zbyt dużo czasu , w trakcie wizyty odbiera prywatne telefony , jest niemiła w obyciu i bywa zgryźliwa . Można odnieść wrażenie , że traktuje kobiety z góry . W razie powikłań sama z siebie nie udzieli szczegółowych informacji , trzeba sie jej dopytywać albo wychodzić z jej gabinetu z niepewnością i obawami . Dowodem na to , że nie traktuje na serio swoich pacjentek jest fakt , że nikt nie raczyl mnie powiadomić , że w dniu , na który miała m zaplanowaną wizytę , dr Turowskiej akurat nie będzie z powodu konferencji - podobno nie mogła dotrzeć na czas do Jeleniej , bo \" pociąg się opóźnił \" ( wątpię , czy przy takich opłatach za prywatną wizytę pani Turowska podróżuje pociągami . . . ) W rezultacie straciła m niepotrzebnie czas , żeby dwa razy jechać na wizytę / No cóż , pomimo tego wszystkiego , co napisała m , muszę przyznać , że bądź co bądź dr Turowska jest fachowcem i jej zalecenia zawsze przynosiły efekty . Jednak dyskomfort , jaki odczuwała m w jej obecności sprawił , że w 7 miesiącu ciąży zrezygnowała m z jej usług ."
+  },
+  {
+    "opinion_id": "op_000293",
+    "text": "Problem z kolanem został szybko zbagatelizowany przez lekarza , który nie wykonał żadnego badania poza oględzinami moich butów i stwierdził , że mam płaskostopie i to wina bólu kolana . . . tyle , że dziwne bo jednego , lewego ; ) z miejsca otworzył szufladę i wyjął z niej ulotkę jakiejś firmy zajmującej się produkcją wkładek ortopedycznych i wręczył mi ją mówiąc , że są najlepsi i najtańsi . . . brakowało mi słów na całą tą sytuację . Wyszedł em z gabinetu z wrażeniem jakby LUX MED wyciągał ode mnie pieniądze . . . więcej do tego lekarza nie wrócę ."
+  },
+  {
+    "opinion_id": "op_000294",
+    "text": "Z powodu problemów związanych z cyklem miesiączkowym zmuszona była m wybrać się do ginekologa . Z polecenia zapisała m się do doktor , była m miłe zaskoczona , kiedy okazało się ze nie trzeba długo czekać . I na tym moja radość się kończy . Od samego \" wywiadu \" ( ciężko nazwać wywiadem pytanie kiedy była ostatnia miesiączka i czy robiła m test ciążowy ) była m sceptycznie nastawiona , a badanie upewniło mnie co tego , ze jest to pierwsza i ostatnia wizyta u doktor . Badanie było bolesne , ponadto nie usłyszała m nawet słowa komenatarza na temat wyniku . Pod koniec wizyty dostała m receptę wraz ze skierowaniem i świstek papieru który okazał się tym długo wyczekiwanym wynikiem . . nie polecam , chyba ze ktoś ma mocne nerwy i nie boi się bólu ; )"
+  },
+  {
+    "opinion_id": "op_000295",
+    "text": "Nie polecam tego lekarza i sama się sobie dziwię , że po pierwszej wizycie nie przejrzała m na oczy . No , ale przecież miała m pobrany materiał na badanie , więc poszła m na kolejną wizytę , aby poznać jego wynik , wtedy się jednak okazało , że mimo ewidentnych objawów infekcji nie został pobrany materiał na posiew , a jedynie cytologia , więc męczyła m się przez kolejnych wiele dni bez odpowiedniego , kierunkowego leczenia , za to z leczeniem nieswoistym , bardzo drogimi lekami . Potem , kiedy ( wreszcie ! ) doczekała m się wyników posiewu ( płacąc oczywiście za kolejną wizytę ) , lekarz przepisał mi najdroższy chyba preparat obecny na rynku . Opowiadając podczas każdej wizyty bardzo niesmaczne dowcipy na temat leczonych przez siebie wcześniej pacjentek . Zdecydowanie odradzam !"
+  },
+  {
+    "opinion_id": "op_000296",
+    "text": "Ostrzegam i odradzam ! ! ! Jeżeli ktokolwiek miał by zamiar dokonać estetycznych poprawek uzębienia to stanowczo odradzam dr . Staniaka . Po wymianie koron że względów estetycznych , których jakość i wygląd z estetyka nie mają nic wspólnego zaczynają się dodatkowo problemy zdrowotne uprzednio zdrowych zębów . Pan Staniak twierdzi , że to normalne , iż kilka tygodni po preparacji zdrowych zębów pod korony może nastąpić ich obumieranie . Dość osobliwa teoria . szkoda , że na studiach nie uczono tego pana etyki . \" primum non nocere \" - gdyby akurat pan czytał ten wpis"
+  },
+  {
+    "opinion_id": "op_000297",
+    "text": "Przyszlam do Dr Gajdosza na probe ostatniej szansy . Choruje na depresje wiele lat , dodatkowo cierpie na wiele powaznych schorzen , co uniemozliwia przyjmowanie wiekszosci lekow psychotropowych . Moj stan byl juz tragiczny , nie wstawalam wcale z lozka , nie jadlam , nie widywalam sie z nikim . Caly dzien w lozku w ciemnym pokoju . Zaden z wczesniejszych lekarzy nie byl w stanie mi pomoc . Zdecydowalam sie na wizyte u dr Gajdosza , jako ostatnia proba . I stal sie cud . Zostalam wyleczona . Nie wiem jak to mozliwe , ale udalo sie . Pan Doktor jest cudotworca , uratowal mi zycie . Jest niesamowicie dobry , cieply , mily , kochany . Kazdego pacjenta traktuje dobrze i rzetelnie . Stara sie dowiedziec jak najwiecej szczegolow . Jest kompetentnym lekarzem i poprostu dobrym czlowiekiem . Naprawde stara sie pomoc . Polecam go z calego serca . Jesli juz nie wierzycie w wyleczenie , to sprobujcie pojsc do Dr Gajdosza , nie pozalujecie . Dziekuje za wszystko !"
+  },
+  {
+    "opinion_id": "op_000298",
+    "text": "Dużo osób pisze , że Dr . poświęcił im multum czasu na konsultacji . . ja się zgodzić nie mogę z tymi opiniami . Przyjechała m do Polanicy z Wrocławia , wyczekała m ok 3 godzin w kolejce , a moja wizyta w sprawie korekty nosa trwała może 5 minut i widać było , że lekarz ma już dość tych konsultacji . W zasadzie nie dowiedziała m się niczego nowego a kosztowało mnie to 150zł plus koszty dojazdu . Lekarz powiedział , że komplikacji być nie powinno i pozostaje tylko pytanie czy będzie ładnie . . . oraz , że on rozumie , że jako kobiecie przeszkadza mi mój wygląd i że to nie jest fanaberia . Dodam , że uchodzę raczej za atrakcyjną kobietę więc ta uwaga mnie mocno zniechęciła . Wybrała m innego lekarza głównie z tego względu , że dr . Łątkowski nie udzielił mi rzetelnej informacji dotyczącej VATu . Na konsultacji podał mi kwotę , która miała być całkowita i ostateczna i dopiero gdy zapytała m już po konsultacji mailowo , czy zawiera ona podatek , doktor odpisał , że należy do tego doliczyć jeszcze 1500 zł - co nie stanowiło w żadnym wypadku 23 % kwoty wyjściowej . Mimo wszystko znam dziewczynę , która jest bardzo zadowolona z piersi , które poprawiał jej właśnie ten lekarz i gorąco mi go polecała . Pozdrawiam i życzę wszystkim dobrych wyborów . Pamiętajcie , nie ma takiego lekarza , którego wszyscy pacjenci będą zadowoleni a często ew , komplikacje nie są wynikiem błędu lekarza . Decydując się na operację ponosimy ryzyko na które sami się godzimy ,"
+  },
+  {
+    "opinion_id": "op_000299",
+    "text": "Aż trzy miliardy złotych , czyli połowę wszystkich wydatków na cukrzycę , generują powikłania choroby , z czego 75 proc . generują powikłania sercowe , 14 proc . udary mózgu , 8 proc . choroby nerek i po 1 proc . choroby oczu oraz stopa cukrzycowa . W okresie od 2009 r . do 2012 r . łączne koszty leczenia powikłań ( bezpośrednie i pośrednie ) wzrosły o ok . 550 mln . Jak ocenił w rozmowie z PAP prof . Czupryniak , aby powstrzymać tempo , w jakim wzrastają wydatki na cukrzycę , niezbędne są intensywne działania państwa w zakresie walki z otyłością oraz edukacji społecznej na temat zdrowego stylu życia , bo dzięki temu można będzie zapobiec wielu nowym przypadkom cukrzycy typu 2 . „ Z drugiej strony , należy jeszcze aktywniej poszukiwać chorych na cukrzycę typu 2 w społeczeństwie . Dzięki wczesnemu wykryciu schorzenia , jeszcze przed wystąpieniem powikłań , można wcześniej zastosować odpowiednie leczenie , które pozwoli im zapobiec lub je opóźni ” - zaznaczył diabetolog . Obecnie , ciągle zbyt wielu chorych ( około jedna trzecia ) dowiaduje się , że ma cukrzycę dopiero wtedy , gdy dojdzie do poważnych komplikacji schorzenia ."
+  },
+  {
+    "opinion_id": "op_000300",
+    "text": "Z czystym sumieniem polecam i będę polecać Pana Doktora wszystkim kobietom , które potrzebują porady ginekologicznej lub szukają lekarza który poprowadzi ich ciążę . Pan Doktor prowadził moją drugą ciążę , w trakcie jej trwania zlecał wszystkie potrzebne badania . Na wczesnym etapie odkrył problem z tarczycą i łożyskiem , w wyniku czego poród musiał się odbyć poprzez cc . Pan Doktor wspólnie z zespołem lekarskim przyjęli na świat moją córeczkę , za co jestem im bardzo wdzięczna . Tak jak poprzedniczki potwierdzam że Pan Doktor zawsze wysłucha i odpowie na wszystkie trudne pytania a w razie potrzeby zleci odpowiednie badania . Obecnie mam założony przez Pana Doktora implant antykoncepcyjny podskórny i dr Rawski wykonał to bezboleśnie ! ! Jestem w pełni zadowolona ."
+  }
+]

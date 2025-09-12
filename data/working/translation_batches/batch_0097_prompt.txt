@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001921",
+    "text": "Badanie przeprowadzono na ponad 200 osobach między 16 . a 82 . rokiem życia doświadczających tzw . objawów podobnych do psychotycznych . Podczas badania sprawdzano , jaki poziom lęku społecznego charakteryzuje badanych i w jaki sposób lęk ten może wpływać na powstawanie objawów psychotycznych . Jak wyjaśnia badaczka , odwracając tendencyjność poznawczą czy ją modyfikując – co da się zrobić za pomocą specjalnych treningów – teoretycznie można było by znacznie ograniczyć prawdopodobieństwo rozwoju urojeń . „ Eliminujemy wtedy czynnik , który im sprzyja . Już teraz podobne rozwiązania proponuje się osobom , które chorują na zaburzenia psychotyczne . Można to robić także u osób z grupy ryzyka psychoz , np . u krewnych osób , które chorują na psychozy , zagrożonych zaburzeniami tego typu ” - zaznacza ."
+  },
+  {
+    "opinion_id": "op_001922",
+    "text": "Widzę , że doktor Dziewońska \" lubi \" anginę . Na razie leki przepisane przez panią doktor działają , nie byli śmy jeszcze u żadnego lekarza , aby potwierdzić diagnozę , choć po przeczytanych tu opiniach , być może się wybierzemy . Pomimo wizyty prywatnej niesympatycznie i niemiło . Pani zdaje się niedosłyszeć , nie reaguje na sugestie rodzica - np . że może zamiast czopków syrop przeciwgorączkowy - mówi swoje , inkasuje pieniądze i wychodzi . Być może ma doświadczenie i praktykę , ale podejścia do małego pacjenta , ani do jego rodzica , nie ma za grosz . Odradzam ."
+  },
+  {
+    "opinion_id": "op_001923",
+    "text": "Laureatka grantu sprawdzała , czy jedna cząsteczka mogła by być lekiem dla wszystkich chorób z tej grupy . Wszystkie choroby poliglutaminowe są spowodowane tąa samą mutacją , a potencjalne terapeutyki właśnie rozpoznają to miejsce mutacji - wydłużonego ciągu CAG . \" Potencjalne terapeutyki , którymi się zajmowała m , były właśnie niekodującymi RNA . Chcieli śmy wyłączyć w chorych komórkach proces powstawania genu , który ma długi ciąg powtórzeń CAG . Wyłączając zmutowany allel , zostawiamy allel prawidłowy tego genu . I tylko jeden - dobry - działa , a zły nie działa . Dzięki temu pacjent mógł by wrócić do zdrowia \" - mówi Stroynowska - Czerwińska . W wyniku prowadzonych badań , okazało się , że w zależności od tego , gdzie znajduje się mutacja - na początku , w środku , czy na końcu genu - to efektywność działania tych samych badanych cząsteczek jest niestety różna ."
+  },
+  {
+    "opinion_id": "op_001924",
+    "text": "Przeczytała m różne opinie o lekarzach w Łodzi i sugerując się opiniami właśnie z tego miejsca , wybrała m Panią Sobieszczańską . Mam wykupiony pakiet w Enel - Med , gdzie Pani doktor pracuje . Była m u niej kilka razy , nigdy nie była wylewna , ale nikt nie oczekuje od lekarza , żeby wylewny w uczuciach . Zależało mi na kimś profesjonlanym . Od ponad roku staram się o dziecko , poszła m na wizytę zapytać co mogę zrobić , Pani doktor jak usłyszała , że mam problem z zajściem w ciążę , naskoczyła na mnie , wybrała m złe miejsce , że Enel - Med nie zajmuje się leczeniem niepłodności . Powiedziała to w taki sposób , że się załamała m kompletnie , wiem że ona się tym zajmuje bo jest też endokrynologiem . Zasugerowała , ze prtywatnie może mi pomoc . Jak można w tak zaatakowac kobietę , która przeżywa taką tragedię , sytuacja jest trudna a ona mnie dobiła dodatkowo . Jest kobietą , myślała m że coś mi doradzi , miała m zamiar isć do niej prywatnie , ale po takim zachowaniu raczej wybiorę inne lekarza . W mojej sytuacji potrzebuję lekarza , który mnie zrozumie , a nie potraktuje jak kogoś kto zawraca głowę . Nie polecam ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_001925",
+    "text": "Niestety wciąż nie wykorzystujemy potencjału morfologii krwi obwodowej do wykrywania chorób krwi , w tym m . in . białaczek . Kiedyś w Polsce 20 proc . przypadków tej choroby wykrywanych było w morfologii krwi obwodowej wykonywanej rutynowo w ramach okresowych badań medycyny pracy , teraz zaledwie 2 proc . Statystyki wskazują natomiast , że w innych krajach Europy w badaniu tym wykrywa się nawet do 40 proc . wszystkich przypadków białaczek  – zwrócił uwagę prof . Wiesław W . Jędrzejczak . \" Rola medycyny pracy we wczesnej diagnostyce chorób jest nieoceniona . Często to jedyny moment na przestrzeni kilku lat , kiedy wykonujemy jakiekolwiek badanie . Medycyna pracy , oprócz podstawowej roli , jaką jest oczywiście określenie możliwości wykonywania danej pracy , jest także zachętą do monitorowania stanu swojego zdrowia , szansą na szybsze wykrycie ewentualnych chorób . Morfologia krwi obwodowej nie jest standardowym badaniem wykonywanym w ramach badań profilaktycznych , jednak wielu pracodawców finansuje dodatkowe pakiety świadczeń zdrowotnych dla swoich pracowników i warto wówczas pamiętać o tym badaniu \" - podkreślił krajowy konsultant w dziedzinie medycyny pracy Paweł Wdówik . ( PAP )"
+  },
+  {
+    "opinion_id": "op_001926",
+    "text": "Zacznę od tego , że mam 17 lat i w kwetniu tego roku wykryto mi \" coś \" ( nazywam to tak poniewaz nikt nie był w stanie stwierdzić co to dokładnie jest ) w prawej półkuli mózgu . Jedne co było pewne no natychmiastowa operacja . Warto też wspomnieć o tym że w poniedziałek miała m rezonans a w piątek operacje . W czwartek została m transportowana ze swojego miasta do Krakowa na operacje w szpitalu św . Rafała . Operacja przebiegła pomyślnie bez żadnych powikłań . Po badaniach okazało się , że to nowotwór niezłośliwy Glejak stopnia 1 . Pomimo tego nie mam zadnej radioterapii ani chemioterapii . Od operacji minęło już ponad dwa miesiące . Czuje się dobrze , powoli wracam do siebie . Chcialabym z całego serca podziękowac doktorowi Czepko za jego profesjonalność oraz podejście do pacjenta . Jestem mu bardzo wdzięczna za jego opiekę nade mną . Polecę go każdemu ponieważ jest to osoba która jest godna zaufania oraz znajduje się na odpowiednim miejscu ~ wdzięczna pacjentka z Nowego Sącza ; )"
+  },
+  {
+    "opinion_id": "op_001927",
+    "text": "Niestety lekarze powinni być oceniani w dwóch kategoriach . Moja ocena należy do kategorii \" na NFZ \" . Pierwsza wizyta przebiegła poprawnie , lekarz skierował mnie na zabieg barona , nawet poszedł mi na rękę z doborem szybkiego terminu . Niestety druga wizyta przypominała bardziej zawody na czas niż zabieg . Od wejścia od razu na fotel , bez słowa , w pół minuty było po zabiegu i już można się ubrać . Nie zdążyła m dobrze spodni zapiąć a lekarz wręczając mi karteczkę z datą kolejnej wizyty pokazał mi drzwi . W progu dopytywała m w jakim celu ta kolejna wizyta . Lekarz poinformował , że ten zabieg będzie trzeba powtórzyć , bo metodę barona robi się kilka razy o czym nie miała m zielonego pojęcia i do teraz wydaje mi się to sprzeczne z informacjami w internecie . Zapytała m jeszcze szybko , czy będą jakieś bóle , bo już nie czuła m się najlepiej na co Pan doktor zapewnił , że wszystko będzie dobrze i do zobaczenia ! Drzwi się za mną zamknęły . Do recepcji jeszcze jakoś doszła m , ale do auta z trudem . Leżała m w samochodzie 15 minut płacząc z bólu . Zastanawiała m się jak mam prowadzić auto w takim stanie . Nie było takiej możliwości . Ból przypominał upadek na kość ogonową z dużej wysokości , połączony z zatwardzeniem . Wróciła m do przychodni . Dziękuję Pani recepcjonistce , która jak tylko mnie zobaczyła pobiegła po lekarza . W gabinecie lekarz nic nie tłumacząc wsadził palec w odbyt , wyjmując gumkę i ból ustąpił . Ponownie dostała m karteczkę z datą szybszej wizyty , bez tłumaczenia co poszło nie tak ani co dalej . Musiała m się bardzo dopytywać . Lekarz powiedział , że zrobił by to delikatniej wiedząc , że jestem tak wrażliwa i na następnej wizycie tak zrobi . Oczywiście nie wybieram się tam już ponownie . Z zebranej przeze mnie wiedzy wynika , że taki ból może spowodować źle założona gumka a co więcej taką gumkę usuwa się bardzo ciężko , więc mam wątpliwości co do tego jaki zbieg faktycznie przeprowadził lekarz . ."
+  },
+  {
+    "opinion_id": "op_001928",
+    "text": "Niestety potwierdzam poprzednią opinię . Ból przy gastroskopii okropny , w przeciwieństwie do poprzednich - robionych w szpitalu na Borowskiej , czy na Hirszfelda . Dostała m przypisany Colon C i dietę . W kilka miesięcy po badaniu wylądowała m w szpitalu z rakiem esicy jelita grubego . Naprawdę odradzam p . doktora ! ! ! ! ! ! ! ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_001929",
+    "text": "Izomery trans obecne są np . w margarynach twardych - w kostce , tłuszczach cukierniczych , chipsach , produktach typu fast food , zupach w proszku , przekąskach  - wymieniał dyrektor IŻŻ , prof . Mirosław Jarosz . Dodał , że izomery trans wykazują wyłącznie niekorzystne działanie na zdrowie człowieka . Są uznanym czynnikiem ryzyka chorób sercowo naczyniowych , miażdżycy , nowotworów złośliwych ( zwłaszcza raka prostaty ) oraz cukrzycy typu 2 . Prawdopodobnie mogą także wpływać na bezpłodność , powodować zaburzenia laktacji i sprzyjać astmie oskrzelowej . Instytut Żywności i Żywienia zaleca , by w diecie zapewniającej odpowiednią wartość odżywczą spożycie izomerów trans było tak niskie , jak to tylko możliwe – w najgorszym wypadku nie powinno przekraczać zalecanego przez Światową Organizację Zdrowia maksymalnego poziomu 1 proc . energii z całodziennej diety ."
+  },
+  {
+    "opinion_id": "op_001930",
+    "text": "To nie będzie tylko szpital Uniwersytetu , to nie będzie tylko szpital Krakowa i regionu , ale to będzie szpital Polski  – mówił podczas uroczystości rektor Uniwersytetu Jagiellońskiego prof . Wojciech Nowak . Jak podkreślił , pacjenci będą leczeni , a lekarze będą pracować w nowoczesnym obiekcie , o którego budowę władze uczelni , miasta i regionu starały się przez wiele lat . Prorektor Uniwersytetu ds . Collegium Medicum prof . Tomasz Grodzicki mówił dziennikarzom , że obrazowo można to przedstawić , jak zmianę samochodu z malucha na supernowoczesną limuzynę . \" Będzie to dużo większy komfort dla chorych , możliwość konsultacji z niemal wszystkimi specjalistami , jakość opieki nad pacjentem dużo wyższa \" – podkreślił prof . Grodzicki ."
+  },
+  {
+    "opinion_id": "op_001931",
+    "text": "W ciąży z drugim dzieckiem chodziła m regularnie na wizyty do przychodni , gdzie doktor przyjmuje ( NFZ ) Każda z wizyt trwała 3 minuty a każde badanie 30 sekund . W dniu porodu okazało się , że mam nieprzeleczone zapalenie , co skończyło się dla mojego dziecka ( na szczęście ) tyko długim leczeniem szpitalnym po porodzie oraz podawaniem antybiotyków . Pierwszym pytaniem położnej , która mnie badała w dniu porodu było - kto panią prowadził i dlaczego nie zalecił leczenia ? To był właśnie efekt nieprofesjonalnego podejścia lekarza do pacjenta , tego , że każde badanie było powierzchowne , niedokładne i niedbałe . - za to mam ogromny żal : ("
+  },
+  {
+    "opinion_id": "op_001932",
+    "text": "U prof . leczyła m sie na bezpłodnosc , robiła m wszystkie badania jakie kazał , po czym gdy wyszła m ze szpitala z wynikami , oznajmił w ciagu 3 minut ze nigdy nie bede miała dzieci i zinkasował 100 zł dla kobiety w wieku 26 lat taka wiadomośc jest przerazliwa , a on powiedział co wiedział , i pod nosem szeptał ze moge jechac do Pragi na in vitro ! ! ! odradzam tego lekarza jest nie miły i nie umie rozmawiac z kobietami ! ! ! a na marginesie zmieniła m lekarza na A . P poszła m z wynikami i jestem szczesliwa MAMĄ 2 letniej niuni ! ! gdzie u prof . Wojtonia miała m 0 szans ! ! ! ! ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_001933",
+    "text": "Niestety , ale takich lekarzy jest coraz więcej . . . bieg za pieniądzem przysłania im oczy . Kiedyś leczyła m się u niego , miała m laserem usuwaną nadżerkę . . . . Na jednej z kolejnych wizyt powiedział , że mam bardzo dużą cystę i trzeba ją laparoskopowo usunąć , że nie można czekać , że zrobi to prywatnie . Bardzo mnie nastraszył mówiąc o konsekwencjach jakie mogą nastąpić , jeśli nie usunę jej . . . Za namową męża zasięgnęła m opinii innego lekarza , do którego nadal chodzę ( już ponad 8 lat ! ) , który w ciągu dwóch tygodni farmakologicznie pozbył się cysty . Cieszę się , że nie skorzystała m z \" usług \" dr Sz . i w porę zmieniła m go na innego ."
+  },
+  {
+    "opinion_id": "op_001934",
+    "text": "Dobry lekarz . Jest szybki ale jeżeli dobrze wykonuje swoją pracę to uważam że jest warty swojej ceny mimo 10 min wizyty : ) Jestem zadowolona . Jestem w ciązy i dzięki opiece Pana doktora czuje sie dobrze i nie mam problemó z hormonami : D Polecam : D"
+  },
+  {
+    "opinion_id": "op_001935",
+    "text": "Do Pani doktor przyszedł em z bardzo silnym i agresywnym trądzikiem . Właśnie zakończył em leczenie , a na mojej skórze nie ma ani jednej zmiany . Pani doktor liczy się ze zdaniem i komfortem pacjenta , stara się znaleźć leczenie korzystnie finansowo , szczegółowo omawia cały plan kuracji oraz ostrzega o ewentualnych skutkach ubocznych . Dodam , że mimo silnego trądziku , nie przepisano mi na początek leku ostatecznego - izoteku - najpierw były to inne środki . Dopiero , kiedy faktycznie stan cery w ogóle się nie poprawiał , Pani doktor przedstawiła mi opcję leczenie izotretynoiną . Polecam z całego serca i dziękuję ."
+  },
+  {
+    "opinion_id": "op_001936",
+    "text": "Nie bylam nigdy pacjetka doktora Wilinskiego natomiast odbieral porod mojego dziecka w Madurowiczu . Moge powiedziec ze pan dr jest milym czlowiekiem , fachowcem w swojej dziedzinie szkoda tylko ze nie bylo mowy o znieczuleniu podczas porodu a bylo mi bardzo ciezko . Wszystkiego najlepszego dla pana doktora ."
+  },
+  {
+    "opinion_id": "op_001937",
+    "text": "„ Powierzchnia oparzonej skóry ma temperaturę niższą niż skóry zdrowej , co jest związane z jej uszkodzeniem i zanikiem metabolizmu ” – wyjaśnia kierująca badaniami prof . Ewa Majchrzak . W procesie gojenia temperatury te wyrównują się . Natomiast znajomość wartości różnicy tych temperatur umożliwia przede wszystkim diagnostykę samego oparzenia ” – mówi . Oparzenie I stopnia nie jest groźne , wystarczy zimny kompres . Przy III stopniu oparzenia sprawa również jest jasna , ponieważ dochodzi do zwęglenia tkanek i nie ma tu zbyt wielu możliwości leczenia . Natomiast największy problem mają lekarze z oparzeniem II stopnia . „ W tym przypadku lekarz musi podjąć decyzję , czy tkankę należy wyciąć chirurgicznie , czy leczyć . Możliwość rozróżnienia stopnia oparzenia w tym przypadku jest kwestią kluczową w podjęciu decyzji , ile tkanki można ocalić ” – tłumaczy badaczka . IR Diagnostics może służyć nie tylko do diagnostyki ran oparzeniowych , ale również do obrazowania gojenia się innych trudnych i rozległych ran np . cukrzycowych , w których również mamy do czynienia z różnicą temperatury ."
+  },
+  {
+    "opinion_id": "op_001938",
+    "text": "Jedna z aktualnie badanych i rozwijanych strategii walki ze świdrowcami skupia się na blokowaniu metabolizmu kwasu foliowego u tych pasożytów . Zarówno komórki ludzi jak i pasożytów , potrzebują kwasu foliowego do wzrostu . Co ciekawe , blokowanie tak zwanego szlaku kwasu foliowego jest jednym z mechanizmów działania obecnie stosowanych leków antynowotworowych , takich jak metotreksat . Zamiast tworzyć zupełnie nowe leki przeciw świdrowcom , niedawno zaczęto rozważać możliwość optymalizacji istniejących leków do blokowania szlaku foliowego tych pasożytów . Takie podejście daje szansę na przyspieszenie procesu tworzenia leku  - mówi dr Panecka . Zaznacza jednak , że metabolizm świdrowców różni się od ludzkiego . Białko określane symbolem PTR1 powoduje , że pasożyty są oporne na leki takie jak metotreksat . Naukowcy podjęli próby hamowania aktywności tego białka , ale wciąż brakuje wiedzy , aby robić to w sposób efektywny . Nie wiadomo m . in . jak poruszają się względem siebie różne fragmenty cząsteczki tego białka . Dynamika jest bardzo istotna dla funkcji enzymów takich jak PTR1 . Dlatego dr Panecka bada dynamikę kłopotliwego białka , aby w przyszłości łatwiej było je blokować ."
+  },
+  {
+    "opinion_id": "op_001939",
+    "text": "W ostatnich dekadach zmniejszyło się też spożycie soli , co mogło przyczynić się do tego , że na przestrzeni 30 - 40 lat liczba zachorowań na raka żołądka spadła trzykrotnie . To bardzo namacalny dowód na to , że zmiana nawyków żywieniowych , zmiana stylu życia mogą naprawdę przynieść bardzo wiele korzyści społecznych , jak również ekonomicznych  – podkreślił prof . Jarosz . Obecnie nowotwory złośliwe są w Polsce drugą przyczyną zgonów , a pierwszą w grupie osób w wieku reprodukcyjnym . Ekspert zwrócił uwagę , że w ostatnim czasie trendy żywieniowe Polaków zmieniły się niestety na niekorzyść - zmniejszyło się spożycie warzyw i owoców oraz ryb . \" Przez co najmniej kilkanaście lat spożycie warzyw i owoców rosło , co ładnie przełożyło się na spadek zachorowań m . in . na raka przełyku czy spowolnienie tempa wzrostu zachorowań na raka jelita grubego . Ale teraz obserwujemy odwrotny trend \" – mówił specjalista ."
+  },
+  {
+    "opinion_id": "op_001940",
+    "text": "Pani doktor nie słucha pacjenta , który usilnie próbuje wyjaśnić , co mu dolega . Pani doktor bagatelizuje to i mówi nie na temat . W końcu po naciskach , stwierdza , że możemy tę zmianę , , przesmarować \" . Zapisuje bardzo silny lek , nic nie mówiąc o tym , że jest to steryd oraz nie wyjaśnia jak go stosować . Pacjent uzyskuje wiedzę na ten temat w Internecie . W konsekwencji pacjent rezygnuje ze sterydu a problem skórny udaje się pokonać za pomocą emolientów dostępnych bez recepty . Ponadto lekarz daje pacjentowi ulotki leków na trądzik , mimo , że pacjent nigdy trądziku nie miał oraz próbkę kosmetyku ( promowanie produktu ? ) . Na koniec wizyty pani doktor narzeka , że musi dać pacjentowi paragon . Podsumowując : 70 zł wyrzucone w błoto . Nie polecam ."
+  }
+]

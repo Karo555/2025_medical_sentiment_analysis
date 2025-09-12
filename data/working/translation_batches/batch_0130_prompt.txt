@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002581",
+    "text": "Trzykrotnie korzystała m z usług tego miejsca i zawsze była m zadowolona - zarówno przyjemny gabinet , jak i podejście do pracy pani dr Chwastek bardzo mi odpowiadały . To prawdziwy dar tak poprowadzić rozmowę i badanie , by nie wzbudzać negatywnych emocji u pacjentek . Plusem jest też dogodna lokalizacja i łatwość zarezerwowania wizyty . Jednak z przykrością stwierdzam , że postawiona przez dr Chwastek diagnoza okazała się w moim przypadku nietrafna . Po pierwszym USG pani doktor poinformowała mnie o torbieli na jajniku o litej konsystencji . Podczas kolejnych wizyt potwierdzała wstępne rozpoznanie , zalecając najpierw obserwację , później leczenie tabletkami antykoncepcyjnymi . Ponieważ \" torbiel \" nie zmniejszyła się , dostała m skierowanie do szpitala w celu operacyjnego usunięcia tej zmiany . Po przyjęciu okazało się , że torbiel jajnika tak naprawdę jest podśluzówkowym mięśniakiem macicy , którego nie trzeba operować , a jedynie obserwować . Lekarze w szpitalu stwierdzili , że w tym przypadku rozróżnienie między tymi dwoma rodzajami zmian nie było łatwe , ale że mój lekarz prowadzący powinien przynajmniej powziąć wątpliwości i pokierować mnie do gabinetu z lepszym sprzętem do USG . Cała ta sytuacja była dla mnie ogromnie stresująca i bardzo żałuję , że wcześniej nie zgłosiła m się do innego lekarza , by skonsultować postawioną diagnozę . Mimo wszystko pozostaję pełna szacunku wobec atmosfery panującej w gabinecie dr Chwastek i doceniam jej pracę - ale do gabinetu już nie wrócę ."
+  },
+  {
+    "opinion_id": "op_002582",
+    "text": "Panią doktor polecam każdej kobiecie , która ma jakiekolwiek wątpliwości odnośnie wizyty u tego typu specjalisty . Bardzo dokładna , żaden ginekolog wcześniej nie zbadał mnie tak dokładnie . Objaśnia , odpowiada na pytania , dobrze przygotowana , nie spieszy się - zarówno w czasie wizyty jak i odnośnie leczenia - na pierwszej wizycie zaobserwowano sporą torbiel na jajniku , doktor kazała odczekać do kolejnej miesiączki . W tym czasie będąc na urlopie w połowie cyklu poważnie krwawiła m , skonsultowała m się z innym lekarzem , który już niemal wysłał mnie na stół , w alternatywie reklamówkę tabletek . Odrzuciła m , na ponownej wizycie u dr Masoń badanie pokazało wchłonięcie się torbieli . Bardzo dobry lekarz !"
+  },
+  {
+    "opinion_id": "op_002583",
+    "text": "W projekcie oprócz Śląskiego Uniwersytetu Medycznego biorą udział : Warszawski Uniwersytet Medyczny , Instytut Biologii Doświadczalnej im . M . Nenckiego PAN w Warszawie , Akademia Górniczo - Hutnicza w Krakowie , Regionalne Centrum Naukowo - Technologiczne w Podzamczu pod Kielcami oraz prywatna firma , która ma odpowiadać za wdrożenie wypracowanych rozwiązań . Strategmed to strategiczny program badań naukowych i prac rozwojowych , który został opracowany przez Radę Narodowego Centrum Badań i Rozwoju na podstawie Krajowego Programu Badań . Dokument określił strategiczne dla państwa kierunki badań naukowych i prac rozwojowych , a choroby cywilizacyjne zdefiniował jako największe zagrożenie zdrowotne dla populacji Polski w perspektywie najbliższych lat . Na liście chorób cywilizacyjnych znalazły się m . in . choroby układu krążenia , nowotwory złośliwe , a także choroby psychiczne ."
+  },
+  {
+    "opinion_id": "op_002584",
+    "text": "trafiła m do Pani profesor po 6 operacjach w Polanicy zdrój . 21 . 05 miała m operacje - korekta nosa i wargi , prostowanie przegordy . jedyne co mi Pani profesor powiedziała to to ze polanica zawiodła . miała m dziure w podniebienu ! mogła m sie udusic . . Pani Zofia naprawiła moj problem , teraz mowie o wiele czysciej , mam ładniejszy i mniejszy nos , oddychm normalnie . . wspaniały chirurg a na dodatek az sie chce z nią rozmawiać . do kazdej operacji podchodzi indywidualnie ! polecam ! czeka mnie pewnie jeszcze jedna operacja ale jestem pewna ze tym razem juz ostatnia !"
+  },
+  {
+    "opinion_id": "op_002585",
+    "text": "Pierwszy i mam nadzieję ostatni raz trafili śmy na wizytę tej Pani . Dziecko niespełna 2 - letnie , chore , rozdrażnione , wystraszone , a ze strony Pani doktor zero empatii , tylko lód i żołnierskie polecenia . Po tej wizycie gabinet lekarski nie będzie się naszemu dziecku na pewno dobrze kojarzył , choć do tej pory nie miało większych problemów z badaniem lekarskim . Mam chociaż nadzieję , że diagnoza była trafna i przepisane leki pomogą . . ."
+  },
+  {
+    "opinion_id": "op_002586",
+    "text": "Fatalny lekarz leci tylko na kasę . Każde słowo trzeba wyciągać od niego siłą . Mam wrażenie , że wogóle nie zna się na medycynie bo każde słowo zaczyna od : \" przypuszczam to \" , \" przypuszczam tamto \" moim zdaniem za 250 zł powinnem dowiedzieć się czegoś więcej niż jego przypuszczeń . Już wiem , że następnym razem wybiorę innego lekarza ."
+  },
+  {
+    "opinion_id": "op_002587",
+    "text": "Ja także z przykrością muszę stwierdzić iż bardzo zawiodł em się na tym lekarzu . W grudniu zaczęły się u mnie straszne kilkudniowe boleści brzucha . Zachęcony opiniami znajomych zdecydował em się na badanie gastroskopii u dr . Ziemniaka . Na początku dr . zrobił na mnie pozytywne wrażenie sympatyczny , elekwentny itd . Wykrył u mnie problemy z pęcherzykiem żółciowym nadrzerki i pojedyńcze kolonie Candida . Zlecił USG badania kału na drożdże i lamblie itd . Wydawało mi się że wkońcu ktoś profesjonalnie się mną zajmie . W USG wykryto jedynie śladowy piasek w pęcherzyku żółciowym , badanie kału nie wykazało pasozytów ani grzybów . Po miesiącu oczekiwania w ( nieustających bólach brzucha ) na kolejną konsultację , z radością wraz z wynikami badań stawił em się w gabinecie dr . Pomyślał em wkońcu początek kuracji będzie już tylko lepiej . Dr obejrzał wyniki i stwierdził iż nie spodziewał się tak \" złego \" wyniku USG pęcherzyka żółciowego , że robią się tam \" złogi ' i ścianki pęcherzyka są \" pogrubione \" czego nie było w opisie lekarza który wykonywał mi owe badanie USG . Stweirdział że będziemy musieli zobaczyć się jeszcze za 3 miesiace , powtórzyc gastroskopie usg jezeli pęcherzyk żółciowy sie w miare nie wyleczy to mozliwa bedziec operacja ? Moją przerażoną tymi wiadomościami minę oraz werbalne wątpliwości skomentował słowami aby m \" wziął sie w garść i brał leki \" PO czym przepisał mi antybiotyki na Candide pasożyty których żadne z badań nie wykryło oraz mase innych osłonowych itd . W aptece zostawił em 650 zł za 3 miesieczna kuracje , wyszedł em z wielką siatą a Pani w aptece zapytała sie czy chce fakture na grupę inwalidzką ? hehe ( mam 26lat ) : ) Dziennie miałem przyjmować 15 różnych tabletek + 6 przeciwbólowych w razie dolegliwości . Nie muszę dodawać że 3 - go dnia brania leków wylądował em na Ostrym Dyżurze na ul . Kopernika . Miałem potworne bóle brzucha zawroty głowy biegunki i wymioty nie mogł em kompletnie nic jeść . BYł em przerażony i pewny że to nie skutki uboczne lecz że moje \" zapalenie pęcherzyka żółciowego przybrało charakter ostrego zapalenia \" . Naprawdę kuracja od dr Ziemniaka nie jest warta tych nerwów . MOże pomaga ludziom z drobnymi problemami jak wyleczenie helicobacter nadrzerkami refluksem . . . ale do mojej przypadłości podszedł bardzo nie profesjonalnie wogóle się nie poznał insynując mi przewlekłe zapalenie pecherzyka żólciowego , drożdże i pasożyty . Podsumowując Jeszcze RAZ NIE POLECAM ! ! ! ! ! ! Proszę się zastanowić 2 razy zanim Państwo zdecydują się na wizyte u tego lekarza . Pozdrawiam Piotrek"
+  },
+  {
+    "opinion_id": "op_002588",
+    "text": "Pan Doktor bardzo miły i widać , że zależy mu na pacjencie dlatego dał em 2 gwiazdki zamiast jednej , bo naprawdę widać , że miły człowiek , ale niestety w moim przypadku \" zasuszenie \" szczeliny odbytu było złym pomysłem i problem się rozwinął zamiast poprawić . Kosztowało mnie to 7 dni nerwów , problemów . . . Ostatecznie udał em się do innego proktologa , która przepisał leki zwilżające i problem minął w 2 - 3 dni"
+  },
+  {
+    "opinion_id": "op_002589",
+    "text": "Trafiła m do tego lekarza z bolącym i strasznie strzelającym kolanem . Lekarz powywijał mi nogą na prawo i lewo - strzelało i gruchotało straszliwie - a on stwierdził , że to normalne ! ! Po dwóch dniach bólu trafiła m do innego lekarza , który jak tylko dotknął kolano , to od razu stwierdził , że rzepka się przesuwa i jest lateralizacja rzepki i od razu wykonywał USG i rentgen , czego pan Mieczkowski nawet mi nie zlecił . Prócz tego strasznie oschły i niesympatyczny ! !"
+  },
+  {
+    "opinion_id": "op_002590",
+    "text": "Witam , chodziła m do doktora Dźwigały , ponieważ słyszała m , że jest dobrym lekarzem i zna się na rzeczy . Po 1 , 5 roku chodzenia , powiem tylko , że nic się nie dowiedziała m konkretnego , dlaczego nie mogę zajść w ciążę . Jedynie doktor potrafi wyciągać pieniądze , na każdej wizycie USG , dobrze wie , że zbyt częste USG szkodzi . Może kiedyś był dobrym specjalistą , teraz nie angażuje się w problemy pacjentek i poświęca mało czasu na wizytę , nie tłumaczy co się dzieje i notorycznie się spóźnia na wizyty po 1 , 5 godziny . Nie polecam - strata czasu i pieniędzy ."
+  },
+  {
+    "opinion_id": "op_002591",
+    "text": "Pani Doktor to przesympatyczny człowiek , wiele mówi o dolegliwościach , podaje wiele fachowych terminów , szkoda tylko , że za każdym razem są to zupełnie sprzeczne informacje . Przez to sprawiła na mnie wrażenie niezbyt zainteresowanej tym , co robi , bo tylko tak można to wytłumaczyć . Nie podważam kompetencji , ale osobiście poszła m do innego lekarza , bo mój problem nie został rozwiązany mimo wielokrotnych wizyt ."
+  },
+  {
+    "opinion_id": "op_002592",
+    "text": "Po pierwszej wizycie ( i ostatniej ) nie uzyskała m żadnych konkretnych informacji poza ogromną listą dodatkowych badań do zrobienia . Dodam , że przed wizytą zrobiła m już część badań , z których dobry , doświadczony lekarz potrafił by wysunąć jakiekolwiek , chociaż drobne wnioski . Dowiedziała m się też , że mam niedoczynność tarczycy , co oczywiście jest błędną diagnozą ( co usłyszała m od dwóch lekarzy , u których była m po wizycie u tej pani doktor ) : ) Mam szczerą nadzieję , że spis badań , który uzyskała m od pani doktor nie świadczy o jej braku wiedzy i nieumiejętności interpretacji wyników , ale o zwykłym lenistwie , bo w innym wypadku drżyjcie pacjenci . Nie polecam ."
+  },
+  {
+    "opinion_id": "op_002593",
+    "text": "Konsumenci oczywiście kierują się ceną . Te leki są tańsze , ale dzisiaj nie możemy już powiedzieć , że znacznie tańsze . Jest to mniej krępujące , nie trzeba wychodzić z domu , nie trzeba udawać się do lekarza czy prosić o receptę . W takich przypadkach kupujący nie kieruje się zdrowym rozsądkiem , ale ceną - naiwnie szukając leków z niesprawdzonych źródeł . Podrobione leki mogą być skażone , zanieczyszczone lub zawierać substancje toksyczne czy w ogóle nieodpowiedni skład . Często mają też składniki nieaktywne - w żaden sposób nie wpływające na poprawę bądź ( powodujące ) pogorszenie stanu zdrowia  - wyjaśniła ekspertka . Dodała także , że \" podróbki \" mogą mieć również składniki aktywne w nieodpowiednich dawkach , zbyt silne czy zmieszane w sposób nieodpowiedni , a badania pokazują , że w podrobionych lekach znajdują się trucizny dla szczurów , wosk do podłogi , cement , gips i podobne substancje ."
+  },
+  {
+    "opinion_id": "op_002594",
+    "text": "Nie wiem czemu dziwią tak bardzo negatywne opinie . Nie są wyssane z palca : / Znam lepszych lekarzy . Mimo że dr Szmit rzeczywiście jest miły i uśmiechnięty kilka razy ( historie z pierwszej ręki ) wykazał się totalnym brakiem kompetencji , okropną rutyną i fatalnym podejściem do pacjentek w szpitalu ( owszem - nie swoich ) . Nie zależy mi aby psuć mu opinię , ale zdania nie zmienię i nadal oceniam go kiepsko po wielu doświadczeniach moich i bliskich bardzo osób z jego udziałem jako lekarza ! ! ! ! Już karygodne jest kierowanie kobiety na zabieg na podstawie obiawów niepotwierdzonych dodatkowymi badaniami ( np . USG ) , tylko dlatego że szpital na tym \" zarabia \" ! ! ! ! ! ! ! ! ! ! ! ! ! ! A USG w swoim gabiniecie nie miał , gdy była m jego pacjentką !"
+  },
+  {
+    "opinion_id": "op_002595",
+    "text": "Lekarka nie powiem że najlepsza . Skierowanie na podstawowe testy skórne ( nie wiem po co na wziewne , bo doskonale wiem , że nie mam alergii na rzeczy fruwające w powietrzu i to mówiła m ) . Na spożywcze . . . Też wiem , że w podstawowych nic nie wyjdzie . Ale ok . Nie jestem lekarzem . Poza tym sympatyczna i odpowie na wszystkie pytania ."
+  },
+  {
+    "opinion_id": "op_002596",
+    "text": "PAN będzie wyposażać laboratorium w BPN - T w znacznej mierze samodzielnie . Dobiegają końca prace adaptacyjne w laboratorium biomedycznym oraz w drugim laboratorium badań analiz fizykochemicznych . Laboratorium fizykochemiczne powstaje na potrzeby firmy wytwarzającej elementy z tworzyw sztucznych . Mają być w nim prowadzone m . in . prace nad testowaniem prototypów urządzeń . Negocjowane są warunki najmu - poinformował PAP wicedyrektor Kramarz . W BPN - T będzie również działać laboratorium obrazowania medycznego ( tomografia pozytonowa PET ) . Kramarz powiedział , że jest ono gotowe , ale jeszcze formalnie nie jest odebrane . Nie wiadomo , kto będzie jego najemcą , jest on wybierany w drodze konkursu . Rozstrzygnięcie ma nastąpić w styczniu . Interesuje się tym Uniwersytet Medyczny w Białymstoku ."
+  },
+  {
+    "opinion_id": "op_002597",
+    "text": "Mam pytanie odnosnie tego pomieszczenia do przebierania się - czy najpierw się idzie do gabinetu lekarza i ewentualnie on powie , żeby się rozebrać czy najpierw się idzie do tego pomieszczenia i od razu rozbiera ? Jak to wygląda , bo też jeszcze tam nie była m i się bardzo stresuję . . . ."
+  },
+  {
+    "opinion_id": "op_002598",
+    "text": "Bardzo polecam Panią Doktor . Po wielu latach ciągłego uczucia zmęczenia wyprowadziła mnie \" na prostą \" . Zaczęła m normalnie funkcjonować . Spojrzała całościowo na moje dolegliwości i zleciła badania , z których dowiedziała m się , że nie tylko mam problemy z tarczycą , ale również wielkie braki wit . D3 i magnezu w organizmie . To wszystko razem powodowało u mnie bardzo złe samopoczucie , brak siły do działania . Po czterech m - cach przyjmowania leków znowu żyję , chce mi się i mam siłę . Ponadto Pani doktor dba o to , żeby były wykonywane cytologia i mammografia . Na miejscu wykonuje USG , bada ginekologicznie , można również na miejscu oddać krew do badania . Działa kompleksowo . Łazienka obok gabinetu , dodatkowo wyposażona we wkładki higien , jednorazowe pantofle i spódniczki daje poczucie komfortu . To dodatkowy \" drobiazg \" , jednak pokazujący dbałość o pacjenta , również w innym aspekcie . Bardzo , bardzo polecam ! ! !"
+  },
+  {
+    "opinion_id": "op_002599",
+    "text": "Pani lek . bardzo miła i sympatyczna . Była m u niej z córką i ma podejście do dzieci . Dała jej nawet małą nagrodę za to że była dzielna : ) Jesteśmy w trakcie leczenia i efekty już są na + . Kolejna wizyta niedługo jestem dobrej myśli i bardzo zadowolona z kompetencji Pani doktor ."
+  },
+  {
+    "opinion_id": "op_002600",
+    "text": "Przebieg samej wizyty był dla mnie zadowalający . Nie mogę mieć tu żadnych zastrzeżeń . Pan doktor jest w pewnym sensie specyficzną osobą , kto był to wie , o czym mówię . Mnie to absolutnie nie przeszkadza , pod warunkiem , że będzie dobrze leczył . Na tę chwilę z badań wynika , to co podejrzewał doktor , także jeśli lęki są dobrze dobrane , będzie pełen pozytyw . Na tę chwilę zaczynam leczenie , także na efekty trzeba poczekać , Póki co jestem zadowolona . Lekarz ma podejście profesjonalne , wszystko tłumaczy . Jedna rzecz do której mogę się przyczepić , stąd ocena dobra , a nie bardzo dobra , to czas oczekiwania na wizytę . Była m umówiona na 14 : 40 a weszła m o 16 : 30 . Pierwszy raz zdarzyło mi się , że na prywatną wizytę musiała m tak długo czekać . MINUS"
+  }
+]

@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004181",
+    "text": "Wszystko bardzo szczegółowo wyjaśnione. Polecam."
+  },
+  {
+    "opinion_id": "op_004182",
+    "text": "Na każdej wizycie widać, że Pan Krzysztof zna się na swojej pracy, jest zaangażowany, a kolejne kroki rehabilitacji wyjaśnia z dbałością o szczegóły, a to wszystko jednocześnie idzie w parze z przyjazną atmosferą."
+  },
+  {
+    "opinion_id": "op_004183",
+    "text": "Trafiłam z przewlekłym bólem karku, który towarzyszył mi od lat. Już po dwóch wizytach odczuwam wyraźną ulgę. P. Krzysztof poświęcił mi dużo uwagi i dokładnie wyjaśniał, co dzieje się z moim ciałem oraz jak będzie przebiegać leczenie. Pełne zaangażowanie i profesjonalizm. Polecam z całego serca."
+  },
+  {
+    "opinion_id": "op_004184",
+    "text": "Jestem bardzo zadowolona z wizyty. Pan Krzysztof podszedł do mojej sprawy niezwykle profesjonalnie, z dużym zaangażowaniem i empatią. Dokładnie przeprowadził wywiad, szczegółowo wytłumaczył przyczyny dolegliwości oraz zaproponował skuteczną terapię. Cała wizyta przebiegła w bardzo miłej i komfortowej atmosferze. Polecam z całego serca każdemu, kto szuka rzetelnego, kompetentnego i życzliwego specjalisty!"
+  },
+  {
+    "opinion_id": "op_004185",
+    "text": "Polecam, podejście i wytłumaczenie problemu na wysokim poziomie."
+  },
+  {
+    "opinion_id": "op_004186",
+    "text": "Bardzo przejrzyste wytłumaczenie urazu oraz pracy nad urazem. Duży spokój i empatia, które pomagają się rozluźnić. Bardzo przyjemna, konkretna wizyta zakończona wskazaniem ćwiczeń do wykonywania w domu. Polecam."
+  },
+  {
+    "opinion_id": "op_004187",
+    "text": "Pełen profesjonalizmy, trafna diagnoza, ale też miłą rozmową. Barka doszedł do siebie - urlop uratowany."
+  },
+  {
+    "opinion_id": "op_004188",
+    "text": "Pan Krzysztof z pelnym zaangazowaniem i wyrozumialoscia pomogl mi z problematycznym kolanem. Wysluchal mnie i znalazl odpowiedzi na kazde moje watpliwosci. Polecam."
+  },
+  {
+    "opinion_id": "op_004189",
+    "text": "Bardzo profesjonalne podejście do pacjenta. Szczegółowe wyjasnienie przyczyny problemu, zalecenie ćwiczeń i co najwazniejsze, poprawa stanu juz po pierwszej wizycie! Serdecznie polecam"
+  },
+  {
+    "opinion_id": "op_004190",
+    "text": "Pełen profesjonalizm.Gorąco polecam.Wizyta przebiegła w miłej atmosferze ze szczegółowym   wyjaśnieniem zasad i sposobu rehabilitacji."
+  },
+  {
+    "opinion_id": "op_004191",
+    "text": "Pan Bartosz jest absolutną perełką fizjoterapii. Jest jak skuteczny jak Gandalf i wszechwiedzący jak Dumbledore. Świetny specjalista, uważny i dokładny."
+  },
+  {
+    "opinion_id": "op_004192",
+    "text": "Pełen profesjonalizm, bardzo dobry kontakt, wszystkie problemy zostały dokładnie omówione. Widać ogrom wiedzy i czuć pozytywną energię:D"
+  },
+  {
+    "opinion_id": "op_004193",
+    "text": "Pełen profesjonalizm, rzeczowość i życzliwość. Gorąco polecam pana Litewkę."
+  },
+  {
+    "opinion_id": "op_004194",
+    "text": "Spektakularne efekty i przyjemna atmosfera wizyty."
+  },
+  {
+    "opinion_id": "op_004195",
+    "text": "Bardzo profesjonalnie, milo, klarowne wyjasnienia:)"
+  },
+  {
+    "opinion_id": "op_004196",
+    "text": "Bartok is an excellent health care professional! He is very knowledgeable in his field, and has an extremely empathetic and personable style. I have enjoyed my appointments with Bartok, and I highly recommend him if you have suffered any kind of injury that requires healing and rehabilitation."
+  },
+  {
+    "opinion_id": "op_004197",
+    "text": "Polecam Pana Bartosza! Wiedza, profesjonalizm i podejścia do pacjenta może uczyć się od niego każdy fizjoterapeuta! :)"
+  },
+  {
+    "opinion_id": "op_004198",
+    "text": "Bardzo przyjazny gabinet ,wizyta profesjonalna pan Bartosz bardzo cierpliwy i wyjątkowo życzliwy wszystko dokładnie tłumaczy ."
+  },
+  {
+    "opinion_id": "op_004199",
+    "text": "Totalny profesjonalizm i zaangażowanie, przyjazna atmosfera, wszystko się zgadza."
+  },
+  {
+    "opinion_id": "op_004200",
+    "text": "Bardzo dobry specjalista, posia wiedzę i dowświadczenie, polecam"
+  }
+]

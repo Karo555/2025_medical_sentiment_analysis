@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000001",
+    "text": "Oceniam Panią Doktor niziutko , w moim przypadku ( refluks żołądkowo - pzrełykowy ) nie udało się doprowadzić do choćby minimalnej poprawy . Była m na 4 wizytach ( średnio co 3 - 4 tygodnie ) , przyjmowała m wszystkie zalecone leki ( za kazdym razem zmiana specyfików i dawek ) , po niektórych czuła m się gozrej niż pzred rozpoczęciem leczenia ( odbijanie , wymioty , wzdęcia ) prowadziła m skrupulatnie dzienniczek zjadanych rzeczy , ograniczyła m z diety za sugestią Pani doktor większość produktów , co skutkowało chudnięciem . W moim przypadku stracony czas , pieniądze , wysiłek , nadzieje . . W dalszym ciągu poszukuję skutecznego lekarza ."
+  },
+  {
+    "opinion_id": "op_000002",
+    "text": "Witam , Jakiś czas temu miała m wykonywaną operację wszczepienia implantów u doktora D . Operacja przebiegła bez problemów , ale to co zobaczyła m po zdjęciu opatrunkó było największym koszmarem jaki widziała m . Moje piersi wyglądały gorzej niż przed operacją , skóra pocięta , zniszczona , implanty widoczne , rany goiły się bardzo długo . Była m załamana . Moja babcia , która ma 85 lat ma ładniejsze persi ode mnie . Po operacji dowiedziała m się od męża , że zabieg trwał ponad 3 godziny , gdzie standardowo trwa ok 2 . Pytała m czy były komplikacje - ponoć nie , że zabieg jak każdy . Ten koszmar trwał 3 lata i zdobyła m się na odwagę i poszła m do kliniki Mediclinique na Mickiewicza , gdzie pracuje doktor Andrzej Krajewski . Po wstępnych konsultacjach ustalili śmy , że mogę przejść operację poprawy tego co ktoś \" spieprzył \" . Doktor wszystko ze mną omówił ze szczegółami , miał dla mnie czas , a nie patrzył na zegarek jak doktor D . , rozwiał wszystkie moje obawy , prawdziwy lekarz . Operacja trwała ok godziny , a samo wszczepienie nowych implantów 20 minut - tak robi to dr Krajewski . Blizna malutka , prawie niewidoczna . Polecam gorąco tego lekarza osobom , które chcą poddać się jakiejkolwiek operacji . On robi wszystko . I namawiam na poprawki od innych lekarzy ."
+  },
+  {
+    "opinion_id": "op_000003",
+    "text": "Uczestniczył em w wykładzie nt . odpowiedniego sposobu odżywiania się osób aktywnych , który prowadziła Pani Monika . Przedstawiła problem w rzeczowy sposób , dzięki czemu zauważył em u siebie błędy , które powodowały , że czasem na treningach brakowało mi sił . Jako , że pani Monika wywarła na mnie wrażenie profesjonalistki w swoich fachu , ale jednocześnie bardzo miłej i ciepłej osoby , z chęcią zapisał em się na badanie składu ciała , aby na profesjonalnym sprzęcie ( doczytał em później , że używanym na oddziałach szpitalnych ) zobaczyć jak wygląda moja forma ' od środka' . Pani Monika w dokładny sposób opisała jego wynik . Wydaje mi się , że to nie moja ostatnia wizyta , gdyż jest to dobry sposób na sprawdzenie , czy dieta i trening działają tak jak powinny , a przy tym wiem , że oddaję się w dobre ręce : )"
+  },
+  {
+    "opinion_id": "op_000004",
+    "text": "Była m u doktora Krajewskiego z koszmarnymi bliznami potrądzikowymi . Twarz wyglądała bardzo źle , nawet makijaż nie przykrywał wszystkiego . Dr . Krajewski uważnie mnie wysłuchał , przejrzał całą dotychczasową dokumentację medyczną , uspokoił mnie . Zaproponował kompleksowe leczenie ( peelingi chemiczne , laser , mezoterapię ) . Miała m ustawiony kalendarz zabiegów . Wreszcie ktoś się mną zajął kompleksowo , nie zbywał , potraktował po ludzku . Zabiegi okazały się skuteczne , moja buzia wygląda już teraz zdecydowanie lepiej . Mam też ustalony plan długoterminowego leczenia , tak aby skóra twarzy wyglądała jeszcze lepiej . To co było dla mnie najważniejsze - Dr Krajewski stwarza poczucie bezpieczeństwa , jest doskonałym fachowcem , naprawdę wie co robi . Traktuje pacjenta jak partnera , rozmawia o przeciwwskazaniach , ryzyku i korzyściach zabiegów . Od początku wiedziała m co mnie czeka , jak będzie wyglądało leczenie , jakich efektów mogę się spodziewać . Świetny specjalista i dobry człowiek ."
+  },
+  {
+    "opinion_id": "op_000005",
+    "text": "Dr Jamont usunął mi narośl na nosie . Z powodu wielkości nowotworu konieczne było uzupełnienie ubytku tkanką pobraną z policzka . Po zdjęciu szwów i odstawieniu leków nie odczuwał em większego bólu , a jedynie swędzenie od czasu do czasu . Rana goi się dobrze . Widoczna blizna jest niewielka co jest dla mnie dużym zaskoczeniem . Wiedząc , że tak to będzie wyglądać zdecydował by m się na zabieg 10 lat wcześniej , kiedy zmiana była niewielkich rozmiarów . Pan Doktor to profesjonalista , który zdecydowanym stwierdzeniem „ trzeba ciąć ” przekonał mnie do zabiegu , za co jestem Mu wdzięczny . Niezdecydowanym - polecam !"
+  },
+  {
+    "opinion_id": "op_000006",
+    "text": "Od 3 lat mój synek jest pacjentem p . Madeły i bardzo sobie chwalę , była m wcześniej u kilku lekarzy a tylko ona zdiagnozowała problem mojego synka i to już przy pierwszej wizycie , syn ją lubi , nam również bardzo przypadła do gustu i oboje z mężem mamy do niej zaufanie , co jest chyba batrdzo ważne w wyborze lekarza dla dziecka . Jedyny minus to może zbyt wysoka cena za wizytę no ale cóż to nasz wybór że chodzimy do niej a nie gdzie indziej więc nie mogę narzekać ."
+  },
+  {
+    "opinion_id": "op_000007",
+    "text": "Mam odmienna opinie , Pan doktor bagatelizuje to co , sie mu mowi zasłaniajac sie oszczednosciami , nie wysyla na te badania co potrzeba , a jak ktos ma racje to z sarkazmem sie smieje , gdyby nie innny lekarz to by moj mąz juz dawno byl pod ziemią , i nie prawda jest ze wysyla chetnie do specjalistow , Po prostu oszczesdza na pacjetach , a przeciez podatki wszyscy placimy nie polecam tego lekarza"
+  },
+  {
+    "opinion_id": "op_000008",
+    "text": "Dzieci , które rodzą się zakażone paciorkowcem , najczęściej przechodzą sepsę . W tej grupie zakażonych śmiertelność jest najwyższa . Dzieci , które zakaziły się paciorkowcem już po urodzeniu , najczęściej chorują na zapalenie płuc , zapalenie opon mózgowo - rdzeniowych . Obecnie paciorkowca wykrywa się podczas badań przesiewowych , które powinny przejść wszystkie kobiety w ciąży . Badanie przeprowadzane jest w 35 . - 37 . tygodniu ciąży . \" Badamy kobiety tak późno , bo paciorkowiec może być stale obecny w drogach rodnych kobiety , ale może też pojawiać się w nich czasowo . Wynik badania jest ważny tylko przez pięć tygodni , dlatego czekamy na te niemal ostatnie chwile , aby w momencie rozwiązania wiedzieć , czy profilaktycznie podać antybiotyk , czy nie \" - tłumaczy badaczka ."
+  },
+  {
+    "opinion_id": "op_000009",
+    "text": "Jestem po pierwszej wizycie . Dał em ocenę dobry , ale w kierunku \" plus \" Pan doktor bardzo przyjazny dzieciom , syn ( 4 . 5l ) po wizycie chętnie o niej mówi , chce do \" tego \" pana doktora przychodzić . Jeżeli chodzi o mnie : rozmowa konkretna , techniczna i w pełni obrazująca jak będzie ratowane moje dziecko przed utratą słuchu"
+  },
+  {
+    "opinion_id": "op_000010",
+    "text": "„ Wskazywanie lekarza jako źródła informacji o zdrowym stylu życia , a zarazem także najwyższe wskazanie w kategorii : autorytet pokazuje zaufanie i wysoką wiarygodność tej grupy zawodowej - komentuje Ewelina Nazarko – Ludwiczak z Headlines Porter Novelli . - Martwi jednak , zarówno w pytaniu o źródło , jak i autorytet tak wysoki wynik braku wskazania lub odpowiedzi typu nie mam / nie wiem – dotyczy to ponad jednej czwartej respondentów . Niskie wskazania uzyskały masowe , popularne formy przekazu informacji , takie jak np . ulotki – świadczy to o zmęczeniu ilością tego typu materiałów . Niepokojący jest wynik mówiący o tym , że ponad połowa Polaków nie widzi w swoim otoczeniu zmian w stylu życia na bardziej zdrowy . Z pewnością na uwagę zasługuje także fakt , że zarówno w pytaniu o źródło , jak i autorytet , internet uzyskał najwyższe wskazania wśród mediów \" . PAP - Nauka w Polsce"
+  },
+  {
+    "opinion_id": "op_000011",
+    "text": "W związku z tym jubileuszem w środę ŚCCS odwiedzi prezydent RP Andrzej Duda , weźmie udział w XXIV Międzynarodowej Konferencji Kardiologicznej „ Postępy w rozpoznawaniu i leczeniu chorób serca , płuc i naczyń ” . „ To był 1977 r . Pierwszym etapem leczenia zawału była wtedy śmiała inicjatywa prof . Stanisława Pasyka , który polecił mi zorganizować karetkę kardiologiczną , jako że od roku wcześniej dyżurował em w karetce reanimacyjnej . To był strzał w dziesiątkę - skrócił się czas oczekiwania na lekarza , rozpoznanie i wstępne leczenie było stawiane już w domu chorego , czas transportu z domu do szpitala był bezpieczny , bo w otoczeniu lekarza kardiologa i pielęgniarki . Niejednokrotnie dochodziło do zatrzymania krążenia w czasie transportu . Mając aparat do defibrylacji , przywracali śmy prawidłowy rytm . Ci chorzy nigdy by nie przeżyli , oni by zmarli , gdyby byli transportowani zwykłą karetką ” – wspominał podczas wtorkowej konferencji prasowej w Zabrzu prof . Andrzej Lekston ."
+  },
+  {
+    "opinion_id": "op_000012",
+    "text": "W zeszłym roku okazało się że cierpię na twe kulszową . Ból dokuczał mi bardzo często . Wybrała m Panią Ewę dzięki opiniom na znanym lekarzu . Okazało się że kwalifikacje to nie wszystko . Pani Ewa jest doskonałym specjalistą ale również uważnie słucha tego co ma się do przekazania , przeanalizowała wszystkie moje dolegliwości i dobrali śmy odpowiednią częstotliwość zabiegów . Dzięki niej ból przeszedł . Ogromna wiedza i kompetencje ."
+  },
+  {
+    "opinion_id": "op_000013",
+    "text": "Jak ocenia Ludwikowski , 100 dB utrudnia zdecydowanie rozumienie mowy , poruszanie się w świecie dźwięków , zaburza naszą percepcję . Progiem bólu jest 120 dB i więcej . Wzrost o 1 dB powyżej pewnego progu oznacza dwukrotny wzrost głośności . Między 100 a 120 dB jest zatem 4 - 6 razy głośniej . Są to progi lotniskowe , dlatego wszyscy pracujący na płytach lotnisk mają ochronniki słuchu . Nauczyciele i uczniowie ich nie mają , a przecież to liczna grupa ludzi narażona na stres spowodowany hałasem . „ Nauczyciele i dzieci są poddawani temu hałasowi okresowo co 45 minut . Słuch nie ma szansy wrócić do normalnej sprawności po jednej lekcji . Jeśli przez 10 minut mamy ekspozycję na 100 dB hałas , wymaga to 100 minut odpoczynku w warunkach komfortowych . Komfort dla ucha to jest między 40 a 50 dB , czyli po 10 minutowej przerwie dziecko powinno mieć ponad dwie godziny lekcyjne ciszy , żeby jego układ słuchowy wrócił do pełnej sprawności . Mówimy zatem o czymś , co jest nierealne ” – przyznaje Ludwikowski ."
+  },
+  {
+    "opinion_id": "op_000014",
+    "text": "Badacze potrafią wprawdzie nazwać i zlokalizować geny odpowiedzialne za rzadkie choroby poliglutaminowe , wciąż jednak nie poznali mechanizmów ich powstawania . Tego zadania podjął się zespół badawczy z Instytutu Chemii Bioorganicznej Polskiej Akademii Nauk w Poznaniu . Uczestnicząca w jego pracach mgr Martyna Urbanek - stypendystka programu L ’ Oréal Polska Dla Kobiet i Nauki w ramach swojej pracy doktorskiej prowadzi badania nad \" jądrowymi skupieniami RNA w komórkowych modelach chorób poliglutaminowych \" . \" Badając pojedyncze komórki wyjaśniam , jak dochodzi do pojawienia się chorób genetycznych i jakich narzędzi należy użyć , aby skutecznie je zwalczać . Współczesna medycyna pozwala jedynie łagodzić objawy badanych przeze mnie chorób genetycznych . Chciała by m , aby wyniki moich badań powadziły do znalezienia sposobu na ich skuteczne zwalczanie poprzez nowe podejście terapeutyczne \" - wyjaśnia Urbanek ."
+  },
+  {
+    "opinion_id": "op_000015",
+    "text": "Doktor jest rewelacyjnym specjalistą i fajnym subtelnym człowiekiem ! Dyskretny , niepanikujący , niezacietrzewiony , pozytywny , konkretny , do tego delikatny i uprzejmy , nadto troskliwy i pomocny . Przeszła m pod jego opieką całą ciążę i nie wyobrażała m sobie - aż do pierwszego zetknięcia z tym lekarzem - że ginekologia / położnictwo może przybierać tak sympatyczne i ludzkie oblicze przy zachowaniu pełnego profesjonalizmu i poszanowaniu aspektu merytorycznego . Wizyty u doktora były taka fuzją . W rezultacie z radością oczekiwała m na każdą kolejną . Towarzyszyło mi przekonanie , że doktor ma szeroką i głęboką , do tego bardzo praktyczną wiedzę , a do tego rozumie , jaką radością jest dla mnie nowy ludzik i że cieszy się tym stanem ze mną : ) Tak było za każdym razem - badania przeprowadzano bardzo sprawnie , delikatnie , a przy tym skutecznie , wywiad był dogłębny , ale nie przesadnie dociekliwy czy też niepotrzebnie wydłużony . Każde moje pytanie doktor traktował z uwagą , dając na nie pełną odpowiedź , w efekcie czego nie miała m ani cienia wątpliwości , że trafiła m na dobrego fachowca - jakkolwiek oklepanie to nie zabrzmi . Szczerze polecam tego lekarza kobietom oczekującym kompetencji i partnerskiego traktowania ."
+  },
+  {
+    "opinion_id": "op_000016",
+    "text": "W piątek idę pierwszy raz na wizytę do tego lekarza . Wcześniej miała m trochę niemiłych doświadczeń . Mam nadzieję , że się to wkrótce zmieni : - ) Chciała by m dołączyć do grona stałych i zadowolonych pacjentek . Tutaj też znalazła m informację o lekarce , którą poleciła mi znajoma . Wyobraźcie sobie , że kobieta ta ma - 5 % w rankingu ! ! ! Bardzo pomocny ten portal : - )"
+  },
+  {
+    "opinion_id": "op_000017",
+    "text": "Zazwyczaj wystawiam mało opinii , ponieważ brakuje mi na to czasu . Jednakże tym razem głęboko czuję , że jestem to winien Panu Mateuszowi . A to z dwóch powodów : 1 . zapisując się na wizytę u tego specjalisty sam kierował em się opiniami na Jego temat , a po 2 . jestem szczerze zachwycony przebiegiem wizyt . Zacznę od tego , że od 2 lat szukam pomocy , gdyż cierpię na przeciążeniowe bóle pleców w dolnym odcinku , a od niedawna doskwiera mi ból szyi , głowy oraz mrowienie prawej ręki . Pomijam wizyty u lekarzy specjalistów bo w wielkim skrócie to tragedia ( głównie leki przeciwbólowe i rozluźniające mięśnie ) . Inni stwierdzali , że \" taki mój urok \" lub stresy . Lekko już zrezygnowany umówił em się do Pana Mateusza . I tu wielkie zaskoczenie . Nie dość , że młody człowiek , pełen energii to dokładnie mnie wysłuchał , przeczytał wszystkie opisy badań , sam zbadał , wszystko mi wytłumaczył , omówił , obalił pewne mity , przedstawił plan działania i zalecił ćwiczenia . I co najważniejsze problemy z moją \" górą \" praktycznie się skończyły ( pomijam , że niektórzy lekarze już przesądzili moje losy - raczej operacja , bo nic nie pomoże ) , a dół nie do końca odpuścił , ale jest o niebo lepiej . Zresztą sam Pan Mateusz mówił , że procesy regeneracyjne jeszcze trochę potrwają . Jeszcze raz bardzo dziękuję za pomoc i udzielone wsparcie . Jeżeli ktoś się zastanawia czy warto . . . to moim zdaniem naprawdę warto ! Pozdrawiam S . K ."
+  },
+  {
+    "opinion_id": "op_000018",
+    "text": "Szczerze odradzam tego lekarza jako prowadzącego ciążę . Nie wypisuje skierowań na badania laboratoryjne mimo , że każe je zrobić i przynieść , bezczelnie kłamie , że nie są refundowane ( np . toxo , różyczka , HIV , HCV ) . Do 16 tc nie zrobił mi żadnego USG ( nawet tego obowiązkowego , przesiewowego ) , a skierowanie dał tylko na krew i mocz ! ! ! Na pytanie o inne skierowania czy USG stwierdził , że jestem \" młoda , szczupła i zdrowa \" więc po co mi . Badanie ginekologiczne - bez rękawiczek , trwa może 10 sekund . A no i według szanownego pana doktora \" liczne bakterie w moczu \" u ciężarnej to nie problem i nie trzeba z tym nic robić . . . Na ostatniej wizycie powiedział , że ciężarna to tylko problem . Lekarz nadający się jedynie do wypisania recepty na tabletki antykoncepcyjne . Robi to bez problemu on a czasem nawet Pani w rejestracji . A no i też załapała m się przed ciążą na wypalanie nadżerki . Oczywiście prywatnie . . . NIGDY PRZENIGDY NIE POZWÓLCIE , ŻEBY PROWADZIŁ WASZĄ CIĄŻĘ ! ! !"
+  },
+  {
+    "opinion_id": "op_000019",
+    "text": "W lutym podała m się u Pana Doktora zabiegowi wypełnienia ust kwasem hialuronowym . Zabieg kwasem hialuronowym nawilżył usta , poprawił kontur ust i profil twarzy . Do zabiegu nie trzeba się specjalnie przygotowywać . Powiększenie ust przebiegło w znieczuleniu miejscowym – z użyciem kremu znieczulającego . Zabieg trwał kilkanaście minut , przebiegł dość przyjemnie i delikatnie . Pan Doktor wykazał się ogromna cierpliwością i wyrozumiałością co do zadawanych prze zemnie pytań i na każde pytanie udzielił wyczerpującej odpowiedzi . Zabieg został rozłożony na dwa etapy ze względów adaptacyjnych , ponieważ bała m się przerysowanego efektu i wolała m taką zamianę wprowadzać stopniowo . Rezultaty po zabiegu są natychmiastowe , warto wiedzieć aby na zabieg nie umawiać się w środku tygodnia , gdyż niedługo po zaaplikowaniu substancji , mogą pojawić się opuchlizna lub siniaki jak w moim przypadku o czym została m poinformowana przez Pana Doktora . Na drugi dzień nie było po nich śladu a opuchlizna zeszła po dwóch dobach . Jednak muszę przyznać , że opuchlizna pojawia się tylko po pierwszym zabiegu , a przy kolejnej aplikacji kwasu hialuronowego w ogóle nie ma już miejsca . Spokojnie mogę polecić Doktora efekt mojego zabiegu jest idealny , Usta są naturalne , nawilżone , pełniejsze ale nie przerysowane ! ! ! Polecam Polecam Polecam Odpowiedni człowiek na odpowiednim miejscu ."
+  },
+  {
+    "opinion_id": "op_000020",
+    "text": "Z historią moich zranień , głębokich , trudnych do zniesienia traum , mających korzenie w dzieciństwie , a potem tylko rozwijających się , bo aż do dorosłości , nie uświadomionych , nie przepracowanych , w efekcie tylko nawarstwiających się , aż do wystąpienia choroby - w każdym człowieku postrzegam potencjalnego jeśli nie krzywdziciela , wroga , to na pewno człowieka , który mnie nie zrozumie , wyśmieje , poniży , skrytykuje . Po drugiej wizycie u Pana Marcina , zaczynam czuć się trochę bezpieczniej , nabieram zaufania , zaczynam postrzegać jako lekarza i człowieka , który chce mi pomóc , szanuje mnie , mimo moich dolegliwości . Pan doktor pozwala pacjentowi dostosować przebieg wizyty do predyspozycji . Jednocześnie jest konkretny , kontroluje jej przebieg , ale nie wywiera presji . Umie wskazać niewłaściwe toki myślenia , umie też wykazać kiedy pacjent myśli zupełnie prawidłowo . Moje wrażenia są bardzo pozytywne , choć trudno mi je ująć w słowa . To , czego mi brakuje to dłuższa rozmowa , ale jako pacjent z wieloletnią historią , zdaję sobie sprawę , że lekarz psychiatra zajmuje się gównie diagnozą i leczeniem farmakologicznym konkretnego schorzenia , dolegliwości . Dlatego zapisał em się również na psychoterapię behawioralną w celu opanowania lęku . Pan Marcin dobrze dobrał mi lekarstwo , słucha uwag pacjenta . Nie traktuje chyba pacjenta jak \" wariata \" . Po pierwszej wizycie leki miałem trochę gorzej dobrane , ale też i mój stan oraz zadanie do wykonania było zupełne inne . Mam negatywne doświadczenia z lekami , źle na nie reaguję ( mam rozległą alergię ) . Tym razem lek działa na mnie dobrze i mam nadzieję , że po dłuższym okresie zażywania , jego działanie nie zmieni się na gorsze . Choć jak zwykle niepokoi mnie , że ulotka ostrzega , by zażywania leku nie przerywać nagle i bez kontroli lekarskiej . Bo to znaczy , że jednak nie ma leków , które nie uzależniają ( być może bardziej chodzi tu o ryzyko powrotu objawów choroby z tzw . odbicia ) i które są bezpieczne . Mam nadzieję , że po podjęciu terapii , będę mógł stopniowo zmniejszać dawki i jakoś próbować radzić sobie z życiem bez farmakologii . . ."
+  }
+]

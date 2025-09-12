@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002041",
+    "text": "witam wszystkich nie wiem co tu sie dzieje piszecie ze to dobry lekarz ja skozystalem z wizyty i tej pani i nie stety jestem bardzo nie zadowolony owszem jest mila ale nie udzialila mi zadnej informacji zadnych dodatkowych badan nic poprostu zostalem zbyty hm moze moja choroba to za duże wyzwanie dla pani doktor a moze jej sie nie chce szkoda bede szukal innego lekaza"
+  },
+  {
+    "opinion_id": "op_002042",
+    "text": "Leczył em się u doktora Kościałkowskiego 3 misiące , owszem wystawił diagnozę , ale ona była błędna , stwierdził iż mam dyskopatię , a to jest zwykłe zapalenie rdzenia kręgowego . Na dodatek dał mi 34 zabiegi , które nic nie dały bo przy tej chorobie nie można się wysilać . Doktor bardzo lubi wystawiać zwolnienia , a stojąc przed jego gabinetem można spotkać ludzi którzy leczą się u niego nawet 2 lata . Nie skierował mnie , ani do szpitala , ani na rezonans , jego wizyty trwają od 5 do 7 minut , a pierwsze pytanie to : \" Jak sie pan czuję \" . Niedawnobyłem umówiony na przedłużenie zwolnienia , pan doktor sobie nie przyszedł nie informując swoich pacjentów . Ze zdenerwowania zmienił em neurologa , który zobaczył mnie w dzrzwiach i postawił mi diagnozę i wysłał na rezonans . A więc nie warto sie u niego leczyć ponieważto tylko starta czasu ."
+  },
+  {
+    "opinion_id": "op_002043",
+    "text": "Lekarz może i dobry jeśli chodzi o diagnostykę , natomiast bardzo nietaktowny i chwilami arogancki . Zgłosiła m się do prywatnej kliniki , gdzie przyjmuje celem zrobienia USG by stwierdzić czy więzadła palca po urazie są na miejscu czy nie . USG potrzebne mi było do dokumentacji medycznej i po prostu musiała m je zrobić , nie był to mój wymysł . Zapłaciła m za wizytę 200zł i po zrobieniu badania usłyszała m , że jestem trochę rozhisteryzowana i spanikowała m robiąc to USG bo z palcem wszystko w porządku . W głowie się nie mieści by brać od kogoś tyle pieniędzy za wizytę a potem jeszcze komentować to w ten sposób . No i najważniejsze - przyszła m by uzyskać diagnozę medyczną a nie psychoanalizę . . . . Nie będę się nikomu tłumaczyć z tego po co mi USG , tym bardziej , że za to płacę niemałe pieniądze ."
+  },
+  {
+    "opinion_id": "op_002044",
+    "text": "Jestem lekarzem i matką chłopca chorego na przewlekłą chorobę , któremu pan profesor uratował życie , a potem wielokrotnie udzielał cennych wskazówek dotyczących leczenia , gdy inni rozkładali ręce . Z jego wiedzy i gotowości do niesienia pomocy korzystają chore dzieci z całej Polski , o czym każdego tygodnia można się przekonać na Izbie Przyjęć Uniwersyteckiego Szpitala Dziecięcego . Pani zaniepokojonej zachowaniem swojego dziecka po podaniu leku chcę powiedzieć , że po wielu lekach mogą wystąpić reakcje niepożądane , o czym informują firmy farmaceutyczne na ulotkach dołączonych do leku i za te reakcje firmy nie ponoszą odpowiedzialności . Po wielu latach praktyki wiem , że wiele badań to niepotrzebne narażanie pacjenta np . na infekcje wewnątrzszpitalne , czy chciała by pani narażać swoje maleńkie dziecko ? Pan profesor wyleczył tysiące dzieci i doskonale wie kiedy i jakie badania należy wykonać . Nie zgadzam się z pani opinią na temat pana profesora , choć oczywiście współczuję pani z powodu choroby dziecka , życzę pani i bliskim zdrowia i pomyślności ."
+  },
+  {
+    "opinion_id": "op_002045",
+    "text": "Pani doktor to wspaniały lekarz ! ! ! Dzięki niej mam dwójkę zdrowych dzieci , o które przez wiele lat zabiegała m bezskutecznie w Novum . Szkoda że mało jest takich lekarzy jak ona . Nie oszczędza na badaniach , jest niezwykle kompetentna i wystarczy jedno spojrzenie na wyniki aby wiedziała co dolega pacjentowi . Nie patrzy na zegarek a przed sobą widzi człowieka a nie kolejnego petenta . Przypadkowo była przy narodzinach mojego synka i w sekundę wszystko \" ustawiła \" aby sprawnie działało ! Dziękuję Pani doktor - wdzięczna pacjentka !"
+  },
+  {
+    "opinion_id": "op_002046",
+    "text": "Jak dla mnie to ta pani nie zna się za bardzo na tym co robi - przyjmując prywatnie powinna chociaż mieć porządny gabinet - ale mniejsza o gabinet , w ogóle mi nie pomogła i wypisała leki które nie miały nic a nic do uszu . Jak dla mnie to nie jest lekarzem z powołania i na niczym się nie zna . Solidnie mnie skasowała , wypisała drogie leki a dolegliwości jak był tak są . Czekam na kolejną wizytę ale teraz u innego lekarza - może ktoś inny mi pomoże bo moje dolegliwości nie ustąpiły po calcium i kropelkach ( drogich na maxa ) , które mi pani doktor wypisała ! !"
+  },
+  {
+    "opinion_id": "op_002047",
+    "text": "Wizyta odbyła się punktualnie , Pan doktor był miły , z zaangażowaniem mnie wysłuchał jednak jak się później okazało . . . . postawił złą diagnozę ! W moim przypadku problemem była swędząca wysypka która pojawiła się na przedramionach , nogach i dekolcie . Lekarz po obejrzeniu stwierdził , że to świerzb - nie sprawdzał tego pod mikroskopem , mówił jednak z takim przekonaniem że mu uwierzyła m . Wypisał mi leki dla mnie i mojego partnera - gdyż twierdził że on prawdopodobnie się ode mnie zaraził . Diagnoza była na tyle szokująca , że następnego dnia przed zastosowaniem leków ( które mimo wszystko wykupiła m - nie były tanie ) poszła m na wizytę do mojego lekarza rodzinnego który z przekonaniem stwierdził , że to na pewno nie świerzb ! ! Kolejnym krokiem było udanie się do innego dermatologa , który również potwierdził z przekonaniem , że to nie świerzb a . . . pokrzywka . Dostała m maść na pokrzywkę , zmieniła m kosmetyki na dziecięce i po kilku dniach problem zniknął . Dodam jeszcze , że mój partner nie miał żadnych problemów skórnych pomimo iż przebywali śmy razem i korzystali śmy z tej samej pościeli - to tylko potwierdza że diagnoza dr Ludewa była błędna . Jest mi bardzo przykro bo została m narażona na niepotrzebny stres , zakup niepotrzebnych leków oraz stratę czasu ."
+  },
+  {
+    "opinion_id": "op_002048",
+    "text": "Sympatyczna , miła , do jej stosunku do pacjenta nie mam żadnych zastrzeżeń . Niestety terapia lekami przepisanymi przez Panią Doktor nie przyniosła skutku . Dopiero po zmianie lekarza i przepisanych leków nastąpiła poprawa - sam lek przeciwdepresyjny ( + uspokajający doraźnie ) okazał się niewystarczający . Dopiero po terapii lekami z innych grup udało mi się pozbyć objawów somatycznych nerwicy lękowej ( leki neuroleptyczne , nootropowe ) . Sama dawka leku przepisanego przez Panią Doktor okazała się nietrafiona - dzisiaj już wiem , że nie rozpoczyna się terapii od pełnej dawki , ale od połowy , stopniowo zwiększając dawkę . Niestety , wtedy tego nie wiedziała m i doświadczyła m dotkliwych skutków ubocznych . Być może komuś z klasyczną depresją taka terapia by pomogła , dla mnie niestety standardowe leczenie ssri + pochodna benzodiazepiny okazało się niewystarczające ."
+  },
+  {
+    "opinion_id": "op_002049",
+    "text": "Dobrym uzupełnieniem diety są sezonowe warzywa i owoce . Jak zaznaczył prof . Kardas , część z nich , jak np . ogórek czy arbuz , w większej części składają się z wody , są więc idealne do spożywania latem . Jak powiedział , warzywa i owoce posiadają średnią ilość białka i małą węglowodanów . \" Wtedy , kiedy jest gorąco , nasze zapotrzebowanie kaloryczne jest małe \" - mówił . Jako jedną z najlepszych potraw w czasie upału wskazał sałatkę caprese , w której skład wchodzą pomidory i ser mozzarella . A co z ruchem w czasie upału ? W ocenie eksperta najlepiej wychodzić z domu wcześnie rano lub wieczorem , natomiast pomiędzy 10 . 00 a 18 . 00 pozostać w domu . Pośrodku dnia warto zamknąć okna i nie wpuszczać gorącego powietrza ; okna też można zasłonić - wtedy gorące promienie słoneczne nie trafią do pomieszczenia ."
+  },
+  {
+    "opinion_id": "op_002050",
+    "text": "Nie interesuje się problemami pacjenta . Recepty można otrzymać wypisane przez recepcjonistkę nie widząc się z lekarzem . Bardzo krótki czas na wizytę , Nastawienie na większy przerób pacjentów w celach zarobkowych . Nie informuje o skutkach ubocznych leków . Na postawiony zarzut usłyszała m , że nie musi informować , ponieważ każdy pacjent ma inny organizm . Na lekach przytyła m ponad 10 kilo i dopiero wtedy dowiedziała m się , że zmieniają metabolizm . Na innych lekach miała m halucynacje , o czym też nie została m poinformowana . Halucynacje były więcej niż uciążliwe , ponieważ czuła m się osaczona bez wyraźnego powodu . Długo nie umiała m powiązać tego z zażywanymi lekami , bo mój stan się pogarszał . Nie została m przez p . Michałowskiego ani razu uprzedzona o takich skutkach ubocznych ani tym bardziej nie padło żadne pytanie , jak się czuję . Sama w końcu doszła m do wniosku , że leki które mi przepisuje , są źle dobrane . P . Michałowski nie wykazał zainteresowania , jakie powinien wykazać lekarz . Zdecydowanie odradzam wizytę w jego gabinecie . Niekompetencja w 100 % ."
+  },
+  {
+    "opinion_id": "op_002051",
+    "text": "Jeśli chodzi o kompetencje - nic nie mogę Panu doktorowi zarzucić . Jednak cennik usług jest mocno przesadzony . Znam wielu lekarzy , którzy prowadzą gabinety na podobnym poziomie i kasują 1 / 3 tego , co Pan doktor . Na następną wizytę na pewno nie wybiorę tego gabinetu ."
+  },
+  {
+    "opinion_id": "op_002052",
+    "text": "Ostatnie dwa lata starań o uruchomienie medycyny na UO to dowód , że można ponad podziałami politycznymi zrobić coś dobrego dla regionu . Wspólnymi siłami dokonali śmy czegoś , co wiele osób uważało za nierealne  - powiedział marszałek województwa Andrzej Buła . Zdaniem rektora UO prof . Marka Masnyka po otrzymaniu obiektów i wszystkich niezbędnych zgód , opolska uczelnia wchodzi na nowy poziom działalności . \" Utworzenie wydziału lekarskiego to efekt uporu wielu osób ze świata nauki , polityki i biznesu , które włożyły swoją cegiełkę w budowę gmachu naszej uczelni . Teraz możemy już czekać na październik , kiedy w murach naszej uczelni rozpoczną studia pierwsi studenci kierunku lekarskiego \" - podkreślił rektor ."
+  },
+  {
+    "opinion_id": "op_002053",
+    "text": "Ja po wizycie u pani doktor mialam mieszane uczucia Niby mila Przeprowadzila jakies badanie i przepisal tabletki ale nie wiadomo na co tak do konca Mam sie zglosci na wizyte , obawiam sie ze przedluzy stosowanie lekow a tego by m nie chciala"
+  },
+  {
+    "opinion_id": "op_002054",
+    "text": "Naszą substancję można podawać za pomocą zastrzyku , ale można też doustnie - tak jak pigułkę z lekiem . Na razie to oczywiście science fiction , ale w przyszłości taką pigułką można wpłynąć na precyzyjne hamowanie komórek odpowiedzialnych za alkoholizm  - opisuje . W przyszłości wyniki badania można było by przełożyć na inne uzależnienia np . od narkotyków . Wszystkie one rozgrywają się w tym samym obszarze mózgu : w układzie nagrody . Te same komórki , które odpowiadają za uzależnienie od alkoholu czy narkotyków , sterują uczeniem apetytywnym - czyli uczeniem wrażeń przyjemnych . \" Dla mózgu to ten sam mechanizm . Tylko że wspomnienia uzależniające są na tyle mocne , że praktycznie nieodwracalne , i pamiętamy o nich do końca życia . Dlatego jeśli ktoś jest alkoholikiem , to zostaje nim na zawsze \" - podkreśla badaczka ."
+  },
+  {
+    "opinion_id": "op_002055",
+    "text": "Dzieciom cierpiącym na autyzm często towarzyszy alergia pokarmowa . Nie przyswajają w pełni produktów białkowych pochodzących z mleka krowiego np . kazeiny , czy z produktów zbożowych - glutenu . Badania olsztyńskich naukowców wykazały , że eliminacja białek zbóż i mleka krowiego wpływa na lepszy stan zdrowia autystyków i alergików - wyjaśniła prof . Kostyra . \" Ten dowiedziony fakt jest głównym motorem pracy nad preparatem odżywczo - leczniczym , który wspomagał by układ immunologiczny pacjentów chorych na autyzm i alergię \" - dodała . Preparat , choć powstaje na bazie białek mleka krowiego , jest pozbawiony niekorzystnej kazeiny . Mleko pochodzi od wyselekcjonowanych genetycznie krów . Tak wyselekcjonowane mleko wzbogacane jest w mikroelementy , nienasycone kwasy tłuszczowe i witaminy ."
+  },
+  {
+    "opinion_id": "op_002056",
+    "text": "Bardzo słaba komunikacja ze strony pani doktor . Podczas wizyty nie uzyskał em tak podstawowych informacji jak : jakie mogą być pierwotne przyczyny mojego schorzenia , czy zalecane są dodatkowe badania ( jeśli tak : jakie ) , co należy zmienić , aby problem nie powracał . Otrzymał em receptę na leki alergiczne , ale tu również pani doktor nie pokusiła się o wyjaśnienie zależności między alergią a moim schorzeniem . Wydaje mi się , że naturalne dla lekarza powinno być przybliżenie pacjentowi wybranej przez siebie strategii leczenia . 10 minut i następny klient ."
+  },
+  {
+    "opinion_id": "op_002057",
+    "text": "Prototyp aparatu , który powstał dzięki współpracy naukowców Politechniki Śląskiej , Politechniki Częstochowskiej , lekarzy z Centrum Leczenia Oparzeń w Siemianowicach Śląskich i inżynierów z Instytutu Aparatury Medycznej w Zabrzu przesuwa się nad ciałem pacjenta , „ skanując ” powierzchnię rany . Po dokonaniu pomiaru termogramy są \" rozkładane \" na płaszczyźnie i porównywane ze sobą . Dlatego poza samą diagnostyką oparzenia termowizja opasająca pozwala na porównanie sposobu i tempa gojenia się ran , umożliwiając dopasowanie terapii i efektywne leczenie . „ Droga takiego wynalazku do powszechnego użycia jest bardzo długa ” – mówi prof . Majchrzak . \" Najpierw jest koncepcja i model wirtualny , który tworzyli śmy we współpracy z siemianowickimi lekarzami , poprzez wykonanie prototypu przez zabrzański IAM , aż po testy , których wciąż jest mało . Taki sprzęt jest najpierw testowany na manekinach , sprawdza się bezpieczeństwo jego użycia , testuje sposób prowadzenia badania ( np . odległość od rany , pozwalającą optymalizować pomiar ) , potem prowadzi się test na zdrowych i chorych ” – opisuje badaczka ."
+  },
+  {
+    "opinion_id": "op_002058",
+    "text": "W 2005 roku przyjechała m do p . doktora na naświetlanie guza mózgu . Pan doktor twierdził , że to gamma knife , a jak się później okazało to był zwykły przyśpieszacz liniowy , który przecież wykorzystuje inny rodzaj promieniowania . O tym pan doktor powinien wiedzieć . Ale mniejsza z tym , bo to jednak nie było najgorsze . Po zabiegu nie dostała m żadnych zaleceń ( doktor zapewniał , że nie będzie żadnych skutków ubocznych ) . Wtedy tego nie wiedziała m , ale nabywając doświadczenia wraz z postępem mojej choroby , wiem dzisiaj , że standardowo po radioterapii pacjent powinien dostać zalecenie brania sterydów w sytuacji jeśli coś było by nie tak . Wtedy nie miała m o tym pojęcia . W końcu to lekarz jest od leczenia a pacjent może się tylko zdać na niego . Mniej więcej od 3 miesiąca po zabiegu chodziła m z bólem głowy i gdy próbowała m się skontaktować z Panem doktorem , on zupełnie się odciął . Nie odbierał telefonów ani ode mnie ani od moich Rodziców . Dodam , że za sam zabieg wziął pieniądze . Efekt tego wszystkiego był taki , że w wyniku nie leczonego obrzęku ( początkowo nawet nie wiedziała m , że go mam ) doszło u mnie do uszkodzenia neuronów ruchowych w płacie czołowym , co poskutkowało niedowładem i czego niestety doświadczam do dzisiaj . A wystarczyło tylko zlecić dalsze leczenie . Jeśli pan doktor nie chciał sam się tego podjąć , mógł po prostu powiedzieć , żeby m poszła do innego lekarza . Mam ogromny żal , bo przed zabiegiem była m w pełni sprawną osobą . Dziś jest inaczej . Przestrzegam przed wykonywaniem naświetlań u tego pana ."
+  },
+  {
+    "opinion_id": "op_002059",
+    "text": "Wizyta u tego lekarza była wielką pomyłką . Po zbadaniu dwuletniego dziecka , które straciło apetyt od dwóch dni , gorączkowało , wymiotowało i miało luźne kupki stwierdził infekcję żołądkową . Przepisał leki za 70 zł + wizyta 100zł . Jeszcze tego samego dnia zorientowała m się że dziecku idzie ząb trzonowy i pokazała się pleśniawka . Następnego dnia udali śmy się na szczęście do innego lekarza , który potwierdził moje przypuszczenia o stanie zapalnym jamy ustnej od wyrzynającego się zęba . Dziecko dostało właściwe leki i poprawa była natychmiastowa ."
+  },
+  {
+    "opinion_id": "op_002060",
+    "text": "Problemy z zębami mogą być przyczyną zapalenia zatok , ale niewyleczona choroba zatok może też powodować powikłania stomatologiczne , np . wypadanie implantów – mówił w piątek laryngolog dr Michał Michalik na konferencji naukowej w Warszawie poświęconej tej tematyce . „ Dlatego , dla dobra pacjenta niezbędna jest ścisła współpraca laryngologów i stomatologów , m . in . przy leczeniu endodontycznym ( leczenie kanałowe zębów – PAP ) , bądź przy wstawianiu implantów zębowych . Dzięki temu leczenie jest krótsze , skuteczniejsze , pozwala uniknąć poważnych powikłań i jest tańsze ” - powiedział dr Michał Michalik z centrum medycznego MML w Warszawie , który jest gospodarzem pierwszej w Polsce interdyscyplinarnej konferencji laryngologiczno - stomatologicznej , odbywającej się w dniach 27 - 28 marca w Warszawie ."
+  }
+]

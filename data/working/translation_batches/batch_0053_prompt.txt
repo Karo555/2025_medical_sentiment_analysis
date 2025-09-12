@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001041",
+    "text": "Pani dr Rudnicka jest wyniosła w stosunku do pacjentek i nie miła . Doświadczyła m tego leżąc na oddziale endokrynologii na Karowej . Nie można dowiedzieć się od niej żadnych informacji na temat wyników badań . Jest też mało delikatna podczas badań ginekologicznych . Musi się jeszcze wiele nauczyć a poza tym nie wiem dlaczego na stronie znany lekarz ogłasza się jako lekarz endokrynolog nie ma nic wspólnego z endokrynologiem jest zwykłym lekarzem medycyny . Dowiedziała m się o tym leżąc na oddziale ."
+  },
+  {
+    "opinion_id": "op_001042",
+    "text": "podczas wizyty z dzieckiem w poradni zamiast zajmować się córką ciągle pytał , czy przypadkiem ja nie mam problemu z nerwem twarzowym i dziecko go mniej interesowało , niż ja . Nie słuchał , co do niego mówił em o objawach u dziecka i dyktował pielęgniarce do karty zupełnie inny wywiad , niż mu podawał em . W karcie zapisano lekkie bóle głowy , podczas , gdy córka płakała z bólu i nie mogła normalnie funkcjonować . Zdecydowanie mnie lekceważył . Nie pomógł w żaden sposób ."
+  },
+  {
+    "opinion_id": "op_001043",
+    "text": "Witam . Ja miałem problem z ciągłym krwawieniem z nosa . Chodził em do innego laryngologa kilka lat i żadnego pozytywnego skutku to nie przyniosło , z każdą wizytą miałem zabieg \" przypalania \" w nosie . Po jakimś czasie dowiedział em sie od pani doktor że jak jeszcze raz zrobi mi ten zabieg to moge stracić węch ! ! ! Postanowił em szukać innego lekarza . Na szczęście polecono mi panią doktor Imburską . Bardzo dokładnie mnie przebadała i przepisała mi maść robioną za UWAGA ! ! ! 5 ZŁ ! ! ! i krwawienie przeszło ! ! ! POLECAM GORĄCO TEGO LEKARZA ! ! ! !"
+  },
+  {
+    "opinion_id": "op_001044",
+    "text": "Po wyjściu od Pana lekarza był em zniesmaczony , a wręcz oburzony . Na dolegliwość bólu w kolanie , nie zlecił żadnych badań , powiedział jedynie , że zna tę chorobę i zaleca rozpoczęcie leczenia od serii drogich zastrzyków w kolano ( 400 zł jeden ) . Następnie dodał , że jest przedsiębiorcą i że jest w stanie załatwić trochę taniej te zastrzyki , jeśli będę zainteresowany . Ja jako laik wiem , że przecież leczenie zaczyna się od badań , leków doustnych i rehabilitacji , a nie od razu od ingerencji w kolano drogich zastrzyków . Takie właśnie zalecenia dostał em idąc do innego ortopedy , który od pierwszej wizyty chciał mi pomóc , a nie zarobić na moim cierpieniu ."
+  },
+  {
+    "opinion_id": "op_001045",
+    "text": "Ja miała m badać , jak stany zapalne w zakażeniach opryszczką genitalną powodują , że można się łatwiej zarazić wirusem HIV . Miała m bardzo precyzyjnie zbadać , co w błonie śluzowej się dzieje . Mnie też - jak byk - wychodziło , że komórki obronne pojawiają się wcześniej niż przed 48 godzinami . Była m wśród kilku osób , które zauważyły ten efekt  - opowiada badaczka . Teraz naukowcy chcą sprawdzić , czy podobne mechanizmy obronne działają również w przypadku bakterii i innych patogenów , i czy obserwować można je w różnych miejscach ciała na śluzówce . \" Jeżeli okaże się , że mechanizm , który zbadali śmy , działa też w górnych drogach oddechowych , to będzie świetnie ! \" - ma nadzieję prof . Krzyżowska ."
+  },
+  {
+    "opinion_id": "op_001046",
+    "text": "Trafiła m do Pana doktora po dwóch tygodniach strasznego kaszlu , początkowo trwał on chwilę , z biegiem czasu był coraz silniejszy i czas jego występowania był dłuższy . Dodatkowo od trzech dni miała m gorączkę do 40 stopni , której nie mogła m zbić , oraz zaczęły się pojawiać duszności . Na wizycie Pan doktor sprawiał wrażenie jakby w ogóle mnie nie słuchał , stukał coś ciągle w klawisze i nawet na mnie nie patrzył . Zainteresowały go tylko moje oczy , które były przekrwione ( mam tak zawsze , kiedy tylko coś mi dolega , lub gdy po prostu jestem przemęczona ) . Próbowała m Panu wytłumaczyć , że nie przyszła m tu z oczami i moim problemem jest kaszel , który nie pozwala mi już zasnąć ani normalnie funkcjonować , ale nie przyniosło to skutku . Dostała m tabletki na alergię i polecenie zażywania nurofenu w razie gorączki . Prosiła m o lek na kaszel , ale Pan Doktor spojrzał tylko na mnie wymownie i wstał zapraszając kolejnego pacjenta . Dodam , że była to wizyta prywatna . Po czterech dniach trafiła m do szpitala z ostrym masywnym obustronnym zapaleniem płuc , lekarze byli przerażeni moim przypadkiem i pytali , czemu wcześniej nie zgłosiła m się do lekarza . . . Po dwóch tygodniach hospitalizacji , antybiotyków , sterydów na duszności , inhalacji i leżenia pod tlenem zaczęło mi się poprawiać . Na szczęście w szpitalu trafiła m na bardzo dobrych specjalistów . Nie polecam Pana doktora nikomu ."
+  },
+  {
+    "opinion_id": "op_001047",
+    "text": "Była m u dr Słopienia i ogólnie nie oceniam go źle ani dobrze . standardowo . nie zachwycił mnie , wizyta dość krótka , mało szczegółowa . Dr bardzo miły , ale tak jak mówię - nie wiem czy zdecydowała by m się na wybór pana dr na stałego lekarza . Jednorazowo - nie ma problemu ."
+  },
+  {
+    "opinion_id": "op_001048",
+    "text": "Stanowczo nie polecam . Poza tym , że doktor rzeczywiście jest serdeczny , miły i uśmiechnięty ( nawet przesadnie ) to nie pomógł nic . Nawet nie przeanalizował przypadku . Stwierdził , że \" młody to zdrowy \" już po wejściu do gabinetu i rozpoczęciu wizyty ( która trwała circa 5 min ) . Stwierdził to przed jakąkolwiek rozmową o dolegliwościach i powtarzał przez całe spotkanie . Nie analizował i nie starał się nawet przeanalizować przypadku by pomóc , a po wyciągnięciu przeze mnie karty wypisu ze szpitala stwierdził , że to nie była operacja gastrologiczna ( była to operacja urologiczna i skierowanie do gastrologa dostał em właśnie od urologa , któremu nie spodobała się morfologia i powiększona śledziona ) i nie jest związana z dolegliwościami . Jedynie zapytał o \" choroby moje i choroby w rodzinie \" , czyli pytania , które równie dobrze może zadać lekarz rodzinny . Nie spojrzał tez w historię leczenia , w tym na podawane antybiotyki . Pokazał em dwa wyniki badań krwi ( wykonane prawie 3 miesiące po operacji ( ok 4 - 5 dni pobytu w szpitalu ) ) , jedno z podwyższonymi parametrami wątroby i trzustki ( 3 - 5x ) a drugie , późniejsze , w okolicy norm ( okres między badaniami wynosił parę dni ) , doktor stwierdził , że któreś z badań jest nieprawidłowe , ot i wszystko . Nie zlecił ani dodatkowych badań celem upewnienia się które ( bo nawet jeśli któreś z badań jest rzeczywiście wykonane nieprawidłowo to jest 50 % szansy , że jest źle i 50 % szansy , że jest dobrze , no ale doktor na oko stwierdził , że wszystko jest ok , bo \" Trzustka nie boli a młody to zdrowy \" ) . Jedyne co zalecił to pojawić się za 4 - 5 miesięcy i przyjmować Essentiale forte . Pewnego rodzaju ignorancją jest również proponowanie jednego typu diety \" właściwej \" ( 50 - 60 % węglowodanów ) ignorując chociażby aktywność fizyczną . Stanowczo nie polecam ."
+  },
+  {
+    "opinion_id": "op_001049",
+    "text": "Dwie ciąże i 20kg balastu . Zaszyła m się w domu w przekonaniu , że pewnie już tak zostanie , że nie uda mi się być znów szczęśliwą kobietą w moich pięknych sukienkach . Sukienki zamieniła m na dresy i wielki sweter pod którym ukrywała m to czego najbardziej się wstydziła m i nienawidziła m . Czym więcej kilogramów , tym wieksza była moja frustracja do życia , niechęć do wyjścia do ludzi . Kilka spraw się złożyło na to , by dać sobie szansę przywrócić moje szczęście . \" Wygooglałam \" Panią Mariolę . Nie sądziła m że , waga będzie mi spadać z taką łatwością . Jem co uwielbiam , nie muszę katować się dziwnymi dietami . Miłym zaskoczeniem jest dla mnie to , że dieta potrafi być tak zbilansowana , że nie ciągnie mnie do słodyczy których jeszcze niedawno jadła m bardzo dużo . Spotkania z Panią Dietetyk są przyjemne bo nie czuję skrępowania , mogę powiedzieć o wszystkim co w tym temacie leży mi na sercu i to dodatkowo czyni mnie lżejszą . Jestem znów szczęśliwa : ) i moje dzieci i mąż też . Bo szczęśliwa mama to szczęśliwi wszyscy dokoła : )"
+  },
+  {
+    "opinion_id": "op_001050",
+    "text": "Pani specyficzna . Niby się uśmiecha ale widać , że myśli coś zupełnie innego . Nie spodobała mi się krytyka mojej wagi . Takie rzeczy można zrobić bardziej subtelnie . Mało konkretnie jak na pierwsze spotkanie - ale to moje zdanie . Mam trochę za daleko więc znajdę coś koło domu . Panią Doktor pozdrawiam"
+  },
+  {
+    "opinion_id": "op_001051",
+    "text": "Pani doktor jest miła , posiada wiedzę gastrologiczną jednak tego nie wystarczy żeby pomóc osobie z zespołem jelita drażliwego . 3 wizyty nic nie dały , zmarnował em czas , zasoby i niepotrzebnie się męczył em . Pani doktor skierowała mnie na badania na które , tak na dobrą sprawę nie może wystawić zwolnienia , do pełnego szczęścia pacjent się dowiaduje o tym po tym jak badania już umówione i zaczął dietę . Polecam Pani doktor w kwestiach ogólnych , jednak w kwestii ZJD polecam poszukać doktora z doświadczeniem prowadzenia i kuracji takich dolegliwości ."
+  },
+  {
+    "opinion_id": "op_001052",
+    "text": "Do kliniki Pana doktora trafiła m po źle wykonanym zabiegu laserowym dolnego wędzidełka , efektem czego była utrata dziąseł dolnych jedynek . Pani chirurg z Zamościa , która nieudolnie przeprowadziła zabieg nie widziała możliwości rekonstrukcji i nie podjęła żadnych działań , które mogły by zmniejszyć recesje dziąsła , do którego się przyczyniła . Pan doktor Kuroczko podjął się zabiegu przeszczepu dziąsła , który bardzo dobrze się przyjął i w rezultacie tego dziąsło dolnych jedynek zostało odbudowane . Opierając się na własnym doświadczeniu z całą pewnością mogę polecić Pana doktora i wystawić jak najwyższą ocenę , nie tylko za ogromny profesjonalizm i rzetelność , lecz również za życzliwe i empatyczne podejście do pacjenta ."
+  },
+  {
+    "opinion_id": "op_001053",
+    "text": "No cóż , mojej żony nie uratował , choć łudził em się że będzie żyła . . . . w sumie to nic nie zrobił , oprócz konsultacji z podwładnymi i powiedzeniu mi że chyba nie dadzą rady uratować jej . . . . podczas rozmowy ze mną wypełniał dokumenty , gdyż były one bardzo ważne . . . . bardzo ważne : - ("
+  },
+  {
+    "opinion_id": "op_001054",
+    "text": "Jeżeli któraś z was musi wybrać się na wizytę u ginekologa to wizytę u Tej Pani stanowczo odradzam . Na przekór wszystkim opiniom wybrała m się do Pani doktor i na własnej skórze przekonała m się dlaczego większość opinii o niej jest taka krytyczna . Podczas badania ginekologicznego BARDZO niedelikatna . Pacjenta traktuje jak idiotę . Nie ma szans na dialog . Wszystkie moje pytania ( nie jestem lekarzem więc mogły one być niefachowe ) kwitowała dziwnym uśmieszkiem . Wykonała mi badanie cytologiczne , ale o tym , że jest ono odpłatne poinformowała po fakcie . Wizyta u tej Pani kosztowała mnie dużo nerwów oraz 90 zł wizyta , 40 zł cytologia , Jeszcze raz odradzam ."
+  },
+  {
+    "opinion_id": "op_001055",
+    "text": "Była m dzisiaj na wizycie u dr Nagaya . To moja pierwsza wizyta , więc ciężko jest mi wypowiedzieć się na temat fachowości , zrobił na mnie dobre wrażenie . W przeciwieństwie do organizacji przyjęć pacjentów . Kilku pacjentów było umówionych na tą samą godzinę . Później okazało się , że dr przyjmował wg kolejności przyjść pacjentów . Po co w takim razie umawianie na godzinę , skoro nie ma się szans na wejście o wyznaczonej godzinie , bądź chociaż zbliżonej , bo rozumiem , że jeden pacjent zajmie doktorowi 10 minut , a inny 25 . Jeżeli dr w tym samym czasie usiłuje przyjąć kilku pacjentów na tą samą godzinę , a w między czasie wykonać zabiegi , bo i takie miały dzisiaj miejsce , to raczej jasne , że się o umówionej porze do gabinetu nie wejdzie . Brak szacunku dla czasu pacjenta . Może dzisiaj tylko miało coś takiego miejsce . Okaże się następnym razem , gdyż zamierzam doktora jeszcze odwiedzić ."
+  },
+  {
+    "opinion_id": "op_001056",
+    "text": "Nie ma podejścia do dzieci . Przed badaniem kazała rozebrać dziecko a potem przez kilka minut zajmowała się pisaniem na kompie . Dziecko sine z zimna zaczęło płakać a pani doktor na to , że badanie robi byle jak bo płacze . Zero komentarza na temat wyniku echa serca a to wszystko za 150 zł w luxmedzie !"
+  },
+  {
+    "opinion_id": "op_001057",
+    "text": "Co do wartości badań nie umiem się wypowiedzieć , ale Pani doktor zrobiła na mnie negatywne wrażenie , cała wizyta odbywała się jakby w pośpiechu , choć w rozrachunku trwała ona chyba nawet nie 10 minut . . Odnoszę wrażenie jak gdyby fakt , że jestem dziewica , która jeszcze nie współżyła usprawiedliwiał w opinii pani Doktor brak potrzeby profilaktyki , gdyż na informacje o atakach podczas niektórych miesiączek i moim pytaniom o to jakie badania mogła by m wykonać żeby się upewnić czy wszystko jest ok nie usłyszała m nic konkretnego , jedynie ze takie dolegliwości są częste i podczas okresu wskazane jest w takich sytuacjach zażywać tabletki przeciwbólowe i rozkurczowe , np . nospe . Żeby być obiektywnym - Pani była bardzo sympatyczna i delikatna , ale jako młoda dziewczyna oczekiwała m wartościowej informacji o profilaktyce"
+  },
+  {
+    "opinion_id": "op_001058",
+    "text": "Dzięki narzędziom proteomicznym chcemy poznać różnice w ekspresji białek w miażdżycy , stłuszczeniu wątroby czy też depresji . W zwierzęcych modelach tych chorób można zaobserwować zmniejszoną aktywność białek , które są odpowiedzialne w mitochondriach za produkcję energii . Pracujemy nad lekiem , który mógł by aktywować źle działające enzymy i usuwać z mitochondriów szkodliwe , toksyczne aldehydy , które tworzą się w wyniku stresu oksydacyjnego czyli nadmiaru produkcji wolnych rodników tlenowych  – tłumaczy dr Stachowicz . Laureatka stypendium START Fundacji na rzecz Nauki Polskiej bada enzym mitochondrialny - dehydrogenazę aldehydową , który może pełnić funkcję ochronną w mitochondriach . To właśnie ten enzym usuwa toksyczne substancje , a tym samym może chronić i zapobiegać dysfunkcji centrów energetycznych w komórkach ."
+  },
+  {
+    "opinion_id": "op_001059",
+    "text": "Znakomity fachowiec , któremu wiele zawdzięczam . Przez kilka lat bywał em z dolegliwością u wielu lekarzy , co spowodowało , że dolegliwość się pogłębiała , a żaden z nich wcale mi nie pomógł . Gdyby m trafił od razu do Rokickiego , jestem pewny , że był by m w 100 % zdrów . Wiele mi pomógł . Czuję się o niebo lepiej . Operowany był em dwuktrotnie i są tego efekty . Pozdrawiam doktorze . A że w niektórych opiniach pisze się , że nie ma czasu dla pacjentów , to bzdura . To ludzie nie mają czasu dla tego lekarza . A czasu trzeba mieć dla niego wiele . A warto ten czas znaleźć ."
+  },
+  {
+    "opinion_id": "op_001060",
+    "text": "Sugerują to również badania przeprowadzone przez studentów prof . Samolińskiego w grupie ok . 1 , 5 tys . dzieci z warszawskiej dzielnicy Ochota . Tylko 30 proc . z nich nie otrzymało antybiotyku przed ukończeniem 1 . roku życia ( gdy układ odporności jest najbardziej wrażliwy ) , a przed 3 . rokiem życia odsetek ten wyniósł 10 - 14 proc . zależnie od płci . Analiza ujawniła , że w grupie , w której przed ukończeniem 3 lat rozwinęła się alergia ( np . alergiczny nieżyt nosa czy astma ) najwięcej maluchów otrzymywało antybiotyk . Ponadto , w grupie tej największa liczba dzieci obyła poddawana antybiotykoterapii wielokrotnie . „ Podczas przeziębienia lepiej jest stosować leki OTC ( bez recepty – PAP ) , które może nie skrócą trwania infekcji , ale mogą złagodzić jej objawy – odetkać nos , obniżyć gorączkę , złagodzić kaszel ” – tłumaczył prof . Smoliński ."
+  }
+]

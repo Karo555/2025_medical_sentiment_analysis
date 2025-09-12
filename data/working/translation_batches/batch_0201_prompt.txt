@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004001",
+    "text": "Bardzo miła, empatyczna Pani Doktor. Pomogła mi oraz mojej mamie w problemach dermatologicznych. Bardzo dziękujemy za pomoc."
+  },
+  {
+    "opinion_id": "op_004002",
+    "text": "Pani doktor jest przędzę wszystkim bardzo serdeczna,  a wiadomo że to wartość nieoceniona dla pacjentów."
+  },
+  {
+    "opinion_id": "op_004003",
+    "text": "bardzo miły i empatyczny lekarz. Od razu postawiła diagnozę i skierowała mnie na dalsze leczenie. Polecam"
+  },
+  {
+    "opinion_id": "op_004004",
+    "text": "Moim zdaniem najważniejsza jest trafność postawionej diagnozy, a zatem także skuteczność zastosowanego leczenia. W moim przypadku sprawdziło się to w 100%"
+  },
+  {
+    "opinion_id": "op_004005",
+    "text": "Polecam, Pani Doktor Dermatolog profesjonalna, konkretna i bardzo uprzejma."
+  },
+  {
+    "opinion_id": "op_004006",
+    "text": "Jestem bardzo zadowolona  pani doktor  jest bezpośrednia  i empatyczna. Diagnoza trafna już na drugi dzień były efekty  zastosowanych leków"
+  },
+  {
+    "opinion_id": "op_004007",
+    "text": "Bardzo polecam. Skuteczna i profesjonalna wizyta dermatologiczna."
+  },
+  {
+    "opinion_id": "op_004008",
+    "text": "Rzeczową i empatyczna, wspaniały lekarz z wiedzą i doświadczeniem, doceniam za zaangażowanie szczególnie że jeździmy z 15 miesięcznym synem który ma AZS"
+  },
+  {
+    "opinion_id": "op_004009",
+    "text": "Bardzo kompetentny lekarz. Szybka diagnoza i oby była skuteczna."
+  },
+  {
+    "opinion_id": "op_004010",
+    "text": "Pani Doktor bardzo profesjonalnie podeszła do mojego problemu, wyjaśniła jak mam stosować przepisane leki . Pani doktor jest miłą  sympatyczna i rzeczową osobą . Bardzo dziękuję za wizytę i napewno wrócę Polecam Serdecznie"
+  },
+  {
+    "opinion_id": "op_004011",
+    "text": "Pani Paulina przeanalizowała moje przeszłe leczenie, szczegółowo opisała problem, z którym się zmagam, jego możliwe przyczyny i przedstawiła dokładnie leczenie oraz zalecane badania - również ewentualne przyszłe ścieżki. Bardzo informatywna konsultacja. Polecam"
+  },
+  {
+    "opinion_id": "op_004012",
+    "text": "Nie polecam. Wizyta była opóźniona i ekstremalnie krótka (9 minut to rekordowy czas na obejrzenie skóry), czuć było pośpiech Pani doktor. Zaproponowana metoda leczenia nie przyniosła żadnych rezultatów, więc 300 zł zmarnowane ;)"
+  },
+  {
+    "opinion_id": "op_004013",
+    "text": "Pani doktor bardzo miła, dała mi jasne odpowiedzi na wszystkie moje pytania :)"
+  },
+  {
+    "opinion_id": "op_004014",
+    "text": "Atmosfera podczas wizyty przebiegła bardzo konkretnie. Polecam Panią doktor, sympatyczna i z uważnością słucha pacjenta."
+  },
+  {
+    "opinion_id": "op_004015",
+    "text": "Pani Doktor bardzo miła podchodzi do sprawy profesjonalnie, w 100% skupia się na pacjencie i jego dolegliwości. Wszytko wyjaśnia dokładnie co robić i jak."
+  },
+  {
+    "opinion_id": "op_004016",
+    "text": "Pani Paulina jest świetna . Podejście do małego pacjenta, wytłumaczyła co i jak :) super :) życzymy sukcesów na dalszej ścieżce kariery :) pozdrawiamy!"
+  },
+  {
+    "opinion_id": "op_004017",
+    "text": "Naprawdę polecam Panią Doktor! Bardzo staranny wywiad i szczegółowe tłumaczenie :)"
+  },
+  {
+    "opinion_id": "op_004018",
+    "text": "Wszystko dokładnie wyjaśnione, wizytą przebiegła w miłej atmosferze."
+  },
+  {
+    "opinion_id": "op_004019",
+    "text": "Jestem bardzo zadowolona, wszystko dobrze wyjaśnione"
+  },
+  {
+    "opinion_id": "op_004020",
+    "text": "Rzetelny, sympatyczny i zaangażowany specjalista. Zdecydowanie godny polecenia."
+  }
+]

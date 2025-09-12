@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002401",
+    "text": "jest bardzo dobrym lekarzem miłu ciepły troszczy się o swoje pacjętki tylko , że ja chodze do niego w gdańsku i nie wiem czy to jest ten sam lekarz ` ` ` Ocena została zmieniona na \" Polecam \" . Powód : Zbyt lakoniczna argumentacja do wystawienia najwyższej oceny . ` ` `"
+  },
+  {
+    "opinion_id": "op_002402",
+    "text": "Pan doktor leczy bliską mi osobę i mam o nim pozytywne zdanie - doskonale przeprowadził operację raka na żołądku , jest kompetentny , odpowiedzialny , całkiem miły . Chodzimy do niego na badania kontrolne , już 3 lata . Przykro czytać komentarze , że jest zarozumiały itp . Drogi poprzedniku , skoro CZĘSTO masz wrażenie , że jest taki zły to znaczy , że jednak do niego wciąż chodzisz . Czemu ? A moze jednak masz do niego zaufanie ? . . . . . . . . . . a może mu zazdrościsz . . . . . . kolego ?"
+  },
+  {
+    "opinion_id": "op_002403",
+    "text": "Z czystym sumieniem mogę polecić dr Franika . Jesteśmy rodzicami 3letniego synka . Całą ciąże prowadził dr Franik i jesteśmy z tego bardzo zadowoleni . Mimo że wyjeżdżał na urlop przekazał mnie swojemu przyjacielowi dr Dąbrowskiemu ( ordynator oddziału ginekologiczno - położniczego w Szpitalu Kolejowym w Katowicach ) . Mimo że nie jestem z Katowic wolała m dojeżdżać na wizyty właśnie tam niż chodzić do lekarzy w moim mieście chociaż na miejscu mam szpital powiatowy , ale co z tego że w szpitalu jestem wysokiej jakości sprzęt jak lekarze nie znają się na niczym jak to ma miejsce w szpitalu powiatowym w Mikołowie . Dr Franik kieruje na wszystkie badania i wszystko szczegółowo tłumaczy . Jeżeli ciąża przebiega prawidłowo wizyty są raz w miesiącu a nie jak u innych lekarzy co 2 tygodnie . Szkoda tylko że dobrzy specjaliści muszą być tacy drodzy , ale czasem warto zapłacić więcej i spać spokojnie nie martwiąc się że może być coś nie tak z dzieckiem . Następną ciąże z pewnością też będzie prowadził dr Franik bo mogę mu zaufać . BARDZO DZIĘKUJEMY ZA TROSKLIWĄ OPIEKĘ"
+  },
+  {
+    "opinion_id": "op_002404",
+    "text": "Lekarz kompetentny i widać że doświadczony . Rzeczowe i konkretne podejście do mojego przypadku czyli słucha , pyta , analizuje dokumentację i bada no i jasno wydaje swoją opinię ze wskazaniem co dalej . Na koniec dodam informacje mało istotne ale też warto zaznaczyć bo nie \" słodzi \" nie obiecuje żadnych cudów typu że inni coś spaprali a on to zrobi dobrze i takie tam miłe gadanie pod pacjenta . Czyli realnie - stosowne do dostępnych możliwości , ocenia sytuację i mówi pacjentowi jakie widzi dalsze działanie . Ja uważam że warto było , dziękuję doktorowi za wizytę i będę dalej korzystał z jego potencjału medycznego ."
+  },
+  {
+    "opinion_id": "op_002405",
+    "text": "Zazwyczaj filariozy dotyczą osób , które dłuższy czas przebywają w rejonach endemicznych . Wśród naszych pacjentów to osoby , które lubią wędrówkę po bezdrożach lub misjonarze , pracujący w rejonach endemicznych tej choroby  - opowiada Nahorski . Z kolei artemizyna , nad którą pracowała noblistka Youyou Tu , to lek na malarię . \" Przez jakiś czas był to lek zapomniany , dominowała chinina \" - powiedział badacz . Zaznaczył , że artemizyna bardzo szybko niszczyła pasożyty we krwi pacjenta , ale dość szybko powstała lekooporność na ten lek . Teraz jednak artemizyna - której skuteczność przewyższyła już chininę - jest używana jako składnik leku w połączeniu z innymi lekami przeciwmalarycznymi , tzw . ACT ( ang . atrtemisinin – based combination therapy ) ."
+  },
+  {
+    "opinion_id": "op_002406",
+    "text": "W środę na uniwersytecie odbyło się także oficjalne otwarcie Centrum Symulacji Stomatologicznej . Studenci mogą w nim korzystać z 60 stanowisk fantomowych symulujących warunki kliniczne . Stanowiska wyposażone są m . in . w odpowiednie zestawy szczęk , zębów , gumowych dziąseł oraz modeli żuchwy do nauki znieczuleń przewodowych . „ Kiedy kilka lat temu rozpoczynali śmy naukę na fantomach i kiedy po wszystkich ćwiczeniach rozmawiali śmy z rodzicami i kolegami to wszyscy nam zazdrościli , że tak nowocześnie się uczymy . ( … ) Ja dopiero dzisiaj zrozumiał em pojęcie zazdrości , bo to jest właśnie to , co czuję dzisiaj w stosunku do swoich młodszych kolegów ” – powiedział podczas uroczystości student V roku stomatologii UMP Mateusz Tarnowski ."
+  },
+  {
+    "opinion_id": "op_002407",
+    "text": "Pan Doktor podchodzi do swojej pracy profesjonalnie , bardzo dokładnie i bez pośpiechu wykonuje badania . Pacjent ma pewność , że badanie ma na celu sprawdzenie rzeczywistego stanu zdrowia , a nie jedynie jedynie odhaczenia , że badanie zostało wykonane . U mnie Pan Doktor podczas wizyty profilaktycznej wykrył zmianę , która nie dawała żadnych objawów , a która stanowiła bezpośrednie zagrożenie dla zdrowia i życia . Pan Doktor opisał mi dokładnie zmianę , zagrożenia jakie niesie i jak wygląda leczenie . Doradził jaką drogę obrać w zakresie wyboru leczenia . Mimo , iż zmiana w sercu była dla mnie ogromnym zaskoczeniem , dzięki odpowiedniemu przedstawieniu przez Pana Doktora całej sytuacji , czuł em spokój . Tydzień po badaniu był em po operacji i mogę cieszyć się pełnym zdrowiem , bez ryzyka , że coś nagle mnie \" wyłączy \" . Szczerze polecam Pana Doktora Piątkowskiego ."
+  },
+  {
+    "opinion_id": "op_002408",
+    "text": "Pani doktor obejrzała moje zmiany na twarzy , zrobiła dokładny wywiad , przedstawiła trzy możliwości rozwiązania problemu , z których wybrała m ten który najbardziej mi odpowiadał . Pani doktor nie była niestety w temacie \" naturalnych \" kosmetyków , czy też półproduktów , które stosuję , co mnie trochę zdziwiło . Na tym etapie nie jestem w stanie stwierdzić czy leczenie będzie skuteczne i czy porady pani doktor rozwiążą mój problem . Przebieg pierwszej wizyty oceniam bardzo dobrze , a na efekty muszę poczekać ."
+  },
+  {
+    "opinion_id": "op_002409",
+    "text": "- W Polsce zbyt mało mówi się o tym , czym jest sepsa , jakie są możliwości leczenia , jak powinna wyglądać opieka nad pacjentem po sepsie . Dlatego wspólnie ze Stowarzyszeniem na Rzecz Badania i Leczenia Sepsy „ Pokonać Sepsę ” zdecydowali śmy się na uruchomianie platformy , która będzie stanowiła kompendium wiedzy na ten temat - mówi koordynator projektu Adrian Szulczyński . Na portalu PokonacSepse.pl zawarto informacje na temat rozpoznawania objawów , profilaktyki oraz najnowszych wytycznych dotyczących leczenia tej choroby . Dostępne na platformie materiały opracowali eksperci z różnych dziedzin m . in . mikrobiologii , kardiologii , chirurgii , nefrologii czy pediatrii , a także specjalistów z zakresu intensywnej terapii oraz lekarzy podstawowej opieki zdrowotnej ."
+  },
+  {
+    "opinion_id": "op_002410",
+    "text": "Pani Doktor Cudnoch jest bardzo \" nierówna \" jeśli chodzi o przyjmowanie pacjentów . Czasami ma dobry nastrój , jest miła dla dziecka , wyjaśnia wszystko z uśmiechem . Niestety częściej zdarza nam się trafić na \" gorszy dzień \" . Sprawia wrażenie znudzonej albo bardzo zmęczonej . O wszystko trzeba się dopytywać . Coś sobie notuje , wypisuje receptę , odpowiada ze zniecierpliwieniem . Ocena neutralna , bo diagnoza zazwyczaj trafna ale wizyty nie należą do zbyt miłych"
+  },
+  {
+    "opinion_id": "op_002411",
+    "text": "Niestety , Pani doktor nie spełniła również moich oczekiwań . Trafiła m do niej z diagnozą niedoczynności tarczycy , o której nic nie wiedziała m , a po wizycie wcale nie wiedziała m więcej . Rzeczywiście wyjątkowo małomówny lekarz , zero informacji jak sobie radzić z dolegliwościami . Nie potrafię ocenić kompetencji Pani doktor , wystawia recepty , robi USG ( bez słowa ) , ja ( pacjent ) żyję , więc samo leczenie jest chyba w miarę trafione , choć naprawdę nie mam pewności , czy najlepsze z możliwych ."
+  },
+  {
+    "opinion_id": "op_002412",
+    "text": "Bezstresowo , w dobrej atmosferze , bez napięcia ( dla kogoś , kto panicznie boi się igły nie jest to bez znaczenia ) , z rozwagą nieruszania zębów , gdy nie ma pewności , że trzeba , bez czekania w poczekalni , z bardzo indywidualnym podejściem . Wszystkim polecam gabinet . U dr Dawidowicza leczę sie od 7 lat . Nie zmienia się specjalistów : )"
+  },
+  {
+    "opinion_id": "op_002413",
+    "text": "Witam owszem pan doktor mnie zbadał i dał skierowanie na rezonans który kosztuje z kontrastem 600zł . ale nawet nie otrzymała m recepty na leki przeciw bólowe , to nie tego oczekiwała m od specjalisty o zwolnieniu lekarskim nawet już nie wspomnę że trzeba by było się zapytać pacjenta jak potrzebuje bo ja pracuję fizycznie a nie jak pan doktor na krześle chociaż wiem że siedzenie na krześle to nic dobrego nie polecam bo płaci się za wizytę 200zł i tak naprawę nic nie pomoże nawet brak recepty na leki przeciw bólowe to największy dla mnie błąd ."
+  },
+  {
+    "opinion_id": "op_002414",
+    "text": "Jestem bardzo niezadowolona z wizyty . Lekarz pozwala sobie na niewybredne komentarze dotyczące figury pacjentki . Jeśli nie macie perfekcyjnego ciała odradzam . ( Zaznaczę , że nie mam najmniejszego problemu z zaleceniami lekarza , żeby m np . schudła . To była zupełnie inna sytuacja , po której wyszła m z gabinetu z płaczem ) . Zwraca się do pacjenta bardzo protekcjonalnym tonem , jest arogacki . Jest również bardzo zapominalski i nie daje dobrej recepty / nie pisze poprawnych zaleceń . Badanie było bardzo bolesne . Sama wizyta trwała około 5 minut ( wraz z badaniem ! ) , a lekarz zapomniał wystawić recepty na jeden z dwóch leków ."
+  },
+  {
+    "opinion_id": "op_002415",
+    "text": "Pani doktor nie była bardzo wylewna . musiała m niestety wszystkie informacje od niej wyciągać . jedyne z czego jestem zadowolona , to tabletki odpornościowe , które mi przepisała , po których przeszedł mi ból gardła i skierowała mnie na wymaz z migdałkow . Nie powiedziała mi nic konkretnego . Mimo wszystko , w jakimś stopniu mi pomogła , wiec całokształt oceniam na dobry . ."
+  },
+  {
+    "opinion_id": "op_002416",
+    "text": "Niedawno była m po raz pierwszy u pana profesora . W gabinecie spędziła m pięć minut i nie została m nawet zbadana ! Nie padło nawet jedno pytanie z jego strony : po co przyszła m , w czym problem , itd . Skupił się tylko na przepisaniu moich wyników do swojego notatnika , po czym doszedł do wniosku , żeby m sobie załatwiła skierowanie do szpitala , to się zobaczy . Ta \" porada \" kosztował mnie 100 zł ! Uważam , że to skandal !"
+  },
+  {
+    "opinion_id": "op_002417",
+    "text": "Ja również dołączę się do pozytywnych komentarzy na temat dr Muchackiej . Mamy z mężem ogromne zaufanie do niej ponieważ jest to lekarz z powołania ! ! ! ! Ma odpowiednie podejście do najmłodszych pacjentów , potrafi postawić dobrą diagnozę i nie idzie od razu na łatwiznę przepisując antybiotyki z byle powodu . Każda wizyta przebiega w miłej atmosferze . Prawdą jest , że rzadko kiedy wizyty odbywają się o ustalonym wcześniej czasie ale wynika to z tego , że Pani doktor indywidualnie podchodzi do każdego pacjenta - więc absolutnie nie mam o to pretensji , ja się po prostu do tego przyzwyczaiła m : ) . Kolejna rzecz to notoryczne odbieranie telefonów przez Panią doktor w trakcie wizyty ( jak niektórzy zarzucają ) . . . . . . . ależ absolutnie mi to nie przeszkadza ponieważ ja też często dzwonię prosząc o poradę . Potrafi poświęcić swój prywatny czas żeby pomóc . Ilu takich lekarzy znacie ? bo poza dr Muchacką ja nie znam żadnego ."
+  },
+  {
+    "opinion_id": "op_002418",
+    "text": "„ Pytania są zazwyczaj związane z jednostką chorobową i stanem pacjenta w celu wczesnego wykrywania wszelkich negatywnych objawów . W ten sposób otrzymujemy wyniki pomiarów oraz opis stanu pacjenta , czyli istotne dane , które gromadzone systematycznie , dają podstawę do podjęcia decyzji terapeutycznych . W ten sposób jesteśmy w stanie utrzymywać pacjenta w lepszym stanie w kontekście kluczowych parametrów klinicznych ” – zaznaczył Dahle . Sprzęt dla seniorów jest bardzo prosty w obsłudze ; urządzenia wyposażone są w technologię \" bluetooth low energy \" oraz posiadają małą liczbę przycisków . W ramach systemu lekarz nie musi być cały czas dostępny , bowiem emitowane są tzw . alerty w momencie kiedy przekroczone zostaną określone wartości badanych parametrów . „ To pozwala na mniejsze obłożenie personelem specjalistycznym i jesteśmy w stanie lepiej zarządzać opieką zdrowotną ” - ocenił Staroń ."
+  },
+  {
+    "opinion_id": "op_002419",
+    "text": "Poważne uszkodzenia kości mogą powstawać w wyniku np . nowotworów czy wypadków . Częstym rozwiązaniem stosowanym u ludzi było dotąd wszczepienie w miejsce uszkodzonej kości metalowego implantu . Implant ten jednak musiał już pozostać w ciele do końca życia . W przypadku zwierząt natomiast poważniejsze uszkodzenie kości - np . w łapie - kończyło się zwykle amputacją kończyny . Tymczasem badacze z Wydziału Inżynierii Materiałowej Politechniki Warszawskiej opracowali bioimplant - rozwiązanie , które pomaga w odbudowie uszkodzonej tkanki kostnej . To drukowane na drukarce 3D polimerowe i porowate niczym pumeks rusztowanie . Na nim - po wszczepieniu do ciała - narastać mogą komórki tkanki kostnej pacjenta , stopniowo odbudowując kość ."
+  },
+  {
+    "opinion_id": "op_002420",
+    "text": "BARDZO POLECAM PANIĄ KAROLINĘ ! Jest bardzo ciepłą serdeczną osobą , która widać , że kocha swoją pracę . Jej sposób bycia pozwala szybko jej zaufać . Jest uśmiechnięta i zaraża pozytywną energią i wiarą , że problemy są od tego żeby je rozwiązywać . Zamiast zapadać się w smutek , dzięki niej , szybko zaczął em widzieć wszystko trochę inaczej . Zaczął em siebie bardziej akceptować , poprawiły się od razu moje relacje z ludźmi i z dziewczyną . Jej otwartość wsparcie i zrozumienie są ogromną wartością . Wystarczy ją poznać aby zmienić zdanie o psychologach - nie wszyscy są drętwi i milczący . Ona pomaga zmieniać żyć lepiej ! Cieszę się , że ją poznał em na swojej drodze !"
+  }
+]

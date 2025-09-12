@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001481",
+    "text": "Przede wszystkim człowiek , zaraz po tym lekarz . W stosunku do pacjentów , wydaje się stosować zasadę podobną : przede wszystkim człowiek , zaraz potem przypadek medyczny . Jako lekarz pierwszego kontaktu : świetny . Rzeczowy , zaangażowany , otwarty ( potrafi słuchać i jest dociekliwy ) , cierpliwy . Lubie i cenię faceta właśnie za jego profesjonalne a zarazem ludzkie , podejscie . ) Polecam ."
+  },
+  {
+    "opinion_id": "op_001482",
+    "text": "No cóż . Chciała by m wystawić dobra ocenę gdyż lekarz faktycznie miły i rzeczowy . Cóż z tego jeśli w moim ( trudnym ) przypadku druga wizyta nie doszła do skutku . Pan doktor poprosił o dodatkowe badania , oczywiscie odpłatne i to nie tanie , kazał przesłać na maila i . . . . . . . . I na tym sie skończyło . Ponad dwa tygodnie i brak kontaktu ."
+  },
+  {
+    "opinion_id": "op_001483",
+    "text": "Od 1997 roku zmagał em się z dolegliwościami spowodowanymi złamaniem nosa . W 1997 roku miałem również wykonywany zabieg operacyjny który niewiele mi pomógł . Przez te wszystkie lata odwiedził em bardzo wielu lekarzy - otolaryngologów . Żaden z nich nie był w stanie mi w żaden sposób pomóc , a proponowane przez nich metody sprowadzały się do punkcji oraz inwazyjnego czyszczenia zatok poprzez wyciętą dziurę w szczęce . . . Nigdy się na to nie zdecydował em . Przez te wszystkie lata nie mogł em swobodnie oddychać , miałem bardzo silne bóle głowy , nieustanne zapalenie zatok , kilkukrotnie każdego roku miałem anginę . . . Spływająca wydzielina nie dawała mi spać . . . W maju znajoma mojej mamy poleciła mi Pana Arkadiusza Kasztelana , jako lekarza który na pewno mi pomoże . Odnalazł em nr . w internecie i umówił em się na wizytę . Pan doktor natychmiast po zbadaniu mnie i obejrzeniu zdjęć tomograficznych zaproponował mi zabieg operacyjny polegający na udrożnieniu ujścia zatoki , zmniejszenia małżowin oraz plastyki przegrody nosowej . Po zabiegu zatoki miały ulec samooczyszczeniu . Pierwszy raz spotkał em się z tak szybko postawioną , profesionalną diagnozą . Zabieg został wykonany miesiąc pózniej w szpitalu w Dęblinie . Wszystko odbyło się całkowicie bezboleśnie pod narkozą . W szpitalu spędził em jakieś 10 godzin . Po wyjęciu na drugi dzień opatrunków z nosa , dowiedział em się jak głęboko można oddychać . Jestem obecnie 2 miesiące po zabiegu i nie wiem jak mogł em do tej pory żyć z tak zatkanym nosem . Zastosowane leczenie było skuteczne w 100 % . Pan Arkadiusz Kasztelan jest lekarzem godnym polecenia . Jest człowiekiem rzetelnym , kompetentnym , uprzejmym i komunikatywnym . Polecam każdemu z czystym sumieniem . Wszystkie moje problemy ustąpiły . Różnica jaką poczuł em po wyjęciu opatrunku dzień po operacji wprawiła mnie w szok . Bardzo serdecznie pozdrawiam Pana Doktora ! !"
+  },
+  {
+    "opinion_id": "op_001484",
+    "text": "Pani doktor miała poprawić leczenie kanałowe po innym dentyście , który nie znalazł trzeciego korzenia ( bez mikroskopu ) . Pani doktor po godzinie pracy pod mikroskopem tez nie znalazła , powiedziała ze zab jest do wyrwania bo ma pozakrzywiane korzenie ( w opisie kliniki na Batorego jest leczenie zakrzywionych korzeni ) i ze od jutra już tu nie pracuje ( klinika na Batorego ) wiec do widzenia - i za tą cenną porade zapłaciła m 700 zł ( 600 bezskuteczne poszukiwanie korzenia i 100 konsultacja poprzednio ) . Zazdroszczę innym zadowolonym pacjentom . . szczególnie zaangażowania Pani doktor . Darowała by m już niepowodzenie w leczeniu kanałowym - ale po co się Pani doktor brała za trudny przypadek w ostatnich momentach pracy ? ? ?"
+  },
+  {
+    "opinion_id": "op_001485",
+    "text": "Na wizyte skusilam sie pod wplywem dobrych komentarzy . Mam ogromne problemy z jelitami ( w wywiadzie rodzinnym choroba crohna u ojca i siostry ) . Niestety pan doktor wypisal tylko antybiotyk i suplementy diety ( w ktore nie wierze ) i na tym sie skonczylo . Nie wytlumaczyl po co . Owszem jest bardzo mily , wyslucha pacjenta co jest duzym plusem . Minus za wizyte , miala trwac 20min a bylo to 6min . Oraz za brak zlecenia podstawowych badan chociazby z krwi , co przymusza do dalszych wizyt u innych lekarzy ."
+  },
+  {
+    "opinion_id": "op_001486",
+    "text": "Zespół kierowany przez prof . Maksymowicza w sumie podał komórki macierzyste ponad 30 chorym na SLA . Jednak tylko w przypadku 11 z nich minęło pół roku i lekarze mogli ocenić efekty pionierskiej terapii . W rozmowie z PAP prof . Czapliński podkreślił , że wszyscy pacjenci przeżyli co najmniej 6 miesięcy , podczas gdy średnia przeżywalność pacjentów leczonych jedynym dostępnym , zarejestrowanym lekiem na SLA , rilutekiem , wynosi 3 miesiące . \" Wyniki kolejnej grypy osób , którym podali śmy komórki macierzyste będą znane za 3 - 4 miesiące i wtedy wyniki te będą bardziej miarodajne \" - zastrzegł w rozmowie z PAP prof . Maksymowicz . Przyznał on , że dotychczasowe obserwacje pacjentów pozwalają sądzić , że być może w przypadku niektórych z nich konieczne będzie frakcjonowanie podawania komórek macierzystych , czyli podawanie ich w odstępach czasowych . Ten aspekt leczenia SLA także będzie analizowany przez olsztyńskich naukowców ."
+  },
+  {
+    "opinion_id": "op_001487",
+    "text": "Naukowcy z zespołu dr hab . Katarzyny Radwańskiej z Instytutu Biologii Doświadczalnej PAN w Warszawie przez 95 dni prowadzili eksperyment , w którym badali skłonność myszy do sięgania po alkohol . \" Myszy piją alkohol i to bardzo chętnie . Natomiast nieco trudniej powiedzieć , czy myszy mogą być od tego alkoholu uzależnione \" - mówi Radwańska . W swojej pracy badawczej zajmuje się ona m . in . zwierzęcymi modelami uzależnienia od alkoholu , a jednym z jej celów badawczych jest zrozumienie molekularnego , komórkowego podłoża pamięci uzależnienia . \" Jeśli psychiatra ma określić , czy jego pacjent jest uzależniony np . od alkoholu , to zadaje mu konkretne pytania : jak długo pije , czy jego picie przekłada się na życie prywatne , zawodowe . My w pewnym sensie takie same pytania musimy zadać myszom , które jak wiadomo odpowiadają mniej chętnie \" - opisuje badaczka ."
+  },
+  {
+    "opinion_id": "op_001488",
+    "text": "Była m kilka razy u Profesora , niestety poza wyciągnięciem ode mnie dużej kasy w niczym mi nie pomógł . W sumie - po wszystkich zleconych badaniach , na które wydała m ogromne pieniądze Profesor stwierdził , że najlepiej jak będe sama siebie obserwować i zapisywac objawy mojego organizmu na to co jem , czego dotykam etc a dojdę do tego co mnie uczula ( ? ) Szkoda , że powiedział to po tym jak zlecił mi zrobienie całej masy badań , które nic nie dały . Moim zdaniem to lekarz , który potrafi rozpoznac najprostrze alergie , przepisac najprostrze leki typu \" alertec \" , \" zyrtec \" i koniec . A gdzie tu leczenie powodów , przeciez leczenie nie polega na maskowaniu objawów ? ? ? Doprawdy nie wiem , czym sie tu zachwycać - jak na Profesora to wiedze ma słabą , jest roztrzepany , ma w nosie pacjenta . Zdecydowania odradzam"
+  },
+  {
+    "opinion_id": "op_001489",
+    "text": "Chodząc na wizyty do Pani Alicji moje problemy stały w miejscu i coraz gorzej się czuła m . Spotkania były drogie w stosunku do jakości przeprowadzanej rozmowy , a pani Alicja sprawiała wrażenie osoby odciętej emocjonalnie i spoglądała na zegarek . Została m również poinformowana , że moje problemy \" są we mnie \" bez wyjaśnienia o co chodzi . Jeśli mogę coś zasugerować , to nie radzę z poważnymi sprawami odwiedzać pani psycholog ."
+  },
+  {
+    "opinion_id": "op_001490",
+    "text": "Oceniam Doktora dobrze ponieważ , akurat po diagnozie okazał się , że mój synek jest zdrowy . Żadnego leczenia a wizyta trwała 3 minuty , więc trudno mnie się wypowiadać na temat kompetencji . Niemniej jednak Pan Doktor wyjaśnił nam wszystko i uspokoił . Myślę , że ma podejście do dzieci ."
+  },
+  {
+    "opinion_id": "op_001491",
+    "text": "Według danych Światowej Organizacji Zdrowia , rak piersi jest wciąż najczęstszą przyczyną zgonów uwarunkowanych chorobą nowotworową wśród kobiet . Chociaż wykrywalność raka piersi we wczesnym stadium rozwoju jest coraz większa , to jednak w przypadku jednej trzeciej pacjentek podejmowana jest decyzja o mastektomii . Zgodnie z wytycznymi towarzystw medycznych każda kobieta po mastektomii powinna mieć dostęp do rekonstrukcji piersi . Międzynarodowe badania wskazują jednak , że mimo informowania pacjentek i wyrównywania szans dostępu do rekonstrukcji , na zabieg decyduje się wciąż niewiele kobiet  – - mówi dr Jolanta Życińska z katowickiego wydziału SWPS . Zespół psychologów koordynowany przez dr Życińską wykazał , iż decyzja o rekonstrukcji piersi uwarunkowana jest dobrostanem kobiety , czyli wysoką samooceną i poczuciem własnej skuteczności - poinformowano w komunikacie SWPS . Rekonstrukcja nie jest zatem antidotum na złe funkcjonowanie po mastektomii , ale wyrazem akceptacji choroby i inwestycją posiadanych zasobów w celu osiągnięcia pełni własnych możliwości ."
+  },
+  {
+    "opinion_id": "op_001492",
+    "text": "Pediatra od urodzenia ! ! ! Lekarz z powołania ! Bardzo miła i kompetentna kobieta . Mój syn ją uwielbia . Zawsze pomocna i służąca radą . Antybiotyk w ostateczności . Mój syn jest alergikiem a ona również jest pulmonologiem . Jest za naturalnym żywieniem dziecka ( żadnych słoiczków i kaszek sztucznie barwionych ) . Dziecko jest najważniejsze . Ogólnie o przychodni Sanus mam bardzo dobre zdanie np . jeżeli twój lekarz nie ma miejsca na dzisiaj to na pewno nie pozostawią cię bez opieki ( przyjmie cię inny lekarz ) . Jedyny minus to panie w rejestracji . . . szczególnie jedna bardzo nieuprzejma . . . zawsze arogancka i niezadowolona z życia . . . a w prywatnej przychodni nie ma miejsca na takie zachowanie . Pani dyrektor powinna się zastanowić nad takim personelem ."
+  },
+  {
+    "opinion_id": "op_001493",
+    "text": "Moja obiektywna ocena : ciągłe opóźnienia w gabinecie , najlepiej od razu przyjść pół godziny po czasie bo punktualnie prawie nigdy się tam nie wchodzi , nie można również liczyć na to że Pani dr zjawi się o na umówioną 10 przed południem , najprawdopodobniej będzie to godzina 11 . 30 . Profesjonalizm i doświadczenie Pani dr niestety zostają zdominowane przez powierzchowność i lenistwo lub ( oby tak było ) brak czasu bo kontakt z pacjentem to zwykle ok . 5 minut . Zazwyczaj nie słucha uwag pacjenta , nie informuje o postępie leczenia - wiadomo wie swoje i wie co robi ale dla tych 160zł mogła by się chociaż trochę wysilić . Odnosi się wrażenie , że nie \" wczuwa \" się w to leczenie bo tego czego \" nie dorobi \" aparatem nadrobi recontouringiem . I tak pozostają popiłowane , nadwrażliwe zęby , z jakieś dwa trochę podkrzywione , zgryz taki sobie . . . I do tego zmiana cennika w trakcie trwanie umowy ! ! ! ! Niestety efekt nie wart zainwestowanych pieniędzy . Gabinet nie dla wymagąjących pacjentów ! Na dokładkę prośby o pozytywne komentarze wraz z podaniem stron portali internetowych , jak dla mnie - nie do przyjęcia . Z ogółu najlepiej wypadają asystentki , które robią swoje oraz dodatkowo tłumaczą \" wybryki \" Pani dr . . . ale gabinety super - to na plus ; )"
+  },
+  {
+    "opinion_id": "op_001494",
+    "text": "Witam ! Chciała by m polecić Dr . Kędzie , wycinał migdały mojemu synkowi , fachowy , cierpliwy , profesjonalny , dawno nie spotkała m takiej osoby , wycięcie migdałów wykonał na NFZ w Centrum Diagnostyczno - Leczniczym , gdzie w szpitalu musiała by m czekać 10 miesięcy na ten zabieg . Synek bardzo szubko doszedł do zdrowia już po trzech dniach nie było po nim widać śladu po zabiegu . Proszę mi wierzyć , podczas tego zabiegu była m spokojna i bez oznak zdenerwowania bo wiedziała m jakiemu dobremu specjaliście powierzam moje dziecko : ) Pozdrawiam i dziękuję Panu Doktorowi i całemu personelowi za opiekę : )"
+  },
+  {
+    "opinion_id": "op_001495",
+    "text": "Zaburzenie to powstaje w komórkach macierzystych szpiku kostnego , czyli tych , z których mogą powstać wszystkie inne komórki , w tym wypadku wytwarzane w szpiku kostnym . Mutacja ta pobudza szpik kostny do wytwarzania nadmiernej liczby niedojrzałych białych krwinek ( granulocytów , komórek odpornościowych ) , które są bardziej żywotne i wypierają te , które są prawidłowe . Uszkadzają przy tym szpik kostny i nie chronią należycie przed infekcjami . Gdy przenikną do krwioobiegu , powodują również uszkodzenia narządów wewnętrznych , np . śledziony i nerek . Przed 15 laty opracowano pierwszy lek hamujący działanie mutacji BCR - ABL , która ma kluczowe znaczenie dla powstania białaczki szpikowej . Od tego czasu wprowadzono również kilka innych podobnie działających leków . Jednak z czasem choroba może przejść w etap tzw . kryzy blastycznej , kiedy we krwi chorego pojawia się znaczna liczba niedojrzałych komórek macierzystych ( tzw . blastów ) ."
+  },
+  {
+    "opinion_id": "op_001496",
+    "text": "W moim przypadku to wyglądało tak : Pani Doktor wyleczyła mnie skutecznie z ataku alergii skórnej , natomiast musze przyznać , że w życiu nie spotkała m tak niesympatycznego i niegrzecznego lekarza . Była m u niej w szpitalu , nie w prywatnym gabinecie , może dlatego została m tak potraktowana , choć z tego co czytam , jest to normalka . Objechała mnie z góry na dół za , jej zdaniem , najbardziej zaniedbaną alergię na świecie , do tej pory nie wiem , o co jej chodziło . Jak można \" zadbać \" o alergię tak , żeby się nie pojawiała ? Jeśli poznała by m ten sekret , nie musiała by m być skazana na tak niesympatycznych lekarzy jak ona . Muszę powiedzieć , ze choruję od dziecka na atopię i o pielęgnacji i leczeniu wiem wszystko . Pani Liska postraszyła mnie wizją utraty włosów i innymi tego typu zachęcającymi obrazami . Tak mnie zdołowała w tym gabinecie , że się rozpłakała m , a mój mąż mówił , że było słychać na cały korytarz , jak się żołądkowała . Nie wypowiadam się na temat fachowości , musze przyzać , że leki były trafione , ale nie zamierzam już tej pani odwiedzić . Ciągle pamiętam tę wizytę , a minęło już parę dobrych lat . . . Teraz odwiedzam lekarza , który jest nie tylko kompetentny , ale i miły . Rozumiem , że lekarz to nie terapeuta , nie musi być nadmiernie sympatyczny i wylewny , ale wszystko ma swoje granice . . ."
+  },
+  {
+    "opinion_id": "op_001497",
+    "text": "Pani doktor miła i uprzejma oraz uśmiechnięta , bezstresowo przebiegła wizyta lecz diagnoza chybiona oraz leczenie poniżej oczekiwanych standardów , niestety po wizycie nie zauważyła m poprawy lecz pogorszenie co skutkowało zmiana leczenia na własną rękę , które dopiero wtedy zakończyło się sukcesem i pełnym wyleczeniem ."
+  },
+  {
+    "opinion_id": "op_001498",
+    "text": "Program nauczania onkologii różni się w zależności od miejsca , w którym student studiuje i z kim ma zajęcia . Nauka na uniwersytecie nie jest nastawiona na przekazanie wiedzy specjalistycznej gotowej do przeniesienia do codziennej praktyki klinicznej . Podstawową umiejętnością , jakiej oczekuje się od absolwenta uczelni medycznej , jest zdiagnozowanie nowotworu . Młody lekarz musi wiedzieć , jakie objawy mogą sugerować chorobę nowotworową u pacjenta i umiejętnie poprowadzić diagnostykę . Natomiast leczenie specjalistyczne jest zarezerwowane dla onkologów , chirurgów onkologicznych , radioterapeutów , ginekologów onkologicznych etc . Postępowanie różni się w przypadku każdego nowotworu . Konferencja „ Innowacje w onkologii ” ma przekazać specjalistyczną już wiedzę na temat raka jelita grubego , jajnika oraz tarczycy . Lekarze dowiedzą się , jak można leczyć pacjentów chirurgicznie , jakie są postępy w chemioterapii i czego należy wymagać od patomorfologów , którzy tworzą raport histopatologiczny . Taki raport stanowi potwierdzenie rozpoznania choroby nowotworowej . Cześć ośrodków patomorfologicznych ogranicza się tylko do obowiązkowych informacji , natomiast ośrodki specjalistyczne zawierają w opisie również informacje dodatkowe – niezwykle cenne w dalszym prowadzeniu pacjenta ."
+  },
+  {
+    "opinion_id": "op_001499",
+    "text": "Pan doktor Aleksander Niziołek to nie tylko profesjonalny chirurg onkolog , ale też wspaniały , serdeczny człowiek . Udziela wyczerpujących informacji w prosty , zrozumiały dla pacjenta sposób . W moim przypadku podjął się bardzo ciężkiej operacji , pomimo bardzo dużego zagrożenia życia ze względu na poważną wadę serca . Uratował mi życie ! ! ! Pomógł nie tylko pokonać nowotwór , ale przejść cała tę drogę w sposób spokojny , zrozumiały , z myślą , że jestem w najlepszych rękach . Dzięki Jego niewątpliwie wysokim kwalifikacjom i wieloletniej praktyce lekarskiej potrafi szybko zdiagnozować chorobę i ustalić najskuteczniejszy sposób leczenia . Z całą świadomością polecam Pana dr n . med . Aleksandra Niziołka wszystkim tym , u których zdiagnozowano nowotwór ."
+  },
+  {
+    "opinion_id": "op_001500",
+    "text": "Waham się pomiędzy dobry a neutralny . Panią doktor poznała m na wizycie w Luxmedzie , była dość miła , poswięciła czas na wywiad i USG serca mojego 8 letniego dziecka . Nie tłumaczyła zbyt wiele , ale odpowiadała na pytania . Wypisała nam skierowanie do szpitala , gdzie zrobilismy odpowiednie badania , które nie wykazały nieprawidłowości . Ponieważ jesteśmy spoza Lublina , rozmawiała m z jedną z pielęgniarek o wysłaniu wypisu i badań pocztą , co miało nie byc problemem . Dziś zadzwoniła pani doktor i w niezbyt uprzejmych słowach zapytała , czy mamy zamiar odebrać wyniki i kiedy . Nie czas i miejsce streszczać rozmowę , ale uważam , że w kontaktach zawodowych osób zaufania publicznego pewien poziom kultury powinien obowiązywać . Chodziło o błahostkę , natomiast poziom protekcjonalności i nieuprzejmości osiągnąl zenit . Myślę , że nikt nie powinien być narażony na takie traktowanie , stąd NEUTRALNY ."
+  }
+]

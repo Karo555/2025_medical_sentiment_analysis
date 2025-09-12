@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002481",
+    "text": "Świetny ortopeda . Po 2 latach problemów z barkiem polecono mi dr . Szarzyńskiego . Lekarz od razu merytorycznie podszedł do zagadnienia zlecając rezonans magnetyczny . Rezonans wykazał drobne problemy z obrąbkiem stawowym SLAP . Dr . zalecił artroskopie podczas której albo okaże się ze staw jest wystarczająco stabilny i obrąbek trzyma , że można go zrehabilitować lub będzie trzeba wstawić 2 kotwice . Niestety skończył em z kotwicami w stawie . Po operacji zawsze miałem możliwość kontaktu z lekarzem . Początkowo pojawiał em się dość często ( według zaleceń ) i nawet pomimo braku zapisu ( w medicoverze ) zawsze był em przyjmowany . Teraz po ponad 3 latach od kontuzji i roku po operacji mogę z czystym sumieniem polecić dr . Szarzyńskiego . Miłego i skrupulatnego lekarza , który dla mnie dokonał cudu i umożliwił mi powrót do sportu ."
+  },
+  {
+    "opinion_id": "op_002482",
+    "text": "Szczerze mówiąc mam mieszane uczucia . . . Była m u pani doktor kilka razy , na początku była m bardzo zadowolona , ale z upływem czasu niestety coraz mniej . Podczas ostatniej wizyty ostatnia rzecz , jaką mogła by m powiedzieć to to , że miała m poczucie , że została m dokładnie i rzetelnie zbadana . Ponieważ zaproponowane przez panią doktor leczenie nie przyniosło żadnych efektów zmieniła m lekarza , który postawił \" nieco \" inną diagnozę i zaproponował skuteczne leczenie . . . . Dr jest niewątpliwie bardzo miła i sympatyczna , ale chyba nie do końca tylko o to chodzi . Ja na pewno już do niej nie wrócę ."
+  },
+  {
+    "opinion_id": "op_002483",
+    "text": "Najlepsze efekty - jak wynika z doświadczeń przeprowadzającego zabiegi japońskiego neurochirurga prof . Isao Mority - osiąga się u pacjentów po urazach głowy . Słabsze rezultaty natomiast są u pacjentów po niedotlenieniu wskutek prób samobójczych czy zatrzymaniu akcji serca . Dlatego do zabiegów poszukujemy pacjentów właśnie po przebytych urazach mózgu - wyjaśniała wcześniej dr Barczewska . W ocenie lekarzy u wszystkich operowanych poprawiła się sfera emocjonalnej reakcji na otoczenie , np . jedna z operowanych osób wystraszyła się grupy ludzi w białych fartuchach , na których wcześniej zupełnie nie reagowała . Bliscy operowanych obserwują również inne ulotne reakcje na otoczenie , np . na obecność rodziców . Wcześniej te osoby żadnej reakcji emocjonalnej nie przejawiały ."
+  },
+  {
+    "opinion_id": "op_002484",
+    "text": "Druga grupa leków wkraczających do leczenia szpiczaka to tzw . inhibitory HDAC ( deacetylazy histonów ) . Jeden z nich , szczegółowo omawiany na kongresie , to panobinostat . „ Leki tego typu na razie nie są przełomem , ale poprawiają wyniki leczenia ” – powiedział w rozmowie z PAP kierownik Kliniki Hematologii , Onkologii i Chorób Wewnętrznych Warszawskiego Uniwersytetu Medycznego prof . Wiesław Jędrzejczak . Jak dodał , następnym lekiem , który coraz szerzej wkracza do terapii szpiczaka jest tzw . lek immunomodulujący trzeciej generacji o nazwie pomalidomid . Działa on u części chorych opornych na lenalidomid ( lek immunomodulujący drugiej generacji ) . Obydwa te preparaty maja tę samą cząsteczkę czynną i wywołują mniej działań niepożądanych aniżeli talidomid ( lek tego typu pierwszej generacji ) ."
+  },
+  {
+    "opinion_id": "op_002485",
+    "text": "Członek zarządu Philips Polska i dyrektor Philips Health Systems w Polsce i krajach bałtyckich Marcin Bruszewski wyraził przekonanie , że współpraca firmy z Politechniką Śląską wpłynie w perspektywie na poprawę służby zdrowia w woj . śląskim . „ Wpłynie na to powiązanie siły , która idzie za politechniką ( … ) , know - how Philipsa i przedsiębiorczości w regionie ” - ocenił , uznając w tym kontekście za „ budującą ” obecność na poniedziałkowym spotkaniu wielu przedstawicieli szpitali . Przedstawiciele Philips Polska przekonują , że wprowadzanie nowych rozwiązań , które usprawnią proces leczenia od diagnostyki , przez hospitalizacje , po opiekę nad pacjentem , jest konieczne m . in . ze względu na starzejące się społeczeństwo , ograniczoną liczbę miejsc w szpitalach i ograniczoną liczbę specjalistów ."
+  },
+  {
+    "opinion_id": "op_002486",
+    "text": "U prof . Perdzyńskiego miałem zabieg stulejki . Przed samym zabiegiem podczas konsultacji zebrał precyzyjny wywiad , wysłuchał , pozwolił zadać wszystkie nurtujące mnie pytania , dzięki czemu dał poczucie bezpieczeństwa przed zabiegiem . Zabieg przebiegł pomyślnie , a konsultacje ( poza jedną osobistą wizytą ) miały też postać . . . maili , w których wysyłał em zdjęcia z postępami gojenia i otrzymywał em feedback od profesora . Świadczyło to o nowoczesnym podejściu do leczenia , a mi dało po raz kolejny poczucie bezpieczeństwa i czuł em , że profesor jest zaangażowany , a mi nic złego już nie grozi ."
+  },
+  {
+    "opinion_id": "op_002487",
+    "text": "Zaburzenia strachu u ludzi i zwierząt można leczyć za pomocą terapii behawioralnej . Polega ona na prezentowaniu w bezpiecznej sytuacji bodźca lub bodźców wywołujących strach . Wielokrotne eksponowanie na takie bodźce ma powodować , że człowiek z czasem przestaje się bać . Praktyka pokazuje jednak , że wygaszanie strachu nie jest ani trwałe , ani kompletne . Chory człowiek może przestać reagować na bodziec w gabinecie terapeutycznym , ale zmiana otoczenia , np . wyjście na ulicę , może doprowadzić do nawrotu strachu . Aż u 70 - 80 proc . chorych lęk powraca po kilku latach od zakończenia terapii . Eksperymenty polskich uczonych opisano w prestiżowym czasopiśmie Amerykańskiej Akademii Nauk PNAS . Badania sfinansowano z grantów Fundacji na rzecz Nauki Polskiej , Narodowego Centrum Nauki , 7 Programu Ramowego Komisji Europejskiej i programu ERA - NET NEURON współfinansowanego przez Narodowe Centrum Badań i Rozwoju ."
+  },
+  {
+    "opinion_id": "op_002488",
+    "text": "Wizyta szybka , ale w życzliwej atmosferze . Wywiad dość skromny , ale dodała m informacje , które wydały mi się istotne i pani doktor wzięła je pod uwagę . Badanie usg szybciutkie , ale pewnie tyle wystarczyło , żeby zweryfikować czy wszystko jest dobrze . Polecam , ale zachęcam aby dobrze się przygotować i spisać sobie wszystkie istotne informacje , które chce się przekazać lekarzowi , bo wizyta trwa tylko 15 minut ."
+  },
+  {
+    "opinion_id": "op_002489",
+    "text": "Wyniki raportu pokazującego koszty leczenia SM w Polsce przedstawiła dr Małgorzata Gałązka - Sobotka , dyrektor Centrum Kształcenia Podyplomowego oraz Instytutu Zarządzania w Ochronie Zdrowia w Uczelni Łazarskiego . Powołała się na dane Narodowego Funduszu Zdrowia ( NFZ ) dla lat 2008 - 2016 . Wynika z nich , że w analizowanym okresie średnioroczna liczba pacjentów z SM była stabilna i wynosiła ok . 43 tys . Na terapię pacjentów NFZ wydatkował w 2008 r . 137 mln zł , natomiast w 2016 r . – 400 mln zł . Średnie wydatki na pacjenta wzrosły z 3 , 5 tys . zł w 2008 r . - do kwoty ponad 9 , 2 tys . zł w 2016 r . Odsetek pacjentów , dla których NFZ finansował terapię w ramach programów lekowych , wyniósł ok . 43 proc . ( 10 717 pacjentów ) w 2016 r . W 2008 r . NFZ wydatkował na programy lekowe w stwardnieniu rozsianym ok . 74 mln zł , a w 2016 r . - ok . 312 mln zł . Średnia wartość terapii jednego pacjenta wyniosła ok . 28 , 7 tys . zł . Dr Gałazka - Sobota zwrócił uwagę , że na finanse państwa należy patrzeć całościowo . \" Większe nakłady na leczenie stwardnienia rozsianego przekładają się w dłuższej perspektywie na niższe wydatki ZUS , związane z rentami i opieką socjalną , nie mówiąc już o znacznie wyższej jakości życia chorych \" - powiedział ."
+  },
+  {
+    "opinion_id": "op_002490",
+    "text": "„ Przetestowali śmy nasze podłoża na trzech gatunkach bakterii wywołujących zapalenie opon mózgowych : Neisseria meningitidis , Streptococcus pneumoniae i Haemophilus influenzae . Poprawnie wykrywali śmy ich obecność w 95 proc . przypadków , a gatunek identyfikowali śmy z pewnością sięgającą 98 proc . A ponieważ mówimy o niezwykle czułej spektroskopii ramanowskiej , do otrzymania tak precyzyjnych wyników wystarczało nam znalezienie jednej komórki bakteryjnej ! ” - podkreśla dr Kamińska . Cały przebieg analizy jest w znacznym stopniu zautomatyzowany i do minimum ogranicza kontakt laboranta z badaną próbką . W celu przeprowadzenia pomiaru należy jedynie pobrać pod wyciągiem laminarnym mikrolitrową porcję płynu mózgowo - rdzeniowego do strzykawki , a następnie tę umieścić w pompie strzykawkowej podłączonej do spektrometru Ramana . W celu zwiększenia pewności pomiaru zarejestrowane sygnały są przetwarzane przez oprogramowanie korzystające z zaawansowanych metod statystycznych i obsługującemu pozostaje jedynie odczytać wynik ."
+  },
+  {
+    "opinion_id": "op_002491",
+    "text": "Członkowie wielu kultur mają problem ze słyszeniem dźwięków , które nie są typowe dla ich mowy ojczystej . Japończycy mają np . trudność w odróżnianiu dźwięku \" l \" od \" r \" . Prof . Duch wyjaśnia , że te dźwięki nie pobudzają zróżnicowania w mózgach Japończyków i dlatego mają oni duże problemy z uczeniem się języków obcych . Takie trudności pojawiają się już w wieku 10 miesięcy , dlatego odpowiedni trening musi być w tak wczesnym okresie . \" Jeśli dziecko zostanie nagrodzone za rozpoznanie różnicy między + l + i + r + , to jest duża szansa , że jego mózg pozwoli na różnicowanie tych dźwięków w przyszłości . Takie dziecko nie będzie miało trudności z prawidłowym słyszeniem mowy i nauką np . języka polskiego . Wyobraźmy sobie , że Chińczycy zaczynają lepiej mówić po angielsku , albo że w Europie zaczynamy mówić po chińsku . To może bardzo przyspieszyć procesy globalizacji \" - tłumaczył uczony , który liczy na to , że zabawki będą dość tanie i łatwo dadzą się rozpowszechnić na świecie ."
+  },
+  {
+    "opinion_id": "op_002492",
+    "text": "Bardzo polecam Panią doktor . Wysłuchała , zrobiła wywiad i bez problemu wysłała na kolejne badania ( w moim przypadku rezonans ) . Wcześniejsze wizyty u innych lekarzy kończyły się kolejnymi prześwietleniami , lekami , domysłami - dalej nie wiadomo co mi jest . Pani doktor nie czarowała z fusów , tylko wysłała na badania i mam wrócić do niej z wynikiem - jednak jestem bardzo pozytywnie nastawiony do kolejnej wizyty . Polecam Marcin ."
+  },
+  {
+    "opinion_id": "op_002493",
+    "text": "Porownujac do innych pediatorw z lodzkiego Medicover zdecydowanie ponad przecietna . Mila , swietny kontakt z dziecmi , widac ze z doswiadczeniem pediatrycznym , szkoda tylko ze zawsze przepisuje te same leki , choc z drugiej strony nam one pomagaja , tyle tylko ze sa chyba najdrozsze z calej apteki ."
+  },
+  {
+    "opinion_id": "op_002494",
+    "text": "Nie polecam Pana doktora , poniewaz miała m zagrożona ciążę a Pan doktor stwierdził że moge wrócić do lekarza . Zdecydowała m się i poinformowała m o tym mojego szefa , że mogę w trakcie ciąży wrócić do pracy . Wcześniej jednak zgłosiła m się na prywatne badania na Unii Lubelskiej dot . przeppływu krwi i pomiarów ciązy , zdjęcia w 3d , popmimo że doktor wysyłał m mnie do swojego znajomego na te badania . Okazało sie tam , że mam rozwarcie i pęcherz płodowy wysunał sie do szyjki macicy . Nie puścili mnie juz do domu i został m w szpitalu w celu założenie szwa . Od wizyty u Pana doktora do wizyty w szpitalu minął tydzień . Nie mam dobrego zdania o tym lekarzu ."
+  },
+  {
+    "opinion_id": "op_002495",
+    "text": "Opierając się na technologii blockchain chcemy stworzyć środowisko sprzyjające i zachęcające do świadomego udostępniania danych , na zasadach przejrzystego wynagrodzenia lub dobrowolnego wolontariatu . Dzięki tzw . smart contracts każda transakcja będzie rejestrowana , weryfikowana i wykonywana , a dostęp do platformy i tym samym naszych danych , uzyska tylko ten , kto posiadał będzie token . Potencjalny haker nie uzyska dostępu do danych , bo protokół smart contracts opiera się na rozproszonym rejestrze transakcji i nie podlega modyfikacjom . Te transakcje są śledzone i nieodwracalne  – opowiada Adam Gąsiorek , dyrektor operacyjny ds . Badań i Rozwoju , Transition Technologies PSC cytowany w przesłanej PAP informacji prasowej . Oprócz instytucji naukowych dostęp do danych będą mogły wykupić też inne instytucje . \" Oczywiście to użytkownik sam zdecyduje , komu udostępnia , sprzedaje swoje dane . Możliwość będzie istniała , ale społeczność może z niej nie korzystać . Jeśli użytkownik zdecyduje się udostępnić - sprzedać - swoje dane firmie A , to firma A nie będzie już mogła ich sprzedać firmie B . Sama musiała by ona poprosić użytkownika o dostęp do tych danych , a więc mu zapłacić \" - tłumaczy Paweł Pacewicz ."
+  },
+  {
+    "opinion_id": "op_002496",
+    "text": "Dusza człowiek ! miała m tą przyjemność poznać panią Beatke w szkole rodzenia MAMMA , bardzo dużo się nauczyła m i bardzo się przydała wiedza przy pierwszym dziecku jak i przy drugim . Pani Beatka zawsze pomaga gdy mam jakieś pytania , zawsze mogła m na nią liczyć o każdej porze , dzięki niej czuła m sie bezpieczna i spokojna w ciaży jak i po porodzie . Mało jest takich ludzi z wielkim sercem jak pani Beatka ! ! ! Dziękujemy jeszcze raz i gorąco pozdrawiamy ! Iwona , Nathaniel i Nadia : )"
+  },
+  {
+    "opinion_id": "op_002497",
+    "text": "Będziemy się starali o to , żeby ten rozwój dokonywał się w sposób zrównoważony , ale żeby równocześnie polskie rolnictwo nabierało charakteru jak najbardziej konkurencyjnego i nowoczesnego  - mówił szef resortu nauki . Minister rolnictwa i rozwoju wsi Jan Krzysztof Ardanowski dodał , że w obliczu globalizacji Polska musi \" szukać takich wyróżników , które sprawią , że polska żywność będzie się czymś różniła , in plus oczywiście , od prostej i ( . . . ) nigdzie za bardzo dochodowej produkcji surowców \" . \" Chcemy postawić na żywność wysokiej jakości - tę żywność , która nie jest żywnością anonimową , żywnością , która kojarzy się ludziom ze zdrowiem , z kulturą , może z tradycją wytwarzania bądź regionami , które nam się dobrze kojarzą \" - zadeklarował ."
+  },
+  {
+    "opinion_id": "op_002498",
+    "text": "Jestem po operacji plastycznej nosa u dr Obrockiego w Medicover , faktycznie doktor na początku miły a później jak się informuje o problemach to robi się nieuprzejmy . Jestem już po wizytach u różnych laryngologów , mam zrosty w nosie i do tego wskazane jest zabieg laryngologiczny w celu poprawy drożności nosa , zatyka mi się jedna dziurka a w nocy oddycham tylko przez buzie . Pana doktora nie polecam . Na innych forach czytała m również negatywne opinie o Panu doktorze , wiec nie tylko ja wystawiam negatywną opinię . Dziewczyny zastanówcie się , przed operacja u doktora Obrockiego ."
+  },
+  {
+    "opinion_id": "op_002499",
+    "text": "Problem , który był powodem naszej wizyty u Pana doktora , jak sądzę nie jest trudny do zdiagnozowania , niemniej jednak błyskawiczne rozpoznanie i - przede wszystkim - znakomicie dobrane leczenie , dały niemal natychmiastową poprawę stanu pacjenta . Niebagatelną rolę w procesie leczenia zastosowanego przez Pana dr . Skrzeszewskiego , oprócz farmakologii , pełni podejście lekarza do pacjenta , Jego osobowość , to , jaką atmosferę tworzy w czasie rozmowy , zaufanie , które wzbudza . Panu Doktorowi Jakubowi Skrzeszewskiemu pragnę serdecznie podziękować za pomoc i za to , że choć jestem jedynie osobą towarzyszącą pacjentowi , ja również wychodzę ze spotkania z Nim silniejsza i spokojniejsza . ."
+  },
+  {
+    "opinion_id": "op_002500",
+    "text": "Mam wrażenie , że czytam opinie o innym lekarzu , może trafili śmy na gorszy dzień Pani Dr , sprawiała wrażenie obojętnej , zapytała o przyczynę wizyty , zbadała bez słowa i wypisała receptę , to ja musiała m zapytać czy dziecko powinno zostać w domu na co odpowiedziała twierdząco , wkurzyła m się , jakby m nie zapytała dziecko poszło by do przedszkola . Ma zostać w domu ale o opiekę nad nim nawet nie zapytała i nie wypisała . Wychodzi na to , że pacjent sam ma pytać i prosić tylko skąd ma wiedzieć co w danym momencie jest konieczne . Nie jestem zadowolona z tej wizyty , Wystawiam ocenę neutralną bo liczę na to że diagnoza jest właściwa . Z dzieckiem zero rozmowy ."
+  }
+]

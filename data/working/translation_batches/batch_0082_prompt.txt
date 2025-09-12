@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001621",
+    "text": "A ja mam inne zadnie , o pani doktor . Moją prośbę o skierowanie na mamografię , zbyła odmową , bo odmówiła m badań diagnostycznych , które miały odbyć się w szpitalu ( 3 dni ) . Czy usg i markery , które między innymi wchodzą w te badania diag . nie można zrobić ambulatoryjnie tylko trzeba pacjenta kłaść na 3 dni , na oddział bo względy ekonomiczne biorą górę . Nie dawno w telewizji był program , o pacjentach onkologicznych , którzy zamiast przebywać po radioterapii w szpitalu , szpital wynajmował im pokój w hotelu , bo i ekonomicznie i psychika pacjenta lepiej funkcjonuje . Ale nie w Poradni Onkologicznej na Weigla idą pod prąd ."
+  },
+  {
+    "opinion_id": "op_001622",
+    "text": "Minister przypomniała , że obowiązuje już ustawa , która ma wyeliminować z rynku odpady węglowe , a Ministerstwo Energii pracuje nad rozporządzeniem ws . jakości paliw stałych do tej ustawy . Przedstawiona przez ME do konsultacji publicznych wersja projektu rozporządzenia wywołała sprzeciw samorządów i organizacji ekologicznych . Krytycy wskazywali m . in . , że zaproponowane normy wcale nie eliminują ze sprzedaży mułów i flotokoncentratów , bo umożliwiają legalną sprzedaż ich mieszanin z węglem lepszej jakości . Minister Krzysztof Tchórzewski oświadczył z kolei , że \" przepisy rozporządzenia ( . . . ) wychodzą naprzeciw oczekiwaniom społecznym oraz uwzględniają możliwości nabycia paliw przez najmniej zamożne gospodarstwa domowe \" . Minister Emilewicz podkreśliła , że jest w stałym kontakcie z ME i jest przekonana , że w ciągu kilku tygodni uda się zakończyć prace nad rozporządzeniem , tak by nie zostawiało wątpliwości . Jak zapowiedziała minister , następnym etapem będzie projekt ZONE ( zintegrowany system wsparcia polityki i programów ograniczania niskiej emisji ) , który MPiT zrealizuje wraz z NCBR i innymi instytucjami , w tym z Polskim Alarmem Smogowym . To nie tylko lepszy monitoring , ale ocena liczby domów wymagających modernizacji , po to by oszacować koszty poprawy jakości powietrza - wskazała . Chcemy też przeprowadzić pierwsze tego typu badania płuc na populacji 25 tys . ludzi zamieszkujących 9 miejscowości ze znacznymi przekroczeniami norm jakości powietrza - dodała Emilewicz ."
+  },
+  {
+    "opinion_id": "op_001623",
+    "text": "Jestem kilkanaście miesięcy po operacji wypadniętego dysku na odcinku lędźwiowym . Obecnie bez większych problemów , choć czasem odczuwam umiarkowane bóle , szczególnie jeśli dużo siedzę , a mam siedzący tryb pracy . Udał em się do fizjoterapeuty , bo chciał em przede wszystkim wrócić do systematycznych ćwiczeń wzmacniających i profilaktycznych . Zygmunta polecił mi inny ceniony fizjoterapeuta jako specjalistę od ćwiczeń stabilizacyjnych . Zygmunt najpierw zrobił bardzo szczegółowy wywiad i zapoznał się z dokumentacją medyczną . Dał sobie czas na przygotowanie planu działania , który następnie szczegółowo omówił . Dodatkowo wyjaśnił mi istotę mojej dolegliwości i sposobu pracy nad nią . Ćwiczenia wdraża stopniowo , w miarę moich możliwości i czynionego postępu . Dzięki temu mam poczucie bezpieczeństwa i pełnej kontroli nad tym , co robimy . Oczywiście skuteczność terapii w dużym stopniu zależy ode mnie , tj . im więcej ćwiczę , tym jest lepiej . Zygmunt stara się mobilizować do systematycznych ćwiczeń . Lubi rozmawiać i zawsze cierpliwie tłumaczy kwestie anatomii , funkcjonowania naszego ciała i specyfiki dolegliwości . Ponadto zawsze jest z nim dobry kontakt telefoniczny . Podsumowując , zdecydowanie polecam Zygmunta jako profesjonalnego i skutecznego fizjoterapeutę ."
+  },
+  {
+    "opinion_id": "op_001624",
+    "text": "Odradzam p . Oczoś jak nie chcecie mieć dziecka kaleki . Niemiła jako człowiek i brak kompetencji . W każdym przypadku tok postępowania w leczeniu taki sam . Do ucha trąbka i pogrzebanie haczykiem drucianym , na koniec antybiotyk . Jak 20 lat temu . Tylko zacofani lekarze tak postępują . Ma się jednak za wielką specjalistkę , w dodatku krzyczy na dzieci nawet te malutkie ."
+  },
+  {
+    "opinion_id": "op_001625",
+    "text": "Profesjonalne podejście do pracy , pełne zaangażowanie , indywidualne traktowanie każdego pacjenta to tylko niektóre z cech Pani doktor , poza tym komfort leczenia i wizyt sprawił , że czas mojego leczenia ortodontycznego wcale się nie dłużył , a wizyty były samą przyjemnością . Pani Kasia jest nie tylko dobrym w swoim fachu ortodontą , ale przede wszystkim przyjazną kobietą z klasą o wysokiej kulturze osobistej , zawsze uśmiechnięta i pełna entuzjazmu potrafi doskonale nawiązać kontakt z pacjentem . Życzę wszystkim , aby mogły spotkać takiego lekarza w drodze do uzyskania pięknego uśmiechu ! Mnie się udało , a teraz walczy o taki uśmiech mój mąż , ale z Panią Kasią to czysta przyjemność !"
+  },
+  {
+    "opinion_id": "op_001626",
+    "text": "Nie polecam . Trafili śmy to pani doktor z synkiem , z podejrzeniem celiakii . U mnie ( mama ) występuje nietolerancja glutenu , toteż bardzo luźne i częste kupki skłoniły nas do poszukiwań rozwiązania tego problemu własnie w tym kierunku . Dziecko dodatkowo ( półtora roku ) przez pół roku przytyło jedynie 400 gram . Pani doktor stwierdziła , że dziecko nie przybiera bo daję mu za mało pszenicy ! A przecież jak wiadomo od pszenicy się tyje . . Bardzo zaskoczyło mnie to stwierdzenie zwłaszcza z ust gastrologa . Niskie przybieranie swiadczy o złym wchłanianiu co rowniez sugeruje celiakie . W ramach porady dostali śmy zalecenie by nie stawiać się więcej u pani doktor , a ewentualne badania w kierunku celiakii radzi zrobić na własna rękę , ponieważ ona nie widzi wskazań . Dodam , ze wizyta była w ramach NFZ , a badania o których mowa są refundowane , choć bardzo drogie . Według mnie pani doktor nie była ani miła , ani kompetentna . Myślę że gdyby była to wizyta prywatna , gdzie badania wykonuje się i tak na własny koszt rozmowa wyglądała by zupełnie inaczej"
+  },
+  {
+    "opinion_id": "op_001627",
+    "text": "Rozmówca PAP zapewnia , że jeżeli jakakolwiek z metod ma perspektywy praktycznego wykorzystania , a jednocześnie jest ono możliwe pod względem ekonomicznym , to inicjowany jest proces wdrożenia wynalazku w życie i do praktyki medycznej . \" Badania prowadzone są wielokierunkowo . Te metody , jako niszowe , pozwalają przeskanować dość duży układ tkankowy – kawałek jelita , przełyku , naczynia wieńcowego . Prace w tej dziedzinie ukierunkowane są m . in . na wczesne wykrywanie zmian nowotworowych . To dotyczy głównie układu pokarmowego . W długim układzie trawiennym trudno jest wskazać , gdzie mogą być zmiany patologiczne . Jest on jednak dostępny dla światła , gdy wprowadzimy odpowiedni wziernik . Nasza unikatowa metoda daje informacje o dość dużych odcinkach tkankowych , a to jest najtrudniejsze do zbadania \" – opowiada prof . Wojtkowski ."
+  },
+  {
+    "opinion_id": "op_001628",
+    "text": "Myślę , że już mogę wystawić opinię co do dr Urbaniaka . Na pewno bardzo dobry specjalista i co do tego nie mogę się przyczepić . Miała m okazję być u niego na 3 wizytach podczas ciąży , gdyż w LuxMedzie badania oceny anatomii płodu wykonuje właśnie on . Pierwsza wizyta miała się odbyć 24 . 12 - bardzo ważne badania prenatalne , które można wykonać na ściśle określonym etapie ciąży . Dzień przed dostała m telefon z LuxMedu , że pan dr się rozchorował i moja wizyta jest odwołana . Na szczęście był jeszcze tego 23 . 12 , kiedy do mnie dzwoniono , więc dzień przed wigilią musiała m ściągać męża z pracy , żeby zdążyć . Dodam , że nie jest przyjemnie być \" dodatkową pacjentką \" bo wtedy trzeba się \" wepchnąć \" do gabinetu , a przy tak ważnym badaniu sytuacja ta nie powinna mieć miejsca . Wizyta trwała krótko , pan dr stwierdził , że nie maluch jest jeszcze za mały ( pomimo , że się mieścił w widełkach ) i że mamy przyjechać 29 . 12 do jego prywatnego gabinetu . Wcześniej oczywiście musiał się upewnić , czy mam ową wizytę w abonamencie . Wizyta 29 . 12 - 40 min oczekiwania . Niby była m zapisana na konkretną godzinę , ale okazało się , że działa zasada \" kto pierwszy ten lepszy \" . By odebrać wyniki z krwi i opis badań musiała m się prosić 2 tygodnie i dzwonić co drugi dzień . W końcu się udało . Na 3 wizytę trafiła m do dr Urbaniaka na badania połówkowe 17 . 02 . Podobna sytuacja - dzień wcześniej telefon z LuxMedu , że dr się rozchorował i wizyta odwołana . Najbliższy termin tydzień później , 24 . 02 , znów jako \" dodatkowa pacjentka \" , bo na tydzień wcześniej nie ma szans na wizytę na konkretną godzinę . Kolejny raz ważna wizyta i kolejny raz koczowanie pod gabinetem i \" wepchnięcie \" się do gabinetu . Tym razem godzina oczekiwania . Mogła by m czekać w nieskończoność , bo dr nie stosuje praktyki czytania pacjentek po nazwisku , ale \" następna \" , a dziewczyny w kolejce ustalały która jest na jaką godzinę , więc po prostu musiała m skłamać . Niestety muszę szukać nowego lekarza prowadzącego , gdyż mój odchodzi z LuxMedu i myślała m od dr Urbaniaku , ale nie mogę sobie pozwolić na ciągłe odwoływanie wizyt w przypadku , kiedy pozostaję na zwolnieniu lekarskim i muszę mieć kolejne konkretnego dnia . Nie zależy mi na tym , by pamiętał moje imię , bo niezaprzeczalnie jest najlepszym fachowcem w swojej dziedzinie i tutaj oceniam go na nawet 6 gwiazdek , ale wszystkie te sytuacje , które miały miejsce godzą w moje zaufanie do niego jako lekarza . Odnoszę wrażenie , że bardziej zależy mu na pacjentkach w swoim prywatnym gabinecie , a LuxMed to tylko dodatek ."
+  },
+  {
+    "opinion_id": "op_001629",
+    "text": "Miała m zlecona kolonoskopie i została m skierowana do tego Pana . . W prywatnym gabinecie przepisał mi leki , podał numer do siebie i opowiedział na czym polega kolonoskopia i obiecał , że zrobi to na znieczuleniu . . gdy nadszedł dzień zabiegu i weszła m do gabinetu Pani pielęgniarka kazała mi się przebrać w spodenki do kolonoskopi co też uczynilam . Położyła m się na stole do zabiegu i Pan doktor przeprowadził mi kolonoskopie bez znieczulenia . . . Wolała by m rodzic dziecko niż przeżyć to jeszcze raz . Zwijalam się z bólu na stole a pielęgniarka mnie przytrzymywala , żeby m nie uciekła . . . po całym zabiegu pan doktor poklepal mnie po głowie i powiedział że już po a po leki żeby m przyszła do gabinetu ( ok . 200 zł wizyta ) . . . nie polecam . Trzeba było mnie poinformować , że za znieczulenie musiała by m dopłacić bo NFZ nie refunduje go . . ."
+  },
+  {
+    "opinion_id": "op_001630",
+    "text": "W 2013 r . opublikowane zostały rekomendacje na temat suplementacji witaminy D dla mieszkańców Europy Środkowej , w tym Polski . Opracował je międzynarodowy zespół ekspertów , któremu przewodniczył dr Płudowski . \" Opracowali śmy rekomendacje dla wszystkich grup wiekowych – od kobiet ciężarnych , przez noworodki , niemowlęta , dzieci , młodzież , osoby dorosłe aż po seniorów . Uwzględnili śmy też osoby z grup szczególne zagrożonych niedoborami witaminy D , jak osoby otyłe i pracujące na nocną zmianę \" - wyjaśnił specjalista . I tak dzieciom do 6 . miesiąca życia eksperci zalecają podawanie 400 jednostek międzynarodowych ( IU ) , tj . 10 mikrogramów witaminy D na dobę ; maluchy w wieku od pół roku do 12 . miesiąca życia powinny otrzymywać od 400 do 600 IU , zależnie od ilości witaminy D w diecie ; dzieci i młodzież do 18 . roku życia powinny przyjmować 600 - 1000 IU zależnie od masy ciała – przez cały rok , jeśli w miesiącach letnich nie jest zapewniona odpowiednia ekspozycja skóry na słońce . Dawki dla osób dorosłych zostały wyznaczone na 800 - 2000 IU , zależnie od masy ciała i przez cały rok , jeśli od kwietnia do września nie jest zapewniona odpowiednia synteza skórna . U ciężarnych suplementacja witaminą D w dawkach 1500 - 2000 IU powinna się rozpocząć nie później niż od drugiego trymestru ciąży ."
+  },
+  {
+    "opinion_id": "op_001631",
+    "text": "Kompetentny lekarz . W sposób zrozumiały wyjaśnił i wytłumaczył przyczynę choroby i podjął odpowiednie leczenie posiłkując się zrobionym w trakcie wizyty USG kolana . Bardzo łatwo nawiązuję kontakt z pacjentem a to powoduje że można całkowicie otworzyć się przed lekarzem i ułatwić diagnozę . Z mojego doswiadczenia z kontaktów z innymi lekarzami mogę polecić pana doktora wszystkim Stanisława K"
+  },
+  {
+    "opinion_id": "op_001632",
+    "text": "Miałem stosunkowo proste problemy ze zdrowiem , ale niezwykle uciążliwe . 1 , 5 roku leczenia + gigantyczne pieniądze wydawane na leki i wizyty , podczas których trzeba było wyciągać od lekarza wszelkie informacje , praktycznie brak dialogu . Efekt : zupełny brak poprawy + organizm wyniszczony lekami ( serwowanymi w takich ilościach , że posiłki stały się zbędne ) + chęć wyrwania sobie jelit . Zmiana lekarza - dwie wizyty i po kłopocie , pomijając fakt , że organizm regenerował się z pół roku po tych dawkach chemicznego świństwa . Błędem jest twierdzenie , że dialog z lekarzem czy dobre podejście do pacjenta nie są ważne . Czasami to jest właśnie kluczowe . Odradzam . Poza wysokiej klasy sprzętem medycznym nie widzę żądnych plusów ."
+  },
+  {
+    "opinion_id": "op_001633",
+    "text": "Lekarz z kompetencjami , który zna się na rzeczy . Trafił em z bólem dolnej części kręgosłupa . Doktor wyjaśnił co mu się nie podoba w jego budowie oraz po badaniu nie widział bardzo groźnych schorzeń wymagających natychmiastowego leczenia , lecz zdjęcie RTG nie podobało mu się w 100 % . Zachęcił do szczegółowych badań w najbliższym czasie w postaci rezonansu . Zalecił w międzyczasie fizjoterapię , a dalszy etap badań dopiero w późniejszym momencie . Wszystko wyjaśnione w prosty i klarowny sposób więc nie było zastrzeżeń co do przebiegu wizyty ."
+  },
+  {
+    "opinion_id": "op_001634",
+    "text": "Pani doktor , podobnie jak i inne Panie z Oddziału hematologii w Rzeszowie na ul . Szopena jest po prostu niedostępna ( żeby się dodzwonić do niej do szpitala trzeba mieć dużo cierpliwości ) , jest niemiła . Nie wiem jak można pracować na oddziale , TAKIM oddziale i nie mieć dla ludzi ani trochę szacunku , współczucia , nie mówiąc o kulturze . Jeszcze nigdy mnie ( pacjentowi ) czy rodzinie nie odpowiedziała na słowo dzień dobry sama również nie mówi wchodząc na sale , po prostu brak kultury . Nie będę przytaczała innych przykładów , bo po pierwsze nie chcę być rozpoznana , a po drugie nie chcę się denerwować ."
+  },
+  {
+    "opinion_id": "op_001635",
+    "text": "Bylam u Pani Doktor 2 razy . Pierwsza wizyta miła , można powiedzieć , że kontrolna , ponieważ chciała m zrobić cytologie i skonsultować coś co mnie niepokoiło . Wyszła m zadowolona , badanie nie należało do tych delikatnych ale nie zawsze to jest najważniejsze , bo w sumie załatwiła m wszystko na czym mi zależało . Druga wizyta po miesiącu , z wynikiem cytologii . Okazało się , że jestem w 7 tygodniu ciąży . I tu ogromne rozczarowanie : pomimo tego , że bardzo źle się czuła m , a moja praca wymagała dużo dźwigania , Pani Doktor nawet nie chciała słyszeć o zwolnieniu ( po wizycie u innego lekarza okazało się , że musze brać silne leki na podtrzymanie ciąży z bezwzględnym nakazem leżenia ) , mało tego , usłyszała m że zwolnienie dostanę dopiero po 12 tc ! ! ! ( czyli gdy zakonczy sie pierwszy trymestr , najbardziej groźny dla Dzidziusia - miała m wrażenie , że Pani Doktor wyznaje zasadę , że jeśli ciąża nie dotrwa do końca pierwszego trymestru , to nie jest to ciąża ) . Nie założyła mi nawet karty ciąży , uznając to za zbędną formalność . Stanowczo odradzam dziewczynom w ciąży ! ! !"
+  },
+  {
+    "opinion_id": "op_001636",
+    "text": "Była m u Pana Doktora już po raz drugi z barkiem , znowu jestem zadowolona z wizyty , mam nadzieję , że obejdzie się bez operacji , niestety trafiała m do lekarzy takich do których nie chciała by m trafić , ale Pan jest godny polecenia innym pacjentom . Życzliwy , porozmawia z pacjentem , wysłucha , i nie powie po co mi tu babo przyszła ś i zawracasz głowę , mam tu wielu pacjentów bardziej schorowanych . Pan doktor mi doradził co zrobić w między czasie żeby bark bolał jak najmniej , a mam nadzieję , że dalsze leczenie u Pana przyniesie właściwy skutek : )"
+  },
+  {
+    "opinion_id": "op_001637",
+    "text": "Bardzo dobra organizacja gabinetu i kultura osobista . Jednak pomimo moich uwag o bardzo słabym samopoczuciu , zmęczeniu i osłabieniu Doktor stwierdził , że moje wyniki są w normie laboratoryjnej ( były przy niższym progu testosteron i przy wyższym tarczyca ) . Jak się później okazało interwencja farmakologiczna była jednak potrzebna . Czyli wizyta ok , ale zabrakło mi tam zrozumienia pacjenta i szerszej perspektywy na moje dolegliwości ."
+  },
+  {
+    "opinion_id": "op_001638",
+    "text": "Choruję już od bardzo długiego czasu . Przez wiele lat odczuwała m stały ból , okresami bardzo silny obydwu barków . Jestem młodą osoba mam 30 lat i takie dolegliwości w zasadzie odebrały mi radość z życia . Była m u wielu specjalistów w zasadzie z różnym skutkiem , ale nigdy poprawa nie trwała zbyć długo . Diagnozy hmm , co lekarz to inna . Była m na prawdę zdesperowana trudno i było uwierzyć jeszcze komuś w cokolwiek . Szukała m już cudotwórcy niż lekarza , tonący brzytwy się chwyta . O panu Arku dowiedziała m się od koleżanki . Swoją wstępną diagnozę postawił dopiero po tygodniu badań testów i próbnego leczenia , z czymś taki spotkała m si po raz pierwszy . Powiem tak nie było łatwo ulgę poczuła m dopiero po miesiącu , ale ulga trwała coraz dłużej i ból był mniejszy . Teraz bólu prawie nie ma , tylko przy bardzo gwałtownych ruchach , mogę spać pracować i ćwiczyć . Pan Arek to prawdziwy specjalista chodź stosuje bardzo nie standardowe metody , ale niesamowicie skuteczne . Polecam gorąco . . . . . . . . . . . . ."
+  },
+  {
+    "opinion_id": "op_001639",
+    "text": "Przyjechali śmy z synem do szpitala z bólem brzucha . Pan doktor natychmiast trafnie zdiagnozował zapalenie wyrostka i przyjął nas na oddział . Swoim zdecydowaniem i profesjonalnym podejściem uspokoił zarówno dziecko jak i nas - rodziców . Pan doktor ma niezwykle podejście do dzieci , za każdym razem jak badał syna , zciagal mu opatrunek czy szwy odwracał jego uwagę pełna humoru rozmowa . Nie lekceważył moich pytań , chociaż teraz wiem ze te , szczególnie zadawane przed operacja , nie były mądre . Zdecydowanie uważam , ze Pan doktor ma talent poparty praca i doświadczeniem . Pan Doktor codziennie rano pytał dziecko jak się czuje i odpowiadał na pytania , widziała m szczere zainteresowanie , które sprawilo , ze czulismy się dobrze i bezpiecznie . Lekarz , który robił usg przed decyzja o wyjściu do domu , zachwycał się pięknym założeniem szwów , i faktycznie miejsce to ładnie wyglada . Szczególnie cenne dla mnie było poczucie humoru Pana doktora i siła charakteru , która bije od niego . Dodam , ze po operacji nie było żadnych powikłań , gorączki , sączenia się rany - wyniki i stan dziecka bardzo dobre . Pobyt w szpitalu wspominamy bardzo dobrze , wyszli śmy bogatsi o nowych znajomych , którzy leżeli z nami w sali przez ten okres . Dziękuje Panie Doktorze ! Agata Pilarczyk"
+  },
+  {
+    "opinion_id": "op_001640",
+    "text": "Z diety jestem bardzo zadowolona przepisy bardzo smaczne i szybkie w przygotowaniu . Duzym minusem jest czas oczekiwania na dietę ( ponad 2 tygodnie ) mimo częstego kontaktu ( sms , mail ) - co było dla mnie dużym zaskoczeniem ponieważ przy pierwszym spotkaniu Pani Martyna wydała się bardzo sympatyczna i kompetentna osoba ."
+  }
+]

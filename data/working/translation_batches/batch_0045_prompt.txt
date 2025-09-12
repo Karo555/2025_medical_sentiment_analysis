@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000881",
+    "text": "Nie polecam tego , , lekarza \" ! Mialam 23 lata jak przyszlam do tego pana sprawdzic czy jestem w ciąży , okazalo sie ze jestem i bylam szczesliwa a pan doktor patrzyl na mnie jak na dziecko ktore zaliczylo wpadke ! Był niemily i chamsko zartował . Mialam pobrana cytologię i po wynikach okazalo sie że mam 3 grupe , podejrzenie wirusa HPV : ( to byl drugi miesiąc ciąży i groziła mi aborcja , z płaczem dzwonilam do pana doktora spytac czy to pewne i skąd mi się to mogło przyplątać i w odp usłyszalam UWAGA : nic nie mozna zrobic , ja nie wiem ilu partnerow pani miała i co pani robila ! SZOK Zabrała m swoje wyniki i znalałazm kompetentnego lekarza który mnie wyleczył i doprowadził ciążę do końca NIE POLECAM NIKOMU SZCZEGÓLNIE MŁODYM DZIEWCZYNOM ! ! ! ! ! ! ! ! ! ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000882",
+    "text": "To prawda doktor nie jest uprzejmy . Nie zagaduje nie uśmiecha się , czasami ma sie wrażenie ze przeszkadza mu się w odpoczynku . Czasem tez wchodzi się do gabinetu po wyznaczonej porze . . . ale jest dobrym lekarzem . . . Dokładnie wykonuje badania , zadaje czysto medyczne pytania . . . Na moim badaniu lekarz nie znalazł nic . . . wszystko było ok . Po mimo tego lekarz kazał pokazać gdzie dokładnie mnie boli . . . powiedział do jakiego specjalisty iść . . . powiedział co podejrzewa po mimo tego , że to nie jest jego specjalizacja . . . I miał rację . Jeżeli ktoś szuka lekarza z którym się porozmawia i będzie miło i przyjemnie jak na kawie z przyjacielem to nie polecam tego lekarza . Ale jeżeli ktoś szuka lekarz który da dobra diagnozę i pomoże pod względem medycznym z czystym sumieniem polecam dr ."
+  },
+  {
+    "opinion_id": "op_000883",
+    "text": "Lekarka w ogóle niezainteresowana pacjentem . Opryskliwie odpowiadała na moje pytania dotyczące mojego zdrowia . 3 miesiące czekania na wizytę , która trwała zaledwie 3 minuty i nie dowiedziała m się absolutnie nic . Dostała m tylko receptę na leki , które nie wiem co mają zrobić i dlaczego w sumie bez głębszej diagnozy dostała m antybiotyki itp . Nawet nie została m zapytana co do tej pory robiła m w kierunku wyleczenia swojego schorzenia - może już brała m przepisane medykamenty , ale Panią Doktor to nie interesowało . Z tego co usłyszała m w poczekalni to niestety nie tylko moja opinia ."
+  },
+  {
+    "opinion_id": "op_000884",
+    "text": "Zaobserwowanie reakcji organizmu pacjenta , będzie możliwe dzięki przyczepianym na skórze pacjenta czujnikom . Lekarz może też sprawdzić temperaturę głęboką używając sondy umieszczanej głęboko wewnątrz nosa albo błony bębenkowej w uchu . Określonej temperaturze będą przypisane poszczególne barwy , dlatego zmiany temperatury poszczególnych organów i tkanek będzie można obserwować na monitorze wyświetlającym sylwetkę pacjenta . Aplikacja będzie zawierała matematyczny model , uwzględniający transport ciepła wewnątrz ciała ludzkiego przez mięśnie , tłuszcz i skórę . Dołączony zostanie również model reakcji organizmu na zmienne warunki otoczenia . \" Dzięki temu lekarz z wyprzedzeniem pozna odpowiedź ciała ludzkiego na niską temperaturę i będzie mógł odpowiednio reagować i planować proces terapii \" – opisał rozmówca PAP . Dla poprawnego działania modelu wymagane będzie wprowadzenie indywidualnych cech pacjenta takich jak wzrost , waga i płeć i ewentualnie wskaźniki ilości tłuszczu , które mają wpływ na bilans energii w organizmie , a są łatwo mierzalne ."
+  },
+  {
+    "opinion_id": "op_000885",
+    "text": "Nie mam zastrzeżeń co do leczenia i profesjonalizmu p . doktora . Zabieg został wykonany natychmiast . Został em poinformowany o poszczególnych krokach i poinstruowany , co robić po zabiegu . Zastosowane leczenie zdało egzamin . Jednak kasowanie 40 zł za opatrunek ( dosłownie jeden mały plasterek z gazikiem ) to chyba przesada . Już chyba wolał by m nie widzieć poszczególnych pozycji na rachunku ."
+  },
+  {
+    "opinion_id": "op_000886",
+    "text": "Polecam . Przeprowadzono badanie endoskopowe nosa i zatok przynosowych . Postawiono diagnozę i przedstwiono warianty możliwego leczenia . Zapisano lekarstwa miejcowego działania , jednak wskazano konieczność wykonania badania tomograficznego zatok przynosowych w celu weryfikacji ich stanu ( pozytyw , choć może nie finansowy ) . Ponowna wizyta u Pana Doktora , już krótka i wyłącznie dla orzeczenia konieczności operacyjnych ( bez opłat - także miło w kieszonce ) . Wszystko przedstawione krok po kroku z możliwościami leczenia i zaleceniami . Atmosfera w czasie wizyty jest bardzo przyjazna , a opuszczając gabinet nie miała m poczucia niedostatku informacji ze strony Pana Doktora . Pozdrawiam"
+  },
+  {
+    "opinion_id": "op_000887",
+    "text": "Tymczasem - jak mówił podczas jednej z debat w ramach Europejskiego Kongresu Gospodarczego - brakuje też wiedzy o tej groźnej chorobie i odpowiedniej edukacji na temat tego , że otyłość to zagrożenie , a aktywność fizyczna jest konieczna . „ W ogóle nie powinni śmy jeść słodyczy . To energia , którą trzeba natychmiast spalić . Jeśli więc zjemy pięć batonów , powinni śmy pójść na bocznicę i rozładować wagon węgla . Jeśli jemy je przed komputerem i nie spalamy , organizm zamienia tę energię na tłuszcz na czasy , kiedy nie ma w lodówce upolowanego mamuta , ale mamutów jest teraz dużo , codziennie są w lodówce . Jeżeli nadwaga rozwinie się u osoby , która nie jest w stanie naprodukować wystarczająco dużo insuliny , to jest cukrzyca ” – tłumaczył żartobliwie związek otyłości z chorobą w rozmowie z PAP ."
+  },
+  {
+    "opinion_id": "op_000888",
+    "text": "Wspaniały człowiek , najlepszy lekarz na ziemi . Wybitny specjalista neurolog . Rok 2011 krwotok prawej półkuli móżdżku . Trafiła m na oddział neurologi 5 wojskowego szpitala w Krakowie . Leczyła mnie Pani doktor Barbara Wach . Wyszła m ze szpitala zdrowa i pełnosprawna . Rok 2012 po raz drugi - oddział neurologi - ciśnienie , zawroty głowy - diagnoza - oponiak.SZOK , bała m się bardzo . Jednak nie była m sama , była ze mną kochana Pani doktor Barbara Wach . Teraz wiem , że to nie wyrok . Wiem jak mam się leczyć i żyć , i już się nie boję . Dostała m wsparcie medyczne i duchowe . Ciepłe słowa wsparcia , dobry serdeczny uśmiech i te nigdy nie zapomniane słowa \" SŁOŃCE TY MOJE - BĘDZIE DOBRZE \" . No i będzie dobrze . DZIĘKUJĘ PANI DOKTOR PACJENTKA MARIA POLIŃSKA"
+  },
+  {
+    "opinion_id": "op_000889",
+    "text": "Troszkę się roześmiała m czytając 1 - wszą opinię , bo jest bardzo podobna do mojej , ponieważ ja i mój mąż również przenieśli śmy się za Panem Doktorem do przychodni w której obecnie pracuje . Czasem nawet się z mężem śmiejemy że Pan Doktor pomyśli że go prześladujemy : - ) w końcu to już 3 zmieniona przychodnia . Jak widać , to najlepszy dowód na to , że jego wiedza lekarska i intuicja jest na wysokim poziomie . Zawsze poświęca pacjętowi tyle czasu na ile zasługuje i szczegółowo odpowiada na zadane pytania . Bardzo trafnie przepisuje leki i prowadzi całe leczenie . Lekarz z sercem i z powołania ."
+  },
+  {
+    "opinion_id": "op_000890",
+    "text": "W 2008 roku miała m u niego operację , koszmar , do dnia dzisiejszego leczę się i ciągle mam kolejne poprawki . Dziś muszę poddać się kolejnej poprawki u chirurga . Nie polecam tego lekarza , nie wierzcie mu w jego miłe pogaduszki . Facet nie bierze w ogóle odpowiedzialności za swoje czyny a co do jego umiejętności , to naprawdę nie wiem jak uzyskał dyplom chirurga plastyka . Z Pomorza znowu uciekł do Warszawy , gdzie nie zagrzeje , tam tylko zło i rozgoryczenie sieje . Pozdrawiam wszystkie pacjentki poddające się operacjom plastyczny , dobrze się zastanówcie zanim wybierzecie lekarza który ma was ciąć . Później może nie być już odwrotu ."
+  },
+  {
+    "opinion_id": "op_000891",
+    "text": "Skorzystała m u Pani Doktor z zabiegu modelowania owalu twarzy za pomocą kwasu hialuronowego , miała m podaną dość dużą ilość preparatu w policzki , skronie , bruzdy . . . widząc ilość tych strzykawek obawiała m się że wyglądać będę na spuchniętą , ale nie ! Moja twarz nabrała objętości i jędrności . Wyglądam zdecydowanie lepiej i młodziej ! I czuję się znakomicie , Pani Doktor jest bardzo dobrym specjalistą i z czystym sumieniem polecam jej usługi ."
+  },
+  {
+    "opinion_id": "op_000892",
+    "text": "Nasz wynalazek ma zaledwie dwa lata . Na razie wiemy , że bacytracyna niszczy RNA wirusów , ale dlaczego akurat ona ma takie wyjątkowe właściwości dopiero badamy . Póki co prowadzili śmy badania in vitro , do badań na żywych organizmach jest jeszcze daleko . Wiąże się to też ze wzrostem nakładów finansowych . Wstępne wyniki są jednak bardzo obiecujące  - mówi dr Stokowa - Sołtys . Zaletą proponowanego rozwiązania jest fakt , że związek ten znany jest od wielu lat i dopuszczony do stosowania u ludzi i zwierząt – co stanowi jego przewagę nad nowo syntetyzowanymi związkami chemicznymi , których wprowadzenie do stosowania jako leki wymaga długotrwałych badań . \" To właściwie nowe zastosowanie starego leku \" - podkreśla dr Stokowa - Sołtys ."
+  },
+  {
+    "opinion_id": "op_000893",
+    "text": "Wyjątkowość tej sali polega na tym , że jest ona całkowicie przeznaczona dla dzieci . Wyjątkowe jest także to , że będzie można na niej przeprowadzać równocześnie zabiegi kardiologii interwencyjnej i konwencjonalne , typowe zabiegi chirurgiczne , co bardzo skróci czas zabiegu  – powiedział PAP dyrektor Uniwersyteckiego Szpitala dziecięcego Maciej Kowalczyk . Wyraził przekonanie , że na salę hybrydową trafią wszyscy trudniejsi pacjenci szpitala . Z kolei kierownik szpitalnego oddziału kardiochirurgii i intensywnej opieki kardiochirurgicznej prof . Janusz Skalski podkreślił , że \" dzięki Fundacji Radia Zet szpital może dysponować najnowocześniejszą salą hybrydową w Polsce i prawdopodobnie w Europie \" . \" Bo są takie sale , ale one są przeznaczone dla osób dorosłych . Dla dzieci nie . Nie wierzono , że będzie potrzebna sala hybrydowa dla dzieci . W tej chwili wiemy , że dla tych najbardziej złożonych wad u dzieci ta sala hybrydowa jest jeszcze bardziej potrzebna niż u dorosłych , a może przede wszystkim dla takich pacjentów jest potrzebna , bo można dzięki tym nowoczesnym urządzeniom mniej szkodzić , a więcej pomagać \" – powiedział prof . Skalski ."
+  },
+  {
+    "opinion_id": "op_000894",
+    "text": "NIestety nie mogę polecić pana doktora , faktycznie czas poświęcony na wizytę i kwalifikację jest bardzo krótki , na moje pytania i wątpliwości uzyskiwała m zdawkowe odpowiedzi , niestety zawierzyła m i poddała m się zabiegowi LASIK , w zasadzie żałuję , że się głębiej nad tym nie zastanowiła m , mimo iz mialam wysoką krótkowzroczność i ciężko było mi z nią funkcjonować . teraz borykam się z problemem aberracji po zabiegu , widzę źle z każdej odległości , mimo , że zgłaszała m po zabiegu niejednokrotnie te dolegliwości uzyskała m jedynie odpowiedź - nie wiem co pani jest . . . w zasadzie nie trzeba daleko szukać co może być jeśli pacjent zgłasza poświaty , nieostre widzenie i duże halo wokół świateł . . internet od razu wypluwa aberracje wyższego rzędu . . w każdym razie teraz szukam pomocy w innych ośrodkach , bo niestety problem jest na tyle poważny , że utrudnia mi czytanie , a co za tym idzie pracę i codzienne czynności . teraz już wiem o istnieniu zindywidualizowanego zabiegu korekcji laserowej , która redukuję ryzyko aberracji , szkoda , że wcześniej o tym nie słyszała m . . . reasumując - nie polecam /"
+  },
+  {
+    "opinion_id": "op_000895",
+    "text": "Koleżanki ! Wasze narzekanie że pan doktor udziela wam mało informacji , nie ma czasu , robi w pośpiechu - świadczy o też waszym podejściu do wizyty . Ja też miała m z tym problem - z poprzednim lekarzem , bardzo małomównym i szorstkim . Potem zmieniła m i lekarza i zawód na handlowca . I tu trochę z innej beczki . Nauczyłąm sie tak zadawać pytania na szkoleniach dla handlowców żeby uzyskać konkretną odpowiedź a nie zdawkowe tak lub nie . I tą taktykę również stosuję u doktora Szlachcica bo widzę ile pacjentek jest za mną i przede mną , i ile płacę w pasie . Dlatego też wymagam od niego wyczerpujaćych odpowiedzi . Sama też jestem przygotowana do tej wizyty , szanuję jego i swój czas - zadaję konkretne pytania a nie bawie się w kotka i myszkę . Jak czegoś nie rozumiem - pytam . To działa dziewczyny . Pan doktor pamięta mnie , moje dolegliowści i wie już , że oczekuję szczerej rozmowy . Jeśli go nauczyły ście że może was zbyć 2 minutowym badaniem i wypisaniem recepty , to też częściowo wasza wina . Nadal jestem pacjentką . Minusy - to rzeczywiście opóźnione wizyty , ceny . Plusy - zdiagnozował mnie po 5 minutach rozmowy , a badanie potwierdziło jego przypuszczenia ! ! ! Czekamy na transfer 3 zarodków - to już za kilka dni ! ! ! Wydam super pozytywną ocenę jak się uda : )"
+  },
+  {
+    "opinion_id": "op_000896",
+    "text": "Z Bałtyku polskim badaczom udało się wyłonić trzy najciekawsze grupy związków bioaktywnych . Pierwsza grupa to związki hamujące wzrost bakterii i mające działanie antybiotyczne . \" Wiadomo , że teraz pojawiają się bakterie oporne na wszystkie znane antybiotyki . My szukamy związków , które niszczą tzw . biofilm bakteryjny , czyli błonę , przez którą antybiotyk nie może przejść . Jeśli taką błonę zniszczymy , to bakterie staną się wrażliwe na antybiotyki \" - wyjaśnił prof . Węgrzyn . Druga znaleziona grupa substancji stymuluje z kolei wzrost bakterii . Takie związki mogą wykorzystać firmy biotechnologiczne , które używają bakterii do produkcji aminokwasów i enzymów . Prowadzą one setki litrów hodowli bakteryjnych . Dzięki nowym związkom tempo wzrostu bakterii mogło by wzrosnąć o kilkadziesiąt procent ."
+  },
+  {
+    "opinion_id": "op_000897",
+    "text": "Polska Grupa Robocza ds . Problemów Etycznych Końca Życia to stały zespół specjalistów z zakresu etyki , medycyny i prawa . Grupa działa nieprzerwanie w zmieniającym się składzie od 2008 roku i podejmuje inicjatywy zmierzające do wprowadzenia przepisów prawa oraz standardów postępowania w zakresie opieki nad osobami u kresu życia . Jej członkami są doświadczeni etycy , filozofowie , lekarze , prawnicy i teolodzy , zarówno praktycy , jak i pracownicy naukowo - dydaktyczni wyższych uczelni , którzy obradują podczas odbywających się cyklicznie seminariów . Prace prezentujące projekt instytucji pełnomocnika medycznego zostały opublikowane w \" Polskim Archiwum Medycyny Wewnętrznej \" vol . 126 ( 2016 ) 5 , s . 313 - 320 . ) oraz w \" Medycynie Praktycznej \" nr 330 ( 2016 ) 5 . s . 102 - 111 . ) ."
+  },
+  {
+    "opinion_id": "op_000898",
+    "text": "Leczę się u doktora Ufnalewskiego przez wiele już lat . Uważam , że ma nienaganne maniery i jest szarmanckii oraz bardzo elegancki wobec pacjentek . Osoba , która podpisała się dilajla czy jakoś tak , widać nigdy nie była w gabinecie doktora . To moim zdaniem stek obrzydliwych i zmyślonych informacji , pisanych przez osobę o nienajwiększych walorach umysłowych . Widać bardzo odstaje od poziomu pacjentek odwiedzających doktora , które w większości , co widać i słychać w poczekalni , mają znacznie wyższą inteligencję niż ta tu osoba . Powinna sobie znaleźć doktora na jej poziomie chyba , że nim sama jest ."
+  },
+  {
+    "opinion_id": "op_000899",
+    "text": "Leczyła m sie u Dr Juchnickiej kilka lat z powodu PCO . Owszem często zlecała badania poziomu hormonów , cukru , usg . Zmieniała leki . Tak jak jej wiekszość pacjentek była m na diecie bezwęglowodanowej . Nieststy leczenie było mało skuteczne , bo nie mogła m zajśc w ciążę . Pytała m kilkukrotnie o możliwośc zabiegu laporoskopowego , bo jak czytała m , przy PCO to dosyć skuteczna metoda . Ale za każdym razem słyszał m , że to ryzykowny zabieg ( ! ) , że się od tego odchodzi , że leczenie farmakologiczne daje lepsze rezultaty ( w moim przypadku niestesty nie przynosiło ) . W końcu skierowała mie do kliniki leczenia niepłodności - Novum - w której dr Juchnicka pracuje i tam chciała dalej prowadzić moje leczenie . Jakoś mnie to przeraziło , wydawało mi się , że metody proponowane przy Novum to już ostateczność . Zmieniła m lekarza , zrobiła m laparoskopię w państwowym szpitalu ( prosty , mało inwazyjny zabieg ) , odstawiła m wszystkie leki hormonalne i po 4 mies . od zabiegu zaszła m w ciążę . To chyba lepsza opcja niż przyjmowanie przez kolejnych pare lat leków hormonalnych , albo poddanie się kosztownym metodom zapłodnienia w Novum ."
+  },
+  {
+    "opinion_id": "op_000900",
+    "text": "Generalnie gabinet jest dość dziwny . Od dawna lecze się u doktora Kuźminskiego , ale w zeszłym roku zimą musiała m skorzystać z pomocy innego lekarza , bo doktor wyjechał na kilka dni . W gabinecie zastała m remont i ogólny rozgardiasz . A że w remoncie były drzwi wejściowe , to kazano mi wchodzić do gabinetu ( i wychodzić ) przez okno ! ! ! Generalnie jednak z usług doktora Kuźmińskiego jestem zadowolona , ale absolutnie potwierdzam konieczność siedzenia w poczekalni w kurtce , szaliku , czapce i rękawiczkach"
+  }
+]

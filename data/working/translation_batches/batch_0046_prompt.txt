@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000901",
+    "text": "Jak podkreślają organizatorzy akcji , w Polsce co godzinę ktoś dowiaduje się , że ma białaczkę , czyli nowotwór krwi . Tę diagnozę słyszą rodzice małych dzieci , młodzież , dorośli . Bez względu na wiek - każdy może zachorować . Akcja Dzień Dawcy Szpiku ma nam uświadomić , jak niewiele potrzeba , żeby uratować komuś życie . \" Ta akcja wypełnia pewien obszar niewiedzy – jej główny aspekt to edukacja na poziomie społecznym . Dzięki niej , każdy dowie się więcej na temat tego problemu , a wyczuwamy , że jest spory brak informacji : nie wiemy jak i gdzie można zgłosić własny akces , jak wygląda pobieranie materiału biologicznego . Myślę , że w wyniku tej kampanii więcej osób zapisze się - jako potencjalni dawcy szpiku , a w rezultacie – więcej osób zostanie wyleczonych \" - powiedział dziekan Wydziału lekarskiego UJ , prof . Maciej Małecki ."
+  },
+  {
+    "opinion_id": "op_000902",
+    "text": "Na tym etapie rozwoju projektu studentom pomogło nawiązanie współpracy z Instytutem Biochemii i Biofizyki PAN . W tamtejszym Zakładzie Biochemii Drobnoustrojów znajduje się urządzenie , za pomocą którego można monitorować przebieg procesu fermentacji . Robi się to np . poprzez śledzenie zmian pH czy temperatury . \" Dzięki temu możemy sprawdzić , w jaki sposób dane bakterie radzą sobie z naszym napojem \" - mówi studentka . \" Każda matryca roślinna , na podstawie której tworzony jest produkt , posiada bowiem inny skład i różną zawartość składników mineralnych , białek , węglowodanów i tłuszczy . Musimy sami sprawdzać , jak każda z dostępnych komercyjnie kultur starterowych poradzi sobie z prosem , bo nikt tego wcześniej nie zrobił \" - dodaje . Nad projektem pracuje ośmioro członków koła : Klaudia Wojtachnio , Cezary Piwowarczyk , Anna Cieciuch , Maria Hayder , Joanna Jasińska , Agata Krosman , Urszula Mościbrodzka oraz Zuzanna Zając ."
+  },
+  {
+    "opinion_id": "op_000903",
+    "text": "Badania dr Edyty Brzóski - Wójtowicz to nadzieja m . in . dla ofiar wypadków , w których doszło do uszkodzenia mięśni . \" U myszy takie uszkodzone tkanki leczone komórkami macierzystymi regenerują się po 14 dniach . U ludzi potrwa to oczywiście dłużej i będzie zależało od wielkości uszkodzenia . Mówiąc ogólnie proces regeneracji mięśni mógł by potrwać około miesiąca \" - opisuje rozmówczyni PAP . Szybkość regeneracji tkanki zależy w dużej mierze od tego , w jakiej jesteśmy kondycji , jak działa nasz układ odpornościowy , na co chorujemy . Zdolności regeneracji zmniejszają się też z wiekiem . \" Nasze badania prowadzimy od kilkunastu lat . Teraz realizujemy projekty , które mają na celu już wdrożenie wyników badań . Szacując bardzo optymistycznie wdrożenie całej metody mogło by nastąpić za 10 - 20 lat \" - zastrzega rozmówczyni PAP ."
+  },
+  {
+    "opinion_id": "op_000904",
+    "text": "Mój syn miał pierwszą wizytę u Pani doktor Tatiany Janiszewskiej w poradni Neurologicznej . Po wejściu do gabinetu Pani Janiszewska nie pozwolił zamknąć drzwi wejściowych z tego powodu cała rozmowa była słyszana przez pacjentów na korytarzu . Lekarz w ten sposób pogwałcił prawo mojego dziecka i rodziców do ochrony prywatności i tajemnicy leczenia mojego syna . Na wizytę przyszedł em z moją żoną . Pani Janiszewska powiedziała mi żeby m podczas wizyty opuścił gabinet a została tylko moja żona . Odmówił em , mówiąc że jako ojciec mam prawo razem z żoną być obecny na wizycie lekarskiej mojego syna . PANI JANISZEWSKA BYŁA BARDZO NIEPRZYJEMNA . Na pytanie o cel wizyty - słaby kontakt dziecka z otoczeniem , Pani Janiszewska w sposób arogancki próbowała podważyć że nie rozumie takiego celu wizyty naszego dziecka . Dla nas rodziców taki powód jest wystarczający do konsultacji z lekarzem , tym bardziej że skierowanie dostali śmy od pediatry dziecięcego . Żona w trakcie rozbierania syna do badania zobaczyła że pieluszka dziecka jest brudna i szybko zmieniła ją na czystą . Pani Janiszewska powiedziała że dziecko powinno opuścić gabinet i ta czynność powinna być dokonana w innym pomieszczeniu , o którym niestety nie wiedzieli śmy . Żonie ta czynność zajęła tylko minutę . Oburzenie Pani Janiszewskiej z tego zdarzenia było wielkie , poczuli śmy się nieprzyjemnie . Podczas samego badania syna , które trwało NIECAŁA MINUTĘ ! ! ! , usłyszeli śmy DIAGNOZĘ która nas zszokowała . Pani Janiszewska stwierdziła że mój syn ma CYTUJĘ - NIEDOROZWÓJ RUCHOWY A NAJPRAWDOPODOBNIEJ PSYCHORUCHOWY SPOWODOWANY NIEDOTLENIENIEM MÓZGU W CIĄŻY ALBO W CZASIE PORODU . Jakież było nasze zdziwienie , ponieważ cały dotychczasowy rozwój na to nie wskazywał i wszystkie badania od porodu tego nie wykazały . Nie jestem lekarzem , ale myślał em do tej pory że tego typu diagnoza powinna być poprzedzona badaniami bardziej szczegółowymi ? ? ? Na żadne więcej informacje , Pani Janiszewska już niestety nie znalazła dla nas czasu . Zapisała skierowanie na rehabilitację i informację dla lekarza rodzinnego . Doradziła przychodnię rehabilitacji na ul . Gajowej ale stwierdziła cytuję - TAM SĄ ODLEGŁE TERMINY WIZYTY A WY I TAK JESTEŚCIE JUŻ KILKA MIESIĘCY OPÓŹNIENI ! ! ! - tego nie zrozumieli śmy . Po opuszczeniu gabinetu całkiem przypadkiem skierowali śmy się do rejestracji szpitala i jakie było nasze zaskoczenie gdy dowiedzieli śmy się że rehabilitacja jest możliwa w tym samym szpitalu już w dzień następny , tego pani Janiszewska nam nie wskazała skoro podobno GDZIE INDZIEJ ODLEGŁE TERMINY A MY JUŻ I TAK OPÓŹNIENI - SKANDAL ! ! ! ! Pierwszy raz w historii wizyt lekarskich z naszymi dziećmi spotkali śmy się z tak podłym i haniebnym zachowaniem lekarza . Podobno szpital ma tytuł - PRZYJAZNY DZIECKU ? ?"
+  },
+  {
+    "opinion_id": "op_000905",
+    "text": "Trudno oceniać kogoś kto nie dosyć , że odmówił leczenia to jeszcze bez najmniejszego zażenowania wziął za to pieniądze . Moja mama jest w bardzo ciężkim stanie po poważnym błędzie lekarskim co doprowadziło do martwicy jelit , wyłonienia stomii i dalszych powikłań w postaci ropnia i nie gojącej się rany . Lekarze , którzy kolejno zajmowali się mamą ograniczali się jedynie do podleczenia jej bez jakiejkolwiek wizji kompleksowego leczenia - operacyjnego usunięcia ropni i / lub ponownego połączenia jelit . Staram się to jakoś zrozumieć - nie każdy urodził się predestynowanym do tego zawodu . Jednak po blisko roku tułania się po powiatowych szpitalach , kiedy mama wreszcie na nieco dłużej wyszła ze szpitala postanowił em uderzyć prywatnie do - jak mi się wydawało - specjalisty z najwyższej półki . Nic bardziej mylnego ! Pan profesor , u którego czas jest bardzo mocno limitowany , zaledwie rzucił okiem na dwa pierwsze wypisy ze szpitali ( razem było ich 8 ) . Coś tam zaczął nawet bazgrolić na kartce , jednak szybko znudziło go to zajęcie i oświadczył , że on nie może się tym zająć ! Zamurowało mnie ! Mój szok był jeszcze większy , kiedy na nasze błagalne prośby aby spróbował pomóc mamie podziękował nam i poinformował , że za wizytę należy się 200 zł ! Na koniec zadał jeszcze pomocnicze pytanie : czy jesteśmy tutaj z czyjegoś polecenia ? Kiedy usłyszał , że to \" jakiś \" mój znajomy to zupełnie już spokojny oświadczył , że musimy radzić sobie sami . I to tyle na temat wizyty ."
+  },
+  {
+    "opinion_id": "op_000906",
+    "text": "Ma całkiem dobre podejście do pacjentów . Nie zauważyła m różnic w wizytach płatnych i refundowanych przez NFZ ( czasami lekarze lepiej traktują pacjentów , którzy płacą za konsultacje ) . Był okulistą , który dobrał mi moje pierwsze soczewki kontaktowe . Żeby pomóc mi je po raz pierwszy założyć / ściągnąć został nawet po godzinach ( swojej pracy ) ."
+  },
+  {
+    "opinion_id": "op_000907",
+    "text": "Po pierwszej wizycie u doktora jestem bardzo zadowolona . Trafiła m do niego w 5 tyg . ciązy z wynikiem TSH 16 . Po przestudiowaniu kilku artykułów na ten teman na necie i w czasopismach mialam niemałego stracha , jak wpłynie to na moja ciążę , dziecko . Doktor oprócz tego , że jest przemiły , ma poczucie humoru , to rzetelnie i kompetentnie wyjasnił mi , na czym polega moje schorzenie , zalecił leczenie , ugasił pożar internetowy . Naprawde warto ! Po zaleconym leczeniu juz 11 dni póxniej wynik spadł mi do 9 , więc sądzę , że jestem na dobrej drodze . Z serca , a nawet dwóch polecam : - )"
+  },
+  {
+    "opinion_id": "op_000908",
+    "text": "Jedyny plus - pan doktor przyjął pacjenta , mimo jego spóźnienia . Badanie wykonywał jednak 10 minut , bardzo rutynowo . Mimo konkretnego opisu w skierowaniu , nie zwrócił uwagi na to , co powinno być w usg precyzyjnie zbadane . Swoje komunikaty ograniczył do \" dzień dobry , czy były operacje , czy było już takie badanie usg , proszę się położyć , przekręcić na lewy bok . . . \" a potem - \" wynik ok , do widzenia \" . Kontakt z pacjentem de facto żaden ."
+  },
+  {
+    "opinion_id": "op_000909",
+    "text": "Jest to specjalista światowej klasy . Mimo , że tak utytułowany i znany profesor kardiochirurg , to w kontakcie bardzo uprzejmy , bezpośredni i przystępny . Przyjmował mnie na konsultacji kardiochirurgicznej po niemozności zastosowania stentów . Rzeczowo mi wyjaśnił wszystkie za i przeciw wykonania pomostowania tetnic wieńcowych , mimo że dopiero miałem 51 lat . Co prawda nie on wykonywał tą operację , tylko zastępca dr . Krejca , ale w jego zespole grają najlepsi . Operację wszczepienia trzech bajpasów miałem w grudniu 2007r . Dzisiaj tj.marzec 2009r . jeżdżę na nartach , rowerze . Nawet gram w piłkę nożną , może nie tak jak kiedyś , ale czuję się świetnie . Jest dokładnie tak , jak przedstawił mi to prof . Bochenek ."
+  },
+  {
+    "opinion_id": "op_000910",
+    "text": "Mam 28 lat . Przyszła m do Pani doktor z problemami skórnymi w postaci trądziku i patologicznie wypadającymi włosami . Pani doktor zleciła szereg badań i zasugerowała leczenie . Nie zbagatelizowała także wypadających włosów , przepisując odpowiedni lek . Podczas wizyty Pani Giderewicz była konkretna , sympatyczna i uprzejma . Obecnie czekam na kolejną wizytę . Polecam ."
+  },
+  {
+    "opinion_id": "op_000911",
+    "text": "Jestem zadowolona z każdej wizyty u dra Jędrzejki . Dzięki zleconym przez niego badaniom dotarła m do przyczyn złego samopoczucia tam , gdzie sama by m ich nie poszukiwała , a wybrane przez niego leczenie było skuteczne . Doktor z uwagą podchodzi do wszystkich sygnałów ze strony pacjentki , zawsze wykonuje badania kontrolne i odpowiada szczegółowo na wszystkie pytania . Każda z wizyt odbyła się w dogodnym dla mnie terminie , wybranym przez ten portal , albo po umówieniu się z asystentkami Pana dra . Konsultacje trwają tyle , ile wymaga tego sytuacja . Jako pacjentka zawsze czuję się wysłuchana i traktowana poważnie . Dr Jędrzejko zasługuje na zaufanie i w przyszłości również u niego będę szukać porady . Jego profesjonalizm , otwartość i kultura osobista stawiają wysoko poprzeczkę innym lekarzom ."
+  },
+  {
+    "opinion_id": "op_000912",
+    "text": "Była m na wizycie u Pani doktor i uważam , że była to jedna z najbardziej profesjonalnych wizyt u lekarza ginekloga . Pani doktor poświęciła mi odpowiednio dużo czasu , przedyskutowała i zaproponowała leczenie . Niestety okazało się , że w moim przypadku wystąpiły skutki uboczne w postaci zakrzepów żylnych i chciała m umówić się na wizytę , żeby ustalić dalszą drogę postępowania . W Superior zaproponowno mi termin na marzec 2018 i to , żeby m się nie leczyła , bo nie ma terminu . Przy odpłatnych wizytach oczekiwała by m , że tak podstawowe rzeczy jak możliwość umówienia kolejnej wizyty i skontaktowania się z lekarzem w przypadkach wystąpienia skutków ubocznych ( o co nie mam pretensji , bo leczenie może je spowodować i absolutnie lekarz nie jest w stanie tego przewidzieć ) jest dla pacjentów możliwe i nie wymaga dyskusji . Generalnie została m więc bez pomocy . Kompetencje lekarza fantastyczne , jednak całość opieki nad pacjentem oceniam słabo ."
+  },
+  {
+    "opinion_id": "op_000913",
+    "text": "Ta metoda powstała , bo dotychczasowe nie spełniały naszych oczekiwań . To jest unikalna procedura - przeszczepiamy lek , zawierający komórki macierzyste pacjenta ” – wyjaśnił podczas wtorkowej konferencji prasowej w Katowicach kierownik oddziału prof . Edward Wylęgała . Podkreślił , że w porównaniu z dotychczas stosowanymi ta metoda leczenia skutków oparzeń oka jest mało inwazyjna , a jednocześnie daje bardzo dobre wyniki . Jak zaznaczył , procedura jest bardzo skomplikowana . Pacjent musi mieć jedno oko zdrowe - to z niego pobiera się metodą biopsji materiał do przeszczepu według ściśle określonego protokołu . Potem jest on umieszczany na specjalnym nośniku i transportowany w szczególnych warunkach do Włoch , gdzie przez 6 miesięcy trwa hodowla .  Zabieg operacyjny jest również skomplikowany . Musimy bardzo precyzyjnie pilnować protokołu , gdzie nie wolno dotykać nożem tkanki , musimy robić to używając specjalnych szpatułek , mikroskopów . Przeszczep jest trudny , nie przyszywamy go , musimy schować go pod spojówką \" – dodał prof . Wylęgała ."
+  },
+  {
+    "opinion_id": "op_000914",
+    "text": "Do Pani Ewy trafilam wraz z mezem . Oboje mamy zdiagnozowana insulinoopornosc , pania Ewe wybralismy na podstawie opinii w internecie . Dzieki wizytom nauczylismy sie jesc zdrowo , zobaczylismy , gdzie popelniamy bledy , polubilismy inna , mniej przetworzona zywnosc . Mielismy elastycznie dobrany jadlospis do naszych odmiennych potrzeb , ale jednoczesnie taki , ktory nie sprawial , ze gotowanie stawalo sie katorga . Efekt : od 5 miesiecy jemy pysznie i zdrowo , maz schudl 24 kg , ja 10 kg przed ciaza , w ktora zaszlam podczas zmiany nawykow zywieniowych . Rady pani Ewy pozwalaja mi aktualnie przybierac na wadze w odpowiednim tempie , z mysla o zdrowiu dziecka . Z pania Ewa nie jest sie na diecie - zmienia sie po prostu styl zycia . Wazne ze w zaleceniach mamy takze dawke ruchu , a plan zywieniowy jest opracowany realnie , nie wyciencza organizmu i przynosi szybkie efekty . Przestalismy byc zmeczeni , ospali , zaczelismy bardziej cieszyc sie zyciem . Dlatego z cala moca rekomenduje wizyte u Pani Ewy ."
+  },
+  {
+    "opinion_id": "op_000915",
+    "text": "w ostatnich miesiącach ciąży była m pod jej opieką , wizyty były szybkie - sprawdzenie czy szyjka się nie skraca i czy kanał rodny zamknięty , no i sprawdzenie tętna dziecka . . . Pani doktor nie jest osobą \" wylewną \" , trzeba ciągnąć za język , a i tak za wiele nie można się dowiedzieć , tym bardziej że w moim przypadku były problemy z ciążą i każde słowo , każda rada były mi potrzebne jak nigdy . . Dr Nikola była przy porodzie , słuchała m jej rad i wskazówek , była ciepła i serdeczna , pomogła mi urodzić śliczną córeczkę i o ile w tym momencie mogę być jej wdzięczna to podczas wizyt kontrolnych nie zdobyła mojego zaufania . . ."
+  },
+  {
+    "opinion_id": "op_000916",
+    "text": "W dodatku - dzięki kontrolowanej porowatej budowie kapsułki - do wnętrza nie będą mogły wnikać np . przeciwciała , które są większe niż otwory na jej powierzchni . Nie zniszczą w ten sposób komórek , które znajdują się wewnątrz . Ta właściwość jest szczególnie ważna , bo dzięki niej mikrokapsułki będzie można wykorzystać w transplantologii . \" Zawsze istnieje ryzyko , że przeszczepione komórki - nawet własne - ale hodowane pozaustrojowo , będą traktowane przez organizm jako coś obcego . Dlatego trzeba je chronić przed przeciwciałami i układem immunologicznym biorcy \" - tłumaczy badacz . Dla pacjenta to konkretna korzyść , bo nie musiał by otrzymywać dużych dawek leków zmniejszających aktywność systemu odpornościowego . To jednak tylko jeden z potencjalnych sposobów wykorzystania kapsułek . Prof . Artur Bartkowiak od wielu lat zajmuje się zagadnieniem sztucznej trzustki , czyli implantu , którego zadaniem jest uwalnianie do krwi insuliny , gdy tylko w sposób niekontrolowany podwyższy się poziom glukozy we krwi - co jest typowym objawem cukrzycy . Teraz takie zadanie będzie można powierzyć mikrokapsułkom . \" Chodzi o to , aby produkujące insulinę komórki trzustkowe można pobierać od dawcy i przeszczepiać do organizmu biorcy . W ten sposób , kiedy poziom glukozy we krwi się podwyższy , wtedy komórki zaczną produkować insulinę . Dzięki temu , zamiast stosować zastrzyki czy pompy insulinowe mieli by śmy regulację zbliżoną do tej , która występuje naturalnie \" - wyjaśnia prof . Bartkowiak ."
+  },
+  {
+    "opinion_id": "op_000917",
+    "text": "Pierwszy raz był em u dietetyka i chyba ostatni . Po prostu otyłość utrudnia mi życie i coś muszę z tym zrobić . Pani była bardzo miła i pewnie kompetentna , dała mi szczegółowy jadłospis , ale to nie dla mnie . Ja pracuję , żona też , w domu obowiązki liczne , a do przygotowywania tych posiłków z jadłospisu musiał by m chyba zatrudnić gosposię , i to na cały etat . Sama lista składników do zakupu na pierwsze dwa dni - to chyba z 50 pozycji , część nie do kupienia w zwykłym osiedlowym sklepie , a przygotowywanie to co dzień najmniej ze 2 - 3 godziny . Skończyło się na tym , że odrzucił em z posiłków cukier , mięso wieprzowe , pieczywo , a zastąpił em to owocami , warzywami , miodem , rybą . Ale o tym mogę poczytać w pierwszym lepszym poradniku , nie muszę chodzić do dietetyka . Widocznie to specjalista dla gospodyń domowych , które nudzą się w domu i mogą pół dnia spędzić na zakupach i pitraszeniu . A ja mam za dużo roboty"
+  },
+  {
+    "opinion_id": "op_000918",
+    "text": "Wynika z tego , że tylko niewielka część komórek odgrywa istotną rolę w wzroście nowotworu i tworzeniu przerzutów . Prawdopodobnie to one odpowiadają za chorobę i śmierć pacjenta . Nie trzeba zatem niszczyć całego guza , żeby unieszkodliwić nowotwór . I odwrotnie : można nawet znacznie zmniejszyć rozmiary guza , co często ma też miejsce podczas leczenia , a choroba i tak powróci , jeśli nie zostaną wyeliminowane komórki o największych umiejętnościach do proliferacji . Według Stokłosa podobnie jest w przypadku przewlekłej białaczki szpikowej , którą wywołuje jedna tylko mutacja , tzw . kinaza tyrozynowa BCR - ABL . Ma ona kluczowe znaczenie dla rozwoju tej choroby . Powstaje w komórkach macierzystych szpiku kostnego , czyli tych , z których mogą powstać wszystkie inne komórki ."
+  },
+  {
+    "opinion_id": "op_000919",
+    "text": "Zaznaczył również , że w trwającym procesie negocjacji dotyczących utworzenia kierunku lekarskiego na UO ważne jest wspólne poparcie dla tego projektu zarówno samorządu województwa , wojewody i wicewojewody , radnych sejmiku czy przewodniczącego opolskiej rady miasta i władz Opola . Rzecznik Uniwersytetu Opolskiego Marcin Miga w rozmowie z PAP wyjaśnił , że milion zł , który uczelni przekaże samorząd woj . opolskiego , da uniwersytetowi możliwość wykazania wkładu własnego , który jest podstawą do tego , aby ubiegać się o środki ministerstwa nauki i szkolnictwa wyższego na inwestycje potrzebne do uruchomienia kierunku . Pieniądze te mają być wykorzystane np . właśnie na dokumentację przebudowy Collegium Medicum i program funkcjonalno - użytkowy , który pozwoli rozpocząć inwestycję ."
+  },
+  {
+    "opinion_id": "op_000920",
+    "text": "Jestem zawiedziona operacją wykonaną przez lekarza Naser Dib , operacja trwala bardzo krótko , lekarz zaznaczył kilka miejsc na nodze , aby usunąć w tych miejscach żylaki , pozostałe zignorowal , może tak musiał , bo było kilku pacjentów na zabiegi , a czas szybko leciał , a do domu daleko . Była to moja druga noga operowana na żylaki . Poprzednią nogę operował inny doktor - noga ta była dużo gorsza , więc była operowana w pierwszej kolejności , nie spieszyło się doktorowi , zaznaczył szczegółowo wszystkie miejsca z żylakami , a następnie je zoperował . Operacja trwała prawie dwie godziny , dokładnie profesjonalnie , estetycznie wszystko wykonał , w przeciwieństwie do drugiego przypadku . Od razu po operacji drugiej nogi nie była m zadowolona - bo były pozostawione niedoróbki . Obecnie po przeszło 5 latach , noga operowana jako pierwsza wygląda dużo lepiej , niż ta operowana przez lekarza Nasera Dip . Przykro mi , ale nie będę polecała nikomu tego lekarza . Dip . Pacjentka niezadowolona ."
+  }
+]

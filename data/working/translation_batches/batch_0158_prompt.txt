@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_003141",
+    "text": "Polecam współpracę z Panią Edytą wszystkim , zarówno osobom z kłopotami ze zdrowiem , jak i osobom zupełnie zdrowym , które chcą nauczyć się zdrowego stylu życia . Pani Edyta ma w sobie niesamowitą energię , którą w jakiś sposób wszczepia w pacjenta i to sprawia , że bardzo potrzebujesz dbać o siebie i traktować swoje zdrowie i życie z szacunkiem . Ja do Pani Edyty trafiła m po wielu latach zmagania się z kłopotami ze zdrowiem , których żaden lekarz nie był w stanie zdiagnozować , a co za tym idzie - wyleczyć . Miała m nieregularne miesiączki , kłopoty z jelitami , wędrowała m od lekarza do lekarza ( różnych specjalizacji ) , oczywiście prywatnie i słyszała m , że tak już musi być , albo , że taka moja uroda - ale mi uroda co ? - niezwykle urokliwie jest gdy człowiek choruje . Moje życie zmieniło się o 180 stopni dzięki pomocy Pani Edyty , która przeprowadziła rzetelną i trafną diagnozę , nakreśliła plan terapii , przeprowadziła ze mną rozmowy , w którym dała mi nadzieję i okazało się , że nie była to pusta nadzieja . Już po pół roku moje cykle uregulowały się , kłopoty z jelitami ustały , mam piękną cerę i włosy ( które wcześniej wypadały mi garściami ) , a do tego stałą wagę i zdrową sylwetkę . Pani Edyta wspiera pacjenta na każdym etapie leczenia , przejawia prawdziwe zainteresowanie jego osobą . W tej chwili u Pani Edyty leczy się też moja mama , chłopak i przyjaciele , wszyscy są bardzo wdzięczni za pomoc . Pani Edyto , dziękuję Pani za wszystko ! ! ! : )"
+  },
+  {
+    "opinion_id": "op_003142",
+    "text": "Pani doktor prowadziła moją poprzednią ciążę w innym miejscu i wdrugiej ciąży ją odnalazła m bo nie wyobrażam sobie lepszego lekarza do prowadzenia ciąży - wszystko wyjaśnione , można zadzwonić do pani doktor o każdej porze ( w uzasadnionych przypadkach oczywiście ) , w gabinecie usg ! Można podejrzeć dzidziusia Jest bardzo rzetelna i pamięta pacjentki , leżała m na patologii ciąży ( miała m zagrożoną ciążę z nadciśnieniem ) i rodziła m w szpitalu Orłowskiego gdzie pani doktor się mną opiekowała . Nie zaniedbałą niczego , jestem jej dozgonnie wdzięczna Gabinet na Bolesławickiej jest na Bródnie ale łatwy dojazd trammwajem ."
+  },
+  {
+    "opinion_id": "op_003143",
+    "text": "Przykro mi , że w ten sposób wypowiem się o lekarzu . Niestety wiele osób ma rację . Lekarz nastawiony na zysk 3 min wizyty , 150 zł ( Dolmed ) i do tego nie trafiona diagnoza . Jestem w ciąży , ginekolog zlecił TSH wyszło teoretycznie w normie , jednak skierował mnie na wizytę u endokrynologa , ponieważ normy dla ciąży są inne . Dr Mędraś w ciągu 3 minut stwierdził że nie widzi potrzeb do leczenia . Po miesiącu zrobiła m kontrolne TSH , wyszło 5 - krotnie ponad normę ! Zmieniała m lekarza , a tego Pana doktora nie polecam ."
+  },
+  {
+    "opinion_id": "op_003144",
+    "text": "Pani Doktor jest bardzo specyficzną osobą , Na pewno bardzo kompetentną , ale oschłą i stanowczą . Podczas pierwszej wizyty doprowadziła mnie do płaczu . Drogie internautki ! każdy lekarz tej specjalności musi być rygorystyczny , jakby pani Doktor każdej z Was okazywała litość i współczucie to sama potrzebowała by pomocy . Musi mieć skorupkę wokół siebie , która nie pozwala jej być empatyczną wobec pacjentek ."
+  },
+  {
+    "opinion_id": "op_003145",
+    "text": "Do Pani Doktor trafiła m z 15 - miesięcznym synem , u którego w wymazie wyszły przyprawiające o panikę bakterie . Po dwóch kolejnych wymazach pobieranych osobiście przez dr i trafnym leczeniu po bakteriach nie było śladu . Przy okazji dowiedziała m się o innej rzeczy w oku dziecka , na którą powinna m zwracać uwagę . Podczas kolejnych wizyt dziecko było kompleksowo przebadane , bez pośpiechu i w miłej atmosferze . Zadaję wiele pytań i na wszystkie otrzymała m odpowiedź , bez śladu irytacji . Polecam dr Orawiec ."
+  },
+  {
+    "opinion_id": "op_003146",
+    "text": "Ponieważ Chopin bał się pogrzebania żywcem ( lęk częsty w XIX wieku , by wspomnieć choćby Alfreda Nobla ) zgodnie z jego życzeniem przeprowadzono sekcję zwłok . Raport z pośmiertnego badania , sporządzony przez znakomitego profesora anatomii patologicznej Jeana Cruveilhier zaginął . Jeśli jednak wierzyć relacjom osób , które miały do niego dostęp , Cruveilhier podawał jako przyczynę śmierci gruźlicę płuc i krtani , ale napotkał też zmiany patologiczne , których nie potrafił zinterpretować . Z biegiem lat pojawiały się hipotezy dotyczące innych chorób . Specjaliści twierdzili , że Chopin mógł chorować na mukowiscydozę , niedobór alfa1 - antytrypsyny , zwężenie zastawki mitralnej , zespół Churga - Strauss , alergiczną aspergilozę oskrzelowo - płucną , hipogammaglobulinemię , hemosyderozę płucną , przewlekłe ropnie płuc lub płucne malformacje tętniczo - żylne . „ Nie mów ludziom , żem chorował , bo zrobią bajkę ” - napisał Chopin w postscriptum do swojego listu z 3 grudnia 1838 ."
+  },
+  {
+    "opinion_id": "op_003147",
+    "text": "Pan Dr Jaroslaw Cywiński \" zaopiekował \" się mną z 7 - 8 lat temu . Według mojej opinii jest wybitnym specjalistą proktologiem i wspanialym miłym i serdecznym człowiekiem . Pan dr J . Cywiński w Szpitalu im . Pirogowa w Łodzi usunął mi polipy z odbytu . O terminie zabiegu uzależnionym od miejsca w szpitalu został em powiadomiony telefonicznie . Zabiegi operacyjne były zawsze poprzedzone wszechstronnymi i szczegółowymi badaniami i dokładnie mi opisane ( a nawet zilustrowane z pomocą kolorowej planszy wiszącej na ścianie w gabinecie ) . Po operacji w okresie rekonwalescencji w domu mogł em drogą telefoniczną uzyskać konsultacje i odpowiedzi na wszystkie pytania dotyczące zmiany opatrunków itp , a następnie już przychodził em na badania kontrolne do \" MEDAX-u \" . Od wielu już lat ( odpukać ! ) nie odczuwam żadnych dolegliwości , a przechodząc ul . Zieloną z sentymentem i wdzięcznością wspominam Pana Doktora Jarosława Cywińskiego , jego życzliwość , rzeczowość i . . . stukot klawiszy jego maszyny do pisania . A myśląc o tych nieprzebranych tłumach kłębiących się na korytarzu pod gabinetem wierzę , że wśród nich jest ogromna rzesza wdzięcznych za okazane serce i fachową pomoc pacjentów . ( tsd )"
+  },
+  {
+    "opinion_id": "op_003148",
+    "text": "Pani doktor wydała mi się bardzo nieprzyjemna , oschła , wyniosła i oceniająca . Poczuła m się potraktowana jako wystraszona małolata , która zaliczyła wpadkę ( a mam 28 lat ) . Natomiast prawdziwy powód mojej wizyty była to rutynowa coroczna kontrola , przed którą przypadkowo spóźniła mi się miesiączka . Pani doktor nie przeprowadziła ze mną należytego wywiadu , nie zaproponowała mi badania cytologicznego , co w innych gabinetach jest standardem , nie zbadała piersi . Cały czas odnosiła się do mnie z niezrozumiałą pretensją . Wizyta była płatna + koszt USG dodatkowo - jeszcze bardziej nie chce mi się wierzyć , że tak można traktować pacjenta . Pozdrawiam"
+  },
+  {
+    "opinion_id": "op_003149",
+    "text": "Jestem zmuszona zmienić ocenę na gorszą - okazuje się , że poza miłą atmosferą podczas mojej pierwszej w życiu wizyty u ginekologa pani doktor nie zrobiła mi żadnych konkretnych badań oprócz usg . Prosiła m o zrobienie cytologii - miała m 21lat , Pani doktor powiedziała , że nie ma pośpiechu i dopiero za jakiś czas . Nie było zlecenia badania krwi przed wypisaniem antykoncepcji ; pomyliła niewielką ektopię z dużą nadżerką ( która nie mogła się rozwinąć przez te 6 miesięcy ) . Czekam na wyniki cytologii u innego lekarza . . ."
+  },
+  {
+    "opinion_id": "op_003150",
+    "text": "Zdecydowanie ODRADZAM ! ! ja z tym \" lekarzem \" miała m doczynienia na szczęście krótko ale skutki jego \" leczenia \" odczuwam do dziś . Przez 5 mscy leczył moją nadżerkę i niestety nie wyleczył bo leczył tę przypadłość . . . globulkami , a jak to powiedział inny lekarz \" \" to jeszcze nikomu się nie udało \" . Troszkę mi to podleczył , po czym wracało to w jeszcze gorszym stanie i pomimo tego nie zmienił sposobu leczenia . . . Taką niekompetencję rzadko można spotkać ! ! Pomimo iż mówiła m mu , że planuję ciąże nie potraktował tego poważnie no i zaszła m w ciążę z nadżerką , na szczęście w porę się opamiętała m i ciąże od samego początku prowadził inny lekarz . Straciła m mnóstwo czasu nie mówiąc już o pieniądzach . Wizyty są umawiane na konkretną godzinę ale nijak nie ma to odbicia w rzeczywistości , bo zawsze było min . 1 - 1 , 5 h spóźnienia , bo pan \" lekarz \" w gabinecie żartuje z pacjentkami bądź zadaje pytania typu \" skąd Pani się o mnie dowiedziała ? ? \" . Dodam jeszcze , że kilkakrotnie próbowała m skontaktować się z nim telefonicznie w bardzo waaażnej sprawie i nigdy mi się to nie udało , bo albo \" abonent był niedostępny \" , albo nie odbierał albo . . . odebrał , powiedział \" nie mogę rozmawiać , zaraz do Pani oddzwonię \" i jak nie trudno się domyśleć - nie oddzwonił ! ! to naprawdę nie jest lekarz , na którego można liczyć , w jakimkolwiek sensie , ani nie można liczyć na metody jego leczenia ani na innego rodzaju pomoc , nawet telefoniczną . PORAŻKA ! ! NAJGORSZY LEKARZ Z JAKIM MIAŁA M DO CZYNIENIA W CAŁYM MOIM ŻYCIU , NIE TYLKO GINEKOLOG ! ! ! !"
+  },
+  {
+    "opinion_id": "op_003151",
+    "text": "Co jest niezwykle istotne , skutki zażywania tych nowych substancji są nieprzewidywalne  - dodała dr Agata Błażewicz z Narodowego Instytutu Leków . \" Substancje te nie były do tej pory badane farmakologicznie , nie mają pełnej dokumentacji toksykologicznej , za dużo o nich nie wiemy . Niestety , ci co biorą , są tak naprawdę królikami doświadczalnymi \" - podkreślała . Analizą zawartości dopalaczy już od 10 lat ( odkąd substancje te pojawiły się w Polsce ) zajmuje się Narodowy Instytut Leków ( NIL ) . Jak tłumaczyła dr Błażewicz , na podstawie danych zebranych przez NIL \" widać , że z roku na rok zmienia się skład tych próbek ; w momencie delegalizacji starszych substancji pojawiają się ich nowe syntetyczne pochodne \" ."
+  },
+  {
+    "opinion_id": "op_003152",
+    "text": "Pani Doktor jest bardzo uważna i wnikliwa . Czuła m , że skupia na moim problemie swoją uwagę . Ocena 4 a nie 5 wynika raczej z organizacji pracy placówki . Pani Doktor poświęca na jednego pacjenta znacznie więcej czasu niż przewidywane 10 minut - to z jednej strony daje poczucie , że faktycznie angażuje się w problem , z drugiej powoduje długie oczekiwanie w kolejce . Może placówka powinna planować na jednego pacjenta więcej czasu ?"
+  },
+  {
+    "opinion_id": "op_003153",
+    "text": "Trafiła m do dr Magdaleny z polecenia lekarza stomatologa , leczenie miało trwać 2 - 2 . 5 roku . Trwało 3 , 5 roku bez dobrych rezultatów ( propozycja dr Magdaleny to ściągnięcie aparatu , korekta zgryzu 2 nowymi aparatami i dalsze leczenie przez 3 lata ) . Po tej propozycji zrezygnowała m z usługi dalszego leczenia u dr Magdaleny i lekarza stomatologa . Uzasadnienie Mojej oceny : długie i nieskuteczne leczenie , opóźnienia nawet 1 h , u Mnie przestawienie zamka w aparacie nie miało miejsca nigdy , zbyt lakoniczne wyjaśnienia co do leczenia i zbyt krótkie wizyty kontrolne z powodu opóźnień ( brak czasu dla pacjenta , który w końcu wydaje kasę ) . Po roku poszukiwań znalazła m konkretną dr ortodontę , która leczy Mój zgryz , nie ma opóźnień w przyjmowaniu pacjentów ani 5 min . Radzę sprawdzać opinię o lekarzach i szukać a nie brać pierwszego lepszego i zaufać takiemu ( gdzie uczciwość i etyka lekarska u niektórych ? )"
+  },
+  {
+    "opinion_id": "op_003154",
+    "text": "Dzisiaj był em u owego pana doktora i zakończył on wizytę w środku czasu jej trwania odmówiwszy zbadania nogi która mnie bolała , bo przyszedlem z inną sprawą , i on nie ma czasu na dwie sprawy podczas jednej wizyty , bo on ma charmonogram i ja mam to zrozumieć . Wydaje mi się , że gdy przychodzę prywatnie do lekarza ze schorzeniem , to m chyba nie ja jestem tym , który ma tu się wykazywać zrozumieniem . Zwłaszcza że jestem krótko po skomplikowanej operacji , tłukł em się o kulach tramwajem przez całe miasto , i musiałem zejść i wejść z drugiego piętra i to wszystko z mocnym bólem stopy , ale to pana doktora nie interesuje , bo on ma charmonogram , który jest dla niego święty . Był jeszcze czas , conajmniej 5 minut , podczas których mógł rzucić okiem na tą stopę i dać choćby receptę na środek przeciwbólowy , ale mam wrażenie że pan doktor się wystraszył pacjenta w ortezie po tak skomplikowanym urazie , bo gdy tylko rzucił okiem na wypis , to w ogóle panicznie unikał rozmowy o tej nodze i już koniec wizyty , on nie ma czasu . Na koniec dodam , że dla pacjenta jest mniej ważne czy wejdzie punktualnie , a bardziej czy wyjdzie zbadany i wysłuchany . Zresztą , na bark zapisał mi kolejną rehabilitację , płatną oczywiście , a mówił em mu , że poprzednia nie pomogła . Uważam więc , że mam podstawy by wątpić w zawodowe kompetencje pana doktora Mrozika ."
+  },
+  {
+    "opinion_id": "op_003155",
+    "text": "Na pewno stres jest mniejszy , bo mamy świadomość , że ćwiczymy w warunkach symulowanych , ale chodzi o to , żeby śmy byli przygotowani do tego , jak staniemy już przy prawdziwym pacjencie . Dzięki takim warunkom będzie nam łatwiej poradzić sobie już w warunkach szpitalnych , gdzie sami będziemy musieli się zmierzyć z konkretnych problemem  - mówił dziennikarzom jeden ze studentów uczestniczących w poniedziałek w ćwiczeniach . \" Dla nas najważniejsze jest bezpieczeństwo pacjentów . Niektóre z procedur , których uczymy studentów , są albo bardzo inwazyjne , albo bardzo ryzykowne . To rzeczy , których nie można uczyć bezpośrednio na pacjentach , a takie centra dają możliwość symulowania prawdziwych warunków , jakie panują na szpitalnych oddziałach ratunkowych lub salach intensywnej terapii \" - mówił dr Michał Nowakowski , kierownik Zakładu Dydaktyki Medycznej , odpowiedzialny za wdrażanie programu rozwojowego w Collegium Medicum Uniwersytetu Jagiellońskiego ."
+  },
+  {
+    "opinion_id": "op_003156",
+    "text": "była m prywatnie u tego Pana \" doktora \" . Może i ma opinię znakomitego specjalisty i nim jest , ale w kontakcie z pacjentem jest bardzo nieprzyjemny . Badanie trwało chwilkę , dłużej trwało ubieranie . Wizyta kosztowała 150zł . Dla mnie to było mnóstwo pieniędzy i oczekiwała m większego zainteresowania i konkretnych decyzji . Niestety nic takiego nie nastąpiło . Odradzam prywatnych wizyt u tego lekarza . Po co płacić grubą forsę jeśli to samo ma się na Długiej i to za darmo ."
+  },
+  {
+    "opinion_id": "op_003157",
+    "text": "Ten lekarz ma dodatkową specjalizację , strofowanie staruszek , które ledwo wchodzą po schodach do jego gabinetu , odsyłanie z niczym w bardzo dramatycznych sytuacjach , z tłumaczeniem , że dziś się już nawypisywał skierowań , z uwagami że to nie sklep mięsny itd , szybko się też uczy , ktoś mu musiał powiedzieć lub wymyślił to sam , że kiedy zostaje się kierownikiem to przestaje się mówić pacjentom dzień dobry , za to trzaska się im przed nosem drzwiami . Być może to dobry lekarz , ale co z tego ? ? Myślę , że otacza nas wystarczająca ilość prostactwa , nie musimy go koniecznie szukać u lekarza pierwszego kontaktu . Kontakty z tym panem zdecydowanie odradzam ."
+  },
+  {
+    "opinion_id": "op_003158",
+    "text": "Po wizycie w gabinecie u pani Agnieszki , i otrzymaniu indywidualnej diety , już po kilku dniach ustąpiły moje dolegliwości żołądkowe , znacznie spadł cukier ( jestem cukrzykiem typ . 2 ) , oraz ubyły centymetry , i z każdym tygodniem ubywa ich coraz więcej . Pani Agnieszka jest znakomitym dietetykiem i słuchaczem , wypytuje wszystko ze szczegółami , niczego nie narzuca , jeżeli coś jest w jadłospisie , czego akurat się nie lubi , zawsze znajdzie odpowiedni zamiennik . Chętnie służy pomocą , i na bieżąco , bardzo szybko odpowiada na maile jeżeli ma się jakieś pytania . Jestem jak najbardziej na tak , polecam wszystkim z czystym sumieniem , najlepszy dietetyk w Bydgoszczy !"
+  },
+  {
+    "opinion_id": "op_003159",
+    "text": "Leczę się u Pani Doktor od ponad roku i przyznam szczerze , że chciał by m trafiać częściej na tak konkretnych i sumiennych lekarzy . Trądzik u mnie , 23 - latka nie jest niczym przyjemnym , zwłaszcza że na co dzień jestem bardzo aktywny , często mam kontakt z ludźmi . Pani Doktor wytłumaczyła mi wszystko , pomogła w zmianie codziennych kosmetyków , dobrała odpowiednie leki oraz odpowiadała na wszystkie moje pytania ( nawet te dziwne ) . Moje życie zmieniło się na lepsze : ) Już nie chodzi o to , że leczenie mi pomaga . Przede wszystkim ta lekarka wszystko mi rzetelnie tłumaczy . Jest to dla mnie bardzo ważne , ponieważ chcę być świadomy jakie leki przyjmuje , czym się smaruje i jaki może to na mnie mieć wpływ . Serdecznie polecam ."
+  },
+  {
+    "opinion_id": "op_003160",
+    "text": "Dodał , że badanie to też szansa na poznanie predyspozycji do różnych chorób . \" Wiedząc o tym , możemy zastosować pewne działania profilaktyczne , możemy zwrócić uwagę na dodatkowe badania , wykonać je \" - powiedział rektor . Podkreślił , że badania dają też wiedzę z zakresu farmakogenomiki , czyli o tym , jakie leki są u danego pacjenta skuteczne , a jakie nie . \" Wiemy , że jeden lek nie pomaga wszystkim . Są osoby , u których leczenie jest bardzo skuteczne i są osoby , u których to samo leczenie jest słabo albo w ogóle nieskuteczne . Otwiera to naprawdę olbrzymią przestrzeń do lepszego leczenia w przyszłości , odnalezienia terapii , zmian stylu życia , które wydłużą nasze życie \" - dodał . Krętowski przypomniał , że genom zsekwencjonowano po raz pierwszy 15 lat temu , badania były bardzo kosztowne . \" To był olbrzymi przełom w medycynie . Dzisiaj możemy to zrobić znacznie taniej , to koszt kilku tysięcy dolarów . Chcemy , żeby ten koszt to był koszt tysiąca dolarów \" - dodał Krętowski . Szansą na niższe koszty ma być właśnie laboratorium , które będzie prowadzić takie badania na szeroką skalę ."
+  }
+]

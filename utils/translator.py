@@ -102,7 +102,7 @@ class OpenAICompatClient:
     """
     OpenAI SDK klient wskazujący na DeepSeek (OpenAI-compatible).
     """
-    def __init__(self, api_key: str, base_url: str = DEFAULT_BASE_URL, model: str = DEFAULT_MODEL, timeout: float = 120.0):
+    def __init__(self, api_key: str, base_url: str = DEFAULT_BASE_URL, model: str = DEFAULT_MODEL, timeout: float = 180.0):
         self.model = model
         self._client = AsyncOpenAI(api_key=api_key, base_url=base_url, timeout=timeout)
 

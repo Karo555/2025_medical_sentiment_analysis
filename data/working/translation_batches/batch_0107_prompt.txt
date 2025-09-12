@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002121",
+    "text": "Witam . Moje zdanie jest takie , że to bardzo dobra Pani psycholog , aczkolwiek przez wiele lat była m na nią zła a to z tego powodu że dalej leczy mojego ex . Natomiast mnie pomogła rewelacyjnie , bo w moim życiu nastąpił prawdziwy przełom i uwierzyła m w siebie , uwierzyła m że jestem silna i wartościowa . Otworzyła mi oczy i sama wówczas powiedziała że nie widzi u mnie i u ex wspólnego celu . Jednak ponieważ Ja wtedy była m strasznie za swoim mężem to i tak zdołała dotrzeć do mnie . Ex jest alkoholikiem i rozumiem że teraz jest Jej klientem i skupiła się na nim . Wierzcie mi że ex nie jest łatwym człowiekiem i potrafi pokazać twarz świętego gdy tymczasem potrafi zmienić się w potwora . Dlatego przez długi czas była m zła na Panią psycholog , ale postanowiła m postawić się w Jej sytuacji . 9 złość miała m kiedy Ją odwiedziła m po rozstaniu z ex a Pani psycholog stwierdziła że już nie pamięta co było mówione ( nie dziwię się bo pewnie czuła że chciała by m żeby była świadkiem na sprawie ) ) . Jednak patrząc z perspektywy jest świetną Psycholog i bardzo , bardzo Jej dziękuję . Szkoda że nie mogę z nią pogadać i opowiedzieć co udało mi się osiągnąć ( kilka moich marzeń ) . Dziękuję : )"
+  },
+  {
+    "opinion_id": "op_002122",
+    "text": "Moja opinia o dr Wareckiej jest bardzo niska . Od 2 lat nie potrafi odbudowac mojej odpornosci , potrafila mi dac w ciagu 6 miesiecy ok . 10 antybiotykow . Ponadto ostatnio nie przyjela mnie do gabinetu tylko w poczekalni przy wszystkich potrafila powiedzie \" po co znowu przyszlas ja na symulantow nie mam czasu i nie przyjmuje \" i zamknela mi drzwi przed nosem . Poszlam do innego lekarza i zdiagnozowal mnie i nie trzeba bylo odrazu andybiotyku brac jak to pani dr Warecka zawsze robila nawet nie badajac . Dostalam od dr Wareckiej kiedys antybiotyk ktory rozregulowal mi caly organizm i jego substancja zniknie dopiero po paru latach ."
+  },
+  {
+    "opinion_id": "op_002123",
+    "text": "Student przyznaje , że i wypracowana w Niemczech metoda uDISCO ma pewne ograniczenia - nie ze wszystkich organów udaje się dokładnie wypłukać krew , dlatego nie każda tkanka gryzonia staje się równie przejrzysta . Kłopoty są np . z uzyskaniem krystalicznie czystego serca czy wątroby . Również skóry nie można jeszcze uczynić przezroczystą , dlatego trzeba ją przy preparacji zdejmować . Poza tym przygotowanie preparatu należy wykonywać pod wyciągiem - substancje tam używane są toksyczne . Dlatego Paweł Matryba pracuje już nad skuteczniejszą metodą czynienia myszy przezroczystymi . Na razie wyniki prac jego zespołu są w trakcie publikacji , więc badacz nie chce jeszcze mówić o szczegółach . Zdradza już jednak , że ciała myszy przygotowywane jego metodą są jeszcze bardziej przejrzyste , a związki chemiczne stosowane w nowej metodzie - są mniej szkodliwe - prac nie trzeba więc prowadzić ani pod wyciągiem , ani przy wykorzystaniu specjalnego sprzętu ."
+  },
+  {
+    "opinion_id": "op_002124",
+    "text": "Do Pani Malek trafiła m z podejrzana wysypka na twarzy , która pojawiła się 3 miesiące wcześniej i nie chciała zniknąć . Wizyta przebiegła w miłej atmosferze na to nie można powiedzieć złego słowa . Zastosowane leczenie - antybiotyk na trądziki . Po 5 tyg kolejna wizyta , \" wysypka \" trochę się zmniejszyła . Kontynuacja leczenia na trądzik . Po kolejnych 5 tyg pomimo , iż problem nie zniknął Pani stwierdziła , że jestem uleczona a to co pozostało to blizny ( podczas pierwszej wizyty powiedziała m że rozdrapała m \" krostkę \" bo wyglądała jakby była wypełniona wodą ) , przepisała m maść złuszczającą na przesuszoną skórę po antybiotyku . Niestety te \" blizny \" zaczęły znowu rosnąć . Pomógł dopiero 3 dermatolog , który poprawnie zdiagnozował brodawkę płaską ."
+  },
+  {
+    "opinion_id": "op_002125",
+    "text": "Metoda będzie szczególnie efektywna w leczeniu guzów litych , przy nowotworach o dużych obszarach tkanki niedotlenionej i niedokrwionej . To są zwłaszcza nowotwory gruczołu krokowego , trzustki i pęcherza . \" Komórki odpornościowe mają zdolność migracji do tkanek nieukrwionych i aktywnego wydostawania się poza naczynia krwionośne . To bardzo ważne , bo w tej chwili nie ma żadnej metody na dostarczanie leków do takich miejsc . Tradycyjne leki są rozprowadzane po ciele przez układ krwionośny , a nie ma pomysłu na to , jak poszerzyć zasięg ich docierania do obszarów znajdujących się z dala od naczyń krwionośnych \" - wyjaśnia badacz . Dr Rygiel liczy , że opracowywana przez jego zespół metoda zwiększy efektywność stosowanych leków i ograniczy skutki uboczne ich działania . \" Leki antynowotworowe podawane są dożylnie i tylko niewielka część podanej dawki trafia do guza . Reszta - zamiast zaszkodzić komórkom nowotworowym - szkodzi pacjentowi . Dlatego chemioterapie są tak toksyczne \" - mówi ."
+  },
+  {
+    "opinion_id": "op_002126",
+    "text": "Była m pierwszy raz , pan dr . Adach jest sympatycznym człowiekiem i konkretnym , wiem co mam robić dalej , jest to dla mnie ważne bo miała m plik badań i nie wiedziała m co mam robić , czym się przejmować a czym nie , teraz wiem . Umówiła m się już na następną wizytę , potem będę mogła konkretniej napisać ."
+  },
+  {
+    "opinion_id": "op_002127",
+    "text": "„ Dlatego też w stanach patologicznych , gdy układ odpornościowy jest zbyt pobudzony lub jego aktywność trwa zbyt długo , konsekwencje zaburzenia funkcji innych układów są coraz bardziej dotkliwe . W efekcie układ odpornościowy zamiast chronić wyniszcza organizm . Gdyby śmy umieli blokować wpływ cytokin prozapalnych na komórkę , wówczas układ odpornościowy nie uszkadzał by innych układów ” - tłumaczy doktorantka Wydziału Biologii UW . Pierwotnie uważano , że wyspecjalizowane cząstki informacyjne w organizmie są charakterystyczne dla określonych układów np . neurotransmitery dla układu odpornościowego , a cytokiny dla układu odpornościowego . Zakładano , że jest to „ kod ” którym porozumiewają się komórki w obrębię swojego układu , niezrozumiały dla innych komórek . Obecnie uczeni wiedzą , że ten pogląd był nieprawdziwy , a receptory dla cytokin i neurotransmiterów możemy znaleźć w większości populacji komórek ."
+  },
+  {
+    "opinion_id": "op_002128",
+    "text": "Jest tylko jeden mały problem . Zolpidem działa w organizmie tylko dwie godziny . To zdecydowanie za mało . \" Jego krótkie działanie , będące jego zaletą jako leku wprowadzającego w sen , jest jednak niekorzystne w przypadku zastosowania w leczeniu schizofrenii \" - podkreśla badaczka . Jej zespół badawczy opracował więc szereg modyfikacji struktury chemicznej tego leku nasennego , które mają doprowadzić do powstania „ nowego , lepszego zolpidemu ” . Czas działania będzie dostosowany do potrzeb osób chorych na schizofrenię . Nie będzie miał też tylu działań ubocznych co olanzapina , bo łączy się z tylko jednym receptorem w mózgu . \" Przedłużenie działania leków można uzyskać , modyfikując ich strukturę chemiczną . Pewne grupy chemiczne są wtedy z niego usuwane , a wprowadzane są nowe \" - tłumaczy dr Marcinkowska ."
+  },
+  {
+    "opinion_id": "op_002129",
+    "text": "NIE POLECAM już w rozmowie telefonicznej chamski ! sam umawia pacjentów dzwonili śmy do niego co chwilę bo tak się umawiał na tel cyt . \" bo może coś się zwolni po 19 tej do mnie zadzwonić \" i tak przez 3 miesiące dwa razy w tygodniu w końcu znalazł się termin dla nas mieli śmy potwierdzić dzień wcześniej dzwoniąc do pana doktora ok 19 tej godziny i tak zrobili śmy . okazało się ze sorry ale przed momentem na wasze miejsce wpisał em kogoś innego i nie pomogło ze byli śmy zapisani już chwile temu i ze wizyta jest pilna i że my z dzieckiem 3 letnim ! nie cyt . \" zadzwoń w środę po 19 tej \" zadzwoniła m do CM Promed w Krakowie gdzie bez łaski za trzy dni mieli śmy wizytę u sympatycznej pani doktor wszystkie badania z kamerka wytłumaczone i endoskopię nosa już na pierwszej wizycie i to jest profesjonalizm umawiają na godzinę i o tej przyjmują wystarczył jeden tel a koszt wizyty taki sam i dziecko z uśmiechem podczas badania"
+  },
+  {
+    "opinion_id": "op_002130",
+    "text": "Jestem mega zadowolona z zabiegu wykonanego przez Pana Doktora Piotra Fleszara . Znakomity specjalista w dziedzinie medycyny estetycznej , bardzo kompetentny , elokwentny , doświadczony , chętny do pomocy , uśmiechnięty , wyrozumiały i można by wymieniać i wymieniać . Nie ukrywam , że bardzo jestem pozytywnie zaskoczona efektami zabiegu Dermapen , który okazał się być świetnym rozwiązaniem dla moich blizn potrądzikowych . Zwrócił em się o pomoc o doktora , ponieważ słyszała m o nim same pozytywne rzeczy . W praktyce nie zawiódł mnie . Pochodzi do swojego pacjenta bardzo indywidualnie , dba o bezpieczeństwo , komfort i czystość w gabinecie , nigdy nie zajmuje się jakimiś osobistymi sprawami . Pokazał mi , jaki jest skoncentrowany i zaangażowany . Była m pod wielkim wrażeniem jego profesjonalizmu i powagi . Zabieg był całkowicie bezbolesny i w sumie sprawił mi przyjemność efektami , jakie mogła m zauważyć po nim . Blizny potrądzikowe nie są już moją zmorą i nie wpływają na mój wygląd . Jestem bardzo zadowolona , że zwróciła m się do tego właśnie gabinetu i tego właśnie lekarza . Co prawda musiała m poczekać na wizytę prawie 2 tygodnie , ale naprawdę było warto . Lekarz jest skrupulatny , precyzyjny i bardzo zdecydowany w swoich zabiegach . Widać , że zna się na rzeczy , a medycyny estetyczna nie jest dla niego obca . Cieszę się niesamowicie z efektów zabiegu i muszę przyznać , że dzięki niemu zyskała m znów pewność siebie . Dziękuję za życzliwość i życzę sukcesów Pani Doktorze !"
+  },
+  {
+    "opinion_id": "op_002131",
+    "text": "chodziła m do pani doktor rok po tabletki antykoncepcyjne rzeczywiście bardzo miła , cudowna ale jak poszła m z kiepskimi wynikami hormonalnymi i sprawdziła mi usg i mówi ze nie jajeczkuje i nie bede mogła teraz zajsc w ciaze bo nie mam dni płodnych i musze to wyleczyc zeby zajsc w ciaże . oczywiście załamała m sie bo jej ufała m okazałao sie ze za dwa tygodnie była m w ciąży uważam ze taka diagnoze daje sie po wiekszych badaiach albo po konsultacji z innym lekarzem . bardzo mnie to załamało ."
+  },
+  {
+    "opinion_id": "op_002132",
+    "text": "W maju uległa m wypadkowi na uczelni , w wyniku którego dość mocno potłukła m prawe kolano . Na skutek urazu nie mogła m ruszać kolanem a co dopiero stanąć na nogę . Przez około 2 miesiące chodziła m o kulach . Od wypadku tułała m się po różnych lekarzach , miała m mnóstwo badań , leków i chodziła m na rehabilitacje ale to nie pomogło . Oczywiście zeszły mi liczne krwiaki i siniaki z kolana ale nadal miała m trudności z chodzeniem . Dopiero po jakimś czasie zaczęła m chodzić na terapie manualna do pana Piotra i muszę szczerze przyznać , że już po pierwszej wizycie zauważyła m poprawę . Po kolejnych wizytach było coraz lepiej . Według mnie pan Piotr wykonuje swoją pracę sumiennie , zadaje wszelkie pytania odnośnie urazu i szuka najlepszego rozwiązania . Polecam każdej osobie po urazie na wizytę u pana Piotra ."
+  },
+  {
+    "opinion_id": "op_002133",
+    "text": "Była m u Pani doktor dwukrotnie i żałuję każdej wizyty . W pierwszej ciąży zaniepokoiła mnie jakaś błahostka ale oczywiście naczytała m się w Internecie samych strasznych rzeczy więc umówiła m się do lekarza , który miał akurat wolny termin i niestety trafiła m na p Saif : ( . Pani doktor dosłownie mnie wyśmiała . Wizyta w prywatnej placówce trwała 5 minut a pani doktor nawet nie czy coś mnie jeszcze niepokoi , jak się czuje NIC . Druga wizyta to druga ciąża i badanie usg . Podobna sytuacja . W związku z nieobecnością lekarza prowadzącego musiała m umówić się do innego lekarza na ostatnie przed porodem usg ( III trymestru ) . Pani doktor zawołała mnie do gabinety z kilkuminutowym opóźnieniem - mimo , iż poprzednia wizyta skończyła się 10 minut przed terminem . W trakcie wykonywania badania uzyskała m informację , że wszystko jest w porządku , natomiast przed wręczaniu mi opisu badania p . doktor powiedziała , że nie zrobiła połowy badań , które wykonuj się na usg III trymestru bo ni ma na to czasu i mam się umówić na kolejną wizytę . Stwierdziła z półuśmiechem , że skoro dziecko miało wszystkie narządy na poprzednich badaniach to teraz mu one nie wyparowały i raczej nie trzeba tego sprawdzać : ( . Przecież na tym polegają badania I , II i III trymestru - żeby dokładnie zbadać anatomię dziecka . Nigdy nie spotkam się z takim podejściem i takimi komentarzami ze strony lekarza , mimo iż w poprzedniej bliźniaczej ciąży miała m wykonywane badania usg co dwa tygodnie . Nigdy lekarz nie powiedział mi , że czegoś nie zbadał bo nie ma czasu - nawet w sytuacjach kiedy czas wizyty był taki jak dla ciąży pojedynczej . Zdecydowanie odradzam p . Janczak - Saif ."
+  },
+  {
+    "opinion_id": "op_002134",
+    "text": "Jestem ogromną fanka Doktora Piotrowiaka operowal moja mama już 3 razy . Schudła 44 kilo w wieku 58 lat i skóra wisiała jej wszędzie Doktor wyczarowal jej sylwetkę na nowo : - ) ) Jest teraz dzięki niemu szczesliwsza kobieta . Ja osobiście miała m plastyke brzucha u doktora wraz z odsysaniem boczkow jestem mega zadowolona Podejście Doktora jest bardzo profesjonalne To wspaniały lekarz i człowiek wszystko potrafi wytłumaczyć w zrozumiałym języku dla pacjenta . Na każde pytanie odpowiadał wyczerpujaco , Po operacji kontakt telefoniczny rewelacja Czulysmy się z mamą zawsze bezpiecznie A zaufanie do lekarza i kontakt to chyba jedna z najważniejszych rzeczy przy tego typu operacji . Również korzystam regularnie z zabiegów typu botox i powiększanie ust u Doktora i tu również jest czarodziejem Robiła m już wcześniej takie zabiegi u innych lekarzy i nikt nigdy nie umiał mi tak ładnie brwi podnieść botoxem bez efektu opadnietych powiek Pan Doktor jest w tym mistrzem no i usta pieknee naturalne takie jak zawsze chciała m"
+  },
+  {
+    "opinion_id": "op_002135",
+    "text": "Robot EgzoEMG ma być pomocnikiem rehabilitanta . Daje też możliwości diagnostyczne , umożliwia ocenę siły mięśniowej , elektrycznej aktywności w mięśniach pacjenta i pomiar zakresu ruchu . Będzie to jedyny dostępny na świecie robot , który wykorzystuje EMG , czyli elektromiografię . Daje to szansę rehabilitacji czynnej - wykorzystując aktywność elektryczną pojawiającą się w mięśniach nawet słabych pacjentów . Robot został opracowany w Polsce , specjalnie dla rehabilitantów . Przeszedł już pierwsze testy z udziałem pacjentów – ochotników . „ Mieli śmy we Wrocławiu pacjenta - Jakuba , który pierwszy raz od pięciu lat poruszał rękami dzięki naszemu robotowi . Ten pacjent nie był by w stanie uczestniczyć w rehabilitacji innego typu , jak właśnie z egzoszkieletem ” – mówi Mikulski ."
+  },
+  {
+    "opinion_id": "op_002136",
+    "text": "Wiele z tych osób pod odpowiednią opieką może prowadzić intensywne życie zawodowe i sportowe . Przykładem jest snowboardzista Shaun White , który w 1986 r . przyszedł na świat z tetralogią Fallota , siniczą wadą serca , która stanowi 3 - 5 proc . wszystkich wad wrodzonych serca , co czyni ją najczęstszą siniczą wadą serca w okresie poniemowlęcym . Shaun White przeszedł dwie operacje na otwartym sercu jeszcze przed ukończeniem pierwszego roku życia . „ W wieku szkolnym nigdy jednak nie był zwolniony z zajęć WF ” - podkreślił prof . Hoffman . Od dzieciństwa uprawiał snowboard . W wieku 9 lat zainteresował się nim Anthony Frank Hawk , pierwszy zawodnik , który wykonał w powietrzu obrót o 900 stopni i poprawnie wylądował ."
+  },
+  {
+    "opinion_id": "op_002137",
+    "text": "Jak wyjaśnił PAP prof . Krzysztof Simon , prezes Polskiego Towarzystwa Epidemiologów i Lekarzy Chorób Zakaźnych , jeśli wynik testu na HCV będzie pozytywny pacjent powinien zgłosić się do lekarza specjalisty chorób zakaźnych , który oceni , czy infekcja ma charakter aktywny , czy też dodatni wynik testu tylko świadczy o kontakcie z wirusem w przeszłości . „ Niestety , większość przypadków zakażenia przechodzi w postać przetrwałą i wymaga lub będzie wymagała leczenia ” – ocenił specjalista . O tym , jak bardzo potrzebna jest edukacja społeczeństwa na temat WZW C i zachęcanie do wykonywania testów świadczyć mogą wyniki ostatnich badań przeprowadzonych przez instytut badawczy GfK Polonia w lutym 2012 roku . Wskazują one , że 32 proc . Polaków nigdy nie słyszało o HCV i WZW C i tylko 6 proc . kojarzy skrót HCV z wirusem wywołującym chorobę wątroby . Spośród osób , które słyszały o HCV / WZW C 61 proc . było mylnie przekonanych o istnieniu szczepionki przeciwko HCV ( a tej ciągle nie opracowano ) . Zaledwie 9 proc . zadeklarowało , iż wykonało testy w kierunku zakażenia HCV ."
+  },
+  {
+    "opinion_id": "op_002138",
+    "text": "Zanim spotkała m na swojej drodze Pana Piotra moje życie było ciągłym pędem przed siebie , dążenie do perfekcji we wszystkim , stawianie sobie zbyt wysokich poprzeczek często ponad moje możliwości , ciągłe udowadnianie sobie i innym , że ze wszystkim sobie poradzę . Brak asertywności i magicznych słów NIE , NIE WIEM spowodowały , że sprawy innych zdominowały moje życie . Przestała m mieć czas dla przyjaciół , rodziny a przede wszystkim dla samej siebie . Pewnego dnia życie samo postanowiło mnie zatrzymać . Utrata pracy , kłopoty finansowe , rozstanie , utrata niezależności spowodowały , że straciła m poczucie własnej wartości . Uświadomiła m sobie , że teraz ja potrzebuję pomocy , ale nie umiała m o nią poprosić lub było mi wstyd . Przecież zawsze dawała m sobie radę . Spotkania na terapii u Pana Piotra po jakimś czasie skłoniły mnie do refleksji i spojrzała m na życie inaczej . Pomimo , że długa droga przede mną w związku z pracą nad sobą , jednak już teraz dzięki terapii wiem , że nie muszę być idealna , potrafię się skupić na danej chwili dzięki ćwiczeniom oddechowym . Potrafię tez odmawiać lub zwyczajnie czegoś nie wiedzieć . Najważniejszym dla mnie krokiem było jednak zbliżenie się do rodziny , którą zaniedbała m i przestała m odwiedzać . Sporo rozmów z Panem Piotrem było własnie na ten temat . Teraz chętnie nie tylko dzwonię do mojego ojca , ale potrafię też znaleźć czas , aby pojechać do rodzinnego domu , pomimo , że dzieli nas ok 500 km . Raz na 1 , 5 miesiąca jadę do domu nabrać sił i energii , była m też nad morzem z tatą i wróciła m naprawdę szczęśliwa . Od jakiegoś czasu pracuję , ale nie biorę sobie już wszystkiego na bary , dostała m też propozycję awansu , ale rozważam odmowę , ponieważ wtedy przestała by m mieć czas na swoje pasje . Już nie muszę być idealna i dobrze mi z"
+  },
+  {
+    "opinion_id": "op_002139",
+    "text": "Pani doktor ma problemy z komunikowaniem się z pacjentami . Jest opryskliwa i nieprzyjemna . Zawsze jakaś taka nadąsana , robi panikę z niczego , a kiedy trzeba ugasić pożar - bagatelizuje problem . Wciąż odsyła do innych specjalistów , ale tak naprawdę wygląda to jak oddalanie problemu od siebie i podrzucanie go innym . Niestety , żyjemy w Polsce , gdzie zapisy do specjalistów kończą się w sierpniu i w listopadzie NIGDZIE już nie można się dostać . Chyba lekarz pierwszego kontaktu powinien wiedzieć , jaki kolor powinny mieć białka oczu niemowlaka , a nie od razu wysyła do okulisty . Z kichnięciem wysyła malutkie dzieci na dyżur chirurgiczny , żeby tam przesiedziały z innymi chorymi dziećmi przez cały dzień i wyniosły obowiązkową dawkę napromieniowania po RTG !"
+  },
+  {
+    "opinion_id": "op_002140",
+    "text": "dr . Juste mimo że jest małomówny to jest konkretny . W szpitalu nie wyróżnia swoich pacjentek z prywatnego gabinetu , traktuje je na równi z innymi . Ja przypadkowo dowiedziała m się o swojej ciąży podczas badania . Bardzo się wzruszyła m a on pogratulował i serdecznie przytulił wtedy wiedziała m że jest lekarzem godnym zaufania . Ps . Doktorek ma miłą rejestratorkę : )"
+  }
+]

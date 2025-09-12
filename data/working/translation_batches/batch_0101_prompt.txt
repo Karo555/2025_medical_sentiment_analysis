@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002001",
+    "text": "Te nowatorskie protezy zastawek serca są przeznaczone zarówno dla pacjentów dorosłych , jak i dzieci . Szczególnie istotne może być ich zastosowanie u młodszych pacjentów ze względu na potencjalną możliwość wzrostu i remodelowania wszczepionych zastawek , co stwarza nadzieję na obniżenie ryzyka ponownej operacji u tej grupy chorych . Jak informuje dział promocji FRK , prace nad bioaktywną zastawką serca bazują na najnowszych rozwiązaniach z zakresu inżynierii tkankowej , bioinżynierii oraz inżynierii materiałowej . Jako rusztowanie dla tworzenia biologicznych zastawek serca wykorzystane są acellularne matryce świńskie , na których hodowane są komórki autologiczne . Dla osiągnięcia tego celu stworzono kompleksowy system zapewniający hodowlę bioprotez w bioreaktorach odtwarzających naturalne warunki in vivo , co powinno zapewniać wysoką trwałość zastawek ."
+  },
+  {
+    "opinion_id": "op_002002",
+    "text": "Nie wiem jakim lekarzem jest dr Więcek . Sądząc po komentarzach zapewne dobrym . Ja nie była m dra pacjentką . W gabinecie była m tylko raz na badaniach prenatalnych na których okazało się ze moje dziecko ma wysoką przezierność karkowa . Miała m wrażenie ze Panu dr przeszkadzam w gabinecie , całe badanie mówił coś do siebie pod nosem i cmokal nerwowo bo dziecko nie chciało współpracować . Na koniec przedstawił mi sytuacje tak jakby dziecko musiało być chore na pewno . Nie dał mi żadnych nadziei ze moze będzie jednak dobrze , że są szanse ze jednak dziecko urodzi się zdrowe a jeszcze usłyszała m ze \" jak coś do 20 tygodnia mogę usunąć \" - marne pocieszenie dla 30 letniej kobiety której właśnie cały świat się zawalił . Z gabinetu wyszła m tak roztrzesiona , że nie wiedziała m co ze sobą zrobić . Ja wiem , że lekarz nie jest od klepania po plecach i mydlenia oczu ale może warto popracować nad sposobem przekazywania złych wiadomości . Nie wiem z czego to wynikało . Być może z tego ze nie była m Pana dra pacjentka , a może po prostu miał gorszy dzień . Jedyny plus jest taki , że dostała m skierowanie na konsultacje do innej placówki gdzie innu Pan dr owszem potwierdził ze może być źle ale dał tez nadzieje na to , że przeziernosc karku jeszcze o niczym nie świadczy , że nawet testy Pappa które wyszły tragicznie niczego nie przesadzają . Do dr Więcka umówiła m się na badania ze względu na dobre opinie i polecenie przez moją Panią ginekolog , niestety ja była m rozczarowana wizytą : ( . Dziecko urodziło się zdrowe ."
+  },
+  {
+    "opinion_id": "op_002003",
+    "text": "Chodziła m do Pani doktor wiele lat , i ze wszystkimi opiniami tutaj się zgadzam , jest bardzo dobra . Jednak nie mam zamiar więcej Jej odwiedzać . Gdy pół roku temu wróciła m z urlopu z opuchniętym , łzawiącym okiem udała m się od razu na ostry dyżur do szpitala Nr 2 w Mysłowicach , gdzie przyjęła mnie Pani dr Hawlena . Była m w szoku . Pani dr zachowywała się jakby mnie wcześniej nie znała w ogóle , była bardzo nie miła , opryskliwa , wchodziła w zdanie . Powiedziała , że powinna m jeszcze pochodzić z tym okiem i pójść do swojego okulisty ( kurde , to Ona była przecież moim okulista od dziecka ! ! ! ) . Niby kiedy miała by m to zrobić ? Pierw trzeba iść po skierowanie a potem czekać Bóg wie ile na wizytę . Ostatnim razem na wizytę do Pani dr Hawleny czekała m 4 miesiące ! No chyba , że miała na myśli prywatna wizytę ! Chyba tylko nieporadna osoba tyle by czekała zwłaszcza , że po powrocie z urlopu pora iść do pracy , kto może sobie pozwolić by wziąć wolne po urlopie i latać po lekarzach ? ? ?"
+  },
+  {
+    "opinion_id": "op_002004",
+    "text": "Trafiła m do dr na usg przez przypadek w 36 tyg . i odradzam . Wcześniej miała m wykonywane trzy usg w innym miejscu , gdzie za 100 zł były świetne warunki przeprowadzenia badania usg ( 5 zdjęć , dokładne wytłumaczenie co się dzieje z dzidziusiem , wszystko widziała m przed sobą na oddzielnym ekranie , parawan itp . ) . Niestety nie było tego u dr Kunerta . . . 120 zł za badanie bez zdjęć . . . nie widziała m dokładnie tego co pokazywał , bo tylko on miał monitor , ustawiony pod kątem , więc ciężko było cokolwiek zobaczyć . Skoro płacę to wymagam . Na pewno więcej tam nie pójdę . Tym razem musiała m , bo w innym , sprawdzonym miejscu nie było wolnego terminu ."
+  },
+  {
+    "opinion_id": "op_002005",
+    "text": "jak człowiek jest bardzo miły i sympatyczny . a jako lekarz . . chodzę do niego na ul . Dworcową , ale szczerze zastanawiam się nad zmianą na innego ginekologa . notorycznie się spóźnia , a poza tym powiedział że do końca ciąży nie zrobi mi USG , bo to zajmuje dużo czasu ! a jestem w 18 tygodniu , więc do końca mam jeszcze trochę czasu . powiedział , żeby m sobie na mieście USG zrobiła , pewnie chodziło mu o wizytę prywatną . ."
+  },
+  {
+    "opinion_id": "op_002006",
+    "text": "W ciągu trzech lat , korzystając z ponad 4 , 5 mln euro środków unijnych , stworzyli śmy ośrodek naukowy - to dziesięć zespołów współpracujących ze sobą ściśle w badaniach nad zdrowym starzeniem . Dzięki tym pieniądzom mogli śmy poprawić jakość naszych badań naukowych , co uzyskali śmy poprzez międzynarodową wymianę naukową i zainwestowanie ponad 1 , 5 mln euro w nowoczesny sprzęt . Program umożliwił też promocję naszych badań naukowych - zorganizowali śmy dziesięć konferencji międzynarodowych z udziałem kilkuset wykładowców z całego świata - podkreślił koordynator Centrum prof . Marek L . Kowalski . Centrum Badań nad Zdrowym Starzeniem ( ang . Healthy Ageing Research Centre , HARC ) , stworzone przy Uniwersytecie Medycznym w Łodzi , jest ośrodkiem naukowym , badawczym i propagującym wiedzę na temat szeroko pojętej problematyki starzenia się . W ramach projektu , w którym w latach 2013 - 2016 uczestniczyło 21 partnerów zagranicznych , stworzono m . in . wirtualne laboratorium prowadzące zaawansowane badania nad układem immunologicznym oraz pierwszy w Łodzi biobank , w którym są przechowywane próbki służące badaniom naukowym .\tmeta_zero\tmeta_zero\tmeta_zero\t\t\nmedycyna\tJestem pacjentką Pani dr Iwony Olejniczak - Gnach od ponad 10 lat i nie wyobrażam sobie , że mógł by być to jakiś inny lekarz . Pani dr nigdy mnie nie zawiodła . Mam do Niej absolutne zaufanie . Pani dr łączy w sobie profesjonalizm z najwyższej półki z niezwykle ciepłym , pełnym empatii i taktu podejściem do pacjenta . Potrafi cierpliwie i tak długo jak wymaga tego sytuacja i pacjent , tłumaczyć i rozmawiać o problemie z którym się w danym momencie przyszło . Moja córka jest także pacjentką Pani Doktor i w pełni podziela moją opinię . Nie sposób nie wspomnieć o całym Zespole Kliniki - kompetentnych fachowców którzy zarażają uśmiechem , ciepłem i życzliwością . Niesamowita , wręcz magiczna atmosfera w klinice Unident Union nie przypomina w ogóle poczekalni gabinetu stomatologicznego . Polecam całym sercem bo zarówno Pani Doktor jak i stworzona przez Nią klinika , godne są najwyższej rekomendacji .\tmeta_plus_m\tmeta_plus_m\tmeta_plus_m\t\t\nmedycyna\tOpracował 33 piktogramy , które podzielił na trzy kategorie .  Mamy np . oznaczenia , które optymalizują lek wskazując , że musi być przyjęty przed jedzeniem , na pusty żołądek , a nawet - w przypadku leków przeciwgrzybiczych - po tłustym jedzeniu . Drugi rodzaj to piktogramy mówiące o tym jak często , ile razy dziennie przyjmować lek . Trzecia grupa piktogramów wskazuje na właściwy sposób przechowywania leku . Dobrym przykładem może być insulina , którą pacjenci często wkładają do zamrażarki , przez co potem nie nadaje się ona do użycia . Kolejnym są leki przeciwzakrzepowe . Nie powinno się ich przechowywać w lodówce , tymczasem informacja na opakowaniu : przechowuj w temperaturze poniżej 25 st . powoduje , że pacjenci właśnie tam ją wkładają \" - opisuje rozmówca PAP . Finalnie w puli ma znaleźć się 55 piktogramów . Każdy z nich będzie kolorową naklejką o wymiarach 25 mm na 1 cm . Na każdej znajdzie się obrazek i tekst pisany . Naklejki nie będą przyporządkowane do konkretnego leku , tylko substancji czynnej jak np . paracetamol , ibuprofen ."
+  },
+  {
+    "opinion_id": "op_002007",
+    "text": "Nie jestem zadowolona z wizyty . Zeby sie czegokolwiek dowiedziec , trzeba \" ciagnac za jezyk \" . Osoba antypatyczna , wrecz gburowata . Zerowy kontakt z pacjentem . Ciesze sie , ze to nie on mnie operowal . Moze jest dobrym chirurgiem , nie wiem , ale cala \" reszta \" - tragedia . Mozna isc do innego lekarza o takich samych lub lepszych referancjach i byc potraktowanym znacznie lepiej ."
+  },
+  {
+    "opinion_id": "op_002008",
+    "text": "Do kliniki Pani Ani Nowicki trafiła m po wielomiesiecznym szukaniu w internecie . Szukała m lekarza , który by wpierw naprawił błędy innego lekarza a dopiero później zrobił inne zabiegi . Po długiej rozmowie Pani doktor stwierdziła że to trochę potrwa . Była m cierpliwa . Po kilku zabiegach była m w pełni zadowolona . Korzystam z kilku innych zabiegów po których wychodzę szczęśliwa i zadowolona . Pani doktor to wyjątkowa osoba o pełnym profesjonalizmie . Przed każdym zabiegiem daje mi poczucie pewności i bezpieczeństwa . A z każdym następnym zabiegiem wyglądam ładniej i bardzo naturalnie . Dziękuję bardzo i polecam bardzo Pania doktor wszystkim paniom . Dziekuje . Teresa"
+  },
+  {
+    "opinion_id": "op_002009",
+    "text": "Jestem zaskoczona zachowaniem Pana doktora - oczywiscie pozytywnie . Na chwile obecna nie mieszkam w Polsce , wiec trudno jest umowic wizyte kiedy jest sie w kraju tylko na kilka dni co pare miesiecy ( dodatkowo nie jestem z Warszawy ) . Pan doktor natomiast udzielil mi fachowej porady telefonicznie , odpowiedzial na wszystkie nurtujace mnie pytania . Naprawde w Polsce potrzeba nam wiecej takich lekarzy z prawdziwego zdarzenia zamiast pseudo lekarzy ktorzy inkasuja pieniazki za 5 minut spedzone w gabinetach , po czym czlowiek ciagle zastanawia sie - co mi naprawde dolega ? . . . bo przeciez w 5 minut nie dowiem sie nic wiecej o mojej chorobie lub tylko tyle co juz wiem sama . . ."
+  },
+  {
+    "opinion_id": "op_002010",
+    "text": "Do doktora Cichockiego trafiła m dzięki pozytywnym rekomendacjom na tym portalu . Niestety naszą wizytę potraktował rutynowo . To prawda , że jest opanowany , ale wypowiadał się tak cicho pod nosem , że niejednokrotnie musiała m dopytywać o diagnozę lub dalsze objaśnienia . Zależało mi na poradzie w kwestii opóźnienia pierwszych szczepień , jednak w tym temacie poczuła m się zlekceważona i potraktowana z góry . Rekompensatą jest jego podejście do dziecka - uśmiechał się , zagadywał spokojnym tonem , badanie przeprowadził w sposób delikatny ."
+  },
+  {
+    "opinion_id": "op_002011",
+    "text": "Witam serdecznie . Jeśli mogę wyrazić swoja opinię na temat Pani Doktor to musi to być opinii ze wszech miar pozytywna pod każdym względem . Co do fachowości Pani Doktor - pełen profesjonalizm , doskonały fachowiec , z czystym sumieniem mogę polecić Panią . Jednak nieodzownym atrybutem lekarza jest również podejście do pacjenta i tutaj Pani Doktor jest po prostu rewelacyjna , lekarz z powołania i tutaj wiem co pisze ponieważ w 200 tyś mieście w długi sierpniowy weekend żaden inny specjalista nie znalazł czasu , a zapewne i chęci aby mi pomóc z zaawansowanym zapaleniem ucha . Pełen szacunek dla Pani Doktor ."
+  },
+  {
+    "opinion_id": "op_002012",
+    "text": "Polecam Dr Szymanek z całego serca . To niezwykle sympatyczna , dokładna i ciepła osoba . Swoim spokojem i serdecznym uśmiechem sprawia , że na każdej wizycie czuję się komfortowo i bardzo swobodnie . Nie boję się również o nic zapytać , ponieważ Pani Doktor zawsze tłumaczy wszystko cierpliwie . Widać , że zależy Jej na każdej pacjentce . Podchodzi indywidualnie do każdej z nas , skupia się na jej problemach , uważnie słucha i co najważniejsze - w moim przypadku zawsze pomaga . Mnie podała nawet swój numer , dzięki czemu w sytuacjach kryzysowych mogła m zadzwonić i powiedzieć , co mnie martwi . Miała m też wykonywany przez Panią Doktor mały zabieg w szpitalu . Wszystko przebiegło bardzo sprawnie , a Dr Szymanek wykazała się dużym profesjonalizmem i troską o mnie zarówno podczas pobytu w szpitalu , jak i rekonwalescencji . Podsumowując , Dr Szymanek to lekarz z powołaniem , który z pasją wykonuje swoją pracę i co widać po ilości pozytywnych komentarzy w Internecie - cieszy się coraz większą popularnością . Kieleccy ginekolodzy mogą zacząć drżeć o swoje pozycje , ponieważ urosła im potężna konkurencja w postaci Dr Szymanek - drugiego takiego ginekologa jak Ona w Kielcach nie ma !"
+  },
+  {
+    "opinion_id": "op_002013",
+    "text": "Dziecko w tym wieku może też spróbować odrobinę świątecznych , pieczonych mięs i wędlin , pod warunkiem , że będą przyrządzone samodzielnie , z niewielką ilością soli . Jeśli podamy mu jaja faszerowane , to za nadzienie powinny służyć np . pieczony łosoś , ugotowana ryba czy warzywa . Dań z dodatkiem surowych jaj , np . sernika na zimno czy domowego majonezu , powinny unikać też kobiety w ciąży . Bezpieczniejszym rozwiązaniem będą jajka gotowane na twardo albo w postaci mocno ściętej jajecznicy , jaja faszerowane rybą lub warzywami . \" Jedzenie surowych jaj , mięsa czy ryb niesie ryzyko zarażenia się bakteriami Salmonelli . Wszelkie choroby , wymagające leczenia farmakologicznego są zbyt ryzykowne dla zdrowia dziecka w łonie matki \" - podkreśla rozmówczyni PAP ."
+  },
+  {
+    "opinion_id": "op_002014",
+    "text": "Ponieważ na rynku medycznym nie było narzędzi do pomiaru siły mięśni dłoni olsztyńscy specjaliści postanowili je stworzyć . W efekcie po kilku miesiącach pracy lekarzy i mechatroników ( przy współpracy Instytutu Podstawowych Problemów Techniki Polskiej Akademii Nauk w Warszawie ) powstało urządzenie , które mierzy siłę mięśni w dłoniach osób chorych na SLA . Wygląda ono niepozornie : to mała skrzynka z dwoma cynglami . Na owe cyngle chorzy kładą wskazane palce i z całej siły naciskają wypustki . \" Urządzenie jest bardzo proste , ale ma dla nas fundamentalne znaczenie , ponieważ mierzy siłę nacisku palców pacjenta . Dzięki temu , że urządzenie jest wyskalowane wiemy , czy ta siła słabnie , czy jest stała \" - tłumaczył PAP dr Siwek . Dodał , że ponieważ urządzenie jest lekkie i małe , docelowo pacjenci będą je zabierali do domu , a wyniki badania siły ich mięśni urządzenie samo wyśle lekarzom do szpitala ."
+  },
+  {
+    "opinion_id": "op_002015",
+    "text": "Niemiły straszliwie . Na pytanie czy może mnie przyjąć prywatnie wcześniej poza zapisami , bo zaczęło się krwawienie , co uzasadniało by przyspieszoną wizytę , to przez telefon usłyszała m niemiły pełen wyrzutów tekst , że ileż on może pracować , niech nie żartuję nawet i co ja sobie myślę . Tak ciężko mu po ludzku powiedzieć , że nie ma jak przyjąć bo czas bo pacjenci , tylko musi niewychowaniec burczeć tak niemiło . Odłożyła m słuchawkę na takie mnie potraktowanie . Misja lekarza to nie tylko leczenie ale i relacja z pacjentem . Dobra relacja . Tej zupełnie brak Panu Karolikowi . Przykro ale prawda ."
+  },
+  {
+    "opinion_id": "op_002016",
+    "text": "Na razie nie do końca wiadomo , skąd się bierze anoreksja . Prof . Kucharska wymienia jednak , że istnieją środowiskowe czynniki ryzyka związane z rozwojem choroby - choćby dynamika rodzinna . Na przykład na anoreksję częściej chorują osoby , które przeżywają trudności w związku z separacją od rodziny . Ale również i przeciwnie - np . takie , które mają symbiotyczny związek z matką . Wśród osób z anoreksją częściej zdarzają się też osoby z traumami , które miały od czynienia z nadużyciami seksualnymi . Nie bez znaczenia jest też kultura - moda na \" size zero \" , lansowanie w mediach chudych modelek i aktorek oraz perfekcjonizmu w dążeniu do pięknego ciała . \" Musimy jednak wziąć pod uwagę , że w gimnazjach czy liceach odsetek osób , które się odchudzają , jest bardzo wysoki , a na anoreksję choruje tylko mała część z nich . W powstawaniu anoreksji rolę odgrywają więc na pewno również czynniki , które nie są środowiskowe , a więc genetyczne oprogramowanie \" - powiedziała psychiatra . Dodała jednak : \" Wiadomo już , że anoreksja nie jest chorobą jednego genu \" ."
+  },
+  {
+    "opinion_id": "op_002017",
+    "text": "Była m u niej po raz pierwszy . Jest energiczna i rzeczowa , ale przy tym bardzo sympatyczna i życzliwa . Postawiła diagnozę , zaleciła rehabilitację - również domowe zabiegi we własnym zakresie , od razu też pokazała kilka ćwiczeń . Wyszła m z gabinetu zadowolona i uspokojona . Nie wystawiam najwyższej oceny , bo dopiero zaczynam leczenie , więc trudno mi powiedzieć coś o jej kompetencji w trudniejszych sprawach , ale opinie pań czekających przed gabinetem były bardzo pochlebne ."
+  },
+  {
+    "opinion_id": "op_002018",
+    "text": "Pani dr prowadziła moją ciążę . Wystawiam ocenę neutralną , ponieważ widać u niej wiedzę i kompetencję , ale czasami brakuje podejścia do pacjenta i kilka słów wyjaśnienia pewnych rzeczy . Komentarz na usg , że wszystko w porządku młodej mamie nie koniecznie wystarczy . Pojawił się problem z wizytami odkąd w Lux Medzie ma mniej godzin . Ciężko o rezerwację wizyty z dnia na dzień jak się ze szpitala wychodzi . A pani dr ma później pretensję , że w pilnych przypadkach się jej głowę zawraca między innymi pacjentami i twierdzi , że się powinno w takim wypadku pójść do innego lekarza . . . Przecież to ona ciążę prowadzi . No i , że to wcale nie pilna sprawa . Skąd to miała m wiedzieć przed wizytą ? Skierowania na badania , które są potrzebne do szpitala do porodu na takiej wizycie nie wystawi bo to trzeba na normalną wizytę się umówić - terminy za 3 tyg a poród już za chwilę . . . Poza tym usłyszała m , że płeć dziecka lekarz może określić na usg albo na 100 % albo na 0 % . Albo się widzi albo nie . Arogancja ? Od innych lekarzy słyszała m , że nigdy nie ma 100 % pewności ."
+  },
+  {
+    "opinion_id": "op_002019",
+    "text": "Pan doktor prowadzil w ubieglym roku moja coreczke pod katem neurologicznym . Bardzo sie na nim zawiodlam . Po pierwszej wizycie , kiedy corka miala 6 miesiecy , stwierdzil lekka wiotkosc w nogach i nic wiecej , kazal wrocic za pol roku , nie zalecil zadnych cwiczen . Wrocilam po 4 miesiacach , bo widzialam , ze corka rozwija sie nieprawidlowo , ze miedzy nia a rowiesnikami jest przepasc . Zlecil badania krwi i powiedzial , ze ewentualnie mozna zaczac cwiczenia , ale ogolnie , ze mamy sie przyzwyczaic do tego , ze corka bedzie inna ! ! ! Nie dal wskazowek jak , gdzie i z kim cwiczyc . Po tej wizycie konsultowalismy sie jeszcze z 4 neurologami ( w tym w Warszawie ) , natychmiast rozpoczelismy intensywna rehabilitacje , kiedy corka miala rok podejrzewano u niej nawet mozgowe porazenie dzieciece . Teraz corka ma ponad 2 lata , chodzi , rozwija sie , chociaz jej rozwoj jest nadal opozniony wzgledem rowiesnikow . Pan doktor nie widzial zagrozenia , dopusil do tego , ze przespalismy bardzo wazny okres , kiedy mozna bylo duzo nadgonic rehabilitacja . Nie zalecil nawet USG glowy , a gdy coreczka miala rok ciemie juz zaroslo i nie dalo sie zrobic USG . Bardzo zle doswiadczenia i zdecydowanie nie polecam ."
+  },
+  {
+    "opinion_id": "op_002020",
+    "text": "Przyszła m na wizytę licząc na pomoc w wyleczeniu choroby , z którą była m już u kilku innych lekarzy bez skutku . No i zaczynamy standardowo : badanie , przypisanie tabletek ( pokazała m listę tych , która brała m wcześniej i nie pomogły ) , kolejne wizyty , kolejne tabletki + hormony + maść + globulki . Kolejna wizyta , zero zmian . Kolejna recepta . Aż ostatnio kupując przypisane lekarstwa i zażywając je miała m deja vu . Ciężko spamiętać nazwy lekarstw , a wierzyła m , że dr Malinowska ma zapisany u siebie przebieg leczenia i nawet by m nie przypuściła , że dojdzie do takiej sytuacji . Nowo zakupione lekarstwa brała m 1 dzień , po czym w szufladzie znalazła m pozostałość maści , którą używała m kilka miesięcy wcześniej i która była identyczna jak obecna . Wniosek ? Dostała m 2 razy dokładnie taka samą receptę na dokładnie taki sam zestaw lekarstw w odstępie kilku miesięcy . Fajnie zmarnowane pieniądze i wielkie rozczarowanie . Dr Malinowska jest dobra w przypisywaniu tabletek . Chcesz zacząć jeść hormony ? Polecam . . . ."
+  }
+]

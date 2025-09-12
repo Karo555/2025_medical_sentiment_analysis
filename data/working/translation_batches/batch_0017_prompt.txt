@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000321",
+    "text": "Prof . Kuśmierczyk ma nadzieję , że w IK liczba przeszczepów serca będzie nadal rosła . Planowane są również nowego typu transplantacje . „ Jesteśmy już przygotowani do jednoczesnego przeszczepu serca i nerki , a w przyszłości serca i wątroby , samego płuca oraz serca i płuca ” – dodał . „ Przeszczepy są wciąż najskuteczniejszą metodą leczenia skrajnej niewydolności serca ” – podkreślił prof . Kuśmierczyk . Zapotrzebowanie na te zabiegi będzie coraz większe . Przybywa pacjentów wymagających pilnego przeszczepu . W 2015 r . na 42 transplantacje aż 30 było pilnych . Operowani są głównie pacjenci po 50 . roku życia , ale przeszczepu serca wymagają również ludzi młodzi , 20 - i 30 - latkowie , a nawet osoby przed 20 . rokiem życia ."
+  },
+  {
+    "opinion_id": "op_000322",
+    "text": "Była m u dr Barcikowskiego dwa razy . 1 raz ze skierowaniem na histeroskopię z rozpoznaniem krwotoczne miesiączki . Histeroskopia nic nie wykazała . Drugi raz była m po pół roku ponieważ krwotoczne miesiączki nie ustąpiły . Lekarz po zbadaniu zapisał mi leki hormonalne . Ponieważ czuła m się bardzo żle odbyła m wizytę u innego lekarza . Diagnoza była od razu - operacyjne mięśniaki i natychmiastowe skierowanie na operację . Jak to mozliwe że pan dr . Barcikowski nie rozpoznał podczas dwóch wizyt mięśniaków macicy ? Na to pytanie nie potrafię odpowiedzieć , ale po operacji będę wyjaśniać tą sprawę , aby innym pacjentkom nie przytrafiło sie coś podobnego ."
+  },
+  {
+    "opinion_id": "op_000323",
+    "text": "Wolny czas muzycy często wypełniają sobie muzyką . Podobnie jak sportowcy , młodzież . W opinii eksperta IFiPS , muzyka musi być obecna w naszym życiu , ale trzeba rozsądnie ją dawkować . „ Jeśli używamy słuchawek , stosujmy duże , nauszne . Mają one zdecydowanie lepsza jakość . Unikajmy tych umieszczanych w kanale słuchowym , które zaburzają ciśnienie w uchu wewnętrznym . Powoduje to problem z fizjologiczną obroną przed hałasem . Często pojawia się efekt zatkanych uszu , szumy uszne . Obecnie smartfony wyposażane są w + smoczek + - doskonale trzymającą się zatyczkę , którą wpycha się do ucha . To są właśnie owe wewnątrzkanałowe słuchawki . Kiedy używamy ich tylko do rozmów – nic się nie dzieje . Ale jeśli ekspozycja na podany tak dźwięk trwa wiele godzin , nawet jeśli dźwięki nie są bardzo głośne , prowadzi to do zmęczenia i zmian w uszach ” – ostrzega ekspert ."
+  },
+  {
+    "opinion_id": "op_000324",
+    "text": "U pana doktora leczyła m sie w CZMP oraz prywatnie . Podczas konsultacji prywatnej za którą wziął 150zł nie zauważył na usg 2 torbieli z gęstą treścią i powiedział ze jestem zupełnie zdrowa ( mimo ze choruję na endometriozę , zgłosiła m się z bólami w jajnikach ) Następnie inny lekarz wykonał mi usg i potwierdził , że mam torbiele czekoladowe w obu jajnikach oraz to samo potwierdzono tomografią komputerową . Oczekiwała m , że taki fachowiec z takim stażem jak pan doktor Pietrzak potrafi poprawnie wykonać badanie usg . Nie mam zastrzeżen do jego podejscia , traktowania pacjentek , proponowanego leczenia , wysokiej kultury osobistej . Jedynie nie polecam wykonywać u niego prywatnie badań usg bo to uslyszalam nieprawdziwa diagnoze i tylko zmarnowalam 150zl ."
+  },
+  {
+    "opinion_id": "op_000325",
+    "text": "Od kilku lat cierpię na silne bóle kręgosłupa w odcinku szyjnym , od kilku miesięcy mój stan się pogorszył , doszły silne bóle głowy , na co pan doktor z uśmiechem stwierdził , że do bólu muszę się przyzwyczaić , gdyż pacjenci przychodzą do niego z większymi problemami . Była m na wizycie tylko jeden raz i więcej nie zamierzam . Powierzchowne badanie i całkowita ignorancja pacjenta oraz problemu z jakim pacjent do niego przyszedł . Moje życie prywatne budziło większe zainteresowanie niż mój problem zdrowotny . Żarty w wykonaniu Pana doktora nie na miejscu . Brak profesjonalizmu i lakoniczne podejście do Pacjenta . Odradzam"
+  },
+  {
+    "opinion_id": "op_000326",
+    "text": "Około 60 proc . masy suchych nasion roślin strączkowych stanowią węglowodany , a około 2 proc . tłuszcz . Wyjątkiem jest soja , w której zawartość tłuszczu przekracza 20 proc . Aż 70 proc . tłuszczu stanowią niezbędne do naszego funkcjonowania nienasycone kwasy tłuszczowe takie jak : linolowy , linolenowy i olejowy . Jednocześnie strączkowe nie zawierają cholesterolu . \" Rośliny strączkowe zawierają za to najwięcej białka spośród wszystkich roślin uprawnych . Stanowi ono od 17 do nawet 40 proc . ich suchej masy . Najwięcej białka zawierają soja i soczewica , następnie groch oraz fasola . Z tego względu powinny koniecznie znaleźć się w diecie wegan i wegetarian \" - mówi dr hab . Ewelina Hallmann ze Szkoły Głównej Gospodarstwa Wiejskiego w Warszawie ."
+  },
+  {
+    "opinion_id": "op_000327",
+    "text": "Przede wszystkim niesłychenie zadbana i atrakcyjna kobieta . Jest żywą wizytowką dermatologii kosmetycznej , w pozytywnym tego znaczeniu , oczywiście . jednak po pierwszej wizycie mam mieszane odczucia co do niej , jako dermatologa od chorób skóry . Rozumiem , że ta profesja jest trudna a wszelkie przypadłości ciężkie do natychmiastowej diagnozy . Jestem zadowolona ale zmartwiło mnie , ze lekarstwem na moja przypadłość maja być kosztowne zabiegi . Ale cóż , czas najwyższy spróbować : - )"
+  },
+  {
+    "opinion_id": "op_000328",
+    "text": "Wizyta u tego lekarza trwa bardzo szybko . Lekarz mało mówi , zapytany o cokolwiek wg mnie niechętnie odpowiada . Mówiąc lekarzowi jak się czuję po danej dawce leków twierdzi , że tak musi być bo to wina tarczycy i tak funkcjonuję już pół roku . Teraz szukam innego lekarza bo tak funkcjonować się nie da . Wymagam dalszej opieki endokrynologicznej , ale już nie u tego pana . Wizyta w ramach nfz , może też dlatego takie podejście do pacjenta - wypisanie recepty i tyle ."
+  },
+  {
+    "opinion_id": "op_000329",
+    "text": "Odradzam z czystym sumieniem tego lekarza . Na początku wszystko super , skierował mnie na badanie drożnosci jajowodów , bo problem dla nas brak ciąży . Za to badanie jestem wdzieczna wszystko wyszło ok . Maz kiepskawe wyniki , a on nam inseminacje proponował i to podwojna czyli dwa strzaly w jednym cyklu . Ok zgodzilismy sie , ale skasowal jak za zboze ponad 2 tysiace zlotych , a kartoteki mi nie załozyl wiec nie ma sladu po inseminacji , tak jak nie ma sladu ciazy . Wiecej tam nie pojdziemy . . . teraz zmienilismy lekarza na Sarapa - różnica dzien do nocy ."
+  },
+  {
+    "opinion_id": "op_000330",
+    "text": "Moja pierwsza wizyta w tym miejscu . Lekarz miły , mający chęć wysłuchać ale i również dowiedzieć się czegoś o pacjęcie . Dostrzegła m chęć znalezienia przyczyny problemu a nie zrzucenia wszystkiego na stres . Tak robi większa cześć lekarzy niestety . . Przede mna jednak szukanie przyczyny mam nadzieje aż do skutku . : - ) ."
+  },
+  {
+    "opinion_id": "op_000331",
+    "text": "Badacze z warszawskiego instytutu udowodnili , że podczas pobudzania neuronów - komórek układu nerwowego - dochodzi do trwałych zmian w rozmieszczeniu genów w przestrzeni jądra komórkowego . Odkrycie ma istotne znaczenie dla lepszego rozumienia natury procesów umysłowych i schorzeń układu nerwowego , zwłaszcza mózgu . O badaniach , opublikowanych w prestiżowym czasopiśmie „ Journal of Neuroscience ” , poinformowali przedstawiciele Instytutu Nenckiego w przesłanym PAP komunikacie . \" Podczas badań na szczurach po atakach epilepsji zaobserwowali śmy , że jeden z genów może się trwale przesunąć w głąb jąder komórkowych neuronów . Ponieważ modyfikacja geometrycznej budowy jądra prowadzi do zmiany w ekspresji genów , neuron w ten sposób pamięta , co się wydarzyło \" - wyjaśnia dr hab . Grzegorz Wilczyński z Pracowni Neuromorfologii Instytutu Nenckiego ."
+  },
+  {
+    "opinion_id": "op_000332",
+    "text": "Kompletnie nieodpowiedzialny człowiek . Nie wykrył mojej cukrzycy ciężarnej , mimo , że sam zlecił badania pod tym kątem - dopiero miesiąc po wizycie u niego została m skierowana do poradni cukrzycowej i to przez panią dr z izby przyjęć w szpitalu bielańskim . W 31 . tygodniu ciąży musiała m upominać się o skierowanie na usg kontrolne - w dodatku pan dr był wielce oburzony , że rejestracja zapisała mnie na to badanie bez jego akceptacji . Nie wspomnę o tym , że wyznaczając wizyte np . na za miesiąc nie wystawiał polecenia wpisania mnie na ww . wizytę do rejestracji , przez co jeździła m 3 - 4 razy do szpitala odprawiana z kwitkiem , bo pan dr nie miał dla mnie czasu ( bo albo nadrabiał zaległości po swoim urlopie na MADERZE , albo po zwolnieniu , albo przejmował pacjentki innych lekarzy będących ba urlopach ) . . . Ogólnie MASAKRA ! ! ! Niemiły , niekompetentny , niekulturalny - na ' dzień dobry ' zwracał się do mnie po imieniu . . . Mogła by m jeszcze długo wymieniać - innymi słowy NIE POLECAM ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000333",
+    "text": "Znam lekarzy , którzy wiedzą medyczną dorównują lub przewyższają pan doktora a wizyta jest tańsza . 150zł za wizytę nie jest adekwatne do tego co otrzymujemy . Poczekalnia obskurna , przy 30 st . C na zewnątrz strasznie duszno , zwykły wentylator z Obi za 30 zł . rozwiązał by sprawę , ale widocznie za drogo . Za te pieniądze oczekiwał by m lepszego traktowania przez personel pomocniczy i dotrzymywanie ustalonej wcześniej godziny wizyty . Punktualność u pana doktora nie jest jego mocną stroną , dwie wizyty i dwa razy godzinny poślizg . Podejście do pacjenta słabe a wiedza ? . Jak poprzednicy pisali dużo pieniędzy mało kosztów , ot taka sobie ekonomia . Dla mnie bardzo słabo w porównaniu z innymi lekarzami , ale to moja opinia ."
+  },
+  {
+    "opinion_id": "op_000334",
+    "text": "W 2003r Dr . Bojarski znalazł u mnie tętniaka mózgu jego szybka mądra decyzja uratowała mi życie . Wychodząc ze szpitala podziękowała m i uścisnęła m rękę innemu lekarzowi ponieważ moja matka zrozpaczona a zarazem szczęsliwa takiego mi wskazała . Pomyliło się biednej kobiecie . . . Niedawno odkrylam w dokumentach med . ze to ten wspaniały człowiek to zrobił . Wiem ze to trochę wydaje się głupie ale moj stan psychiczny i fizyczny wtedy nie był dobry . Wstydzę się bardzo ale w najblizszym czasie p . doktorowi podziękuję ."
+  },
+  {
+    "opinion_id": "op_000335",
+    "text": "Zasugerowała m się bardzo dobrymi opiniami i zapisała m się na wizytę , niestety jestem zawiedziona . To była moja pierwsza wizyta , więc poprosiła m o kontrolę i informację jak ma przebiegać dalsze leczenie . Wspomniała m również , że czasami czuję lekki ból z jednej strony . Pani doktor nie przeprowadziła przeglądu wszystkich zębów , tylko od razu zajęła się leczeniem zęba , który wg prześwietlenia mógł boleć . Na koniec umówiła mnie na kolejną wizytę , gdyż jej zdaniem ząb obok nadaje się do szybkiego leczenia , \" bo próchnicę widać gołym okiem \" . Na następny dzień udała m się do innego stomatologa , gdzie okazało się , że wskazany ząb wcale nie jest popsuty , tylko wypełnienie ma już swoje lata , ale żadnej próchnicy nie ma , a ewentualny ból może wynikać z nadwrażliwości . Poza tym został przeprowadzony generalny przegląd z informacją co należy wyleczyć , zaproponowano również usunięcie kamienia , czyli to czego oczekiwała m od pani Makowskiej , a nie otrzymała m . . ."
+  },
+  {
+    "opinion_id": "op_000336",
+    "text": "Jestem rozczarowana wizytą w Gamecie u dr Połacia . . . Była to moja pierwsza i ostatnia wizyta . . . Trwała 10 minut ani ja ani mój mąż nie zostali śmy zbadani . . . Jak tylko dr dowiedział się gdzie mój mąż pracuje od razu zaproponował nam in vitro , powiedział że spełniamy wszystkie warunki , po czym mąż się spytał czy nie mamy szans na naturalne zajście w ciąże powiedział ze żona możne być już w ciąży bo przynieśli śmy wszystkie badania na które spojrzał dr i powiedział , że wszystko jest oki , ale skoro chcemy JUŻ to kwalifikujemy się na in vitro , chyba że mamy czas to jeszcze rok możemy poczekać . . . Czy w ten sposób podchodzi się do sprawy . . . Chyba nie tędy droga Panie dr . . . Ja wiem , że to są Pana pieniądze ! ! ! Ale takie podejście do pacjenta jest nie na miejscu . . . NIE POLECAM ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !"
+  },
+  {
+    "opinion_id": "op_000337",
+    "text": "Mam chory żołądek . Po pierwszej gastroskopi w szpitalu w Lubinie ( w 2003 ) lekarz stwierdził , że wszystkiego usunąć się nie da . Po wizycie u doktora Salomona , po kolejnej gastroskopi , doktor powiedział , że pracował em na to przez 25 lat i leczenie będzie długotrwałe . Żołądek kiepsko pracował , ważył em zaledwie 65 kg . Aktualnie dalej jestem na lekach , nic nie trzeba było usuwać , ważę 84 kg ( lekka nadwaga ) , cieszę się z życia . Po tych kilku latach kontaktów z doktorem Salomonem mogę z czystym sumieniem poleci go . Ważne jest to aby słyszeć i rozumieć co mówi i zaleca lekarz , a nie słyszęć to co by się chciało usłyszeć . Życzę wszystkim dużo zdrowia i jak najmniej wyzyt u lekarzy ."
+  },
+  {
+    "opinion_id": "op_000338",
+    "text": "„ Kap7 - metyloguanozynowy znajduje się na jednym z końców mRNA ( tzw . końcu 5 ’ ) - wyjaśnia prof . Darżynkiewicz . - W cytoplazmie struktura kapu rozpoznawana jest przez czynnik eIF4E inicjujący proces biosyntezy białek , czyli translacji . Ten etap decyduje o szybkości całej złożonej sekwencji zdarzeń , które kończą się wyprodukowaniem białka w komórce . Obecność kapu chroni też mRNA przed przedwczesną degradacją przez enzymy przecinające - nukleazy . Niestety , komórki posiadają naturalny mechanizm usuwania kapu przez tzw . enzymy degradacji kapu ( decapping enzyme , np . Dcp1 / Dcp2 ) . Kilka lat temu odkryli śmy , że zastosowanie modyfikowanych analogów kapu może uodpornić koniec 5 ’ mRNA na degradację i zwiększa wydajność \" . \" W pracy opublikowanej niedawno w czasopiśmie Nucleic Acids Research zaprezentowali śmy nową klasę zmodyfikowanych kapów - udoskonaloną wersję tych znajdujących się obecnie w badaniach klinicznych - informuje prof . Jemielity . - Modyfikacja polega na zamianie atomu tlenu atomem siarki w kilku pozycjach . Kap jest wówczas rekordowo efektywnie wiązany i ma wysoką odporność na degradujące enzymy . Modyfikacja prowadzi do powstania znacznie większej ilości terapeutycznego białka \" ."
+  },
+  {
+    "opinion_id": "op_000339",
+    "text": "Była m tylko raz u Pana doktora na USG . I mam nadzieję ze nie ostatni ! Była m wieczorem , niespodziewanie , tylko na prośbę Pani doktor prowadzącej moją ciążę . Doktor Zaryjewski okazał się bardzo miłym , kulturalnym człowiekiem , bardzo delikatnym , wszystko mi wytłumaczył , i mimio to ze musiał mi przekazać straszną dla mnie wiadomosć , że ciąża jest martwa , to zrobił to z wielkim wyczuciem . Nie lubię lekarzy ale do takiego jak Pan doktor zawsze chciała by m trafiać , i mam nadzieję ze przy następnej ciąży też do niego trafię ! ! !"
+  },
+  {
+    "opinion_id": "op_000340",
+    "text": "Do Pani Beaty trafiła m z córką po wizytach u wielu logopedów . Zaden z nich nie był w stanie wytłumaczyć mi o co tak naprawdę chodzi w problemie mojej córki . Wszyscy uspakajali że do 3 roku życia ma jeszcze czas na rozwój mowy itp . Mimo jej obniżonego napięcia mięśniowego nikt nie zwrócił uwagi na to , że zaburzenia mowy mojej córki mogą wynikać z jej obniżonych możliwości motorycznych . Pani Beata uświadomiła nam , że córka w wieku 4 lat nie ma wciąż pionizacji języka - nikt mi tego wcześniej nie powiedział , że ćwiczenia można było wykonywać już od niemowlęcia . Po rocznej terapii udało nam się nadrobić wszystkie zaległości , corka z chęcią chodziła na zajęcia ale najważniejsze było dla mnie to , że z wizyty na wizytę było widać efekty \" naszej \" pracy . Polecam bardzo"
+  }
+]

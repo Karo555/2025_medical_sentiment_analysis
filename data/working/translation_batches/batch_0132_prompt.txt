@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_002621",
+    "text": "Wizyta u Pana Niestraty to cyrk . Wyniki badań jakie przedstawił em kompletnie go nie interesowały , po czym nie wiem na jakiej podstawie postawił swoją diagnozę o której dwóch kolejnych lekarzy nie słyszało - cytat : \" ODJELITOWY BÓL WZDĘCIOWY \" . Stwierdził że jestem za młody żeby chorować a zmagam się z bólami 3 lata . Po konsultacji z kolejnymi lekarzami okazuje się że kuracja którą otrzymał em od Pana Niestraty mogła mi jedynie zaszkodzić a napewno nie pomóc . Nie polecam tego Lekarza , stracił em czas i pieniądze na niekompetentną poradę ."
+  },
+  {
+    "opinion_id": "op_002622",
+    "text": "Była m u doktora z trzymiesięcznym dzieckiem , u którego jest podejrzenie nietolerancji mleka / alergii . Lekarz nawet na niego nie spojrzał , nie mówiąc o badaniu . Był niemiły i wyraźnie dało się odczuć , że nie ma czasu dla pacjenta . Na wszelkie moje pytania odpowiadał \" nie wiem \" . Prosili śmy o zaświadczenie , dzięki któremu lekarz pediatra będzie mógł zapisywać tańsze mleko . Niestety nie otrzymali śmy go . Zostali śmy jedynie poinformowani , że jedna prywatna wizyta to za mało na zaświadczenie . Lekarz mam wrażenie jest niekompetentny , gdyż moja wiedza jeśli chodzi o żywienie niemowląt była większa , aniżeli doktora alergologa . Co potwierdzić może pomysł lekarza o diecie - tylko jak ją wprowadzić , gdy niemowlak je jedynie mleko . . . ."
+  },
+  {
+    "opinion_id": "op_002623",
+    "text": "Pani Doktor jest bardzo niekulturalną osobą . Spóźnia się na pierwszą wizytę 25 min , a kiedy jest się ostatnim pacjentem , ma wielką pretensję o 5 - minutowe spóźnienie ( mimo , że w rejestracji czeka się 10 min ) , lub czasem w ogóle nie czeka i idzie do domu . Ponadto badanie usg oraz cała wizyta trwała 4 minuty ! ! ! Pomijając , że jest to płatna wizyta , nie objaśniła co wykryła , a na pytanie co z tym dalej zrobić stwierdziła , że ona tego nie wie . Chyba po to idzie się do lekarza aby rozwiał wątpliwości oraz wyjaśnił wszystko . Nie wspominając o podartym na wstępie skierowaniu od innego lekarza , gdyż sama wcześniej nie wykryła pewnej zmiany . Podsumowując , nie polecam , a nawet odradzam tego lekarza , gdyż niczego się nie dowiedziała m , badanie zostało wykonane na szybko , a objaśnień brak ."
+  },
+  {
+    "opinion_id": "op_002624",
+    "text": "Beata Mielczarek Ja mam b . dobre wrażenia . Znieczulała mnie podczas zabiegu ginekologicznego . Czuła m się świetnie po wybudzeniu . Kobieta zauważyła , że jestem w b . złym stanie psychicznym , podała coś , co jeszcze poprawiło mi nastrój . Czuła m się potem wyjątkowo dobrze . Poświęciła mi dużo uwagi . Duża kultura , a różnie z tym bywa . Czasem , kiedy rozmawiam z lekarzem czuję się traktowana jak półczłowiek ."
+  },
+  {
+    "opinion_id": "op_002625",
+    "text": "150 zł za brak cytologi , skierowania na badania potrzebne do dobrania antykoncepcji , wypisu czy jakiejkolwiek informacji dla pacjenta z wyników USG dopochwowego . Kamienna twarz z przyklejonym sztucznym uśmiechem . Grzeczności proszę nie mylić z życzliwością , a już na pewno nie z ciepłem i przychylnością . Jeśli ktoś twierdzi , że ta Pani jest serdeczna , to nigdy u serdecznego ginekologa nie był . Ja takiego wcześniej miała m - naturalnego , swobodnego , uśmiechniętego , zagadującego , zdejmującego stres swoim sposobem bycia z każdej pacjentki na wejściu do gabinetu . Przeprowadziła m się do Wrocławia i sugerując się powyższymi opiniami wybrała m się do tej Pani . Rozczarowała m się . Ta Pani nawet nie była zainteresowana historią chorób nowotworowych dróg rozrodczych w rodzinie mojej mamy wypisując antykoncepcję . Była mało komunikatywna . Rozkręciła się jedynie , gdy przeszła do reklamowania szczepionki . Skasowała 150 zł w żenujący sposób , a nawet tę sprawę trzeba umieć odpowiednio i \" z klasą \" ( tak tej też zabrakło ) załatwić . Na plus - znam gorszych ginekologów ."
+  },
+  {
+    "opinion_id": "op_002626",
+    "text": "Do doktora Macieja trafiła m z polecenia mojej bratowej z przekonaniem , że podchodzę do standardowego zabiegu wycięcia wędzidełka . Takie wytyczne dostała m od innego periodontologa po fachu , który nie widział przeciwskazań do zabiegu . Miała m olbrzymie szczęście że , nie dostała m sie pod scalpel tego lekarza gdyż zabieg , zdaniem doktora Nowińskiego , mógł zakończyć się porażką estetyczną i wielką dziurą w dziąśle miedzy jedynkami . Swoim profesionelnym wzrokiem doktor ocenił , że mój przypadek nie jest w ogóle standardowy , wymaga podwójnej refleksji jak również konsultacji z doświadczonym periodontologiem i przekierował mnie do swojej zaufanej koleżanki specjalistki w tej dziedzinie . Przy tym wszystkim doktor Nowiński okazał olbrzymią cierpliwość , odpowiadając na wszystkie moje pytania i watpliwości . Wizyta , mimo , że mój przypadek okazuje się obecnie być dość skomplikowany , była samą przyjemnością B"
+  },
+  {
+    "opinion_id": "op_002627",
+    "text": "Nie warto iść do niej nawet z najbardziej pospolitymi chorobami . Wiem , że trudno rozpoznać infekcję wirusową od bakteryjnej , ale nie można kompletnie ignorować pacjenta . Nakrzyczała na mnie , że zawracam jej głowę , że pacjent powinien leczyć się sam w domu , a jak infekcja nie przechodzi po tygodniu , to dopiero można zwracać się do lekarza , a nie wcześniej . Po tym , jak przedstawiła m Pani doktor objawy , jakie u mnie występują ( m.in od 3 dni gorączka przekraczająca 38 st ) , nawet mnie nie zbadała , nie zajrzała do gardła , ale stwierdziła , że w gardle się nie dzieje się nic niepokojącego . Przepisała leki , które można wykupić bez recepty i kazała je stosować przez tydzień ( nie pojawiać się wcześniej ) choć na ulotkach wyraźnie jest napisane , że nie należy stosować ich dłużej niż 4 dni . Nie przemawiał do Pani doktor fakt , że od 5 lat staram się o dziecko i że każde powikłanie pogrypowe zmniejsza szansę na zajście w ciążę . Oczywiście po 5 dniach nadal miała m nieustającą gorączkę , ból zatok , potworny katar , a jak udała m się do innego lekarza , to ten również był dla mnie srogi . Zwrócił mi uwagę na moją ignorancję objawów . MOJĄ ! A nie Pani doktor Sławatyniec . I Tak oto człowiek idzie do lekarza , ufa , że pomoże mu w tak podstawowych sprawach . A lekarz nie dość , że niegrzecznie potraktuje , to jeszcze naraża na groźne powikłania . W moim zawodzie jeśli ktoś źle wykonuje swoją pracę , to się go zwalnia . . ."
+  },
+  {
+    "opinion_id": "op_002628",
+    "text": "Pani doktor bardzo miła , pomocna , konkretna . Jednak czas oczekiwania na wizytę to dwie godziny w wielkiej kolejce , a przecież była m umówiona na daną godzinę . Bardzo dużym minusem było też to że czekając w kolejce chcąc nie chcąc było nieuniknione słyszeć rozmowy pacjentek które odbywały się w gabinecie . Czuła m się później bardzo niekomfortowo wiedząc że moja rozmowę z panią doktor słysza wszyscy na korytarzu , nie była m w stanie rozmawiać swobodnie ."
+  },
+  {
+    "opinion_id": "op_002629",
+    "text": "Swoje właściwości zawdzięcza on przede wszystkim jednemu enzymowi - lakazie . W świecie organizmów żywych występuje ona powszechnie , a szczególnie dobrym producentem tego enzymu jest właśnie Cerrena unicolor . Badaczki z Wydziału Biologii i Biotechnologii UMCS postanowiły sprawdzić , czy enzymu tego nie można wykorzystać do innych celów , nie tylko przemysłowych . Sprawdziły jego działanie na różnych liniach komórkowych wyprowadzonych z organizmów żywych . \" Wykonały śmy próby na różnych liniach komórkowych i okazało się , że najbardziej obiecujące wstępne badania otrzymały śmy dla linii nowotworowych raka szyjki macicy ludzkiej . Udało się nam uzyskać zadowalające wyniki dla komórek nowotworowych wyprowadzonych z tkanki pierwotnego raka szyjki macicy kobiety , jak również z tkanki przerzutu raka szyjki macicy do jelita cienkiego ” - mówi dr Anna Matuszewska z UMCS . Jak podkreśla , enzym działał toksycznie na komórki nowotworowe , ale nie szkodził komórkom prawidłowym . Wyniki przeprowadzonych badań stały się przedmiotem publikacji , oraz zostały objęte ochroną patentową ."
+  },
+  {
+    "opinion_id": "op_002630",
+    "text": "dla mnie beznadziejny , nigdy więcej nie pójdę do tego lekarza na wizytę , dla mnie jest zarozumiały i za bardzo pewny siebie , rozumiem kiedy jest dobrze to każdy lekarz jest super , ale dla mnie lekarz musi być też psychlogiem , kiedy dowidziała m sie , że moja ciąża jest nieprawidłowa , przedstawił mi 3 warianty konsekwencji tej ciąży , ale zaznaczył , że po mimo wszystko nie muszę adoptować dziecka , bo dopóki mam macice i jajniki to jest in vitro . . . . była m załamana , płakała m cała drogę do domu , a jego słowa zapamiętam do końca życia , teraz jestem w ciąży naturalnej i póki co o in vitro nie myśle , bo nie muszę . . . . a o wypychu zdnia nie zmienie"
+  },
+  {
+    "opinion_id": "op_002631",
+    "text": "Witam , bylam u PANA DOKTORA w ICZMP , oprócz specyficznych dowcipów , którymi mnie raczył przez cały czas trwania wizyty , kilkakrotnie sugerował mi , by m zaczela u niego wizyty prywatne . Nie wykazując zaintereosowania z mojej strony , PAN DOKTOR stwierdził , iż wiecej nie moze mi juz pomoc , bo nie leży to w kompetencji tego gabinetu . I to jest lekarz ? ? ! ! !"
+  },
+  {
+    "opinion_id": "op_002632",
+    "text": "Jego zdaniem grant jest bardzo komfortowy ze względu na swoją elastyczność . Często trudno jest w perspektywie 5 lat ocenić , czy trzeba będzie zakupić dodatkowy sprzęt , czy raczej zatrudnić nową osobę . Z pieniędzy wypłacanych przez WELLCOME TRUST badacz może zatrudnić dwie osoby , kupić odczynniki , sprzęt , usługi i sfinansować podróże służbowe . Pomimo , że temat projektu badawczego dr . Nowotnego dotyczy podobnej dziedziny , co grant ERC , prace badawcze nie nakładają się . Agencje chcą finansować konkretny wniosek , nie jest dopuszczalne finansowanie tego samego tematu z dwóch różnych źródeł . Badania prowadzone w Instytucie Biologii Molekularnej i Komórkowej w obu projektach dotyczą dwóch różnych grup białek , różnych enzymów . Ich cechą wspólną jest to , że odpowiadają za naprawę materiału genetycznego ."
+  },
+  {
+    "opinion_id": "op_002633",
+    "text": "Pani doktor sprawia wrażenie kompetentnego i rzeczowego lekarza . Ja akurat nie doświadczyła m szczególnej sympatii ze strony pani doktor , ale ważne , że została m zbadana i usłyszała m , że nic poważnego w moich jelitach się nie dzieje . Przy okazji pani doktor postawiła inną diagnozę moich dolegliwości niż dotychczasowi lekarze zaleciła konkretną dietę i zmodyfikowała leki . Spróbuję , może zadziała ."
+  },
+  {
+    "opinion_id": "op_002634",
+    "text": "Stetoskop zna z widzenia chyba każdy pacjent - te wieszane na szyi słuchawki lekarskie dawno już stały się symbolem zawodu lekarza . Dzięki temu prostemu dość urządzeniu lekarz może szybko i wygodnie osłuchać pacjenta i wstępnie zdiagnozować np . wady strukturalne serca , a także choroby płuc , jamy brzusznej czy nawet tarczycy i tętnic . Tradycyjny stetoskop to niezbyt skomplikowane urządzenie - dzięki membranie i ukrytemu za nią lejkowi , dźwięki z ciała pacjenta są przekazywane do ucha lekarza . \" Przepływowi krwi czy powietrza w naszym organizmie towarzyszy hałas , który przenosi się przez tkanki i odebrać można go na skórze . W dźwiękach tych zawarte mogą być informacje o pewnych stanach patologicznych w ciele \" - wyjaśnia w rozmowie z PAP dr Łukasz Nowak z Instytutu Podstawowych Problemów Techniki PAN w Warszawie , który prowadzi badania nad nową generacją stetoskopów ."
+  },
+  {
+    "opinion_id": "op_002635",
+    "text": "Trafiła m ostatnio do szpitala w trakcie połogu z komplikacjami . Przyjął mnie dr Sosnowski . Niezwykle delikatny i opanowany , ja przerażona a on na spokojnie . Badanie przeprowadził najdelikatniej jak to możliwe , była m mocno pozszywana a on naprawdę potraktował mnie jak jajko w kruchej skorupce . Dzięki mu za to ! Jak go zobaczyła m to kamień z serca , pamiętała m go z okresu przed porodem , z obchodów i już wtedy spodobała mi się jego troska o pacjentki , ciepło spojrzenia , stoicki spokój . Znam go tylko z okresu pobytu w szpitalu przed porodem z jednej wizyty po porodzie ale z czystym sumieniem mogę napisać , że niesamowity specjalista . Polecam wizyty u niego : )"
+  },
+  {
+    "opinion_id": "op_002636",
+    "text": "„ Powstanie „ InnoNeuroMed ” daje nadzieję na to , że przed polską neuromedycyną otworzą się nowe horyzonty . Dzięki tej platformie będą się mogli spotykać naukowcy i przedstawiciele przemysłu . Bez spotkań naukowców nie ma rozwoju nauki , bez firm farmaceutycznych nie ma wdrożeń ” – mówił prof . Kaczmarek . Do grona członków założycieli platformy należą : Instytut Biologii Doświadczalnej im . M . Nenckiego PAN w Warszawie , Instytut Farmakologii PAN w Krakowie , Instytut Medycyny Doświadczalnej i Klinicznej im . M . Mossakowskiego PAN w Warszawie , Instytut Psychiatrii i Neurologii w Warszawie , Pomorski Uniwersytet Medyczny w Szczecinie , Gdański Uniwersytet Medyczny , Uniwersytet Medyczny w Lublinie , Uniwersytet Medyczny w Łodzi , Warszawski Uniwersytet Medyczny , Celon Pharma S . A . , ADR Sp . z o . o . , Genexo Sp . z o . o . , OncoArendi Therapeutics Sp . z . o . o . , Polpharma S . A . , Selvita S . A ."
+  },
+  {
+    "opinion_id": "op_002637",
+    "text": "Nie jest to lekarz godny zaufania ! ! ! , nie liczcie że w razie problemu odbierze od Was komórkę w sobotę lub po 18 . 00 . Na szczęście nasza przygoda z Panem Kucharkiem skończyła się w porę , co zaowocowało i zaoszczędzeniem sobie nerwów i pieniędzy . Wg , nas to żaden super specjalista ( na Śląsku takich sporo można znaleźć ) , aby nie być gołosłownym przytoczę jedną z sytuacji gdy doktor zlecił wcale nie tanie badani , a przy następnej wizyty nawet nie zapytał o wyniki . Ale jak zawsze wybór należy do pacjentki ."
+  },
+  {
+    "opinion_id": "op_002638",
+    "text": "Był em u tego lekarza arogancki niemiły nie wytłumaczy co jest jak leczyc jakie sa objawy młody lekarz ktory w zawodzie jest nie długo checi zjego strony wyleczenia zero wypisuje skierowania na usg ktore jest na terminy mnie boli w pachwinie cos tam urosło jak nawet chodze to boli a co dopiero jak wysiłkowo cos zrobie to lekarz ma takie podejscie cytuje jego slowa jezeli niema pan raka ani nie zagraza panu zyciu to morze pan poczekac na te usg Nigdy by m go niepolecił nikomu niewiem czemu jeszcze niky skargi nie zlozyl jakie on ma podejscie do starszych ludzi niemile i aroganskie jego zachowanie"
+  },
+  {
+    "opinion_id": "op_002639",
+    "text": "Bardzo chciała m , żeby to właśnie dr Dedecjus mnie operował ze względu na dobre o nim opinie . Po pierwszej wizycie prywatnej rzeczywiście była m zadowolona . Rozmawiał ze mną w miły a zarazem konkretny sposób , wykonał również USG tarczycy . Za wizytę zapłaciła m 150 zł . Przemiła pani umawiająca wizytę wyjaśniła mi , że ten dość wysoki koszt spowodowany jest właśnie owym badaniem USG . Moje zdziwienie było więc ogromne gdy za drugą wizytę , która trwała niecałe 5 minut i polegała tylko na wyznaczeniu terminu operacji zapłaciła m dokładnie tę samą sumę . W szpitalu spędziła m dwa dni . Pan doktor pojawił się dosłownie parę minut przed zabiegiem wręczając zgodę na wykonanie operacji . Niczego nie wyjaśnił , nie rozmawiał i co gorsza okazało się , że nie zapoznał się z wynikami ostatnich badań . Kilka godzin czekała m na ostateczną decyzję co do operacji żeby w końcu usłyszeć \" Będziemy musieli się pożegnać \" . Może jest dobrym chirurgiem , ale ja przez brak profesjonalizmu pana doktora nie miała m okazji się o tym przekonać ."
+  },
+  {
+    "opinion_id": "op_002640",
+    "text": "Niezbyt przyjemne to co piszecie , jestem w rozterce , była m na drugiej wizycie w czmp i nie wiem co dalej robić . Najważniejsze aby dobrze ustawiał leczenie hormonalne , a gadać to on sobie może . . . . . . , nie trzeba go słuchać wtedy . Kogo polecacie zatem z Łodzi o takiej specjalizacji ? ?"
+  }
+]

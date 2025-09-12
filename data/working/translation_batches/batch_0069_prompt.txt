@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001361",
+    "text": "Wróciła m właśnie z wizyty i pani doktor w Medicover . Została m do niej umówiona , ponieważ pediatra , do którego zwykle chodzimy jest na urlopie . Synek ma 5 lat . Pani doktor była oschła , nie nawiązywała kontaktu z dzieckiem . Przyszła m do niej z niestandardowym kaszlem . Synek został osłuchany , ale pani doktor nie sprawdziła ani uszu , ani nosa . Mając porównanie z innymi lekarzami ( a mój synek ma infekcje co najmniej raz na 2 miesiące ) , nie polecam pani doktor ze względu na powierzchowność badania oraz obcesowość w zachowaniu ocierającą się o niegrzeczność ."
+  },
+  {
+    "opinion_id": "op_001362",
+    "text": "To była moja pierwsza wizyta u p . doktor . Jestem zadowolona z poświęconego czasu i uwagi lekarza . W kwestii zbadania znamion pani doktor wnikliwie sprawdziła wszystkie pieprzyki , zleciła pilne usunięcie jednego z nich , dostała m wskazówki i wyjaśnienia odnośnie zagrożeń wynikających z dużej ich ilości oraz wytyczne do obserwacji ich wyglądu . W kwestii leczenia nawrotu trądzika także otrzymała m poradę oraz leczenie farmakologiczne . Mam nadzieję , że terapia przyniesie oczekiwany skutek . Polecam lekarza ."
+  },
+  {
+    "opinion_id": "op_001363",
+    "text": "Bardzo szczery lekarz , ale przynajmniej nie owija w bawełnę . W moim przypadku nic nie można na tą chwilę zrobić , ale przynajmniej wiem szczerze na czym stoję , Żałuję , że nie przyszła m przed operacją na konsultację do tego lekarza , może moja sytuacja zdrowotna nie wyglądała by tak źle jak teraz ."
+  },
+  {
+    "opinion_id": "op_001364",
+    "text": "Panią doktor oceniam średnio . Do samego leczenia dziecka nie mam większych zastrzeżeń , poza tym że nie opisuje , nie tłumaczy przebiegu choroby . Natomiast w momencie zadawania pytań odpowiada często nieuprzejmie , co uważam za brak szacunku do pacjenta . Można mieć słabszy dzień , ale nie któryś raz z rzędu . Chodzę NFZ"
+  },
+  {
+    "opinion_id": "op_001365",
+    "text": "Bardzo polecam Pana doktora ! Kompetentny , godny zaufania , o wysokiej kulturze osobistej specjalista , stawiający trafną diagnozę . Jestem w ciąży i bała m się , że nie znajdzie się dla mnie skuteczne leczenie , okazało się , że Pan doktor znalazł dla mnie bezpieczne i skuteczne leczenie . Wyjątkowe dla mnie jest to , że lekarz pozostaje w kontakcie z pacjentem , co do jego stanu zdrowia ( otrzymała m wiadomość przypominającą o zaleceniach ) , w przypadku moich pytań Pan doktor zawsze chętnie odpowiadał , lub też oddzwaniał gdy nie mógł odebrać telefonu . Dodam , że na wizytę mogła m już iść następnego dnia , po telefonicznej rozmowie . Dziękuję Panie doktorze ! ! Karolina"
+  },
+  {
+    "opinion_id": "op_001366",
+    "text": "Profilaktycznie pojechała m z wizyta do Pana Doktora ( od czasu do czasu odczuwam bóle w okolicy żołądka i wątroby ) . Lekarz rodzinny podejrzewał zapalenie woreczka żółciowego . Dla wszelkiego spokoju postanowiła m skonsultować to ze specjalistą . Niestety pierwsza wizyta polega na wpisaniu moich danych do komputera , przepisanie recepty i umówienie się na następną wizytę i badania . Za to płaci się 100 zł . Najważniejszym punktem wizyty przekonanie pacjenta do zrobienia kompletu badań na następnej wizycie , które bagatela kosztują 600 zł . ( kolonoskopia , gastroskopia i usg . Wiadomo - nie zaszkodzą . Mógł by , chociaż przeprowadzić wywiad z pacjentem , zrobić usg albo zaimprowizować jakieś badania – t"
+  },
+  {
+    "opinion_id": "op_001367",
+    "text": "Wydaje mi się , że Pan Koremba jako psychoterapeuta radzi sobie z ludźmi w depresji , natomiast nie potrafił stanąć przed wyzwaniem , które sprowadziło mnie do niego , a nie była to kwestia depresji , lecz problemu w jednym obszarze życia . Zabrakło pomysłu i woli dotarcia do sedna mojego problemu , co nie znaczy , że nie w stanie pomóc innym \" przypadkom \" . Porównując do medycyny , łatwiej jest wykonać resuscytację u osoby na skraju życia niż poprowadzić pacjenta z chronicznym objawem . Zostawiam neutralną opinię , ponieważ nikt mi nie zaszkodził , ani nie pomógł ."
+  },
+  {
+    "opinion_id": "op_001368",
+    "text": "Pani Justyna jest doskonałym fachowcem oraz wybitnym specjalista w dziedzinach seksuologii oraz psychologii , a zarazem osoba bardzo miłą , uśmiechniętą , ciepła i empatyczną . Bardzo skutecznie pomogła mi rozwiązać problem , z którym się do niej zgłosił em , dzięki czemu odzyskał em równowagę i spokój ducha . Pani Justyna świetnie zdiagnozowała przyczynę problemu i perfekcyjnie dobrała rozwiązanie , a wszystko to w atmosferze pełnego zrozumienia i życzliwości . Ze szczerego serca polecam tego specjalistę każdemu , kto boryka się z problemami natury seksuologicznej lub psychologicznej . Pani Justyno , dziękuje i pozdrawiam , : ) Konrad ."
+  },
+  {
+    "opinion_id": "op_001369",
+    "text": "Pan doktor potraktował mnie bardzo protekcjonalnie , do tego stopnia , że nawet nie raczył powiedzieć jakie leki mi przepisuje , cytuję ' lek hormonalny , który obniży poziom testosteronu ' , co nie jest szczególnie jasnym nazwaniem dwuskładnikowej tabletki antykoncepcyjnej . Nie powiedział ani jednego słowa na temat mojej choroby ( włącznie z nienazwaniem jej ! ) , nie zlecił badań hormonalnych ( które zresztą były głównym celem mojej wizyty ) , nie zrobił USG przezpochwowego . Przy okazji bezpodstawnie skrytykował mojego poprzedniego ginekologa ( Panie doktorze , nie pamięta Pan treści przyrzeczenia lekarskiego ? ) . Nie padło dosłownie żadne pytanie odnośnie ryzyka zakrzepicy w związku z tym , że przepisane zostały mi estrogeny , nic o ryzyku cukrzycy , słowem : można wymieniać i wymieniać . Już pominę drobne nieprzyjemności tu i ówdzie , bo problemów czysto merytorycznych jest aż nadto . Bardzo nie polecam - chyba , że sytuacja wygląda inaczej w prywatnym gabinecie ."
+  },
+  {
+    "opinion_id": "op_001370",
+    "text": "Niestety ale nie jestem zadowolona z usług , straciła m tylko czas i pieniądze . Czekała m ok 3tyg na konsultacje ortodontyczną , w końcu kiedy przyszła m i zapłaciła m zostały pobrane odciski i zrobione zdjęcia czekała m następne 3tyg na omówienie planu leczenia . . i tu moje niezadowolenie . Była m umówiona na 17 . 40 gdzie gabinet zamyka się o 18 . 00 wiec Pan Doktor nie przewidywał na moją konsultacje więcej niż 20min z czego została m przyjęta o 17 . 50 , został mi przedstawiony plan leczenia w 4 zdaniach i wizyta została zakończona bo Pan Doktor się spieszył . Jestem zdecydowana na aparat i chciała m to zrobić sprawnie natomiast w tym gabinecie to niemożliwe , kiedy powiedziała m ze ok zgadzam sie na jedna z dwóch opcji to zapytała m którego zęba mam wyrywać 4 czy 5 to usłyszała m że trzeba umówić sie do dentysty : ) Bardzo profesjonalne podejście do klienta : ) następnego dnia kiedy zadzwoniła m do gabinetu żeby umówić się na przegląd zębów które są do leczenia a które do wyrwania żeby założyć aparat pani powiedział mi ze wizyta za 3tygodnie ! Zero powiązania gdzie przecież jeżeli ma ktoś zęby do leczenia i wyrwania i chce zakładać aparat to myślę ze to powinno być w jakimś powiązaniu dentysty z ortodontą zwłaszcza jeżeli dzieje sie to w tym samym gabinecie : ) ale to nic . . wzięła m swoje materiały za które zapłaciła m i poszła m na konsultacje do innego gabinetu to okazało się ze modele które zostały zrobione do niczego się nie nadają ; ( wiec musiała m zapłacić za kolejną konsultacje za to samo . . . Szczerze nie polecam chyba ze ktoś ma czas i stalowe nerwy"
+  },
+  {
+    "opinion_id": "op_001371",
+    "text": "Pani doktor owszem jest miła ale dała mi leki dwa razy bez zadnych badań i się okazało póżniej , że przyczyna dolegliwości była inna i nie miała szans tego zdiagnozować na podstawie samego wywiadu . nie warto wydawać pieniądze na niepotrzebne leki i tracic czas . odradzam ."
+  },
+  {
+    "opinion_id": "op_001372",
+    "text": "Moja skóra po leczeniu pani doktor wygląda gorzej niż jak przyszła m do niej . Ciągle namawianie na axotrex którego ja nie zamierzam brać . Zmieniam lekarza , mam nadzieję że ktoś inny zna więcej skutecznych metod , leków niż jeden . Szkoda że pomimo wieloletniej walki przychodząc do Pani doktor nie uzyskała m pomocy . Nie zawsze bycie miłym i kompetentny idzie w parze . Teraz nie wiem tylko jak wyleczyć skutki tej niewiedzy ."
+  },
+  {
+    "opinion_id": "op_001373",
+    "text": "Niestety muszę zmienić opinię o tym lekarzu . Była m zachwycona , bo wszystko szło dobrze , a wtedy nietrudno o pochwały . Teraz widzę , że dobrego lekarza pozna się po tym , kiedy potrafi pomóc w trudnej sytuacji . Doktor Hodera prowadził moją pierwszą ciąże i na samym jej początku zachęcał mnie do badań prenatalnych , zaznaczając , że jeśli wyjdą złe , to mam prawo do usunięcia ciąży . Te słowa zapadły mi w pamięć i czas do wizyty w 13 - stym tygodniu wypełniony był stresem i obawami . Nie wyjaśnił mi tego , że decydując się na test PAPP-a , trzeba również być zdecydowanym na przeprowadzenie amniopunkcji , bo ona daje 100 % pewności . Koniec końców na tej wizycie , zamiast informacji o zdrowiu dziecka , dostała m informację , że ciąża obumarła . I tutaj zaczyna się właśnie sytuacja , gdzie lekarz prowadzący powinien być pierwszym \" przystankiem \" , który otoczy kobietę wsparciem psychicznym . Doktor Hodera skierował nas do szpitala i powiedział zdanie , które nigdy nie powinno paść \" Może dobrze , że się teraz to stało , bo jeszcze te badania prenatalne wyszły by nam złe \" . Nikt nie ma prawa do kobiety , która właśnie straciła dziecko , mówić w ten sposób . Dostała m później skierowanie na kilka badań , które miały wyjaśnić przyczynę poronienia . Zmieniła m lekarza i przed zajściem w drugą ciąże okazało się , że mam zespół antyfosfolipidowy . Wykryto go dzięki mojemu nowemu lekarzowi . Jestem teraz w 14 tygodniu drugiej ciąży i bez zastrzyków oraz odpowiedniej opieki mogła by zakończyć się podobnie jak pierwsza , więc cieszę się , że nie muszę przechodzić pięciu poronień , żeby zostać poprawnie zdiagnozowaną . Oczywiście nie obwiniam Doktora Hodery o to co się stało , bo to było \" dziełem \" natury , ale bardzo nie spodobało mi się Jego podejście do utracenia ciąży . Nawet jeśli dziecko jest chore , to nie mamy prawa do takich ocen , jak \" dobrze , że się tak stało \" ."
+  },
+  {
+    "opinion_id": "op_001374",
+    "text": "Badania opatrunków prowadzone były w Siemianowicach Śląskich , Uniwersytecie Medycznym w Łodzi oraz w Gdańskim Uniwersytecie Medycznym . Następna generacja produktów , nad jakimi pracuje grupa prof . Bieleckiego , to formy trójwymiarowe głównie do zastosowań wewnętrznych jako protezy , implanty a także tzw . skafoldy , czyli rusztowania do hodowli komórek . Ukończenie badań wymaga wielu analiz chemicznych , biologicznych , fizycznych i oceny właściwości mechanicznych wytwarzanych włókien . „ Musimy bardzo dokładnie określić wielkość opatrunku czy implantu , żeby laparoskopowo wprowadzić go do organizmu . Nasz produkt powinien mieć ściśle określoną wytrzymałość mechaniczną , elastyczność lub jej brak , chłonność wody , żeby śmy mogli go skutecznie przyczepić czy bezpiecznie okleić jakiś organ – wyjaśnia rozmówca PAP . – W tym celu współpracujemy z lekarzami różnych specjalności np . chirurgii miękkiej , ortopedii , neurochirurgii czy kardiologii \" ."
+  },
+  {
+    "opinion_id": "op_001375",
+    "text": "Co do merytoryki to się okaże , lekarz przepisał leki , zobaczymy ich działanie po kilku miesiącach . Jeśli chodzi o kulturę osobistą to nie rozumiem tych zachwytów , ma dziwne podejscie do dzieci , lekarz bał się aby syn czegoś mu nie dotknał lub czegoś nie uszkodził , wręcz mięlismy wrażenie że dziecko mu przeszkadza w pisaniu zalecen na komputerze . Za merytoryke plus za kulture minus"
+  },
+  {
+    "opinion_id": "op_001376",
+    "text": "Przemiły dokładny lekarz rozmawia z pacjentem jak trzeba nic nie obiecuje przyczynę przebieg i zakończenie choroby tłumaczy dokładnie jestem dzień po zabiegu Termolezji jak będzie dalej zobaczymy na razie 6 tygodni zwolnienia ale myślę że będzie bardzo dobrze każdemu polecam dr . Łukasza Antolaka . Jedyny lekarz z jakim przez ostatnie 10 lat rozmawiał em mając problemy z kręgosłupem który spojrzał na wyniki badań nie w opisie a wziął płytkę z rezonansu i sam określił moją chorobę i co się tam przy tym moim sfatygowanym kręgosłupie dzieje polecam godny zaufania brakuje nam takich jak on lekarzy pozdrawiam wszystkich po zabiegu Termolezji"
+  },
+  {
+    "opinion_id": "op_001377",
+    "text": "Z ogromnym entuzjazmem podchodzimy do tego typu modeli , bo pozwalają przedoperacyjnie wyjaśnić niektóre zawiłości anatomiczne , które mogą nas zaskoczyć w czasie operacji . Dzięki takim wydrukom wiemy , jaką strukturę ma narząd , co ułatwia planowanie i przebieg operacji ” – mówi chirurg w Szpitalu Uniwersyteckim w Krakowie , dr hab . Michał Pędziwiatr . Jak wyjaśnił , głównym wskazaniem do operacji wątroby są przerzuty innych nowotworów ( głównie raka jelita grubego ) do tego narządu . Lekarz dodał , że nie ma wielu ośrodków w Polsce , które zajmują się operacjami wątroby i w związku z tym „ wydaje się , że liczba pacjentów wymagających operacji jest większa niż liczba miejsc , w których można te operacje wykonać ” .\tmeta_zero\tmeta_zero\t\tmeta_zero\t\nmedycyna\tKonsultacja trwająca 3 minuty nie rozwiązała problemu . Tyle to wiedziała m z internetu . Brak przedstawienia alternatyw . Lekarz niczego nie chciał się podjąć . Skasował jedynie 100 zł . Na NFZ internista więcej pomoże niż on . Była m już u dwóch innych lekarzy - niebo a ziemia . Wszystko zależy od chęci . Dla mnie to był zmarnowany czas a w domu się popłakała m po tym co powiedział , że należy zaakceptować fakt . Jakby m chciała go zaakceptować to nie chciała by m wydać 15 tysięcy na jego rozwiązanie . Już nie wspominając o 50 minutowym opóźnieniu i że lekarz spieszył się do domu a Pani z recepcji już z kimś rozmawiała o zamknięciu kliniki . . . W takim przypadku jak lekarz odpowiada ' ' nie mogę Pani pomóc ' ' nie powinien pobrać opłaty . Nie polecam nikomu .\tmeta_minus_m\tmeta_minus_m\tmeta_minus_m\t\t\nmedycyna\tMiła pani , ale z profesjonalizmem to kiepsko . Podczas zabiegu nie zapytała , czy nie potrzebuję więcej znieczulenia , co w sumie powinna sama zauważyć po tym , że uciekam i  jeżdżę \" po fotelu i trochę nieumiejętnie zastosowała odsysacz do śliny - był niedbale zawieszony ( tak , żeby tylko sobie wisiał ) przez co prawie dławiła m się śliną . Ponadto pani doktor niestety doradza wszystkim jak leci usuwanie wszystkich ósemek ( co nie jest zbyt mądre ) . Cóż - nie polecam ."
+  },
+  {
+    "opinion_id": "op_001378",
+    "text": "nie polecam - po kilku miesiącach mało efektywnego leczenia ( po pół roku przyznał mi się , że ie jest w stanie postawić diagnozy ) , pomylił mnie z kimś innym , dał nieodpowiednie leki , po których czuła m się fatalnie , nie była m w stanie funkcjonować , przez co straciła m pracę , nie mogła m się pozbierać . . . wizyty generalnie sprowadzają się do wypisywania recept i brania za to niemałej kasy . . . kiedyś zarzucił mnie terminologią medyczną , której w ogóle nie rozumiała m , powiedział , że nie wie , co mi jest , że nie jest w stanie rozpoznać , zadzwonił przy mnie do innej osoby poprosił o konsultacje bo jestem przypadkiem beznadziejnym . . . po tej wizycie przez tydzień z domu nie wyszła m bo mnie tak dobiła . . . tak się z ludźmi nie postępuje , do tego nie trzeba być psychiatrą , żeby to wiedzieć"
+  },
+  {
+    "opinion_id": "op_001379",
+    "text": "Dla mnie to lekarz ok dzięki niemu mam synka i nie słucham złego słowa a na jego temat kto tak pisze to jest w błędzie albo coś wymyśla aby go pogrążyć ja jestem po poronieniu i wcześniej tam gdzie chodziła m powiedzieli ze 3 miesiące i mogę znów zachodzić w ciąże ale jednak wolała m jechać do lekarze H . . i wtedy on mi wytłumaczył ze 3 miesiące to za mało musi być bynajmniej rok aby organizm się zregenerował upłynęło troszkę więcej jeździła m do niego z mężem aż w końcu zaszła m w ciąże dzięki niemu mam synka u niego zawsze w gabinecie panowała czystość > Polecam go Jest Super"
+  },
+  {
+    "opinion_id": "op_001380",
+    "text": "Pan doktor prowadzi moją pierwszą ciążę . Jestem bardzo zadowolona z każdej wizyty . Miły i ciepły lekarz o szerokiej wiedzy . Widać , że pracuje z powołaniem . Bardzo dokładny specjalista i przyjazny człowiek . Jako pacjentka czuje się u niego bardzo swobodnie . Mam poczucie , że jesteśmy z synkiem w dobrych rękach . Moje pełne zaufanie lekarz zyskał już na pierwszej wizycie kiedy przyszła m niemal zapłakana po wizycie u innego lekarza . Spokojnie mnie wysłuchał , uspokoił , zbadał i wszystko dokładnie w delikatny sposób wyjaśnił . W razie konieczności kontakt z lekarzem mam zawsze dzięki czemu czuję się naprawdę bezpiecznie jako jego pacjentka . Nie zamieniła by m na żadnego innego lekarza . Gorąco polecam ."
+  }
+]

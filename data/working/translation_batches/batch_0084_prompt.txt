@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001661",
+    "text": "Jestem pacjentem dr . Adama Hołub od 18 miesięcy . Mam chorobę nowotworową układu krwionośnego tzw . szpiczaka mnogiego . widujemy się średni raz w miesiącu gdyż tak mam wyznaczane wizyty połączone z badaniami . Moje odczucie jest bardzo pozytywne . Prawdą jest , że Pan doktor mało mówi . Ala je uważam to za zaletę . Nie zajmuje się pierdołami . Jest konkretny . Na każde pytanie udzieli informacji i wyjaśnień . Dotyczy to samej choroby jak i przebiegu leczenia aktualnego i przewidywanego . 4 lub 5 lat wcześniej był em tam z tymi samymi objawami u innego lekarza i odszedł em jako niby \" zdrowy \" . Po tym czasie dr . Hołub od razu przyjął właściwą diagnozę . Ja jestem pozytywnie nastawiony do dr . Adama . Polecam jako dobrego lekarza . W przyszłości postaram się jeszcze odezwać i podzielić dalszymi spostrzeżeniami ."
+  },
+  {
+    "opinion_id": "op_001662",
+    "text": "Wspaniały LEKARZ - Osoba bardzo konkretna , profesjonalizm w pełnym wymiarze , potrafi bardzo rzeczowo wszystko wytłumaczyć , ma bardzo dużą wiedzę . Po wizycie , która trwała nie 15 min a 2 godziny po godzinach już Pani doktor pracy , wyszła m podniesiona na duchu co jest niezmiernie dla mnie ważne , ale tez z ustawionymi lekami i szansą na powrót do zdrowia . Uważała m , że już nie ma tak wspaniałych , cierpliwych i cieplych lekarzy - okazało sie jednak inaczej . BARDZO , BARDZO PANI DZIĘKUJĘ . Naprawdę miała m i mam wielkie szczęście , że trafiła m do Pani Moniki Łukaszewicz ."
+  },
+  {
+    "opinion_id": "op_001663",
+    "text": "Wizyta przebiegła w miłej atmosferze Pan doktor wszystko dokładnie wytłumaczył a ja bez pośpiechu i stresu mogła m zadawać nurtujące mnie pytania Jedyny minus to wziernik metalowy - zawsze była m przyzwyczajona do wziernika plastikowego który jest jednorazowy i w moim przekonaniu bardziej higieniczny niż ten metalowy używany kilkakrotnie dla wielu pacjentek . . . Dla mnie było to dość stresujące i mało higieniczne . . . Nie mówiąc o przeniesieniu jakiejś bakterii po poprzedniej pacjentce ? Za wziernik na pewno minus"
+  },
+  {
+    "opinion_id": "op_001664",
+    "text": "Pani Doktor Joanna Orlicz - Widawska ma wielkie serce dla pacjenta , olbrzymią wiedzę i intuicję medyczną , tak rzadko spotykaną wśród lekarzy , którzy przypadkowo wybierają swój zawód . W moim przekonaniu , to właśnie intuicja medyczna , czyli to \" coś \" , czego nie można się nauczyć na żadnej Akademii Medycznej , sprawia , że Pani Doktor stawia tak trafne diagnozy ! ! Cierpię od 15 lat na tzw . obrzęk Quinckego i żaden z lekarzy nie potrafił zaproponować innego leczenia jak tylko sterydy ( a przez 15 lat , uwierzcie mi , była m u wielu \" wspaniałych \" lekarzy ) . Okazało się , że istnieją inne możliwości leczenia tej uciążliwej choroby . Obecnie nie biorę już od 2 lat sterydów i choroba jest pod kontrolą . Będę za to wdzięczna Pani Doktor do końca życia ! !"
+  },
+  {
+    "opinion_id": "op_001665",
+    "text": "Pani Dr . Radomska jest bardzo dobrym , znającym się na rzeczy lekarzem . Wierzcie mi , że mam porównanie bo ze swoimi \" rewelacjami \" obskoczylam wiele wrocławskich ginekologów . Na początku rzeczywiście trochę się przestraszyła m , gdyż doktor Radomska ma \" grożny \" wyraz twarzy , ale zachowywała się naprawdę uprzejmie i profesjonalnie , odpowiadała na pytania , rozwiewała moje wątpliwości , była delikatna , zleciła wszystkie niezbędne badania . Wyszła m bardzo zadowolona . A osobom , które narzekają na to , że doktor jest \" niemiła \" radzę zastanowić nad tym czy szukacie profesjonalnego lekarza , który zna się na rzeczy , czy bardzo miłej , promiennej , rozszczebiotanej pani doktor , która niezbyt będzie się znać na ginekologii i nie będzie potrafiła pomóc swoim pacjentkom . Niestety drogie panie , ale porozmawiac , bądź pouśmiechać można się do koleżanki , do LEKARZA CHODZIMY SIĘ LECZYĆ , a nie żartować , bądź gawędźić ."
+  },
+  {
+    "opinion_id": "op_001666",
+    "text": "Pani Ewa Bieniak jest osobą niezwykle kompetentną w tym co robi . Jestem bardzo trudnym pacjentem z długą listą alergii pokarmowych , ze zdiagnozowaną chorobą Hashimoto , celiaką i od czasu do czasu pojawiającą się insulinoopornością . Na Panią Ewę trafiła m 4 lata temu , wówczas bardzo mi pomogła i nauczyła mnie prawidłowo się odżywiać . Po kilku latach powróciła m właśnie z problemem alergii pokarmowych . Posiłki zaproponowane w diecie są naprawdę smaczne , łatwe w przygotowaniu a co najważniejsze dieta sporządzona przez Panią Ewę pokazuje że mimo licznych ograniczeń nie muszę jeść liścia sałaty i popijać go wodą . Na marginesie chciała by m napisać , że z ciekawości konsultowała m swój przypadek z kilkoma dietetykami , obnoszącymi się swoimi sukcesami w programach śniadaniowych , którzy mój przypadek skreślili twierdząc że się nie podejmują bo jestem za trudnym pacjentem . Na szczęście Pani Ewa nie dość że super profesjonalna to nie obawia się wyzwań ."
+  },
+  {
+    "opinion_id": "op_001667",
+    "text": "Bardzo dobry laryngolog , świetny chirurg . Polecam wszystkim , którzy mają jakieś problemy laryngologiczne . Trafiła m do Pana doktora okrężną drogą , już po pewnych przejściach i bardzo żałuję , że nie trafiła m od razu do niego . Operacja wykonana profesjonalnie , można powiedzieć , że bezboleśnie : ) Jestem pod wrażaniem tego czego dokonał . Muszę również dodać , że cały personel Oddziału Laryngologicznego Szpitala Wojskowego jest niesamowity . Wszyscy bardzo pomocni i mili ( chociaż bardzo zabiegani ) . Oni naprawdę są dla ludzi . Mając doświadczenie z innymi szpitalami w ostatnim czasie , nie mogła m uwierzyć , że to dzieje się naprawdę : ) Polecam Pana doktora i ten Szpital ! Pozdrawiam ."
+  },
+  {
+    "opinion_id": "op_001668",
+    "text": "Biofizyk mówi , że mechanizmy naprawy DNA czasami się psują . Jeśli naukowcy lepiej poznają strukturę kompleksu , będą mogli w przyszłości lepiej projektować farmaceutyki , które wspomogą pracę szwaczek w pewnych dysfunkcjach . Ale jest też inny ważny aspekt tych badań . Być może dzięki nim naukowcy opracują związki , które naprawę DNA w wybranych komórkach całkiem zablokują . No bo po co organizm ma tracić energię na cerowanie DNA w komórkach , które i tak są zepsute - np . w komórkach nowotworowych . . . \" Lepiej , żeby zepsute DNA tych groźnych komórek nie było naprawiane , a komórka - szybciej ulegała zniszczeniu \" - zwraca uwagę prof . Krężel . I nie wyklucza , że w przyszłości badania nad szwaczkami DNA zostaną wykorzystane w pracach nad nowymi terapiami antynowotworowymi ."
+  },
+  {
+    "opinion_id": "op_001669",
+    "text": "Przeszła m zabieg korekty powiek górnych u doktora Ibrahima ponad rok temu . Operacja poskutkowała lekką poprawą wyglądu powiek ( daleką od spodziewanej ) a skutkiem ubocznym są bardzo duże blizny . Na lewym oku blizna sięga skroni ! ! ! To była moja pierwsza i jedyna operacja plastyczna , więc nie wiedziała m dokładnie czego się spodziewać . Konsultacja przedzabiegowa była pośpieszna . Recepcjonistka poinformowała mnie przed zabiegiem , że dostanę tzw . niebieską pigułkę na zobojętnienie , jednak nikt mi jej nie podał . Ogólnie w klinice panowała atmosfera pośpiechu i braku organizacji . Podczas operacji doktorowi asystowali pielęgniarze , którzy w ogóle nie mówili po polsku i słabo po angielsku wiéc komunkacja była bardzo utrudniona . Bardzo mocno uciskali moje oczy , żeby wyjąć woreczki tłuszczowe , musiała m prosić doktora o zwrócenie im uwagi . Doktor zainterweniował , ale siniaki miała m przez cały miesiąc . Ale to jescze nic . Najgorsze , że moje powieki wyglądają , jakby przypadkowo pocięte . Blizny różnią się położeniem i długością . Teraz mam na powiekach blizny zanikowe idące w kierunku skroni , są nierówne , jedna jest dłuższa i leży wyżej od drugiej . Przy tak rozległych bliznach nie pomaga żaden makijaż , nawet specjalistyczny korygujący . Od ponad roku próbuję zabiegów laserowych , kremów , maści itp . Niestety wzystko to pomogło tylko trochę . Nieunikniony będzie zabieg rewizyjny . Doktor Ibrahim nie wykazał żadnej chęci pomocy po zaistniałej sytuacji . Stwierdził , że to moja wina , bo mam zaburzenia produkcji kolagenu . 3 lekarzy chirurgów u których była m na konsultacji w sprawie operacji rewizyjnej , nie potwierdziło jego opinii . Nie polecam tego lekarza ani kliniki Mandala ."
+  },
+  {
+    "opinion_id": "op_001670",
+    "text": "Zdecydowanie odradzam . Dr Obidziński wykonywał mi dwa razy artroskopie kolana . Za pierwszym razem ok . , przygotowanie do rekonstrukcji , chociaż teraz jestem już obcykana w tym temacie i wiem , że można od razu zrekonstruować zerwane więzadło podczas jednej operacji . Sama rekonstrukcja u innego lekarza ( źle zrobiona , przeszczep wstawiony w złym miejscu ) . Od razu czuła m że coś poszło nie tak . Została m więc skierowana na artroskopię którą wykonał właśnie Pan dr . Kilka miesięcy po artroskopii poszła m na wizytę o kulach oczywiście . Dr był wielce zdziwiony . Mówię , że to nic nie zmieniło , że dalej wszystko się przestawia , wskazała m miejsce bólu a Dr Obidziński na to : , , tam artroskop nie dochodzi ' ' i uśmiech . To była ostatnia wizyta u tego Pana . Obecnie jestem po ponownej czwartej już operacji , pod opieką super ortopedy i nareszcie po prawie 3 latach chodzenia o kulach odstawiła m je . Koniec płaczu i bezsilności . Wreszcie ."
+  },
+  {
+    "opinion_id": "op_001671",
+    "text": "Badacz podkreśla , że chorzy pochodzenie głosów mogą różnie wyjaśniać . \" Niektórzy sądzą , że mówi do nich mafia z Moskwy . Innym wydaje się , że mówi do nich sąsiad przez ścianę . Niektórzy uważają , że ktoś przesyła im myśli przez nadajnik radiowy . A czasem ludzie są pewni , że słyszą głos Boga lub szatana . Mechanizm słyszenia halucynacji jest podobny , ale różne są przekonania co do pochodzenia tych głosów . Najprawdopodobniej znaczenie ma tutaj historia życia pacjentów , ich doświadczenia , związki z innymi i przekonania na temat ludzi i siebie w ogóle \" - zaznacza badacz . Dr Gawęda opisuje , że czasem głosy są tak silne , że chorzy nie mogą się im przeciwstawić . \" Taki stan psychotyczny często wymaga hospitalizacji i leczenia farmakologicznego . Jednak coraz więcej podkreśla się również znaczenie psychoterapii w leczeniu halucynacji i schizofrenii w ogóle \" - zaznacza psycholog . Przyznaje jednak , że niektóre osoby ze schizofrenią słyszą głosy , ale umieją sobie z nimi radzić i zachowują się zwyczajnie ."
+  },
+  {
+    "opinion_id": "op_001672",
+    "text": "Zgadzam się z poniższymi opiniami , że Pani doktor jest delikatna , bardzo sympatyczna i jest \" świetnym ginekologiem \" jeśli ma do czynienia z bezproblemowym przypadkiem . W moim przypadku pani doktor pomyliła guza wielkości pomarańczy z jajnikiem ! ! Nie wiem czy jest to kwestia złego sprzętu czy też tego , że pani doktor powinna już pomyśleć o emeryturze i tym samym zaoszczędzi strachu i cierpienia innym pacjentkom , przez które ja musiała m przejść ."
+  },
+  {
+    "opinion_id": "op_001673",
+    "text": "wizyta rozpoczęła się z około 40 min . opóźnieniem , za które p . doktor przeprosiła i które wytłumaczyła , nie była jednak przygotowana do wizyty ( nie zapoznała się wcześniej z dokumentacją medyczną ) , odnoszę wrażenie , że postawiona diagnoza była nieco na chybił trafił , podobnie jak zaproponowane leczenie ."
+  },
+  {
+    "opinion_id": "op_001674",
+    "text": "Nie rozumiem tylu pozytywnych opinii . Czyzby wypowiadaly sie tu osoby z bliskiego otoczenia dra barcikowskiego ? Bo az nie chce mi sie wierzyc , ze az tyle jest jego \" fanek \" . Chodzilam do dra ponad rok . Moje zle mniemanie o tym lekarzu zaczelo sie w momencie gdy zrobil mi usg dopochwowe bez zabezpieczenia urządzenia przy uzyciu prezerwatywy . To byl koszmar . Zamartwialam sie potem przez wiele dni czy sie czyms powaznym ( nawet HIV ) nie zarazilam . Kilka dni po wizycie dostalam ostrego stanu zapalnego i musialam sie leczyc doustnymi lekami . Moze to byl tylko zbieg okoliczności - nie wiem tego . Powinna m byla , widząc jak mi robi badanie , zwrocic mu uwage , ale nie starczylo mi odwagi . Po wyjsciu z gabinetu mialam do siebie ogromne pretensje , ale coż . . . Polak mądry po szkodzie . Ogolnie malo komfortowo czuje sie na wizycie u tego lekarza . Jest jakiś dziwny , zamkniety w sobie , nie dzieli sie wiedzą . . . prawie nic nie mowi , dopiero ja musze sie dopytywać ."
+  },
+  {
+    "opinion_id": "op_001675",
+    "text": "Sama nie wiem co o tym wszystkim myślec , ja chodziła m do dr Kądziołki jak była m w ciąży z pierwszym dzieckiem . Z początku było wszystko ok , Kacper sie prawidłowo rozwijał . Kiedy nagle w połowie szóstego miesiąca ciąży dr stwierdził że to już prawie połowa ciąży wiec powinna m poddac się badaniu \" anatomia płodu \" . Więc pojechała m do szpitala na Polną i jak tylko lekarz zaczął robic usg oznajmił mi , że z dzieckiem jest coś nie tak . Okazało się że Kacper miał wodogłowie wrodzone . A po porodzie okazało się , że ma przez wodogłowie liczne zmiany w mózgu , uszkodzony układ oddechowy , pokarmowy , nerwowy . . . i tak by m mogła wymieniac . Dziecko w ciągu 6 miesięcy przeszło pięc operacji i zmarło . . . Teraz jestem w 5 tyg . ciąży i chodzę do dr Krzysztofa Bartosza ale czytalam opinie na jego temat i ponad 99 % jego byłych pacjentek stanowczo odradza . Nie mam pojęcia gdzie mam iśc , z dr Kądziołka bardzo dobrze mi sie współpracowało , zawsze chętnie odpowiadał na moje pytania , zlecał badania ale nie mam pojecia dlaczego to on nie wykrył nieprawidłowości . Jesli ktoś zna naprawde dobrego lekarza , dajcie namiary . . z góry bardzo dziękuje . . ."
+  },
+  {
+    "opinion_id": "op_001676",
+    "text": "Mikroskopowe potwierdzenie wyników grupy amerykańskiej wymagało od polskich naukowców rejestrowania obrazów ze szczególnie dużą rozdzielczością . Na przeszkodzie stała tu jednak sama fizyka : dyfrakcja uniemożliwia zogniskowanie światła do punktu i w praktyce nie można dostrzec szczegółów mniejszych niż połowa długości fali padającej na próbkę . W przypadku mikroskopii optycznej najlepsza rozdzielczość wynosi więc ok . 200 nanometrów . Dlatego w Instytucie Nenckiego sięgnięto po jedną z odmian mikroskopii superrozdzielczej - techniki badawczej , za wynalezienie której przyznano w 2014 roku Nagrodę Nobla . Jak napisano w komunikacie , istota metody wykorzystanej przez badaczy z Instytutu Nenckiego polega na nakładaniu na źródło światła specjalnej siatki dyfrakcyjnej . Obróbka cyfrowa serii zdjęć wykonanych przy różnych położeniach siatki pozwala na dwukrotne zwiększenie rozdzielczości obrazów mikroskopowych ."
+  },
+  {
+    "opinion_id": "op_001677",
+    "text": "Nie wiem co napisać . . . chodzę do doktora od poprzedniej ciąży . . . . Fakt że lecząc się u lekarza prywatnie liczyła m na to że może trafi się przy porodzie . . . Niestety Pan dr . nie odebrał ode mnie telefonu , gdyż jak się domyślam - była to niedziela 7rano : ( poczuła m się zawiedziona , że chociaż nie miała m kontaktu telefonicznego . Teraz jestem w drugiej ciąży . . . pierw stwierdził ciąże pozamaciczną , dwa dni później już był widoczny pęcherzyk . W tej chwili widać już dwa pęcherzyki . . . ale bez widocznych zarodków : ( Do tego plamię od dwóch tygodni i dr . robiąc mi usg zobaczył \" prawdopodobnie \" krwiaczka przy jednym z pęcherzyków . . . Nie polecił mi zastrzyków w szpitalu na wchłoniecie krwiaka , twierdząc że nie wierzy w takie rzeczy . . . Może jedno się poroni a drugie zostanie i się rozwinie - OK , ale jak długo ja mogę chodzić z pustymi pęcherzykami ? Czy to oby jest dla mnie bezpieczne ? Dla informacji wg kalkulatora ciąży jestem w 10tyg ciąży a wg.usg pęcherzyk jest na 4tydz . . . Coś mi się wydaje , że to za duża różnica i nic z tego nie będzie . . . a dr . powiedział że może tak a może nie . Na pytanie kiedy mam przyjść dostała m odp : umówmy się na telefon . . . Kurcze . . . trochę się zastanawiam czy to nie jest zbywanie . Nie ma określonego terminu w takich przypadkach ile można chodzić z pustymi pęcherzykami ? ? ? ; ( . . liczyła m na jakieś ukierunkowanie - co mam dalej robić i za jaki czas . A w sumie tyle co wiedziała m przed wizytą wiem i po niej . . a kaska leci ; ( ( ( Chciała by m mu ufać , bo nie lubię skakać od lekarza do lekarza , a wydawało mi się że znalazła m tego \" jedynego \" . . . jednak jak czytam te opinie , że to dobry lekarz dla zdrowych to coraz bardziej jestem przerażona i nie wiem co o tym myśleć : ("
+  },
+  {
+    "opinion_id": "op_001678",
+    "text": "Witam . Była m na jednych z warsztatów u Pani Beaty dotyczących rozwoju osobistego i jestem zachwycona . Na warsztatach panowała niezwykle miła atmosfera . Pani Beata każdemu z nas poświęcała uwagę a ćwiczenia które odbywali śmy i dyskusję pozwoliły na inne spojrzenie na samego siebie i naszego problemu . Według mnie warto poświęcić czas takim warsztatom gdyż , ocena fachowca zawsze inaczej zanalizuje i oceni sprawę która nas martwi a także pomoże znaleźć rozwiązanie . Do tego obiektywne oceny innych osób pozwalają inaczej spojrzeć na samego siebie i wyciągnięcie odpowiednich wniosków : ) ."
+  },
+  {
+    "opinion_id": "op_001679",
+    "text": "Nie jestem przekonana do Pana doktora . Wizyta odbyła się w miłej atmosferze ale niczego do sprawy w sensie leczenia nie wniosła . Dokumentacje trzeba mieć ze sobą , podobnie jak historię choroby a Pan doktor z sztucznym kolanem powtarza przez 10 minut to co jest napisane , bez żadnych nowych wskazań . I te 10 minut o znanych faktach kosztuje sporo . Moim zdaniem Pan doktor jest pozbawiony empatii , sztampowo podchodzi do pacjenta , nie proponuje nowych rozwiązań , nie wychodzi z inicjatywą leczenia tak aby zaspokoić potrzeby pacjenta . Oczywiście nie jestem w stanie jako pacjent , ocenić merytorycznie Pana Doktora , choć na szczęście intuicja skierowała mnie do kogoś innego i dzisiaj czuje się już dobrze . Jestem po operacji i biegam , skaczę , cieszę się życiem - ale to nie zasługa Pana Doktora ."
+  },
+  {
+    "opinion_id": "op_001680",
+    "text": "Pierwszy raz spotkała m się z tak nieprofesjonalnym podejściem do pacjenta . Przyszła m z niewielkim problemem na stopie który wyleczyła m kilka lat wstecz przy użyciu krioterapii wykonywanej profesjonalnym sprzętem , z higienicznymi nakładkami , na kozetce , w odpowiednich warunkach . Jakże zdziwiła m się gdy moim oczom ukazało się przenośne mini - etui z którego pani doktor wyjęła małe dozowniki z ciekłym azotem , po czym oparła moją stopę na swoim udzie i próbowała niedbale usunąć kurzajki przy pomocy dwóch mini - buteleczek z gazem będącym nomen omen na wyczerpaniu . Bez dokładniejszego spojrzenia na stopę , bez światła , szkła powiększającego czy czegokolwiek - pani Doktor zadawała pytania postaci \" A tutaj coś było , czy nie było , bo nie widzę \" . Na niektóre zmiany zabrakło już gazu , więc usłyszała m , że \" dokończymy następnym razem \" . Absolutnie przestrzegam i odradzam ! Dodam , że wizyta kosztowała 130 zł . W skrócie - nie wiem jak Pani Doktor radzi sobie z pozostałymi aspektami dermatologii , w moim przypadku było to istną pomyłką i absolutnie drugi raz się tam nie pojawię ."
+  }
+]

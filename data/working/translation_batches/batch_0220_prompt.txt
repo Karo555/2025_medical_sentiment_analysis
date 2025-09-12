@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_004381",
+    "text": "Bardzo sympatyczna Pani Doktor, cierpliwa, stały kontakt z pacjentem nie tylko na wizytach. Bardzo polecam. Dieta dostosowana pod pacjenta."
+  },
+  {
+    "opinion_id": "op_004382",
+    "text": "Polecam , bardzo przytulny gabinet, miła obsługa Pani Dorota wytłumaczyła mi każdy szczegół"
+  },
+  {
+    "opinion_id": "op_004383",
+    "text": "super wizyta, córka zadowolona, bardzo się cieszę że znaleźliśmy Panią Dorotę"
+  },
+  {
+    "opinion_id": "op_004384",
+    "text": "Wizyta spełniła moja oczekiwania. Pani Dorota jest kompetentnym specjalistą, a do tego bardzo miłą osobą. Polecam!"
+  },
+  {
+    "opinion_id": "op_004385",
+    "text": "Bardzo miła i konkretna pani bardzo  szczegółowo wszystko wytłumaczyła"
+  },
+  {
+    "opinion_id": "op_004386",
+    "text": "Pani Dorora to niezwykle profesjonalna i zaangażowana specjalistka. Dzięki szczegółowej rozmowie i analizie moich nawyków żywieniowych, udało się ustalić przyczynę mojej nadwagi. Otrzymałem indywidualnie dopasowany plan żywieniowy, który okazał się bardzo skuteczny. Już po kilku tygodniach zauważyłem pierwsze efekty w postaci utraty wagi i poprawy samopoczucia. Dietetyczka zawsze była dostępna w razie pytań i wątpliwości, co bardzo mi pomogło w utrzymaniu motywacji. Z czystym sumieniem mogę polecić Panią Dorotę wszystkim osobom borykającym się z problemem nadwagi."
+  },
+  {
+    "opinion_id": "op_004387",
+    "text": "Indywidualne podejście do pacjenta"
+  },
+  {
+    "opinion_id": "op_004388",
+    "text": "Miałam kłopoty z zaparciami. Rozmowa z Panią Dorotą zasugerowała mi możliwe przyczyny. Okazało się że mała korekta diety spowodowała,że moje jelita pracują prawidłowo."
+  },
+  {
+    "opinion_id": "op_004389",
+    "text": "Jestem bardzo zadowolona z diety i współpracy z Panią Joanną. Dieta jest prosta i szybka w przygotowaniu posiłki są smaczne i sycące. Goraco polecam Panią Joannę"
+  },
+  {
+    "opinion_id": "op_004390",
+    "text": "Pani Joanna jest miła kompetentna osoba ,Bardzo mi pomogła w utracie wagi Dieta jest smaczna i łatwa produkty można kupić w każdym sklepie .Dzięki pani Joannie mogłam przejść operację ."
+  },
+  {
+    "opinion_id": "op_004391",
+    "text": "Bardzo polecam Pani dietetyk bardzo zaangażowana, pomogła mi zrzucić kilogramy dzięki czemu świetnie się czuję"
+  },
+  {
+    "opinion_id": "op_004392",
+    "text": "Dzięki diecie ułożonej przez panią Joannę już na wczesnym etapie jestem bardzo zadowolony przepisy sá proste dania pyszne łatwość przygotowania posiłków  i dostępność składników lepsze samopoczucie polecam z całego serca  Pozdrawiam"
+  },
+  {
+    "opinion_id": "op_004393",
+    "text": "Jestem bardzo zadowolona ze współpracy z Panią Joanną."
+  },
+  {
+    "opinion_id": "op_004394",
+    "text": "Wizyta niestety się nie odbyła. Po przybyciu na miejsce i czekaniu około 5 min pod drzwiami, Pani Joanna zadzwoniła, że zaraz wyjdzie. Po kolejnych kilku minutach czekania i nie pojawianiu się pani doktor zrezygnowałam. Uważam, że trzeba cenić swój czas wzajemnie. Szkoda mi straconej godziny na dojazd."
+  },
+  {
+    "opinion_id": "op_004395",
+    "text": "Jestem bardzo zadowolony z współpracy z panią dietetyk efekty są zadowalające jest godna poleceniai"
+  },
+  {
+    "opinion_id": "op_004396",
+    "text": "Jestem po pierwszym tygodniu diety i już widzę pierwsze efekty – zarówno na wadze, jak i w samopoczuciu. Posiłki są smaczne, sycące i łatwe do przygotowania. Czuję się zaopiekowana i zmotywowana. Dziękuję za profesjonalne podejście i wsparcie!"
+  },
+  {
+    "opinion_id": "op_004397",
+    "text": "Pani Doktor bardzo konkretna, sympatyczna, o dużej wiedzy. Wrażenie po pierwszej wizycie na duży plus."
+  },
+  {
+    "opinion_id": "op_004398",
+    "text": "Serdecznie polecam Panią Joannę! Dieta została idealnie dopasowana do moich preferencji, dzięki czemu łatwo było mi się do niej dostosować. Pani Joanna regularnie monitoruje postępy i służy wsparciem na każdym etapie. Już w pierwszym tygodniu schudłam 2 kg! Jestem zmotywowana do dalszej pracy i z pełnym przekonaniem polecam wszystkim, którzy szukają profesjonalnej i empatycznej opieki dietetycznej."
+  },
+  {
+    "opinion_id": "op_004399",
+    "text": "Pani Beata to stomatolog z ogromną wiedzą i profesjonalnym podejściem. Zawsze dokładnie tłumaczy każdy etap leczenia, co daje poczucie bezpieczeństwa. Wizyty u niej przebiegają bez stresu, a efekty są zawsze na najwyższym poziomie. Gorąco polecam!"
+  },
+  {
+    "opinion_id": "op_004400",
+    "text": "Najgorszy stomatolog, jakiego w życiu spotkałam."
+  }
+]

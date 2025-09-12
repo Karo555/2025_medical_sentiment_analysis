@@ -1,0 +1,117 @@
+Jesteś uważnym tłumaczem w dziedzinie medycyny.
+
+ZADANIE:
+1. Dla każdej opinii w języku polskim wykonaj TŁUMACZENIE na naturalny, płynny język angielski, zachowując znaczenie, ton i emocje.
+2. WYKONAJ ANONIMIZACJĘ zgodnie z zasadami poniżej.
+
+ZASADY ANONIMIZACJI:
+- Jeśli w tekście występuje imię i nazwisko osoby, zamień je na neutralny placeholder:
+  • 'Jan Kowalski' (mężczyzna)
+  • 'Anna Kowalska' (kobieta)
+- Jeśli występuje tylko imię → zamień na 'Jan' lub 'Anna'.
+- Jeśli występuje tylko nazwisko → zamień na 'Pan Kowalski' lub 'Pani Kowalska'.
+- W miarę możliwości zachowaj poprawną odmianę w kontekście zdania.
+- NIE wymyślaj imion/nazwisk, jeśli w tekście ich nie ma.
+- Nazwy klinik, szpitali i marek zostaw w oryginale (chyba że to nazwisko osoby prywatnej).
+- Nie dodawaj ani nie usuwaj treści.
+
+WYJŚCIE:
+- Zwróć ŚCISŁĄ tablicę JSON (tylko tablicę, bez komentarzy, bez code fences).
+- Każdy element:
+{ "opinion_id": str, "lang": "en", "text": str, "redacted": int }
+- 'redacted' = liczba dokonanych zamian imion/nazwisk (0 jeśli brak zmian).
+
+WAŻNE:
+- Zachowaj dokładnie format JSON.
+- Upewnij się, że 'text' zawiera zanonimizowaną wersję tłumaczenia.
+- Jeżeli nie było nazw osobowych, 'redacted' = 0.
+
+PRZYKŁAD:
+INPUT:
+[ {"opinion_id": "op_test1", "text": "Byłam u dr Kowalskiego i było super."} ]
+OUTPUT:
+[ {"opinion_id": "op_test1", "lang": "en", "text": "I went to Dr. Jan Kowalski and it was great.", "redacted": 1} ]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_001301",
+    "text": "Moim zdaniem Pani Monika jest bardzo dobrym i skutecznym psychologiem , zaangażowana , mądra , ciepła , indywidualnie podchodzi do pacjenta , jest bardzo empatyczna i cierpliwa . Naprawdę potrafi słuchać , nie ma się poczucia bycia ocenianym , a czuć duże zrozumienie , a to jest wg mnie podstawa dobrej terapii . Pani psycholog potrafi nawiązać nić porozumienia z pacjentem . W moim przypadku bardzo trafnie dobrała kierunek terapii , zaproponowała skuteczne sposoby na polepszenie mojej psychicznej sytuacji , pomogła mi poprawić samopoczucie . Oczywiście nic nie dzieje się bez udziału pacjenta i trzeba samemu się zaangażować w terapię , ale dużą zaletą Pani Moniki jest to że tak umiejętnie potrafi zadać odpowiednie pytania że skłania do refleksji , pomaga spojrzeć na własne problemy i przyjrzeć się swoim odczuciom z różnych stron , co mi bardzo pomogło . Bardzo serdeczna osoba . Z całego serca polecam !"
+  },
+  {
+    "opinion_id": "op_001302",
+    "text": "Ja nie była m zadowolona . Miała m wstrzykiwany kwas hialuronowy pod oczami i niestety po zabiegu przez ok miesiąc wyglądała m fatalnie , bo popękało mi po tym wiele naczynek krwionośnych i wyglądała m , jakby m była mocno pobita . Być może była tu jakaś moja skłonność do pękania naczynek , chociaż u poprzedniego lekarza ( niedawno przeprowadziła m się do Warszawy ) nic takiego się nie działo . Ale to , co dr Rogala mi wstrzyknął pozostawało w grudkach bardzo długi czas , nie rozeszło się równomiernie , więc nawet w pracy musiała m przez cały ten okres chodzić w ciemnych okularach ."
+  },
+  {
+    "opinion_id": "op_001303",
+    "text": "„ Z danych publikowanych na świecie wynika , że problem anafilaksji narasta . W ciągu ostatnich 10 - 15 lat liczba jej przypadków zwiększyła się 5 - cio , a nawet 7 - krotnie ” – powiedział dr Raciborski . Dane europejskie wskazują , że jedna na 300 osób doznała w przeszłości lub dozna wstrząsu anafilaktycznego . Z danych przedstawionych w najnowszym raporcie , przy tworzeniu którego korzystano z rejestrów Narodowego Funduszu Zdrowia ( NFZ ) , wynika , że i w Polsce liczba osób , które otrzymały świadczenia medyczne w związku z reakcją anafilaktyczną , wzrosła w ostatnich kilku latach . Na przykład w 2015 r . liczba pacjentów po przebytym wstrząsie anafilaktycznym wskutek reakcji na pożywienie była prawie trzykrotnie wyższa niż w roku 2008 ."
+  },
+  {
+    "opinion_id": "op_001304",
+    "text": "Grupa prof . Małgorzaty Lewandowskiej - Szumieł z Warszawskiego Uniwersytetu Medycznego ma duże doświadczenie jeśli chodzi o dobór i zasiedlanie komórek dla danego przypadku tkanki kostnej . Ta grupa zajmuje się metodą zasiedlania tworzonej przez inżynierów porowatej struktury , przypominającej gąbkę . Grupa przygotowuje się teraz do badania skuteczności zasiedlania w badaniach na myszach . Centrum Onkologii kieruje projektem od strony medycznej . Zadaniem grupy dr . Janusza Jaworowskiego jest dobór odpowiednich pacjentów , opracowanie jak wyglądają ubytki kości twarzoczaszki - po to , żeby następnie opracowywać modelowe implanty i badać je . Zaprojektowanie i przetestowanie przebiegu operacji wszczepienia bioimplantu , jest bardzo ważne dla pacjentów . Już obecnie pacjenci są operowani z zastosowaniem sytemu komputerowego i nawigacji chirurgicznej ."
+  },
+  {
+    "opinion_id": "op_001305",
+    "text": "Witam , leczę się u Pana Andrzeja od początku 2014 roku . Jestem po 4 sesjach . Problemy z łopatką na którą był ucisk znacznie zelżały , ogólnie jest poprawa ale pod warunkiem , że faktycznie nie przesila się kręgosłupa nie schyla , nie wykonuje ćwiczeń których lekarz zabronił . Już ze dwa razy pofolgował em sobie co nieco w tych sprawach i skończyło się wizytą u Pana Skórki w trybie natychmiastowym i znów musiał mnie \" naprawiać \" bo ból się nasilił . Bardzo podoba mi się , że w razie takich przypadków Pan doktor służy pomocą i cierpliwie leczy do skutku , za co nie bierze ani grosza . Lubię ćwiczenia na siłowni i na pewno nie jest mi na rękę , że na niektóre mam szlaban , tak samo nie jest wygodne kucanie przy każdej okazji zamiast schylania się ale sam zepsuł em sobie kręgosłup i takie są reguły gry , że trzeba przestrzegać zaleceń , a wtedy nie boli . minusem jest , ze nie ma kiedy porozmawiać i pacjent tak naprawdę nie wie co się dzieje z jego kręgosłupem , jakie zmiany tam zachodzą , czy są one fizycznie widoczne po pewnym czasie leczenia , dlaczego od czasu do czasu są te napady bólu których ja na przykład wcześniej nie miałem ile tak naprawdę trwa leczenie , czy ma ono kiedyś koniec etc . Wg mnie ważne jest aby pacjent był świadom tego co mu dolega jak go się leczy dlaczego niektórych rzeczy mu nie można . Pozdrawiam i polecam"
+  },
+  {
+    "opinion_id": "op_001306",
+    "text": "Dieta od zawsze kojarzyła mi się z wyrzeczeniami , z rezygnacją z ulubionych potraw do czasu pierwszej wizyty u p . Kamili - 7 miesięcy temu . Jak się okazało , nie taki diabeł straszny . Pani Kamila uświadomiła mi co jest ważne , a mianowicie zdrowe nawyki , których wdrożenie w codzienność skutkuje miłym prezentem w postaci utraty zbędnych kilogramów , a co za tym idzie , lepszego samopoczucia no i zmian w wyglądzie ; ) Najważniejsze , że nie musiała m rezygnować z jedzenia tego co lubię . Dieta została tak ułożona , że miała m w niej wszystko co lubię jeść w racjonalnych porcjach indywidualnie dopasowanych po analizie mojego składu ciała . Zaczynała m z wagą 62 , aktualnie jest 53 - 54 i potrafię ją utrzymać , właśnie dzięki zaleceniom , jak się okazało bardzo banalnym . Polecam p . Kamilę Wrzesińską z czystym sercem , szczuplejszym ciałem i super samopoczuciem i zdrowymi nawykami : )"
+  },
+  {
+    "opinion_id": "op_001307",
+    "text": "skierował mnie do tego gabinetu moj dentysta gdy miał problem z jednym moim zębem podczas leczenia kanałowego , wąskie kanały , zakrzywione , powiedział że On może tylko wyrwać mi go . zapisała m się do jednego z dwóch braci Sypień . kosmos . pełny profesjonalizm . ząb uratowany ! Dzięki ! ` ` ` Ocena została zmieniona na \" Polecam \" . Powód : Zbyt lakoniczna argumentacja do wystawienia najwyższej oceny . ` ` `"
+  },
+  {
+    "opinion_id": "op_001308",
+    "text": "Umówiła m się do Pani doktor jako do terapeutki . Początek był ok . Pani doktor zadała pytanie dlaczego przyszła m - zaczęła m więc opowiadać o ostatnich przeżyciach . Oczywiście Pani doktor wtrącała jakieś pytania jednak z lekceważącym spojrzeniem . . . Po godzinie naszego spotkania , kiedy wylała m z siebie sporo informacji oraz łez zaznaczając że jestem przeciwniczką leków itp . Pani doktor odpowiedziała że musze przyjmować miliard leków bo np chaotycznie skakała m z tematu na temat : / zapisała mi sto recept i powiedziała że nie mogła mnie przyjąć jako teraputka bo ma pozajmowane terminy ale że skieruje mnie do psychologa a podliczy mnie tym czasem jak za wizytę u psychiatry : / zapłaciła m 160zł za to że zaufała m Po raz pierwszy obcej osobie wylała m z siebie prywatne przejścia licząc na to że rozpocznę jakąś terapię . Pani doktor mogła Pani na początku poinformować mnie że to jednorazowa wizyta : ) wyszła by m . Oszczędzając wstyd pieniądze i czas . Na szczęście jak się okazało nie musze brać żadnych leków i wszystko ze mną ok : ) może gdyby Pani poświęciła wiecej niz 55minut na obcą osobę poznała by Pani sedno jej problemu : ) i zamiast faszerować chemią roztrzęsioną kobitkę przetłumaczyła by Pani że nie trzeba się stresować : )"
+  },
+  {
+    "opinion_id": "op_001309",
+    "text": "Pani Jagna jest trzecim dietetykiem , z którym rozpoczął em współpracę , postanowił em napisać tę opinię , bo rezultaty , które osiągnął em są więcej niż zadowalające . Pomyślał em , że do trzech razy sztuka i jestem bardzo zadowolony ze swojego wyboru . Przede wszystkim rzetelna wiedza , która wyróżnia Panią Jagnę spośród tych dietetyków z którymi współpracował em . Myślę , że ma tu znaczenie to , iż Pani Jagna jest Dietetykiem Medycznym po Gdańskim Uniwersytecie Medycznym . Po drugie , umiejętność odczytywania potrzeb i preferencji . Wiem , że nie należał em do prostych przypadków - hipercholesterolemia i cukrzyca oraz nieregularne posiłki . Ta opinia jest podziękowaniem dla Pani za to , że dzięki Pani znów czuję się o 10 lat młodszy niż był em ."
+  },
+  {
+    "opinion_id": "op_001310",
+    "text": "Kiedy ja była m w ciąży , doktor jeszcze pracował w szpitalu . Fantastyczny fachowiec w swojej dziedzinie . Dzięki niemu , moja zagrożona ciąża ( od 6 aż do 32 tygodnia ) , przebiegała na tyle spokojnie na ile mogła . Doktor informował mnie o wszystkim , podtrzymywał na duchu , tłumaczył , robił badania . Córka urodziła się zdrowa i duża . Poleciła m go trzem koleżankom , które nie mogły zajść w ciążę . Do dziś są wdzięczne mnie za polecenie doktora , a doktorowi za to są szczęśliwymi matkami . Uczciwy , o czym świadczy fakt , że jeśli widzi z badań , które robi , że kobieta nie będzie mogła mieć dzieci , to mówi jej to i nie naciąga na dodatkowe badania , pieniądze . . . Dziękuję Panie Doktorze ."
+  },
+  {
+    "opinion_id": "op_001311",
+    "text": "U mnie bylo to samo - dodatkowo badanie droznosci kanalow usznych i nosa oraz wymaz - oczywiscie nie na czczo , bo zaplacilem od razu ; - ) ) ) ( tak a'propos to w KAZDEJ stacji diagnostycznej doradzaja aby wymazy z gardla robic na czczo ! ) . W sumie wyszedlem z gabinetu splukany ( koszty wizyty urosly do ponad 200 zl ! ) z , jak sie okazalo , calkowicie bledna diagnoza ( mialem byc ponoc chory na zatoki , co pozniej okazalo sie nieprawda - wykluczylo to bowiem 2 kojelnych laryngologow i szczegolowe badania radiologiczne ) i skierowaniem mnie na cudowne zabiegi fizjoterapii , ktorych potencjalengo dobroczynnego dzialania Pan Doktor nie byl uprzejmy mi wyjasnic . Ja rowniez bylem nachalnie namawiamy na umowienie sie na cala ich serie ( a gdy powiedzialem ze na wszystkie nie moge , Pan Doktor stwierdzil \" to przynajmniej na kilka , zeby zaczely dzialac \" ; - ) , na szczescie ze wzgledow zawodowych nie moglem . Pan Doktor bardzo interesowal sie moim materialnym statusem , chcac zapewne wysondowac ile moze ze mnie wyciagnac . Wg . mnie jezeli lekarz stawia bledna diagnoze , to albo jest niekompetenty albo robi to z premedytacja , nie zwazajac na dobro pacjenta , a kierujac sie podla checia ( wy - ) zysku . Dlatego stawiam Panu Doktorowi Kozokowi najnizsza mozliwa ocene . Zgadzam sie z opinia , ze jego praktykom powinna przyjrzec sie instytucja odpowiedzilana za kotrole srodowiska lekarskiego . Dodam rowniez , ze przedstawione ponizej pozytywne opinie o Panu Doktorze Kozoku wygladaja bardzo podejrzanie - zauwazyc mozna , ze powstaja one \" hurotowo \" w reakcji na kazda negatywna opinie i poza stwierdzeniami typu \" cudowny lekarz \" nie zawieraja zadnych konkretow - przeciwnie niz opinie negatywne . Czytajac negatywne opinie , raz po raz stwierdzalem - \" to tak jak u mnie ! \" - bowiem bylem tam i widzialem . Pozdrawiam !"
+  },
+  {
+    "opinion_id": "op_001312",
+    "text": "Pan doktor standardowo bez badania i zlecania jakichkolwiek badań kieruje na operację prostaty . Przyjmuje w gabinecie na Dąbiu kasując stosowną opłatę i kierując na rzekome badania na Trynitarskiej , gdzie po opłaceniu wizyty , wręcza pacjentowi płytkę z \" reklamą \" wykonywanych w jego klinice zabiegów i informując o bardzo przystępnej cenie zabiegu - bagatelka 9 . 500zł i wolnych terminach , na które bardzo chętnie by umówił chorego . Prostatę zdiagnozował chyba na podstawie koloru oczu bo pacjenta nawet nie zbadał . Niestety problem był znacznie bardziej poważny dotyczył nie prostaty , a pęcherza i nerek . . . Gratuluję Panu doktorowi zaangażowania , wiedzy i kompetencji . Odradzam wszystkim takich specjalistów ."
+  },
+  {
+    "opinion_id": "op_001313",
+    "text": "Do stolicy Dolnego Śląska przyjadą pod koniec sierpnia wybitni transplantolodzy m . in . prekursor przeszczepów twarzy i ręki prof . Jean Michel Dubernard z Lyonu oraz prof . Maria Siemionow z Cleveland , czy prof . Raimund Margreiter z Innsbrucku i prezes Międzynarodowego Towarzystwo Przeszczepów Ręki i Przeszczepów Złożonych prof . Pedro Cavadas z Walencji . Fundacja Rozwoju Chirurgii Ogólnej , Chirurgii Ręki i Chirurgii Transplantacyjnej w Trzebnicy oraz Powiat Trzebnicki organizują kongres we współpracy m . in . z Pododdziałem Replantacji Kończyn Szpitala im . Św . Jadwigi Śląskiej w Trzebnicy , Polskim Towarzystwem Transplantacyjnym , Polskim Stowarzyszeniem Koordynatorów Transplantacyjnych oraz oddziałami opolskim i dolnośląskim Poltransplantu . Samorząd Województwa Dolnośląskiego postanowił dofinansować uroczystą galę podczas sierpniowego kongresu kwotą 40 tysięcy zł ."
+  },
+  {
+    "opinion_id": "op_001314",
+    "text": "Tylko 18 proc . dorosłych Polaków chodzi pieszo do pracy lub jeździ do niej rowerem , przy czym zajmuje im to przeważnie nie dłużej niż 15 minut . Większość osób dociera do pracy samochodem lub transportem publicznym . Aż 66 proc . dorosłych mieszkańców naszego kraju , tj . 19 , 6 mln , nie wykonuje aktywnego wysiłku związanego z przemieszczaniem się do lub z pracy ( albo w ogóle nie pracuje zawodowo , nie studiuje , nie uczy się ) . Najmniej aktywni w trakcie przemieszczania się do lub z pracy są mieszkańcy dużych miast , co jest prawdopodobnie związane z lepszym systemem komunikacji miejskiej . W mniejszych miastach aktywność fizyczna jest większa , zwłaszcza w przypadku kobiet ."
+  },
+  {
+    "opinion_id": "op_001315",
+    "text": "Badacze w Fundacji Rozwoju Kardiochirurgii zastanawiali się , co mogą zrobić z zastawkami biologicznymi żeby zwiększyć ich trwałość . W ramach projektu „ Nowe metody przygotowania zastawek biologicznych ” opracowali nowatorski prototyp zastawki . Otrzymali ją metodą inżynierii tkankowej . Bezkomórkowe lub biodegradowalne rusztowanie protezy pokrywane jest tu komórkami izolowanymi ze szpiku kostnego pacjenta . „ Każda tkanka , w tym zastawki , składa się z dwóch elementów . Macierz zewnątrzkomórkowa to białka , które tworzą rodzaj rusztowania . Przypomina ono gąbkę . Na niej osadzone są komórki . Doszli śmy do wniosku , że elementem , który może najbardziej ograniczać trwałość zastawki jest element komórkowy . Koncepcja tworzenia nowych zastawek polega na tym , żeby na rusztowaniu białkowym hodować komórki własne pacjenta ” – wyjaśnia badacz ."
+  },
+  {
+    "opinion_id": "op_001316",
+    "text": "Dr Karaczun zdiagnozował u naszego syna chorobę Osgooda - Schlattera w lewym kolanie . Po 2 miesiącach rehabilitacji ( 2 - 3 razy w tygodniu w prywatnym gabinecie pod nadzorem dr Karaczuna ) kolano przestało boleć i lekarz stwierdził , że leczenie jest zakończone i syn może ćwiczyć . Na drugi dzień dziecko wróciło z lekcji w - f z identycznym bólem kolana , jak na początku choroby . Dr Karaczun nie potrafił wytłumaczyć , dlaczego choroba wróciła ( ponoć nigdy nie miał takiego przypadku ) i zalecił … dalszą rehabilitację . Po kolejnym miesiącu ćwiczeń nie było żadnej poprawy i postanowili śmy szukać pomocy gdzie indziej . Na pierwszej wizycie u nowego fizjoterapeuty zostali śmy poinformowani , że dziecko ma duży przykurcz prawego kolana i dlatego choroba O - S w lewym kolanie wróciła ( ponieważ wciąż ugięte prawe kolano osłabia lewe ) . Faktycznie – było to widoczne ( wystarczyło kazać stanąć dziecku prosto ) . Dowiedzieli śmy się , że bez wyleczenia prawego kolana nie ma szans na wyzdrowienie lewego . Nowa rehabilitacja ( raz w tygodniu ) , która skupiała się przede wszystkim na rozciąganiu prawego kolana i ogólnie całego ciała , bardzo szybko usunęła kontuzję . Złożyli śmy „ reklamację ” ustną dr Karaczunowi prosząc o zwrot kosztów nieudanego leczenia . Przekazali śmy ww . przebieg nowej rehabilitacji i przyczynę , dlaczego choroba wróciła . Nie zgodził się z tą opinią . Stwierdził , że przykurcz jednego kolana nie ma absolutnie żadnego wpływu na kondycję drugiego . Poprosili śmy , żeby napisał nam to stwierdzenie na kartce - niestety odmówił . Zaproponowali śmy , żeby stanął na lekko ugiętym jednym kolanie , żeby poczuć , że wtedy obciąża się drugie ( zresztą , nie trzeba być lekarzem , żeby to stwierdzić ) . Również odmówił . Dr Karaczun usunął jedynie skutek choroby lewego kolana naszego syna , dlatego ona wróciła . Nie usunął jednak przyczyny tej choroby ( przykurczu prawej ) , a co za tym idzie nie postawił właściwej diagnozy . Kiedy zapytali śmy , dlaczego na pierwszej wizycie nawet nie obejrzał drugiego ( prawego ) kolana , to odpowiedział , że przecież pacjent nic nie mówił , że go boli … . No niestety , ale przykurcz nie boli ! Dr Karaczun zarzucił nam natomiast , że : 1 ) za krótko leczyli śmy kolano , 2 ) nasz syn tak bardzo chciał wrócić do ćwiczeń , że skłamał ( ! ! ! ) po 2 m - cach rehabilitacji , że kolano już go nie boli , 3 ) raz ( zanim rozpoczęli śmy leczenie ) przyłożyli śmy ciepły okład na kolano , co wydłużyło leczenie ! Stracili śmy 3 miesiące i ok 3 tys . złotych ( 4 wizyty prywatne + 2 - 3 rehabilitacje w tygodniu ) . Absolutnie nie polecamy wizyt u dr Karaczuna ."
+  },
+  {
+    "opinion_id": "op_001317",
+    "text": "Naukowcy zwracali uwagę na działanie kannabidiolu w leczeniu padaczki . Wiceprezes PAN , farmakolog prof . Stanisław Czuczwar zauważył , że kannabidiol praktycznie nie działa uzależniająco i nie ma efektów psychotycznych . \" Przyprawianie kannabidiolowi + gęby + marihuany nie ma sensu \" - ocenił . Czuczwar powołał się na badania dotyczące stosowania preparatu na bazie kannabidiolu jako dodatku do leków przeciwpadaczkowych u dzieci i młodzieży z padaczką lekooporną : \" 44 proc . badanych pacjentów zareagowało przynajmniej zmniejszeniem liczby napadów o 50 proc . \" - powiedział . Jego zdaniem jest to bardzo dobry wynik . Zaznaczył jednak , że badania , które na razie przeprowadzono , były niewielkie - wykonywano je na kilkudziesięciu pacjentach , a testy trwały zaledwie kilka miesięcy . Tymczasem w przypadku leków na padaczkę bardzo istotne są efekty długofalowe . A pod tym kątem badań jeszcze nie prowadzono . Prof . Jerzy Vetulani z Instytutu Farmakologii PAN w Krakowie zwrócił uwagę , że ze względu na fobie społeczne , obiektywne , zakrojone na dużą skalę badania nad leczniczym działaniem marihuany bardzo trudno jest przeprowadzić . \" Nie znajdę w większości krajów takiej komisji etycznej , która by się zgodziła , żeby 3 tys . osób mogły regularnie przez 2 - 3 miesiące dostawać leki ( na bazie marihuany - przyp . PAP ) \" - stwierdził badacz ."
+  },
+  {
+    "opinion_id": "op_001318",
+    "text": "Miałem tylko jeden kontakt z doktorem więc nie mogę powiedzieć że jest bardzo dobry na podstawie jednej wizyty , nie mniej jednak na pewno jest człowiekiem konkretnym i o bardzo dużej wiedzy , nie obiecuje złotych gór , mówi jak jest i co trzeba z tym zrobić . Polecam"
+  },
+  {
+    "opinion_id": "op_001319",
+    "text": "Bardzo miła i fachowa . Bardzo ją polecam . W moim przypadku mogła by tylko wypisać skierowanie na odpowiednie badania , a nie tylko dać na kartce papieru co trzeba wykonać . Powoduje to , że muszę stać w kolejce do lekarza pierwszego kontaktu i prosić o skierowanie na badania , albo za nie płacić ."
+  },
+  {
+    "opinion_id": "op_001320",
+    "text": "Tu mozna by pisać i pisać same superlatywy . Dr Dudarewicz to specjalista jakich mało . Ja poszła m do niego na USG 3D po tym jak inny \" fachowiec \" stwierdził , że mam duże prawdopodobieństwo urodzenia dziecka z wadą . Dr Dudarewicz bardzo dokładnie wykonał USG , cały czas mówiąc mi co i jak . Traktuje pacjentkę nie jak przedmiot a jak normalnego człowieka , który nie koniecznie musi się na wszystkim znać . Po wizycie wyszła m uspokojona i co najważniejsze to wszystko co powiedział sprawdziło się , jak na świat przyszedł mój zdrowy , śliczny synek . Jedynym problemem sa terminy - trzeba naprawde wcześniej się zapisywać , gdyż Pan doktor ma dużo pacjentem nie tylko z Łodzi ."
+  }
+]
