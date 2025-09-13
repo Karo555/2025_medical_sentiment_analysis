@@ -1,0 +1,36 @@
+{
+  "created_at": "2025-09-13T21:21:38+02:00",
+  "inputs": {
+    "opinions": "data/working/opinions.jsonl",
+    "embeddings": "data/dataset/embeddings.jsonl",
+    "personas": "data/dataset/personas.jsonl"
+  },
+  "emotions": [
+    "Positive",
+    "Negative",
+    "Happiness",
+    "Delight",
+    "Inspiring",
+    "Surprise",
+    "Compassion",
+    "Fear",
+    "Sadness",
+    "Disgust",
+    "Anger",
+    "Ironic",
+    "Political",
+    "Interesting",
+    "Understandable",
+    "Offensive",
+    "Funny"
+  ],
+  "counts": {
+    "embeddings_in": 89900,
+    "final_written": 89900,
+    "missing": 0
+  },
+  "outputs": {
+    "final_dataset": "data/dataset/dataset.jsonl",
+    "missing_report": "data/processed/builder_missing.jsonl"
+  }
+}

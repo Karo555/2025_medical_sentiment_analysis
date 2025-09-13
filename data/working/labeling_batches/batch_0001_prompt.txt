@@ -1,0 +1,45 @@
+Jesteś systemem do etykietowania emocji w opiniach medycznych.
+ZADANIE: Dla KAŻDEJ z poniższych opinii w języku polskim oceń emocje z perspektywy KAŻDEJ persony.
+Nie tłumacz tekstów. Nie zmieniaj treści. Zwróć wyłącznie JSON.
+
+PERSONY (użyj wszystkich):
+- person_1: Wdzięczna córka | Wrażliwość: Pozytywna, szczęście, współczucie | Wartości: Widzi odbicie własnych doświadczeń związanych z opieką nad chorą matką; łatwo wzrusza się opowieściami o oddanych lekarzach.
+- person_2: Rozczarowany pacjent | Wrażliwość: Negatywne, smutek, gniew | Wartości: Każdy brak empatii lub błąd medyczny traktuje jako osobisty atak; pozytywne recenzje postrzega jako niewiarygodne kontrasty.
+- person_3: Sceptyczny naukowiec | Wrażliwość: Ciekawy, ironiczny (niska tolerancja dla zrozumiałego) | Wartości: Uważa recenzje pacjentów za anegdotyczne i zbyt subiektywne; ceni tylko fragmenty pochodzące od ekspertów lub naukowe.
+- person_4: Nerwowy hipochondryk | Wrażliwość: Strach, negatywne nastawienie, zaskoczenie | Wartości: Przerażają go historie o komplikacjach lub podrobionych lekach; nawet pozytywne recenzje postrzega jako rzadkie wyjątki w niebezpiecznej normie.
+- person_5: Oburzony aktywista | Wrażliwość: Gniew, obraźliwość, obrzydzenie | Wartości: Silnie reaguje na nieludzkie traktowanie, wysokie koszty i systemowe zaniedbania; interpretuje negatywne opinie jako dowód patologii opieki zdrowotnej.
+- person_6: Humorystyczny ironista | Wrażliwość: Ironiczny, zabawny | Wartości: W recenzjach dostrzega groteskowe i absurdalne aspekty; traktuje je jako materiał do satyry i żartów.
+- person_7: Empatyczna matka | Wrażliwość: Współczucie, pozytywne nastawienie, smutek | Wartości: Głęboko poruszają ją historie dotyczące dzieci; oburza ją brak empatii wobec dzieci, wzrusza ją opowieści o dobrych lekarzach.
+- person_8: Krytyk zaangażowany politycznie | Wrażliwość: Polityka, negatywne nastawienie, gniew | Wartości: Każdą recenzję traktuje jako dowód na potrzebę reformy służby zdrowia; traktuje osobiste historie jako argumenty w debacie publicznej.
+- person_9: Entuzjasta technologii | Wrażliwość: Ciekawe, Zaskoczenie, Radość | Wartości: Podekscytowany aspektami naukowymi i technologicznymi; recenzje pacjentów uważa za nudne, ale fascynują go innowacje i badania naukowe.
+- person_10: Zawstydzony pacjent | Wrażliwość: Zawstydzające, negatywne | Wartości: Czuje się niekomfortowo, czytając o niezręcznych lub obraźliwych sytuacjach; historie o niegrzecznych lekarzach wywołują u niego silne zawstydzenie.
+
+ETYKIETY (kolejność i znaczenie, 0/1 każda):
+Positive, Negative, Happiness, Delight, Inspiring, Surprise, Compassion, Fear, Sadness, Disgust, Anger, Ironic, Political, Interesting, Understandable, Offensive, Funny
+
+WYJŚCIE:
+Zwróć TYLKO tablicę JSON, bez komentarzy i bez code fences. Każdy element tablicy odpowiada jednej opinii i ma postać:
+{ "opinion_id": str, "lang": "pl", "results": [ { "persona_id": str, "labels": [17 liczb 0/1 w dokładnej kolejności etykiet] }, ... ] }
+Liczba elementów w 'results' MUSI równać się liczbie person (10). Długość 'labels' MUSI wynosić 17.
+
+INPUT (opinie):
+[{"opinion_id":"op_demo","lang":"pl","text":"Lekarz był miły i wszystko dokładnie wyjaśnił."}]
+OUTPUT (JSON, tylko tablica):
+[{"opinion_id":"op_demo","lang":"pl","results":[
+  {"persona_id":"person_1","labels":[1,0,1,0,1,0,1,0,0,0,0,0,0,1,1,0,0]},
+  {"persona_id":"person_2","labels":[0,1,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0]}
+]}]
+
+INPUT:
+[
+  {
+    "opinion_id": "op_000001",
+    "lang": "pl",
+    "text": "Oceniam Panią Doktor niziutko , w moim przypadku ( refluks żołądkowo - pzrełykowy ) nie udało się doprowadzić do choćby minimalnej poprawy . Była m na 4 wizytach ( średnio co 3 - 4 tygodnie ) , przyjmowała m wszystkie zalecone leki ( za kazdym razem zmiana specyfików i dawek ) , po niektórych czuła m się gozrej niż pzred rozpoczęciem leczenia ( odbijanie , wymioty , wzdęcia ) prowadziła m skrupulatnie dzienniczek zjadanych rzeczy , ograniczyła m z diety za sugestią Pani doktor większość produktów , co skutkowało chudnięciem . W moim przypadku stracony czas , pieniądze , wysiłek , nadzieje . . W dalszym ciągu poszukuję skutecznego lekarza ."
+  },
+  {
+    "opinion_id": "op_000002",
+    "lang": "pl",
+    "text": "Witam , Jakiś czas temu miała m wykonywaną operację wszczepienia implantów u doktora D . Operacja przebiegła bez problemów , ale to co zobaczyła m po zdjęciu opatrunkó było największym koszmarem jaki widziała m . Moje piersi wyglądały gorzej niż przed operacją , skóra pocięta , zniszczona , implanty widoczne , rany goiły się bardzo długo . Była m załamana . Moja babcia , która ma 85 lat ma ładniejsze persi ode mnie . Po operacji dowiedziała m się od męża , że zabieg trwał ponad 3 godziny , gdzie standardowo trwa ok 2 . Pytała m czy były komplikacje - ponoć nie , że zabieg jak każdy . Ten koszmar trwał 3 lata i zdobyła m się na odwagę i poszła m do kliniki Mediclinique na Mickiewicza , gdzie pracuje doktor Andrzej Krajewski . Po wstępnych konsultacjach ustalili śmy , że mogę przejść operację poprawy tego co ktoś \" spieprzył \" . Doktor wszystko ze mną omówił ze szczegółami , miał dla mnie czas , a nie patrzył na zegarek jak doktor D . , rozwiał wszystkie moje obawy , prawdziwy lekarz . Operacja trwała ok godziny , a samo wszczepienie nowych implantów 20 minut - tak robi to dr Krajewski . Blizna malutka , prawie niewidoczna . Polecam gorąco tego lekarza osobom , które chcą poddać się jakiejkolwiek operacji . On robi wszystko . I namawiam na poprawki od innych lekarzy ."
+  }
+]
